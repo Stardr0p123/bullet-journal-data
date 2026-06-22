@@ -18,6 +18,7 @@
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
+            --purple: #8b5cf6;
 
             --glass-bg: rgba(255, 255, 255, 0.42);
             --glass-bg-hover: rgba(255, 255, 255, 0.58);
@@ -38,9 +39,12 @@
             --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
 
             --mouse-x: 50%;
             --mouse-y: 50%;
+            --icon-bg: rgba(6, 182, 212, 0.10);
+            --icon-radius: 10px;
         }
 
         /* ================================================================
@@ -66,7 +70,7 @@
             transition: background 0.08s ease;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            padding: 20px;
+            padding: 16px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -114,7 +118,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .glass::before {
             content: '';
             position: absolute;
@@ -126,31 +129,36 @@
             transition: opacity var(--transition-smooth);
             z-index: 0;
         }
-
         .glass:hover::before {
             opacity: 0.7;
         }
-
         .glass:hover {
             background: var(--glass-bg-hover);
             border-color: rgba(255, 255, 255, 0.50);
             box-shadow: var(--glass-hover-shadow);
             transform: translateY(-2px);
         }
-
         .glass>* {
             position: relative;
             z-index: 1;
+        }
+
+        .glass-card {
+            padding: 16px 18px;
+            margin-bottom: 14px;
+        }
+        .glass-card:last-child {
+            margin-bottom: 0;
         }
 
         /* ================================================================
            4.  顶部导航
            ================================================================ */
         .app-header {
-            max-width: 1200px;
+            max-width: 1440px;
             width: 100%;
-            margin: 0 auto 24px;
-            padding: 12px 24px;
+            margin: 0 auto 18px;
+            padding: 10px 22px;
             background: rgba(255, 255, 255, 0.38);
             backdrop-filter: blur(28px);
             -webkit-backdrop-filter: blur(28px);
@@ -161,65 +169,57 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 12px;
             transition: all var(--transition-smooth);
         }
-
         .app-header:hover {
             border-color: rgba(255, 255, 255, 0.45);
             box-shadow: 0 4px 28px rgba(0, 0, 0, 0.04);
         }
-
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
-
         .logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 12px;
             background: var(--primary-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             color: #fff;
             box-shadow: 0 4px 20px rgba(6, 182, 212, 0.25);
             transition: transform var(--transition-bounce), box-shadow var(--transition-smooth);
         }
-
         .logo-icon:hover {
             transform: scale(1.15) rotate(-8deg);
             box-shadow: 0 8px 32px rgba(6, 182, 212, 0.40);
         }
-
         .logo-text {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--text);
             letter-spacing: -0.4px;
         }
-
         .logo-sub {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
             font-weight: 400;
             letter-spacing: 0.2px;
             margin-left: 2px;
         }
-
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
-
         .btn-ghost-sm {
-            padding: 6px 16px;
-            font-size: 12px;
+            padding: 5px 14px;
+            font-size: 11px;
             border-radius: var(--radius-sm);
             border: 1px solid rgba(255, 255, 255, 0.25);
             background: rgba(255, 255, 255, 0.15);
@@ -231,9 +231,8 @@
             white-space: nowrap;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
         }
-
         .btn-ghost-sm:hover {
             background: rgba(255, 255, 255, 0.40);
             border-color: rgba(6, 182, 212, 0.20);
@@ -241,319 +240,317 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
         }
-
         .btn-ghost-sm:active {
-            transform: scale(0.96);
-        }
-
-        /* ================================================================
-           5.  选项卡导航 (Tabs)
-           ================================================================ */
-        .tab-nav {
-            display: flex;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(4px);
-            border-radius: var(--radius-sm);
-            padding: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.10);
-            flex-shrink: 0;
-            overflow: hidden;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            padding: 8px 20px;
-            border: none;
-            background: transparent;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            transition: all var(--transition-smooth);
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-family: inherit;
-            position: relative;
-        }
-
-        .tab-btn .tab-icon {
-            font-size: 15px;
-            color: var(--text-muted);
-            transition: color var(--transition-smooth);
-        }
-
-        .tab-btn.active {
-            color: var(--primary-dark);
-            background: rgba(255, 255, 255, 0.30);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        }
-
-        .tab-btn.active .tab-icon {
-            color: var(--primary-dark);
-        }
-
-        .tab-btn:hover:not(.active) {
-            color: var(--text);
-            background: rgba(255, 255, 255, 0.10);
-            transform: translateY(-1px);
-        }
-
-        .tab-btn:active {
             transform: scale(0.94);
         }
 
         /* ================================================================
-           6.  主容器 & 面板
+           5.  主布局 — 3.5 : 6.5
            ================================================================ */
         .main-container {
-            max-width: 1200px;
+            max-width: 1440px;
             width: 100%;
             margin: 0 auto;
             flex: 1;
+            display: flex;
+            gap: 18px;
+            min-height: 0;
         }
 
-        .panel {
-            display: none;
-            animation: panelFade 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+        /* 左侧栏 35% */
+        .left-sidebar {
+            flex: 0 0 35%;
+            min-width: 240px;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            overflow: hidden;
+            max-height: calc(100vh - 120px);
+        }
+        .left-sidebar .glass {
+            flex: 0 1 auto;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 14px 16px;
+        }
+        .left-sidebar .glass:first-child {
+            flex: 1;
+        }
+        .left-sidebar .glass:last-child {
+            flex: 0 0 auto;
         }
 
-        .panel.active {
-            display: block;
+        /* 右侧栏 65% */
+        .right-main {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            max-height: calc(100vh - 120px);
+        }
+        .right-main .glass {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 16px 18px;
         }
 
-        @keyframes panelFade {
-            0% {
-                opacity: 0;
-                transform: translateY(12px) scale(0.98);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        /* 滚动容器 */
+        .scroll-y {
+            overflow-y: auto;
+            flex: 1;
+            min-height: 0;
+            padding-right: 4px;
+        }
+        .scroll-y::-webkit-scrollbar {
+            width: 3px;
+        }
+        .scroll-y::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.20);
+            border-radius: 3px;
         }
 
         /* ================================================================
-           7.  组件样式
+           6.  左侧面板组件
            ================================================================ */
-        /* 通用输入框 */
-        .input-group {
+        .sidebar-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
             display: flex;
-            gap: 10px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .sidebar-title .badge {
+            margin-left: auto;
+            font-size: 10px;
+            background: rgba(255, 255, 255, 0.10);
+            padding: 0 8px;
+            border-radius: var(--radius-full);
+            color: var(--text-muted);
         }
 
-        .input-group input,
-        .input-group textarea {
+        .scheduled-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .scheduled-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 13px;
+            transition: background var(--transition-smooth);
+            border-left: 2px solid var(--warning);
+        }
+        .scheduled-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .scheduled-item .s-month {
+            font-size: 10px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            min-width: 48px;
+        }
+        .scheduled-item .s-text {
             flex: 1;
-            padding: 10px 16px;
+            word-break: break-word;
+        }
+
+        .temp-area {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-sm);
+            padding: 6px 8px;
+            min-height: 44px;
+            max-height: 120px;
+            overflow-y: auto;
+            border: 1px dashed rgba(255, 255, 255, 0.08);
+            transition: border-color var(--transition-smooth);
+        }
+        .temp-area:hover {
+            border-color: rgba(6, 182, 212, 0.15);
+        }
+        .temp-area .temp-empty {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            padding: 12px 0;
+            opacity: 0.4;
+        }
+        .temp-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 6px;
+            font-size: 12px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.04);
+            margin-bottom: 2px;
+        }
+        .temp-item .t-text {
+            flex: 1;
+            word-break: break-word;
+        }
+        .temp-item .t-rm {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 11px;
+            padding: 0 4px;
+            transition: color var(--transition-smooth);
+        }
+        .temp-item .t-rm:hover {
+            color: var(--danger);
+        }
+
+        .extract-tool {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 6px;
+        }
+        .extract-tool select,
+        .extract-tool input {
+            padding: 4px 10px;
             border: 1.5px solid rgba(255, 255, 255, 0.15);
             border-radius: var(--radius-sm);
-            font-size: 14px;
+            font-size: 12px;
             font-family: inherit;
-            transition: var(--transition-smooth);
             background: rgba(255, 255, 255, 0.14);
             backdrop-filter: blur(4px);
             color: var(--text);
-            min-width: 150px;
+            transition: var(--transition-smooth);
         }
-
-        .input-group input:focus,
-        .input-group textarea:focus {
+        .extract-tool select:focus,
+        .extract-tool input:focus {
             outline: none;
             border-color: var(--primary);
             background: rgba(255, 255, 255, 0.30);
-            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.04);
-            transform: translateY(-1px);
         }
-
-        .input-group input::placeholder,
-        .input-group textarea::placeholder {
-            color: var(--text-muted);
-            font-size: 13px;
-        }
-
-        .input-group textarea {
-            min-height: 44px;
-            resize: vertical;
-        }
-
-        .btn-primary-sm {
-            padding: 10px 20px;
+        .extract-tool .btn-sm {
+            padding: 4px 14px;
             border-radius: var(--radius-sm);
             border: none;
             background: var(--primary-gradient);
             color: #fff;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
             transition: all var(--transition-smooth);
-            white-space: nowrap;
             font-family: inherit;
-            box-shadow: 0 4px 16px rgba(6, 182, 212, 0.12);
+            box-shadow: 0 2px 12px rgba(6, 182, 212, 0.10);
         }
-
-        .btn-primary-sm:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 28px rgba(6, 182, 212, 0.20);
+        .extract-tool .btn-sm:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.18);
         }
-
-        .btn-primary-sm:active {
+        .extract-tool .btn-sm:active {
             transform: scale(0.94);
         }
 
-        .btn-ghost {
-            padding: 8px 16px;
-            border-radius: var(--radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(4px);
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            transition: all var(--transition-smooth);
-            font-family: inherit;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .btn-ghost:hover {
-            background: rgba(255, 255, 255, 0.20);
-            transform: translateY(-1px);
-            color: var(--text);
-        }
-
-        /* 任务列表 */
-        .task-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 8px;
-        }
-
-        .task-item {
+        /* ================================================================
+           7.  右侧面板 — 年度目标
+           ================================================================ */
+        .goal-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.20);
+            gap: 10px;
+            padding: 6px 10px;
             border-radius: var(--radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.04);
             transition: all var(--transition-smooth);
-            animation: taskSlide 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+            margin-bottom: 4px;
         }
-
-        @keyframes taskSlide {
-            0% {
-                opacity: 0;
-                transform: translateX(-10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .goal-item:hover {
+            background: rgba(255, 255, 255, 0.12);
         }
-
-        .task-item:hover {
-            background: rgba(255, 255, 255, 0.35);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-
-        .task-item .task-text {
-            flex: 1;
-            font-size: 14px;
-            color: var(--text);
-            word-break: break-word;
-        }
-
-        .task-item .task-text.done {
-            text-decoration: line-through;
-            color: var(--text-muted);
-        }
-
-        .task-item .task-text.migrated {
-            color: var(--primary-dark);
-            font-style: italic;
-        }
-
-        .task-item .task-text.scheduled {
-            color: var(--warning);
-        }
-
-        /* 状态切换按钮 (核心交互) */
-        .status-toggle {
-            width: 36px;
-            height: 36px;
+        .goal-item .goal-check {
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
-            border: none;
-            background: rgba(255, 255, 255, 0.10);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            background: transparent;
             cursor: pointer;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-muted);
-            transition: all var(--transition-bounce);
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all var(--transition-bounce);
             flex-shrink: 0;
-            font-family: var(--font-sans);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        }
-
-        .status-toggle:hover {
-            transform: scale(1.15) rotate(-6deg);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .status-toggle:active {
-            transform: scale(0.85);
-        }
-
-        .status-toggle.status-todo {
+            font-size: 12px;
             color: var(--text-muted);
-            background: rgba(148, 163, 184, 0.10);
         }
-        .status-toggle.status-todo:hover {
-            background: rgba(148, 163, 184, 0.20);
+        .goal-item .goal-check.done {
+            border-color: var(--success);
+            background: var(--success);
+            color: #fff;
         }
-
-        .status-toggle.status-done {
-            color: var(--success);
-            background: rgba(16, 185, 129, 0.12);
+        .goal-item .goal-check:hover {
+            transform: scale(1.12);
         }
-        .status-toggle.status-done:hover {
-            background: rgba(16, 185, 129, 0.22);
+        .goal-item .goal-check:active {
+            transform: scale(0.88);
         }
-
-        .status-toggle.status-migrated {
-            color: var(--primary);
-            background: rgba(6, 182, 212, 0.12);
+        .goal-item .goal-text {
+            flex: 1;
+            font-size: 14px;
+            transition: all var(--transition-smooth);
         }
-        .status-toggle.status-migrated:hover {
-            background: rgba(6, 182, 212, 0.22);
+        .goal-item .goal-text.done-text {
+            text-decoration: line-through;
+            color: var(--text-muted);
         }
-
-        .status-toggle.status-scheduled {
-            color: var(--warning);
-            background: rgba(245, 158, 11, 0.12);
-        }
-        .status-toggle.status-scheduled:hover {
-            background: rgba(245, 158, 11, 0.22);
-        }
-
-        .task-item .del-task {
+        .goal-item .goal-del {
             background: none;
             border: none;
             color: var(--text-muted);
             cursor: pointer;
-            font-size: 14px;
-            padding: 4px 6px;
+            font-size: 13px;
+            padding: 2px 6px;
+            border-radius: 50%;
+            transition: all var(--transition-smooth);
+            opacity: 0.3;
+        }
+        .goal-item:hover .goal-del {
+            opacity: 0.7;
+        }
+        .goal-item .goal-del:hover {
+            color: var(--danger);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* ================================================================
+           8.  右侧面板 — 月度日历（含悬停）
+           ================================================================ */
+        .date-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+        .date-indicator .nav-arrow {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 2px 6px;
             border-radius: 50%;
             transition: all var(--transition-smooth);
             width: 28px;
@@ -561,39 +558,51 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            opacity: 0.3;
+        }
+        .date-indicator .nav-arrow:hover {
+            background: rgba(255, 255, 255, 0.20);
+            color: var(--text);
+            transform: scale(1.08);
+        }
+        .date-indicator .current-label {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text);
+            min-width: 100px;
+            text-align: center;
+        }
+        .date-indicator .btn-ghost {
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            font-size: 11px;
+            color: var(--text-secondary);
+            transition: all var(--transition-smooth);
+            font-family: inherit;
+        }
+        .date-indicator .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.20);
+            transform: translateY(-1px);
+            color: var(--text);
         }
 
-        .task-item:hover .del-task {
-            opacity: 0.7;
-        }
-
-        .task-item .del-task:hover {
-            background: rgba(239, 68, 68, 0.10);
-            color: var(--danger);
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        /* 日历网格 */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
-            margin-bottom: 16px;
+            gap: 3px;
+            margin-bottom: 12px;
         }
-
         .calendar-grid .day-label {
             text-align: center;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             color: var(--text-muted);
-            padding: 4px 0;
+            padding: 3px 0;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
-
         .calendar-grid .day-cell {
             aspect-ratio: 1 / 1;
             display: flex;
@@ -604,28 +613,25 @@
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid transparent;
             transition: all var(--transition-smooth);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             color: var(--text-secondary);
             cursor: default;
             position: relative;
         }
-
         .calendar-grid .day-cell.other-month {
             color: var(--text-muted);
             opacity: 0.3;
         }
-
         .calendar-grid .day-cell.today {
             border-color: var(--primary);
             background: rgba(6, 182, 212, 0.06);
             color: var(--primary-dark);
             font-weight: 700;
         }
-
         .calendar-grid .day-cell .day-dot {
             position: absolute;
-            bottom: 4px;
+            bottom: 3px;
             width: 5px;
             height: 5px;
             border-radius: 50%;
@@ -633,342 +639,747 @@
             opacity: 0;
             transition: opacity var(--transition-smooth);
         }
-
         .calendar-grid .day-cell .day-dot.has-task {
+            opacity: 0.5;
+        }
+        .calendar-grid .day-cell .day-dot.has-event {
+            background: var(--success);
             opacity: 0.6;
         }
-
-        .calendar-grid .day-cell .day-dot.has-task-done {
+        .calendar-grid .day-cell .day-dot.has-note {
+            background: var(--text-muted);
+            opacity: 0.4;
+        }
+        .calendar-grid .day-cell .day-dot.all-done {
             background: var(--success);
             opacity: 0.8;
         }
-
         .calendar-grid .day-cell:hover {
+            background: rgba(255, 255, 255, 0.14);
+            transform: scale(1.04);
+            z-index: 2;
+        }
+
+        /* ===== 日历悬停 Tooltip ===== */
+        .day-tooltip {
+            position: fixed;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.70);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            border-radius: var(--radius-sm);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+            font-size: 13px;
+            max-width: 240px;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            transform: translateY(6px) scale(0.96);
+            color: var(--text);
+            line-height: 1.5;
+        }
+        .day-tooltip.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .day-tooltip .tt-date {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 11px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+        .day-tooltip .tt-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            padding: 1px 0;
+        }
+        .day-tooltip .tt-item .tt-icon {
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        .day-tooltip .tt-empty {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        /* ================================================================
+           9.  右侧面板 — 月度任务列表
+           ================================================================ */
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 4px;
+        }
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 10px;
             background: rgba(255, 255, 255, 0.12);
-            transform: scale(1.02);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all var(--transition-smooth);
+            animation: taskSlide 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
-
-        /* 双栏布局 */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .two-col {
-                grid-template-columns: 1fr;
-                gap: 16px;
+        @keyframes taskSlide {
+            0% {
+                opacity: 0;
+                transform: translateX(-8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
+        .task-item:hover {
+            background: rgba(255, 255, 255, 0.22);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+        .task-item .task-text {
+            flex: 1;
+            font-size: 13px;
+            color: var(--text);
+            word-break: break-word;
+        }
+        .task-item .task-text.done {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+        .task-item .task-text.migrated {
+            color: var(--primary-dark);
+            font-style: italic;
+        }
+        .task-item .task-text.scheduled {
+            color: var(--warning);
+        }
+        .task-item .task-type-icon {
+            font-size: 14px;
+            flex-shrink: 0;
+            width: 20px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .task-item .task-type-icon.type-task {
+            color: var(--primary);
+        }
+        .task-item .task-type-icon.type-event {
+            color: var(--success);
+        }
+        .task-item .task-type-icon.type-note {
+            color: var(--text-muted);
+        }
 
-        /* 周视图 */
+        /* 状态切换 */
+        .status-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all var(--transition-bounce);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-family: var(--font-sans);
+        }
+        .status-toggle:hover {
+            transform: scale(1.12) rotate(-4deg);
+            background: rgba(255, 255, 255, 0.20);
+        }
+        .status-toggle:active {
+            transform: scale(0.85);
+        }
+        .status-toggle.status-todo {
+            color: var(--text-muted);
+            background: rgba(148, 163, 184, 0.08);
+        }
+        .status-toggle.status-done {
+            color: var(--success);
+            background: rgba(16, 185, 129, 0.12);
+        }
+        .status-toggle.status-migrated {
+            color: var(--primary);
+            background: rgba(6, 182, 212, 0.12);
+        }
+        .status-toggle.status-scheduled {
+            color: var(--warning);
+            background: rgba(245, 158, 11, 0.12);
+        }
+
+        /* 排序按钮 */
+        .order-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 11px;
+            padding: 0 2px;
+            transition: all var(--transition-smooth);
+            opacity: 0.2;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+        .task-item:hover .order-btn {
+            opacity: 0.6;
+        }
+        .order-btn:hover {
+            opacity: 1 !important;
+            color: var(--primary-dark);
+            background: rgba(255, 255, 255, 0.10);
+            transform: scale(1.1);
+        }
+        .order-btn:active {
+            transform: scale(0.85);
+        }
+
+        .task-item .del-task {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 12px;
+            padding: 2px 4px;
+            border-radius: 50%;
+            transition: all var(--transition-smooth);
+            opacity: 0.2;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .task-item:hover .del-task {
+            opacity: 0.6;
+        }
+        .task-item .del-task:hover {
+            color: var(--danger);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* 输入组 */
+        .input-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            flex: 1;
+            padding: 6px 12px;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-family: inherit;
+            transition: var(--transition-smooth);
+            background: rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            min-width: 100px;
+        }
+        .input-group input:focus,
+        .input-group textarea:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.30);
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.04);
+            transform: translateY(-1px);
+        }
+        .input-group textarea {
+            min-height: 32px;
+            max-height: 48px;
+            resize: vertical;
+        }
+        .input-group .btn-sm {
+            padding: 6px 16px;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: var(--primary-gradient);
+            color: #fff;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            font-family: inherit;
+            box-shadow: 0 2px 12px rgba(6, 182, 212, 0.10);
+            white-space: nowrap;
+        }
+        .input-group .btn-sm:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.18);
+        }
+        .input-group .btn-sm:active {
+            transform: scale(0.94);
+        }
+        .input-group .type-select {
+            flex: 0 0 auto;
+            width: 80px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 16px 10px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        .empty-state .icon {
+            font-size: 22px;
+            opacity: 0.3;
+            margin-bottom: 4px;
+        }
+
+        /* ================================================================
+           10. 周视图
+           ================================================================ */
         .week-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
-
         .week-day {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.10);
             border-radius: var(--radius-sm);
-            padding: 10px 8px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 8px 6px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
             transition: all var(--transition-smooth);
-            min-height: 120px;
+            min-height: 80px;
         }
-
         .week-day:hover {
-            background: rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.20);
             transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.10);
         }
-
         .week-day .wd-label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--text-secondary);
             text-align: center;
-            margin-bottom: 6px;
-            padding-bottom: 4px;
+            margin-bottom: 4px;
+            padding-bottom: 3px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
-
         .week-day .wd-label .wd-num {
             font-weight: 700;
             color: var(--text);
         }
-
         .week-day .wd-tasks {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 2px;
         }
-
         .week-day .wd-tasks .wd-task {
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.06);
+            font-size: 10px;
+            padding: 1px 4px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.04);
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
-        .week-day .wd-tasks .wd-task .wd-status {
-            font-size: 12px;
+        .week-day .wd-tasks .wd-task .wd-icon {
+            font-size: 11px;
             flex-shrink: 0;
+        }
+        .week-day .wd-tasks .wd-task .wd-icon.type-task {
+            color: var(--primary);
+        }
+        .week-day .wd-tasks .wd-task .wd-icon.type-event {
+            color: var(--success);
+        }
+        .week-day .wd-tasks .wd-task .wd-icon.type-note {
+            color: var(--text-muted);
         }
 
         /* ================================================================
-           8.  响应式微调
+           11. Toast
            ================================================================ */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            pointer-events: none;
+        }
+        .toast {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 13px;
+            color: #fff;
+            background: rgba(15, 23, 42, 0.70);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06);
+            animation: toastIn 0.35s cubic-bezier(0.22, 1, 0.36, 1), toastOut 0.3s cubic-bezier(0.22, 1, 0.36, 1) 2.2s forwards;
+            pointer-events: auto;
+            max-width: 340px;
+        }
+        .toast.success {
+            background: rgba(16, 185, 129, 0.75);
+        }
+        .toast.info {
+            background: rgba(6, 182, 212, 0.75);
+        }
+        .toast.warning {
+            background: rgba(245, 158, 11, 0.75);
+            color: #1e293b;
+        }
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateX(40px) scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+        @keyframes toastOut {
+            from {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(40px) scale(0.92);
+            }
+        }
+
+        /* ================================================================
+           12. 响应式
+           ================================================================ */
+        @media (max-width: 1000px) {
+            .main-container {
+                flex-direction: column;
+                max-height: none;
+                overflow: visible;
+            }
+            .left-sidebar {
+                flex: none;
+                width: 100%;
+                max-width: none;
+                max-height: 320px;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .left-sidebar .glass {
+                flex: 1;
+                min-width: 200px;
+                max-height: 300px;
+            }
+            .right-main {
+                max-height: none;
+                min-height: 500px;
+            }
+            body {
+                overflow: auto;
+                height: auto;
+            }
+            .right-main .glass {
+                max-height: none;
+                min-height: 400px;
+            }
+            .week-grid {
+                gap: 4px;
+            }
+            .week-day {
+                min-height: 60px;
+                padding: 4px;
+            }
+            .week-day .wd-label {
+                font-size: 9px;
+            }
+            .week-day .wd-tasks .wd-task {
+                font-size: 9px;
+                padding: 1px 2px;
+            }
+        }
+
         @media (max-width: 600px) {
             body {
-                padding: 12px;
+                padding: 10px;
             }
-
             .app-header {
-                padding: 12px 16px;
+                padding: 8px 14px;
                 flex-direction: column;
                 align-items: stretch;
-                gap: 12px;
+                gap: 8px;
             }
-
             .logo-area {
                 justify-content: center;
             }
-
             .header-actions {
                 justify-content: center;
             }
-
-            .tab-nav {
-                justify-content: center;
+            .left-sidebar {
+                max-height: 280px;
+                gap: 8px;
             }
-
-            .tab-btn {
-                font-size: 12px;
-                padding: 6px 12px;
+            .left-sidebar .glass {
+                max-height: 260px;
+                padding: 10px 12px;
             }
-
-            .tab-btn .tab-icon {
-                font-size: 13px;
+            .left-sidebar .glass:first-child {
+                flex: 1;
             }
-
-            .week-grid {
-                grid-template-columns: repeat(7, 1fr);
-                gap: 6px;
-                overflow-x: auto;
+            .right-main .glass {
+                padding: 12px 14px;
+                min-height: 350px;
             }
-
-            .week-day {
-                min-width: 60px;
-                min-height: 80px;
-                padding: 6px 4px;
-            }
-
-            .week-day .wd-label {
+            .calendar-grid .day-cell {
                 font-size: 10px;
             }
-
+            .calendar-grid .day-cell .day-dot {
+                width: 4px;
+                height: 4px;
+                bottom: 2px;
+            }
+            .week-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 3px;
+                overflow-x: auto;
+            }
+            .week-day {
+                min-width: 44px;
+                min-height: 50px;
+                padding: 3px 2px;
+            }
+            .week-day .wd-label {
+                font-size: 8px;
+            }
             .week-day .wd-tasks .wd-task {
-                font-size: 9px;
-                padding: 1px 4px;
+                font-size: 7px;
+                padding: 0 2px;
                 white-space: normal;
                 word-break: break-all;
             }
-
-            .calendar-grid .day-cell {
-                font-size: 11px;
+            .date-indicator .current-label {
+                font-size: 14px;
+                min-width: 70px;
             }
-
-            .two-col {
-                grid-template-columns: 1fr;
+            .input-group {
+                gap: 4px;
+            }
+            .input-group input,
+            .input-group textarea,
+            .input-group select {
+                font-size: 11px;
+                padding: 4px 8px;
+                min-width: 60px;
+            }
+            .input-group .btn-sm {
+                font-size: 11px;
+                padding: 4px 10px;
+            }
+            .task-item {
+                padding: 4px 6px;
+                gap: 4px;
+            }
+            .task-item .task-text {
+                font-size: 12px;
+            }
+            .status-toggle {
+                width: 26px;
+                height: 26px;
+                font-size: 13px;
+            }
+            .goal-item {
+                padding: 4px 8px;
+            }
+            .goal-item .goal-text {
+                font-size: 12px;
+            }
+            .extract-tool {
+                flex-wrap: wrap;
+            }
+            .extract-tool select,
+            .extract-tool input {
+                font-size: 11px;
+                padding: 3px 8px;
+            }
+            .day-tooltip {
+                font-size: 11px;
+                padding: 6px 10px;
+                max-width: 180px;
             }
         }
 
         @media (max-width: 400px) {
-            .tab-btn {
-                font-size: 11px;
-                padding: 4px 8px;
+            .left-sidebar {
+                max-height: 240px;
+                flex-direction: column;
             }
-
+            .left-sidebar .glass {
+                max-height: 200px;
+            }
+            .week-day {
+                min-height: 40px;
+            }
+            .week-day .wd-tasks .wd-task {
+                font-size: 6px;
+            }
+            .calendar-grid .day-cell {
+                font-size: 9px;
+            }
+            .right-main .glass {
+                min-height: 300px;
+                padding: 10px 10px;
+            }
             .task-item {
-                padding: 6px 8px;
-                gap: 8px;
+                padding: 3px 4px;
             }
-
-            .status-toggle {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
-            }
-
-            .input-group input,
-            .input-group textarea {
-                font-size: 12px;
-                padding: 8px 12px;
+            .task-item .task-text {
+                font-size: 11px;
             }
         }
 
         /* ================================================================
-           9.  杂项工具类
+           13. 杂项工具
            ================================================================ */
-        .mt-8 {
-            margin-top: 8px;
-        }
-        .mt-16 {
-            margin-top: 16px;
-        }
-        .mb-8 {
-            margin-bottom: 8px;
-        }
-        .mb-16 {
-            margin-bottom: 16px;
-        }
-        .gap-8 {
-            gap: 8px;
-        }
-        .flex {
-            display: flex;
-        }
-        .flex-center {
-            align-items: center;
-            justify-content: center;
-        }
         .flex-between {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
+        .mt-4 {
+            margin-top: 4px;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mb-4 {
+            margin-bottom: 4px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .gap-4 {
+            gap: 4px;
+        }
         .text-muted {
             color: var(--text-muted);
         }
         .text-sm {
-            font-size: 13px;
+            font-size: 12px;
         }
         .w-full {
             width: 100%;
         }
-        .glass-card {
-            padding: 18px 20px;
-            margin-bottom: 16px;
+        .flex-1 {
+            flex: 1;
         }
-        .glass-card:last-child {
-            margin-bottom: 0;
+        .min-h-0 {
+            min-height: 0;
         }
 
         .card-title {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 13px;
+            gap: 6px;
+            font-size: 11px;
             font-weight: 700;
             color: var(--text-secondary);
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            flex-shrink: 0;
         }
-
         .card-title .title-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 26px;
-            height: 26px;
-            border-radius: var(--icon-radius, 8px);
-            background: var(--icon-bg, rgba(6, 182, 212, 0.10));
+            width: 24px;
+            height: 24px;
+            border-radius: var(--icon-radius);
+            background: var(--icon-bg);
             color: var(--primary-dark);
-            font-size: 13px;
+            font-size: 12px;
             flex-shrink: 0;
             transition: transform var(--transition-bounce), background var(--transition-smooth);
         }
-
         .card-title .title-icon:hover {
-            transform: scale(1.25) rotate(-10deg);
+            transform: scale(1.2) rotate(-8deg);
             background: rgba(6, 182, 212, 0.20);
         }
-
-        .empty-state {
-            text-align: center;
-            padding: 24px 10px;
+        .card-title .badge {
+            margin-left: auto;
+            font-size: 10px;
+            font-weight: 400;
             color: var(--text-muted);
-            font-size: 13px;
+            text-transform: none;
+            letter-spacing: 0;
         }
 
-        .empty-state .icon {
-            font-size: 28px;
-            opacity: 0.3;
-            margin-bottom: 6px;
-            transition: all var(--transition-smooth);
-        }
-
-        .empty-state:hover .icon {
-            opacity: 0.5;
-            transform: scale(1.1) rotate(-6deg);
-        }
-
-        /* 当前日期指示器 */
-        .date-indicator {
+        /* 内联编辑 */
+        .inline-edit {
             display: flex;
+            gap: 6px;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
+            margin-top: 4px;
             flex-wrap: wrap;
         }
-
-        .date-indicator .nav-arrow {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 18px;
-            padding: 4px 8px;
-            border-radius: 50%;
-            transition: all var(--transition-smooth);
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .date-indicator .nav-arrow:hover {
-            background: rgba(255, 255, 255, 0.20);
-            color: var(--text);
-            transform: scale(1.1);
-        }
-
-        .date-indicator .current-label {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text);
-            min-width: 120px;
-            text-align: center;
-        }
-
-        .date-indicator input[type="date"] {
-            padding: 6px 12px;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
+        .inline-edit input {
+            flex: 1;
+            padding: 4px 10px;
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
             border-radius: var(--radius-sm);
-            font-size: 13px;
+            font-size: 12px;
             font-family: inherit;
-            background: rgba(255, 255, 255, 0.14);
-            backdrop-filter: blur(4px);
+            background: rgba(255, 255, 255, 0.08);
             color: var(--text);
             transition: var(--transition-smooth);
+            min-width: 80px;
         }
-
-        .date-indicator input[type="date"]:focus {
+        .inline-edit input:focus {
             outline: none;
             border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.30);
-            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.04);
+            background: rgba(255, 255, 255, 0.20);
+        }
+        .inline-edit .btn-sm {
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: var(--primary-gradient);
+            color: #fff;
+            font-weight: 600;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            font-family: inherit;
+        }
+        .inline-edit .btn-sm:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(6, 182, 212, 0.12);
+        }
+        .inline-edit .btn-sm:active {
+            transform: scale(0.94);
         }
     </style>
 </head>
@@ -983,155 +1394,198 @@
             </div>
         </div>
         <div class="header-actions">
+            <button class="btn-ghost-sm" onclick="loadSamples()"><i class="fas fa-clipboard-list"></i> 示例</button>
             <button class="btn-ghost-sm" onclick="exportData()"><i class="fas fa-download"></i> 导出</button>
             <button class="btn-ghost-sm" onclick="document.getElementById('importFileInput').click()"><i class="fas fa-upload"></i> 导入</button>
             <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importData(event)" />
-            <button class="btn-ghost-sm" onclick="loadSamples()"><i class="fas fa-clipboard-list"></i> 示例</button>
         </div>
     </header>
 
     <!-- ========================== 主容器 ========================== -->
     <div class="main-container">
 
-        <!-- 选项卡导航 -->
-        <div class="tab-nav" id="tabNav" style="margin-bottom:20px;">
-            <button class="tab-btn active" data-tab="yearly" onclick="switchTab('yearly')">
-                <span class="tab-icon"><i class="fas fa-calendar-alt"></i></span> 年度
-            </button>
-            <button class="tab-btn" data-tab="monthly" onclick="switchTab('monthly')">
-                <span class="tab-icon"><i class="fas fa-calendar-check"></i></span> 月度
-            </button>
-            <button class="tab-btn" data-tab="weekly" onclick="switchTab('weekly')">
-                <span class="tab-icon"><i class="fas fa-calendar-week"></i></span> 周
-            </button>
-            <button class="tab-btn" data-tab="daily" onclick="switchTab('daily')">
-                <span class="tab-icon"><i class="fas fa-calendar-day"></i></span> 日
-            </button>
-        </div>
+        <!-- ===== 左侧栏 35% ===== -->
+        <div class="left-sidebar">
 
-        <!-- ===== 面板1: 年度 ===== -->
-        <div class="panel active" id="panel-yearly">
-            <div class="glass glass-card">
-                <div class="card-title">
-                    <span class="title-icon"><i class="fas fa-flag"></i></span> 年度目标 · 愿景板
-                    <span style="margin-left:auto;font-size:12px;font-weight:400;color:var(--text-muted);text-transform:none;letter-spacing:0;">
-                        <span id="yearlyCount">0</span> 个目标
-                    </span>
+            <!-- 计划中列表 -->
+            <div class="glass">
+                <div class="sidebar-title">
+                    <i class="fas fa-clock" style="color:var(--warning);"></i> 计划中
+                    <span class="badge" id="scheduledCount">0</span>
                 </div>
-                <div class="input-group">
-                    <input type="text" id="yearlyInput" placeholder="输入年度目标..." onkeydown="if(event.key==='Enter')addYearlyGoal()" />
-                    <button class="btn-primary-sm" onclick="addYearlyGoal()"><i class="fas fa-plus"></i> 添加</button>
+                <div class="scroll-y" id="scheduledList">
+                    <div class="empty-state"><div class="icon"><i class="fas fa-inbox"></i></div><p>暂无计划中任务</p></div>
                 </div>
-                <div class="task-list" id="yearlyList">
-                    <div class="empty-state"><div class="icon"><i class="fas fa-flag"></i></div><p>还没有年度目标，添加一个吧</p></div>
+            </div>
+
+            <!-- 迁移暂存 + 提取工具 -->
+            <div class="glass">
+                <div class="sidebar-title">
+                    <i class="fas fa-arrows-alt-h" style="color:var(--primary);"></i> 迁移暂存
+                    <span class="badge" id="tempCount">0</span>
+                </div>
+                <div class="temp-area" id="tempArea">
+                    <div class="temp-empty">暂无迁移项，使用下方工具提取</div>
+                </div>
+
+                <div class="extract-tool">
+                    <span style="font-size:11px;color:var(--text-secondary);flex-shrink:0;">从</span>
+                    <select id="extractFromMonth"></select>
+                    <span style="font-size:11px;color:var(--text-secondary);flex-shrink:0;">→</span>
+                    <select id="extractToMonth"></select>
+                    <button class="btn-sm" onclick="extractMigrations()"><i class="fas fa-arrow-right"></i> 提取</button>
+                </div>
+                <div style="margin-top:4px;display:flex;gap:6px;flex-wrap:wrap;">
+                    <button class="btn-sm" style="background:rgba(239,68,68,0.12);color:#b91c1c;border:1px solid rgba(239,68,68,0.10);padding:2px 10px;font-size:10px;" onclick="clearTemp()">清空暂存</button>
+                    <span style="font-size:10px;color:var(--text-muted);opacity:0.5;align-self:center;">提取后复制到右侧抄写</span>
                 </div>
             </div>
         </div>
 
-        <!-- ===== 面板2: 月度 ===== -->
-        <div class="panel" id="panel-monthly">
-            <div class="glass glass-card">
-                <div class="date-indicator">
-                    <button class="nav-arrow" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
-                    <span class="current-label" id="monthLabel">2026年7月</span>
-                    <button class="nav-arrow" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
-                    <button class="btn-ghost" onclick="resetToCurrentMonth()" style="margin-left:auto;">回到本月</button>
+        <!-- ===== 右侧栏 65% ===== -->
+        <div class="right-main">
+            <div class="glass" style="padding:16px 18px;">
+
+                <!-- ===== 选项卡导航 ===== -->
+                <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;flex-shrink:0;background:rgba(255,255,255,0.08);border-radius:var(--radius-sm);padding:4px;border:1px solid rgba(255,255,255,0.06);">
+                    <button class="tab-btn active" data-tab="yearly" onclick="switchTab('yearly')" style="padding:6px 16px;border:none;background:transparent;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-secondary);transition:all var(--transition-smooth);font-family:inherit;display:flex;align-items:center;gap:4px;">
+                        <i class="fas fa-flag"></i> 年度
+                    </button>
+                    <button class="tab-btn" data-tab="monthly" onclick="switchTab('monthly')" style="padding:6px 16px;border:none;background:transparent;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-secondary);transition:all var(--transition-smooth);font-family:inherit;display:flex;align-items:center;gap:4px;">
+                        <i class="fas fa-calendar-check"></i> 月度
+                    </button>
+                    <button class="tab-btn" data-tab="weekly" onclick="switchTab('weekly')" style="padding:6px 16px;border:none;background:transparent;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-secondary);transition:all var(--transition-smooth);font-family:inherit;display:flex;align-items:center;gap:4px;">
+                        <i class="fas fa-calendar-week"></i> 周
+                    </button>
+                    <button class="tab-btn" data-tab="daily" onclick="switchTab('daily')" style="padding:6px 16px;border:none;background:transparent;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-secondary);transition:all var(--transition-smooth);font-family:inherit;display:flex;align-items:center;gap:4px;">
+                        <i class="fas fa-calendar-day"></i> 日
+                    </button>
                 </div>
 
-                <div class="two-col">
-                    <!-- 左栏：日历 -->
-                    <div>
-                        <div class="card-title" style="margin-bottom:8px;">
-                            <span class="title-icon"><i class="fas fa-calendar-alt"></i></span> 日历
+                <!-- ==========================================================
+                     面板: 年度
+                     ========================================================== -->
+                <div class="panel active" id="panel-yearly" style="display:block;flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden;">
+                    <div style="flex-shrink:0;">
+                        <div class="card-title">
+                            <span class="title-icon"><i class="fas fa-flag"></i></span> 年度目标
+                            <span class="badge" id="yearlyCount">0</span>
                         </div>
-                        <div class="calendar-grid" id="calendarGrid">
-                            <!-- JS 动态渲染 -->
-                        </div>
-                        <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--text-muted);margin-top:4px;">
-                            <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--primary);margin-right:4px;"></span> 有任务</span>
-                            <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--success);margin-right:4px;"></span> 已完成</span>
+                        <div class="input-group">
+                            <input type="text" id="yearlyInput" placeholder="输入年度目标..." onkeydown="if(event.key==='Enter')addYearlyGoal()" />
+                            <button class="btn-sm" onclick="addYearlyGoal()"><i class="fas fa-plus"></i> 添加</button>
                         </div>
                     </div>
+                    <div class="scroll-y" id="yearlyList" style="flex:1;min-height:0;">
+                        <div class="empty-state"><div class="icon"><i class="fas fa-flag"></i></div><p>还没有年度目标</p></div>
+                    </div>
+                </div>
 
-                    <!-- 右栏：月度任务 -->
-                    <div>
-                        <div class="card-title" style="margin-bottom:8px;">
-                            <span class="title-icon"><i class="fas fa-list-check"></i></span> 本月目标
-                            <span style="margin-left:auto;font-size:12px;font-weight:400;color:var(--text-muted);text-transform:none;letter-spacing:0;">
-                                <span id="monthlyTaskCount">0</span> 项
+                <!-- ==========================================================
+                     面板: 月度
+                     ========================================================== -->
+                <div class="panel" id="panel-monthly" style="display:none;flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden;">
+                    <div style="flex-shrink:0;">
+                        <div class="date-indicator">
+                            <button class="nav-arrow" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+                            <span class="current-label" id="monthLabel">2026年7月</span>
+                            <button class="nav-arrow" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+                            <button class="btn-ghost" onclick="resetToCurrentMonth()" style="margin-left:auto;">回到本月</button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                        <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--text-muted);margin-bottom:8px;flex-shrink:0;">
+                            <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--primary);margin-right:3px;"></span> 任务</span>
+                            <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--success);margin-right:3px;"></span> 事件</span>
+                            <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--text-muted);margin-right:3px;"></span> 笔记</span>
+                            <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--success);opacity:0.8;margin-right:3px;"></span> 全部完成</span>
+                        </div>
+                    </div>
+                    <div style="flex-shrink:0;">
+                        <div class="card-title" style="margin-bottom:4px;">
+                            <span class="title-icon"><i class="fas fa-list-check"></i></span> 本月条目
+                            <span class="badge" id="monthlyTaskCount">0</span>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="monthlyInput" placeholder="添加内容..." onkeydown="if(event.key==='Enter')addMonthlyTask()" />
+                            <select class="type-select" id="monthlyTypeSelect">
+                                <option value="task">· 任务</option>
+                                <option value="event">○ 事件</option>
+                                <option value="note">— 笔记</option>
+                            </select>
+                            <button class="btn-sm" onclick="addMonthlyTask()"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="scroll-y" id="monthlyTaskList" style="flex:1;min-height:0;">
+                        <div class="empty-state"><div class="icon"><i class="fas fa-calendar-check"></i></div><p>本月还没有内容</p></div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================
+                     面板: 周
+                     ========================================================== -->
+                <div class="panel" id="panel-weekly" style="display:none;flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden;">
+                    <div style="flex-shrink:0;">
+                        <div class="date-indicator">
+                            <button class="nav-arrow" onclick="changeWeek(-1)"><i class="fas fa-chevron-left"></i></button>
+                            <span class="current-label" id="weekLabel">2026年 第28周</span>
+                            <button class="nav-arrow" onclick="changeWeek(1)"><i class="fas fa-chevron-right"></i></button>
+                            <button class="btn-ghost" onclick="resetToCurrentWeek()" style="margin-left:auto;">回到本周</button>
+                        </div>
+                    </div>
+                    <div class="week-grid" id="weekGrid" style="flex-shrink:0;"></div>
+                    <div style="flex-shrink:0;margin-top:4px;">
+                        <div class="card-title" style="margin-bottom:2px;">
+                            <span class="title-icon"><i class="fas fa-pen"></i></span> 周备注
+                        </div>
+                        <div class="input-group">
+                            <textarea id="weeklyNote" placeholder="记录本周复盘、重点..." rows="1"></textarea>
+                            <button class="btn-sm" onclick="saveWeeklyNote()"><i class="fas fa-save"></i> 保存</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================
+                     面板: 日
+                     ========================================================== -->
+                <div class="panel" id="panel-daily" style="display:none;flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden;">
+                    <div style="flex-shrink:0;">
+                        <div class="date-indicator">
+                            <button class="nav-arrow" onclick="changeDay(-1)"><i class="fas fa-chevron-left"></i></button>
+                            <span class="current-label" id="dayLabel">2026-07-15</span>
+                            <button class="nav-arrow" onclick="changeDay(1)"><i class="fas fa-chevron-right"></i></button>
+                            <input type="date" id="dayPicker" style="margin-left:auto;padding:4px 10px;border:1.5px solid rgba(255,255,255,0.15);border-radius:var(--radius-sm);font-size:12px;font-family:inherit;background:rgba(255,255,255,0.14);color:var(--text);" onchange="jumpToDate(this.value)" />
+                        </div>
+                        <div class="card-title" style="margin-bottom:2px;">
+                            <span class="title-icon"><i class="fas fa-pen"></i></span> 日志
+                        </div>
+                        <div class="input-group">
+                            <textarea id="dailyNote" placeholder="今天的备忘、想法..." rows="1"></textarea>
+                            <button class="btn-sm" onclick="saveDailyNote()"><i class="fas fa-save"></i> 保存</button>
+                        </div>
+                    </div>
+                    <div style="flex-shrink:0;">
+                        <div class="card-title" style="margin-bottom:2px;margin-top:4px;">
+                            <span class="title-icon"><i class="fas fa-tasks"></i></span> 今日条目
+                            <span class="badge" id="dailyTaskCount">0</span>
+                            <span style="margin-left:auto;font-size:10px;color:var(--text-muted);font-weight:400;text-transform:none;letter-spacing:0;">
+                                <i class="fas fa-arrow-up"></i> 拖动排序
                             </span>
                         </div>
                         <div class="input-group">
-                            <input type="text" id="monthlyInput" placeholder="添加月度目标..." onkeydown="if(event.key==='Enter')addMonthlyTask()" />
-                            <button class="btn-primary-sm" onclick="addMonthlyTask()"><i class="fas fa-plus"></i></button>
-                        </div>
-                        <div class="task-list" id="monthlyTaskList">
-                            <div class="empty-state"><div class="icon"><i class="fas fa-calendar-check"></i></div><p>本月还没有目标</p></div>
+                            <input type="text" id="dailyInput" placeholder="添加内容..." onkeydown="if(event.key==='Enter')addDailyTask()" />
+                            <select class="type-select" id="dailyTypeSelect">
+                                <option value="task">· 任务</option>
+                                <option value="event">○ 事件</option>
+                                <option value="note">— 笔记</option>
+                            </select>
+                            <button class="btn-sm" onclick="addDailyTask()"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== 面板3: 周 ===== -->
-        <div class="panel" id="panel-weekly">
-            <div class="glass glass-card">
-                <div class="date-indicator">
-                    <button class="nav-arrow" onclick="changeWeek(-1)"><i class="fas fa-chevron-left"></i></button>
-                    <span class="current-label" id="weekLabel">2026年 第28周</span>
-                    <button class="nav-arrow" onclick="changeWeek(1)"><i class="fas fa-chevron-right"></i></button>
-                    <button class="btn-ghost" onclick="resetToCurrentWeek()" style="margin-left:auto;">回到本周</button>
+                    <div class="scroll-y" id="dailyTaskList" style="flex:1;min-height:0;">
+                        <div class="empty-state"><div class="icon"><i class="fas fa-inbox"></i></div><p>今天还没有内容</p></div>
+                    </div>
                 </div>
 
-                <div class="week-grid" id="weekGrid">
-                    <!-- JS 动态渲染 -->
-                </div>
-
-                <div class="card-title" style="margin-top:8px;">
-                    <span class="title-icon"><i class="fas fa-pen"></i></span> 本周备注
-                </div>
-                <div class="input-group">
-                    <textarea id="weeklyNote" placeholder="记录本周的感想、复盘、重点..." rows="2"></textarea>
-                </div>
-                <div style="display:flex;justify-content:flex-end;">
-                    <button class="btn-primary-sm" onclick="saveWeeklyNote()"><i class="fas fa-save"></i> 保存备注</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== 面板4: 日 ===== -->
-        <div class="panel" id="panel-daily">
-            <div class="glass glass-card">
-                <div class="date-indicator">
-                    <button class="nav-arrow" onclick="changeDay(-1)"><i class="fas fa-chevron-left"></i></button>
-                    <span class="current-label" id="dayLabel">2026-07-15</span>
-                    <button class="nav-arrow" onclick="changeDay(1)"><i class="fas fa-chevron-right"></i></button>
-                    <input type="date" id="dayPicker" style="margin-left:auto;" onchange="jumpToDate(this.value)" />
-                </div>
-
-                <div class="card-title" style="margin-bottom:4px;">
-                    <span class="title-icon"><i class="fas fa-pen"></i></span> 每日日志
-                </div>
-                <div class="input-group">
-                    <textarea id="dailyNote" placeholder="今天的备忘、想法..." rows="2"></textarea>
-                </div>
-                <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
-                    <button class="btn-primary-sm" onclick="saveDailyNote()"><i class="fas fa-save"></i> 保存日志</button>
-                </div>
-
-                <div class="card-title" style="margin-bottom:4px;">
-                    <span class="title-icon"><i class="fas fa-tasks"></i></span> 今日任务
-                    <span style="margin-left:auto;font-size:12px;font-weight:400;color:var(--text-muted);text-transform:none;letter-spacing:0;">
-                        <span id="dailyTaskCount">0</span> 项
-                    </span>
-                </div>
-                <div class="input-group">
-                    <input type="text" id="dailyInput" placeholder="添加任务..." onkeydown="if(event.key==='Enter')addDailyTask()" />
-                    <button class="btn-primary-sm" onclick="addDailyTask()"><i class="fas fa-plus"></i></button>
-                </div>
-                <div class="task-list" id="dailyTaskList">
-                    <div class="empty-state"><div class="icon"><i class="fas fa-inbox"></i></div><p>今天还没有任务</p></div>
-                </div>
             </div>
         </div>
     </div>
@@ -1139,28 +1593,27 @@
     <!-- ========================== Toast ========================== -->
     <div class="toast-container" id="toastContainer"></div>
 
+    <!-- ========================== Tooltip ========================== -->
+    <div class="day-tooltip" id="dayTooltip">
+        <div class="tt-date" id="ttDate"></div>
+        <div id="ttContent"></div>
+    </div>
+
     <!-- ========================== JavaScript ========================== -->
     <script>
         (function() {
             'use strict';
 
             // ================================================================
-            //  配置 & 常量
+            //  常量 & 配置
             // ================================================================
-            const STORAGE_KEY = 'bullet_journal_v1';
+            const STORAGE_KEY = 'bullet_journal_v2';
             const STATUSES = ['todo', 'done', 'migrated', 'scheduled'];
-            const STATUS_SYMBOLS = {
-                todo: '·',
-                done: '✓',
-                migrated: '>',
-                scheduled: '<'
-            };
-            const STATUS_CLASSES = {
-                todo: 'status-todo',
-                done: 'status-done',
-                migrated: 'status-migrated',
-                scheduled: 'status-scheduled'
-            };
+            const STATUS_SYMBOLS = { todo: '·', done: '✓', migrated: '>', scheduled: '<' };
+            const STATUS_CLASSES = { todo: 'status-todo', done: 'status-done', migrated: 'status-migrated',
+                scheduled: 'status-scheduled' };
+            const TYPE_SYMBOLS = { task: '·', event: '○', note: '—' };
+            const TYPE_CLASSES = { task: 'type-task', event: 'type-event', note: 'type-note' };
 
             // ================================================================
             //  状态
@@ -1170,6 +1623,7 @@
             let currentWeek = new Date();
             let currentDay = new Date();
             let currentTab = 'yearly';
+            let tooltipTimeout = null;
 
             // ================================================================
             //  工具
@@ -1203,13 +1657,6 @@
                 return new Date(d.getFullYear(), d.getMonth(), diff);
             }
 
-            function getWeekEnd(d) {
-                const start = getWeekStart(d);
-                const end = new Date(start);
-                end.setDate(end.getDate() + 6);
-                return end;
-            }
-
             function getMonthDays(year, month) {
                 return new Date(year, month + 1, 0).getDate();
             }
@@ -1229,6 +1676,14 @@
                 return div.innerHTML;
             }
 
+            function getMonthKey(year, month) {
+                return year + '-' + String(month + 1).padStart(2, '0');
+            }
+
+            function getWeekKey(year, week) {
+                return year + '-W' + String(week).padStart(2, '0');
+            }
+
             // ================================================================
             //  Toast
             // ================================================================
@@ -1238,7 +1693,7 @@
                 t.className = 'toast ' + type;
                 t.textContent = msg;
                 container.appendChild(t);
-                setTimeout(() => { if (t.parentNode) t.parentNode.removeChild(t); }, 2500);
+                setTimeout(() => { if (t.parentNode) t.parentNode.removeChild(t); }, 2300);
             }
 
             // ================================================================
@@ -1249,22 +1704,39 @@
                     const raw = localStorage.getItem(STORAGE_KEY);
                     if (raw) {
                         data = JSON.parse(raw);
-                        // 初始化缺失字段
                         if (!data.yearlyGoals) data.yearlyGoals = [];
-                        if (!data.monthlyTasks) data.monthlyTasks = {};
+                        if (!data.monthlyItems) data.monthlyItems = {};
                         if (!data.dailyEntries) data.dailyEntries = {};
                         if (!data.weeklyNotes) data.weeklyNotes = {};
+                        if (!data.tempItems) data.tempItems = [];
+                        // 兼容旧数据：确保每个条目有 type 和 order
+                        Object.keys(data.dailyEntries).forEach(key => {
+                            const entry = data.dailyEntries[key];
+                            if (entry.tasks) {
+                                entry.tasks.forEach(t => {
+                                    if (!t.type) t.type = 'task';
+                                    if (t.order === undefined) t.order = 0;
+                                });
+                                entry.tasks.sort((a, b) => (a.order || 0) - (b.order || 0));
+                            }
+                        });
+                        Object.keys(data.monthlyItems).forEach(key => {
+                            const items = data.monthlyItems[key];
+                            items.forEach(t => {
+                                if (!t.type) t.type = 'task';
+                                if (t.order === undefined) t.order = 0;
+                            });
+                            items.sort((a, b) => (a.order || 0) - (b.order || 0));
+                        });
                         return true;
                     }
-                } catch (e) {
-                    console.warn('加载数据失败', e);
-                }
-                // 默认数据
+                } catch (e) { console.warn('加载失败', e); }
                 data = {
                     yearlyGoals: [],
-                    monthlyTasks: {},
+                    monthlyItems: {},
                     dailyEntries: {},
-                    weeklyNotes: {}
+                    weeklyNotes: {},
+                    tempItems: []
                 };
                 return false;
             }
@@ -1274,14 +1746,14 @@
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
                 } catch (e) {
                     console.error('保存失败', e);
-                    showToast('保存失败，请检查存储空间', 'warning');
+                    showToast('保存失败', 'warning');
                 }
             }
 
-            function getMonthlyTasks(year, month) {
-                const key = year + '-' + String(month + 1).padStart(2, '0');
-                if (!data.monthlyTasks[key]) data.monthlyTasks[key] = [];
-                return data.monthlyTasks[key];
+            function getMonthlyItems(year, month) {
+                const key = getMonthKey(year, month);
+                if (!data.monthlyItems[key]) data.monthlyItems[key] = [];
+                return data.monthlyItems[key];
             }
 
             function getDailyEntry(year, month, day) {
@@ -1293,7 +1765,7 @@
             }
 
             function getWeeklyNote(year, week) {
-                const key = year + '-W' + String(week).padStart(2, '0');
+                const key = getWeekKey(year, week);
                 if (!data.weeklyNotes[key]) data.weeklyNotes[key] = '';
                 return data.weeklyNotes[key];
             }
@@ -1305,11 +1777,19 @@
                 const input = document.getElementById('yearlyInput');
                 const text = input.value.trim();
                 if (!text) { showToast('请输入目标内容', 'warning'); return; }
-                data.yearlyGoals.push({ id: generateId(), text: text });
+                data.yearlyGoals.push({ id: generateId(), text: text, completed: false });
                 saveData();
                 input.value = '';
                 renderYearly();
                 showToast('✅ 已添加年度目标', 'success');
+            }
+
+            function toggleYearlyGoal(id) {
+                const goal = data.yearlyGoals.find(g => g.id === id);
+                if (!goal) return;
+                goal.completed = !goal.completed;
+                saveData();
+                renderYearly();
             }
 
             function deleteYearlyGoal(id) {
@@ -1323,13 +1803,16 @@
                 document.getElementById('yearlyCount').textContent = data.yearlyGoals.length;
                 if (data.yearlyGoals.length === 0) {
                     container.innerHTML =
-                        `<div class="empty-state"><div class="icon"><i class="fas fa-flag"></i></div><p>还没有年度目标，添加一个吧</p></div>`;
+                        `<div class="empty-state"><div class="icon"><i class="fas fa-flag"></i></div><p>还没有年度目标</p></div>`;
                     return;
                 }
                 container.innerHTML = data.yearlyGoals.map(g => `
-                        <div class="task-item">
-                            <span class="task-text">${escapeHtml(g.text)}</span>
-                            <button class="del-task" onclick="deleteYearlyGoal('${g.id}')" title="删除"><i class="fas fa-times"></i></button>
+                        <div class="goal-item">
+                            <button class="goal-check ${g.completed ? 'done' : ''}" onclick="toggleYearlyGoal('${g.id}')">
+                                ${g.completed ? '<i class="fas fa-check"></i>' : ''}
+                            </button>
+                            <span class="goal-text ${g.completed ? 'done-text' : ''}">${escapeHtml(g.text)}</span>
+                            <button class="goal-del" onclick="deleteYearlyGoal('${g.id}')" title="删除"><i class="fas fa-times"></i></button>
                         </div>
                     `).join('');
             }
@@ -1337,65 +1820,82 @@
             // ================================================================
             //  月度任务
             // ================================================================
-            function getMonthKey() {
-                return currentMonth.getFullYear() + '-' + String(currentMonth.getMonth() + 1).padStart(2, '0');
+            function getCurrentMonthKey() {
+                return getMonthKey(currentMonth.getFullYear(), currentMonth.getMonth());
             }
 
             function addMonthlyTask() {
                 const input = document.getElementById('monthlyInput');
                 const text = input.value.trim();
-                if (!text) { showToast('请输入任务内容', 'warning'); return; }
-                const tasks = getMonthlyTasks(currentMonth.getFullYear(), currentMonth.getMonth());
-                tasks.push({ id: generateId(), text: text, status: 'todo' });
+                const type = document.getElementById('monthlyTypeSelect').value || 'task';
+                if (!text) { showToast('请输入内容', 'warning'); return; }
+                const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
+                const order = items.length;
+                items.push({ id: generateId(), text: text, status: 'todo', type: type, order: order });
                 saveData();
                 input.value = '';
                 renderMonthly();
-                showToast('✅ 已添加月度任务', 'success');
+                showToast('✅ 已添加', 'success');
             }
 
-            function toggleMonthlyTaskStatus(id) {
-                const tasks = getMonthlyTasks(currentMonth.getFullYear(), currentMonth.getMonth());
-                const task = tasks.find(t => t.id === id);
-                if (!task) return;
-                const idx = STATUSES.indexOf(task.status);
-                task.status = STATUSES[(idx + 1) % STATUSES.length];
+            function toggleMonthlyItemStatus(id) {
+                const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
+                const item = items.find(t => t.id === id);
+                if (!item) return;
+                const idx = STATUSES.indexOf(item.status);
+                item.status = STATUSES[(idx + 1) % STATUSES.length];
                 saveData();
                 renderMonthly();
             }
 
-            function deleteMonthlyTask(id) {
-                const tasks = getMonthlyTasks(currentMonth.getFullYear(), currentMonth.getMonth());
-                data.monthlyTasks[getMonthKey()] = tasks.filter(t => t.id !== id);
+            function deleteMonthlyItem(id) {
+                const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
+                data.monthlyItems[getCurrentMonthKey()] = items.filter(t => t.id !== id);
+                saveData();
+                renderMonthly();
+            }
+
+            function moveMonthlyItem(id, delta) {
+                const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
+                const idx = items.findIndex(t => t.id === id);
+                if (idx === -1) return;
+                const newIdx = idx + delta;
+                if (newIdx < 0 || newIdx >= items.length) return;
+                [items[idx], items[newIdx]] = [items[newIdx], items[idx]];
+                items.forEach((t, i) => t.order = i);
                 saveData();
                 renderMonthly();
             }
 
             function renderMonthly() {
-                const tasks = getMonthlyTasks(currentMonth.getFullYear(), currentMonth.getMonth());
+                const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
                 const container = document.getElementById('monthlyTaskList');
-                document.getElementById('monthlyTaskCount').textContent = tasks.length;
+                document.getElementById('monthlyTaskCount').textContent = items.length;
 
-                if (tasks.length === 0) {
+                if (items.length === 0) {
                     container.innerHTML =
-                        `<div class="empty-state"><div class="icon"><i class="fas fa-calendar-check"></i></div><p>本月还没有目标</p></div>`;
+                        `<div class="empty-state"><div class="icon"><i class="fas fa-calendar-check"></i></div><p>本月还没有内容</p></div>`;
                 } else {
-                    container.innerHTML = tasks.map(t => `
+                    container.innerHTML = items.map((t, idx) => `
                             <div class="task-item">
-                                <button class="status-toggle ${STATUS_CLASSES[t.status]}" onclick="toggleMonthlyTaskStatus('${t.id}')" title="切换状态">
+                                <button class="status-toggle ${STATUS_CLASSES[t.status]}" onclick="toggleMonthlyItemStatus('${t.id}')" title="切换状态">
                                     ${STATUS_SYMBOLS[t.status]}
                                 </button>
+                                <span class="task-type-icon ${TYPE_CLASSES[t.type] || 'type-task'}">${TYPE_SYMBOLS[t.type] || '·'}</span>
                                 <span class="task-text ${t.status === 'done' ? 'done' : ''} ${t.status === 'migrated' ? 'migrated' : ''} ${t.status === 'scheduled' ? 'scheduled' : ''}">${escapeHtml(t.text)}</span>
-                                <button class="del-task" onclick="deleteMonthlyTask('${t.id}')" title="删除"><i class="fas fa-times"></i></button>
+                                <button class="order-btn" onclick="moveMonthlyItem('${t.id}',-1)" title="上移"><i class="fas fa-chevron-up"></i></button>
+                                <button class="order-btn" onclick="moveMonthlyItem('${t.id}',1)" title="下移"><i class="fas fa-chevron-down"></i></button>
+                                <button class="del-task" onclick="deleteMonthlyItem('${t.id}')" title="删除"><i class="fas fa-times"></i></button>
                             </div>
                         `).join('');
                 }
 
-                // 渲染日历
                 renderCalendar();
+                updateExtractSelects();
             }
 
             // ================================================================
-            //  日历
+            //  日历（含悬停）
             // ================================================================
             function renderCalendar() {
                 const grid = document.getElementById('calendarGrid');
@@ -1403,8 +1903,7 @@
                 const month = currentMonth.getMonth();
                 const today = getTodayStr();
 
-                document.getElementById('monthLabel').textContent =
-                    year + '年' + (month + 1) + '月';
+                document.getElementById('monthLabel').textContent = year + '年' + (month + 1) + '月';
 
                 const firstDay = getFirstDayOfMonth(year, month);
                 const daysInMonth = getMonthDays(year, month);
@@ -1416,37 +1915,41 @@
                     html += `<div class="day-label">${d}</div>`;
                 });
 
-                // 填充上月日期
                 const startOffset = firstDay === 0 ? 6 : firstDay - 1;
                 for (let i = startOffset - 1; i >= 0; i--) {
                     const d = daysInPrevMonth - i;
                     html += `<div class="day-cell other-month">${d}</div>`;
                 }
 
-                // 当月日期
                 for (let d = 1; d <= daysInMonth; d++) {
                     const dateKey = formatDateKey(year, month, d);
                     const entry = data.dailyEntries[dateKey];
-                    const hasTasks = entry && entry.tasks && entry.tasks.length > 0;
-                    const allDone = hasTasks && entry.tasks.every(t => t.status === 'done');
+                    const tasks = entry ? entry.tasks : [];
+                    const hasTask = tasks.some(t => t.type === 'task');
+                    const hasEvent = tasks.some(t => t.type === 'event');
+                    const hasNote = tasks.some(t => t.type === 'note');
+                    const allDone = tasks.length > 0 && tasks.every(t => t.status === 'done');
                     const isToday = dateKey === today;
 
                     let dotClass = 'day-dot';
-                    if (hasTasks) dotClass += ' has-task';
-                    if (allDone) dotClass += ' has-task-done';
+                    if (hasTask || hasEvent || hasNote) {
+                        if (allDone) dotClass += ' all-done';
+                        else if (hasEvent) dotClass += ' has-event';
+                        else if (hasNote) dotClass += ' has-note';
+                        else dotClass += ' has-task';
+                    }
 
                     let cellClass = 'day-cell';
                     if (isToday) cellClass += ' today';
 
                     html += `
-                            <div class="${cellClass}">
+                            <div class="${cellClass}" data-date="${dateKey}" data-has-content="${tasks.length > 0 ? 'true' : 'false'}">
                                 ${d}
                                 <span class="${dotClass}"></span>
                             </div>
                         `;
                 }
 
-                // 填充下月日期
                 const totalCells = startOffset + daysInMonth;
                 const remaining = 42 - totalCells;
                 for (let d = 1; d <= remaining; d++) {
@@ -1454,6 +1957,68 @@
                 }
 
                 grid.innerHTML = html;
+
+                // 绑定悬停事件
+                document.querySelectorAll('.day-cell[data-date]').forEach(cell => {
+                    cell.addEventListener('mouseenter', function(e) {
+                        const dateKey = this.dataset.date;
+                        showDayTooltip(dateKey, e);
+                    });
+                    cell.addEventListener('mouseleave', function() {
+                        hideDayTooltip();
+                    });
+                    cell.addEventListener('mousemove', function(e) {
+                        updateTooltipPosition(e);
+                    });
+                });
+            }
+
+            // ================================================================
+            //  Tooltip 悬停
+            // ================================================================
+            const tooltip = document.getElementById('dayTooltip');
+
+            function showDayTooltip(dateKey, e) {
+                const entry = data.dailyEntries[dateKey];
+                const tasks = entry ? entry.tasks : [];
+                const sorted = [...tasks].sort((a, b) => (a.order || 0) - (b.order || 0));
+
+                document.getElementById('ttDate').textContent = dateKey;
+
+                const content = document.getElementById('ttContent');
+                if (sorted.length === 0) {
+                    content.innerHTML = `<div class="tt-empty">这一天没有记录</div>`;
+                } else {
+                    // 显示所有条目，按 order 排序
+                    content.innerHTML = sorted.map(t => `
+                            <div class="tt-item">
+                                <span class="tt-icon ${TYPE_CLASSES[t.type] || 'type-task'}">${TYPE_SYMBOLS[t.type] || '·'}</span>
+                                ${escapeHtml(t.text)}
+                                ${t.status === 'done' ? ' ✅' : ''}
+                            </div>
+                        `).join('');
+                }
+
+                tooltip.classList.add('visible');
+                updateTooltipPosition(e);
+            }
+
+            function hideDayTooltip() {
+                tooltip.classList.remove('visible');
+            }
+
+            function updateTooltipPosition(e) {
+                const x = e.clientX + 16;
+                const y = e.clientY + 16;
+                const rect = tooltip.getBoundingClientRect();
+                let left = x;
+                let top = y;
+                if (left + rect.width > window.innerWidth - 20) left = e.clientX - rect.width - 16;
+                if (top + rect.height > window.innerHeight - 20) top = e.clientY - rect.height - 16;
+                if (left < 10) left = 10;
+                if (top < 10) top = 10;
+                tooltip.style.left = left + 'px';
+                tooltip.style.top = top + 'px';
             }
 
             function changeMonth(delta) {
@@ -1475,17 +2040,14 @@
                 const year = start.getFullYear();
                 const weekNum = getWeekNumber(start);
 
-                document.getElementById('weekLabel').textContent =
-                    year + '年 第' + weekNum + '周';
+                document.getElementById('weekLabel').textContent = year + '年 第' + weekNum + '周';
 
-                // 保存当前周备注
-                const noteKey = year + '-W' + String(weekNum).padStart(2, '0');
-                const note = data.weeklyNotes[noteKey] || '';
-                document.getElementById('weeklyNote').value = note;
+                const noteKey = getWeekKey(year, weekNum);
+                document.getElementById('weeklyNote').value = data.weeklyNotes[noteKey] || '';
 
                 const grid = document.getElementById('weekGrid');
-                let html = '';
                 const today = getTodayStr();
+                let html = '';
 
                 for (let i = 0; i < 7; i++) {
                     const d = new Date(start);
@@ -1493,6 +2055,7 @@
                     const dateKey = formatDateKey(d.getFullYear(), d.getMonth(), d.getDate());
                     const entry = data.dailyEntries[dateKey];
                     const tasks = entry ? entry.tasks : [];
+                    const sorted = [...tasks].sort((a, b) => (a.order || 0) - (b.order || 0));
                     const isToday = dateKey === today;
 
                     html += `
@@ -1502,19 +2065,19 @@
                                     <span class="wd-num">${d.getDate()}</span>
                                 </div>
                                 <div class="wd-tasks">
-                                    ${tasks.slice(0, 5).map(t => `
+                                    ${sorted.slice(0, 5).map(t => `
                                         <div class="wd-task" title="${escapeHtml(t.text)}">
-                                            <span class="wd-status">${STATUS_SYMBOLS[t.status] || '·'}</span>
-                                            ${escapeHtml(t.text.substring(0, 20))}${t.text.length > 20 ? '...' : ''}
+                                            <span class="wd-icon ${TYPE_CLASSES[t.type] || 'type-task'}">${TYPE_SYMBOLS[t.type] || '·'}</span>
+                                            ${escapeHtml(t.text.substring(0, 18))}${t.text.length > 18 ? '…' : ''}
+                                            ${t.status === 'done' ? '✓' : ''}
                                         </div>
                                     `).join('')}
-                                    ${tasks.length > 5 ? `<div class="wd-task" style="color:var(--text-muted);font-size:10px;">+${tasks.length - 5} 更多</div>` : ''}
-                                    ${tasks.length === 0 ? '<div style="font-size:10px;color:var(--text-muted);opacity:0.3;text-align:center;padding:4px 0;">—</div>' : ''}
+                                    ${sorted.length > 5 ? `<div class="wd-task" style="color:var(--text-muted);font-size:9px;">+${sorted.length - 5} 更多</div>` : ''}
+                                    ${sorted.length === 0 ? '<div style="font-size:9px;color:var(--text-muted);opacity:0.2;text-align:center;padding:4px 0;">—</div>' : ''}
                                 </div>
                             </div>
                         `;
                 }
-
                 grid.innerHTML = html;
             }
 
@@ -1534,7 +2097,7 @@
                 const start = getWeekStart(currentWeek);
                 const year = start.getFullYear();
                 const weekNum = getWeekNumber(start);
-                const key = year + '-W' + String(weekNum).padStart(2, '0');
+                const key = getWeekKey(year, weekNum);
                 const note = document.getElementById('weeklyNote').value;
                 if (note.trim()) {
                     data.weeklyNotes[key] = note.trim();
@@ -1560,20 +2123,24 @@
                 const entry = getDailyEntry(year, month, day);
                 document.getElementById('dailyNote').value = entry.note || '';
 
-                const container = document.getElementById('dailyTaskList');
                 const tasks = entry.tasks || [];
-                document.getElementById('dailyTaskCount').textContent = tasks.length;
+                const sorted = [...tasks].sort((a, b) => (a.order || 0) - (b.order || 0));
+                document.getElementById('dailyTaskCount').textContent = sorted.length;
 
-                if (tasks.length === 0) {
+                const container = document.getElementById('dailyTaskList');
+                if (sorted.length === 0) {
                     container.innerHTML =
-                        `<div class="empty-state"><div class="icon"><i class="fas fa-inbox"></i></div><p>今天还没有任务</p></div>`;
+                        `<div class="empty-state"><div class="icon"><i class="fas fa-inbox"></i></div><p>今天还没有内容</p></div>`;
                 } else {
-                    container.innerHTML = tasks.map(t => `
+                    container.innerHTML = sorted.map(t => `
                             <div class="task-item">
                                 <button class="status-toggle ${STATUS_CLASSES[t.status]}" onclick="toggleDailyTaskStatus('${t.id}')" title="切换状态">
                                     ${STATUS_SYMBOLS[t.status]}
                                 </button>
+                                <span class="task-type-icon ${TYPE_CLASSES[t.type] || 'type-task'}">${TYPE_SYMBOLS[t.type] || '·'}</span>
                                 <span class="task-text ${t.status === 'done' ? 'done' : ''} ${t.status === 'migrated' ? 'migrated' : ''} ${t.status === 'scheduled' ? 'scheduled' : ''}">${escapeHtml(t.text)}</span>
+                                <button class="order-btn" onclick="moveDailyTask('${t.id}',-1)" title="上移"><i class="fas fa-chevron-up"></i></button>
+                                <button class="order-btn" onclick="moveDailyTask('${t.id}',1)" title="下移"><i class="fas fa-chevron-down"></i></button>
                                 <button class="del-task" onclick="deleteDailyTask('${t.id}')" title="删除"><i class="fas fa-times"></i></button>
                             </div>
                         `).join('');
@@ -1583,17 +2150,19 @@
             function addDailyTask() {
                 const input = document.getElementById('dailyInput');
                 const text = input.value.trim();
-                if (!text) { showToast('请输入任务内容', 'warning'); return; }
+                const type = document.getElementById('dailyTypeSelect').value || 'task';
+                if (!text) { showToast('请输入内容', 'warning'); return; }
 
                 const year = currentDay.getFullYear();
                 const month = currentDay.getMonth();
                 const day = currentDay.getDate();
                 const entry = getDailyEntry(year, month, day);
-                entry.tasks.push({ id: generateId(), text: text, status: 'todo' });
+                const order = entry.tasks.length;
+                entry.tasks.push({ id: generateId(), text: text, status: 'todo', type: type, order: order });
                 saveData();
                 input.value = '';
                 renderDaily();
-                showToast('✅ 已添加任务', 'success');
+                showToast('✅ 已添加', 'success');
             }
 
             function toggleDailyTaskStatus(id) {
@@ -1615,6 +2184,22 @@
                 const day = currentDay.getDate();
                 const entry = getDailyEntry(year, month, day);
                 entry.tasks = entry.tasks.filter(t => t.id !== id);
+                entry.tasks.forEach((t, i) => t.order = i);
+                saveData();
+                renderDaily();
+            }
+
+            function moveDailyTask(id, delta) {
+                const year = currentDay.getFullYear();
+                const month = currentDay.getMonth();
+                const day = currentDay.getDate();
+                const entry = getDailyEntry(year, month, day);
+                const idx = entry.tasks.findIndex(t => t.id === id);
+                if (idx === -1) return;
+                const newIdx = idx + delta;
+                if (newIdx < 0 || newIdx >= entry.tasks.length) return;
+                [entry.tasks[idx], entry.tasks[newIdx]] = [entry.tasks[newIdx], entry.tasks[idx]];
+                entry.tasks.forEach((t, i) => t.order = i);
                 saveData();
                 renderDaily();
             }
@@ -1624,8 +2209,7 @@
                 const month = currentDay.getMonth();
                 const day = currentDay.getDate();
                 const entry = getDailyEntry(year, month, day);
-                const note = document.getElementById('dailyNote').value;
-                entry.note = note.trim() || '';
+                entry.note = document.getElementById('dailyNote').value.trim() || '';
                 saveData();
                 showToast('✅ 日志已保存', 'success');
             }
@@ -1642,11 +2226,171 @@
                 const parts = dateStr.split('-').map(Number);
                 currentDay = new Date(parts[0], parts[1] - 1, parts[2]);
                 renderDaily();
-                // 同步更新周和月视图的日期
                 currentWeek = new Date(currentDay);
                 currentMonth = new Date(currentDay);
                 renderWeekly();
                 renderMonthly();
+            }
+
+            // ================================================================
+            //  左侧面板：计划中 & 迁移
+            // ================================================================
+            function renderScheduled() {
+                const container = document.getElementById('scheduledList');
+                // 收集所有 scheduled 状态的任务
+                const scheduled = [];
+                Object.keys(data.dailyEntries).forEach(dateKey => {
+                    const entry = data.dailyEntries[dateKey];
+                    entry.tasks.forEach(t => {
+                        if (t.status === 'scheduled') {
+                            scheduled.push({ date: dateKey, task: t });
+                        }
+                    });
+                });
+                Object.keys(data.monthlyItems).forEach(monthKey => {
+                    const items = data.monthlyItems[monthKey];
+                    items.forEach(t => {
+                        if (t.status === 'scheduled') {
+                            scheduled.push({ date: monthKey, task: t });
+                        }
+                    });
+                });
+
+                document.getElementById('scheduledCount').textContent = scheduled.length;
+                if (scheduled.length === 0) {
+                    container.innerHTML =
+                        `<div class="empty-state"><div class="icon"><i class="fas fa-inbox"></i></div><p>暂无计划中任务</p></div>`;
+                } else {
+                    // 按日期排序
+                    scheduled.sort((a, b) => a.date.localeCompare(b.date));
+                    container.innerHTML = scheduled.map(s => `
+                            <div class="scheduled-item">
+                                <span class="s-month">${s.date}</span>
+                                <span class="s-text">${escapeHtml(s.task.text)}</span>
+                                <span style="font-size:10px;color:var(--text-muted);flex-shrink:0;">${TYPE_SYMBOLS[s.task.type] || '·'}</span>
+                            </div>
+                        `).join('');
+                }
+            }
+
+            // ================================================================
+            //  迁移提取
+            // ================================================================
+            function updateExtractSelects() {
+                const fromSel = document.getElementById('extractFromMonth');
+                const toSel = document.getElementById('extractToMonth');
+                const currentYear = currentMonth.getFullYear();
+                const currentMonthNum = currentMonth.getMonth();
+
+                // 生成月份选项：当前月 ± 6 个月
+                const months = [];
+                for (let i = -6; i <= 6; i++) {
+                    const d = new Date(currentYear, currentMonthNum + i, 1);
+                    months.push({ year: d.getFullYear(), month: d.getMonth(), label: d.getFullYear() + '-' + String(d
+                            .getMonth() + 1).padStart(2, '0') });
+                }
+
+                const currentVal = fromSel.value;
+                fromSel.innerHTML = months.map(m =>
+                    `<option value="${m.label}">${m.label}</option>`
+                ).join('');
+                if (months.some(m => m.label === currentVal)) fromSel.value = currentVal;
+                else fromSel.value = months[6]?.label || '';
+
+                const currentVal2 = toSel.value;
+                toSel.innerHTML = months.map(m =>
+                    `<option value="${m.label}">${m.label}</option>`
+                ).join('');
+                if (months.some(m => m.label === currentVal2)) toSel.value = currentVal2;
+                else toSel.value = months[7]?.label || months[6]?.label || '';
+            }
+
+            function extractMigrations() {
+                const fromMonth = document.getElementById('extractFromMonth').value;
+                const toMonth = document.getElementById('extractToMonth').value;
+
+                if (!fromMonth || !toMonth) { showToast('请选择有效月份', 'warning'); return; }
+
+                // 从 fromMonth 中找所有 migrated 状态的任务
+                const migrated = [];
+                // 检查 dailyEntries
+                Object.keys(data.dailyEntries).forEach(dateKey => {
+                    if (dateKey.startsWith(fromMonth)) {
+                        const entry = data.dailyEntries[dateKey];
+                        entry.tasks.forEach(t => {
+                            if (t.status === 'migrated') {
+                                migrated.push({ ...t, source: dateKey });
+                            }
+                        });
+                    }
+                });
+                // 检查 monthlyItems
+                if (data.monthlyItems[fromMonth]) {
+                    data.monthlyItems[fromMonth].forEach(t => {
+                        if (t.status === 'migrated') {
+                            migrated.push({ ...t, source: fromMonth });
+                        }
+                    });
+                }
+
+                if (migrated.length === 0) {
+                    showToast('在 ' + fromMonth + ' 中没有找到已迁移的条目', 'warning');
+                    return;
+                }
+
+                // 添加到 temp
+                const existingIds = new Set(data.tempItems.map(t => t.id));
+                let added = 0;
+                migrated.forEach(t => {
+                    if (!existingIds.has(t.id)) {
+                        data.tempItems.push({
+                            ...t,
+                            extractedFrom: fromMonth,
+                            targetMonth: toMonth,
+                            extractedAt: new Date().toISOString()
+                        });
+                        added++;
+                        existingIds.add(t.id);
+                    }
+                });
+
+                saveData();
+                renderTemp();
+                showToast(`✅ 已提取 ${added} 项到暂存区（共 ${migrated.length} 项）`, 'success');
+            }
+
+            function renderTemp() {
+                const container = document.getElementById('tempArea');
+                document.getElementById('tempCount').textContent = data.tempItems.length;
+
+                if (data.tempItems.length === 0) {
+                    container.innerHTML = `<div class="temp-empty">暂无迁移项，使用下方工具提取</div>`;
+                } else {
+                    container.innerHTML = data.tempItems.map(t => `
+                            <div class="temp-item">
+                                <span style="font-size:10px;color:var(--text-muted);flex-shrink:0;">${t.targetMonth || '?'}</span>
+                                <span class="t-text">${escapeHtml(t.text)}</span>
+                                <span style="font-size:10px;color:var(--text-muted);flex-shrink:0;">${TYPE_SYMBOLS[t.type] || '·'}</span>
+                                <button class="t-rm" onclick="removeTempItem('${t.id}')" title="移除"><i class="fas fa-times"></i></button>
+                            </div>
+                        `).join('');
+                }
+            }
+
+            function removeTempItem(id) {
+                data.tempItems = data.tempItems.filter(t => t.id !== id);
+                saveData();
+                renderTemp();
+            }
+
+            function clearTemp() {
+                if (data.tempItems.length === 0) return;
+                if (confirm('清空所有暂存项？')) {
+                    data.tempItems = [];
+                    saveData();
+                    renderTemp();
+                    showToast('已清空暂存区', 'info');
+                }
             }
 
             // ================================================================
@@ -1657,10 +2401,14 @@
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
                 document.querySelector(`.tab-btn[data-tab="${tab}"]`)?.classList.add('active');
 
-                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-                document.getElementById('panel-' + tab).classList.add('active');
+                document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
+                const panel = document.getElementById('panel-' + tab);
+                panel.style.display = 'flex';
+                panel.style.flexDirection = 'column';
+                panel.style.flex = '1';
+                panel.style.minHeight = '0';
+                panel.style.overflow = 'hidden';
 
-                // 渲染对应视图
                 if (tab === 'yearly') renderYearly();
                 else if (tab === 'monthly') renderMonthly();
                 else if (tab === 'weekly') renderWeekly();
@@ -1682,36 +2430,49 @@
 
                 data = {
                     yearlyGoals: [
-                        { id: generateId(), text: '掌握 3 个新算法框架' },
-                        { id: generateId(), text: '读完 12 本技术书籍' },
-                        { id: generateId(), text: '建立个人知识库' },
+                        { id: generateId(), text: '掌握 3 个新算法框架', completed: false },
+                        { id: generateId(), text: '读完 12 本技术书籍', completed: false },
+                        { id: generateId(), text: '建立个人知识库', completed: true },
                     ],
-                    monthlyTasks: {},
+                    monthlyItems: {},
                     dailyEntries: {},
-                    weeklyNotes: {}
+                    weeklyNotes: {},
+                    tempItems: []
                 };
 
-                // 月度任务
-                const monthKey = year + '-' + String(month + 1).padStart(2, '0');
-                data.monthlyTasks[monthKey] = [
-                    { id: generateId(), text: '完成项目架构设计', status: 'done' },
-                    { id: generateId(), text: '团队内部技术分享', status: 'todo' },
-                    { id: generateId(), text: '优化数据库查询性能', status: 'migrated' },
+                // 月度条目
+                const monthKey = getMonthKey(year, month);
+                data.monthlyItems[monthKey] = [
+                    { id: generateId(), text: '完成项目架构设计', status: 'done', type: 'task', order: 0 },
+                    { id: generateId(), text: '团队内部技术分享', status: 'todo', type: 'event', order: 1 },
+                    { id: generateId(), text: '优化数据库查询性能', status: 'migrated', type: 'task', order: 2 },
+                    { id: generateId(), text: '记录团队会议纪要', status: 'todo', type: 'note', order: 3 },
                 ];
 
-                // 每日任务（今天 + 前后几天）
+                // 每日条目
+                const sampleTasks = [
+                    { text: '编写单元测试', type: 'task' },
+                    { text: '代码审查', type: 'task' },
+                    { text: '更新项目文档', type: 'note' },
+                    { text: '团队周会', type: 'event' },
+                    { text: '修复 Bug #123', type: 'task' },
+                    { text: '设计评审', type: 'event' },
+                ];
+                const statuses = ['todo', 'done', 'done', 'migrated', 'todo', 'scheduled'];
+
                 for (let d = -3; d <= 3; d++) {
                     const dt = new Date(year, month, day + d);
                     const key = formatDateKey(dt.getFullYear(), dt.getMonth(), dt.getDate());
                     const entry = { note: '', tasks: [] };
-                    const statuses = ['todo', 'done', 'done', 'migrated', 'todo'];
-                    const texts = ['编写单元测试', '代码审查', '更新文档', '修复 Bug #123', '设计评审'];
                     const count = Math.floor(Math.random() * 3) + 1;
-                    for (let i = 0; i < count && i < texts.length; i++) {
+                    for (let i = 0; i < count && i < sampleTasks.length; i++) {
+                        const idx = (d + 3 + i) % sampleTasks.length;
                         entry.tasks.push({
                             id: generateId(),
-                            text: texts[i] + ' (' + (d > 0 ? '未来' : '过去') + ')',
-                            status: statuses[i % statuses.length]
+                            text: sampleTasks[idx].text + (d !== 0 ? ' (' + (d > 0 ? '未来' : '过去') + ')' : ''),
+                            status: statuses[(d + 3 + i) % statuses.length],
+                            type: sampleTasks[idx].type,
+                            order: i
                         });
                     }
                     data.dailyEntries[key] = entry;
@@ -1719,15 +2480,15 @@
 
                 // 周备注
                 const weekNum = getWeekNumber(today);
-                data.weeklyNotes[year + '-W' + String(weekNum).padStart(2, '0')] =
-                    '本周重点：完成了核心模块的初步开发，下周开始集成测试。';
+                data.weeklyNotes[getWeekKey(year, weekNum)] = '本周重点：完成了核心模块的初步开发。';
 
                 saveData();
-                // 重置日期到今日
                 currentMonth = new Date();
                 currentWeek = new Date();
                 currentDay = new Date();
                 switchTab(currentTab);
+                renderScheduled();
+                renderTemp();
                 showToast('✅ 示例数据加载成功！', 'success');
             }
 
@@ -1753,12 +2514,15 @@
                 reader.onload = function(ev) {
                     try {
                         const imported = JSON.parse(ev.target.result);
-                        if (!imported.yearlyGoals || !imported.monthlyTasks || !imported.dailyEntries) {
+                        if (!imported.yearlyGoals || !imported.monthlyItems || !imported.dailyEntries) {
                             throw new Error('数据格式不完整');
                         }
                         data = imported;
+                        if (!data.tempItems) data.tempItems = [];
                         saveData();
                         switchTab(currentTab);
+                        renderScheduled();
+                        renderTemp();
                         showToast('✅ 导入成功！', 'success');
                     } catch (err) {
                         showToast('❌ 导入失败：' + err.message, 'warning');
@@ -1769,13 +2533,28 @@
             }
 
             // ================================================================
+            //  全量更新
+            // ================================================================
+            function updateAll() {
+                renderScheduled();
+                renderTemp();
+                if (currentTab === 'yearly') renderYearly();
+                else if (currentTab === 'monthly') renderMonthly();
+                else if (currentTab === 'weekly') renderWeekly();
+                else if (currentTab === 'daily') renderDaily();
+                updateExtractSelects();
+            }
+
+            // ================================================================
             //  初始化 & 全局暴露
             // ================================================================
             window.addYearlyGoal = addYearlyGoal;
+            window.toggleYearlyGoal = toggleYearlyGoal;
             window.deleteYearlyGoal = deleteYearlyGoal;
             window.addMonthlyTask = addMonthlyTask;
-            window.toggleMonthlyTaskStatus = toggleMonthlyTaskStatus;
-            window.deleteMonthlyTask = deleteMonthlyTask;
+            window.toggleMonthlyItemStatus = toggleMonthlyItemStatus;
+            window.deleteMonthlyItem = deleteMonthlyItem;
+            window.moveMonthlyItem = moveMonthlyItem;
             window.changeMonth = changeMonth;
             window.resetToCurrentMonth = resetToCurrentMonth;
             window.changeWeek = changeWeek;
@@ -1784,6 +2563,7 @@
             window.addDailyTask = addDailyTask;
             window.toggleDailyTaskStatus = toggleDailyTaskStatus;
             window.deleteDailyTask = deleteDailyTask;
+            window.moveDailyTask = moveDailyTask;
             window.changeDay = changeDay;
             window.jumpToDate = jumpToDate;
             window.saveDailyNote = saveDailyNote;
@@ -1791,8 +2571,10 @@
             window.loadSamples = loadSamples;
             window.exportData = exportData;
             window.importData = importData;
+            window.extractMigrations = extractMigrations;
+            window.removeTempItem = removeTempItem;
+            window.clearTemp = clearTemp;
 
-            // 启动
             loadData();
             // 重置日期到今日
             const now = new Date();
@@ -1800,14 +2582,24 @@
             currentWeek = new Date(now);
             currentDay = new Date(now);
             switchTab('yearly');
+            renderScheduled();
+            renderTemp();
+            updateExtractSelects();
 
-            console.log('📓 子弹日志 · 四维透视已启动');
+            // 点击外部关闭 tooltip
+            document.addEventListener('click', function() {
+                hideDayTooltip();
+            });
+
+            console.log('📓 子弹日志 · 四维透视 (增强版)');
             console.log('  ✅ 年度目标: ' + data.yearlyGoals.length + ' 个');
-            console.log('  ✅ 月度任务: ' + Object.keys(data.monthlyTasks).length + ' 个月份');
+            console.log('  ✅ 月度条目: ' + Object.keys(data.monthlyItems).length + ' 个月份');
             console.log('  ✅ 每日记录: ' + Object.keys(data.dailyEntries).length + ' 天');
+            console.log('  ✅ 暂存项: ' + data.tempItems.length + ' 个');
             console.log('  ⌨️  点击「示例数据」快速体验');
 
         })();
     </script>
+
 </body>
 </html>
