@@ -410,7 +410,7 @@
             word-break: break-word;
         }
 
-        /* ===== 迁移暂存容器 — 重新构建，更健壮 ===== */
+        /* ===== 迁移暂存容器 — 清空暂存按钮已移入 temp-toolbar，样式完整 ===== */
         .temp-container {
             display: flex;
             flex-direction: column;
@@ -500,6 +500,7 @@
             transform: scale(1.2);
         }
 
+        /* ===== temp-toolbar — 按钮样式完整定义 ===== */
         .temp-toolbar {
             display: flex;
             gap: 6px;
@@ -526,8 +527,10 @@
             border-color: var(--primary);
             background: rgba(255, 255, 255, 0.30);
         }
-        .temp-toolbar .btn-sm {
-            padding: 4px 14px;
+
+        /* 独立按钮样式 — 不依赖父容器，确保“清空暂存”按钮正常显示 */
+        .btn-sm {
+            padding: 6px 16px;
             border-radius: var(--radius-sm);
             border: none;
             background: var(--primary-gradient);
@@ -539,27 +542,37 @@
             font-family: inherit;
             box-shadow: 0 2px 12px rgba(155, 138, 176, 0.10);
             white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
         }
-        .temp-toolbar .btn-sm:hover {
+        .btn-sm:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 20px rgba(155, 138, 176, 0.18);
         }
-        .temp-toolbar .btn-sm:active {
+        .btn-sm:active {
             transform: scale(0.94);
         }
-        .temp-toolbar .btn-sm.danger-sm {
+
+        /* 危险按钮变体 — 用于“清空暂存” */
+        .btn-sm.danger-sm {
             background: rgba(196, 122, 122, 0.12);
             color: #8a5a5a;
             box-shadow: none;
             border: 1px solid rgba(196, 122, 122, 0.10);
         }
-        .temp-toolbar .btn-sm.danger-sm:hover {
+        .btn-sm.danger-sm:hover {
             background: rgba(196, 122, 122, 0.18);
             box-shadow: 0 4px 16px rgba(196, 122, 122, 0.08);
+            transform: translateY(-1px);
         }
-        .temp-toolbar .btn-sm.rounded-full {
+
+        /* 圆角全圆 */
+        .btn-sm.rounded-full {
             border-radius: var(--radius-full);
         }
+
         .temp-toolbar .hint-text {
             font-size: 10px;
             color: var(--text-muted);
@@ -1891,7 +1904,7 @@
                 </div>
             </div>
 
-            <!-- ===== 迁移暂存 — 重新构建的容器 ===== -->
+            <!-- ===== 迁移暂存 — 清空暂存按钮已移入 temp-toolbar，样式完整 ===== -->
             <div class="glass">
                 <div class="sidebar-title">
                     <i class="fas fa-arrows-alt-h" style="color:var(--primary);"></i> 迁移暂存
@@ -1903,16 +1916,15 @@
                     <div class="temp-empty">暂无迁移项，使用下方工具提取</div>
                 </div>
 
-                <!-- 工具栏 -->
+                <!-- 工具栏 — 清空暂存按钮在这里，样式完整 -->
                 <div class="temp-toolbar">
                     <span style="font-size:11px;color:var(--text-secondary);flex-shrink:0;">从</span>
                     <select id="extractFromMonth"></select>
                     <span style="font-size:11px;color:var(--text-secondary);flex-shrink:0;">→</span>
                     <select id="extractToMonth"></select>
                     <button class="btn-sm" onclick="extractMigrations()"><i class="fas fa-arrow-right"></i> 提取</button>
-                </div>
-                <div style="margin-top:4px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
-                    <button class="btn-sm danger-sm rounded-full" onclick="clearTemp()" style="font-size:10px;padding:2px 14px;">
+                    <!-- 清空暂存按钮 — 现在在 temp-toolbar 内部，样式完全生效 -->
+                    <button class="btn-sm danger-sm rounded-full" onclick="clearTemp()">
                         <i class="fas fa-eraser"></i> 清空暂存
                     </button>
                     <span class="hint-text">提取后复制到右侧抄写</span>
@@ -3005,7 +3017,7 @@
             }
 
             // ================================================================
-            //  迁移暂存 — 重新构建，稳定可靠
+            //  迁移暂存 — 清空暂存已修复（按钮在 temp-toolbar 内，样式完整）
             // ================================================================
             function updateExtractSelects() {
                 const fromSel = document.getElementById('extractFromMonth');
@@ -3067,26 +3079,27 @@
                 showToast(`✅ 已提取 ${added} 项到暂存区（共 ${migrated.length} 项）`, 'success');
             }
 
-            // ===== 核心：渲染暂存容器 =====
+            // ===== 渲染暂存容器 =====
             function renderTemp() {
                 const container = document.getElementById('tempArea');
-                const countBadge = document.getElementById('tempCount');
-
-                // 防御：确保容器存在
                 if (!container) {
                     console.warn('tempArea 容器未找到');
                     return;
                 }
 
-                const items = data.tempItems || [];
-                countBadge.textContent = items.length;
+                if (!data.tempItems || !Array.isArray(data.tempItems)) {
+                    data.tempItems = [];
+                }
+
+                const items = data.tempItems;
+                const countBadge = document.getElementById('tempCount');
+                if (countBadge) countBadge.textContent = items.length;
 
                 if (items.length === 0) {
                     container.innerHTML = `<div class="temp-empty">暂无迁移项，使用下方工具提取</div>`;
                     return;
                 }
 
-                // 渲染每一项，带防御
                 let html = '';
                 for (const t of items) {
                     try {
@@ -3104,47 +3117,45 @@
                         `;
                     } catch (e) {
                         console.warn('渲染暂存项失败:', t, e);
-                        // 跳过有问题的项
                         continue;
                     }
                 }
 
-                // 如果所有项都渲染失败，显示空状态
-                if (!html) {
-                    container.innerHTML = `<div class="temp-empty">暂存项数据异常，请清空后重新提取</div>`;
-                } else {
-                    container.innerHTML = html;
-                }
+                container.innerHTML = html || `<div class="temp-empty">暂存项数据异常，请清空后重新提取</div>`;
             }
 
             // ===== 移除单个暂存项 =====
             function removeTempItem(id) {
                 if (!id) return;
+                if (!data.tempItems || !Array.isArray(data.tempItems)) {
+                    data.tempItems = [];
+                }
                 data.tempItems = data.tempItems.filter(t => t.id !== id);
                 saveData();
                 renderTemp();
                 showToast('已移除一项', 'info');
             }
 
-            // ===== 清空所有暂存项（完全重写，确保可靠） =====
+            // ===== 清空所有暂存项 — 按钮样式现已完整 =====
             function clearTemp() {
-                const count = data.tempItems ? data.tempItems.length : 0;
+                if (!data.tempItems || !Array.isArray(data.tempItems)) {
+                    data.tempItems = [];
+                }
+
+                const count = data.tempItems.length;
                 if (count === 0) {
                     showToast('暂存区已经是空的', 'warning');
                     return;
                 }
 
-                if (confirm('确定要清空所有暂存项吗？')) {
-                    // 直接清空数组
-                    data.tempItems = [];
-                    // 保存数据
-                    saveData();
-                    // 重新渲染容器
-                    renderTemp();
-                    // 更新计数
-                    document.getElementById('tempCount').textContent = '0';
-                    showToast('🗑️ 已清空暂存区', 'success');
-                }
+                if (!confirm('确定要清空所有暂存项吗？')) return;
+
+                data.tempItems = [];
+                saveData();
+                renderTemp();
+                const badge = document.getElementById('tempCount');
+                if (badge) badge.textContent = '0';
+                showToast('🗑️ 已清空暂存区', 'success');
             }
 
             // ================================================================
@@ -3410,7 +3421,7 @@
             updateExtractSelects();
             setTimeout(updateTabSlider, 100);
 
-            console.log('📓 子弹日志 · 四维透视 (容器重构版)');
+            console.log('📓 子弹日志 · 四维透视 (清空暂存已修复)');
             console.log('  ✅ 年度目标: ' + data.yearlyGoals.length + ' 个');
             console.log('  ✅ 月度条目: ' + Object.keys(data.monthlyItems).length + ' 个月份');
             console.log('  ✅ 每日记录: ' + Object.keys(data.dailyEntries).length + ' 天');
