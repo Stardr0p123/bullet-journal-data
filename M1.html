@@ -224,7 +224,6 @@
             box-shadow: 0 6px 24px rgba(139, 195, 74, 0.25);
             transform: translateY(-2px) scale(1.02);
         }
-        /* 修复：active 时背景色加深，而不是变白 */
         .btn-primary-sm:active {
             background-color: var(--primary-dark) !important;
             background-image: none !important;
@@ -1175,6 +1174,8 @@
                 </div>
             </div>
             <div class="header-actions">
+                <!-- 新增“上传至 Git”按钮 -->
+                <button class="btn-sm btn-primary-sm" onclick="uploadToGitHub()"><i class="fas fa-cloud-upload-alt"></i> 上传至 Git</button>
                 <button class="btn-sm" onclick="exportData()"><i class="fas fa-download"></i> 导出</button>
                 <button class="btn-sm" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> 导入</button>
                 <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)" />
@@ -1295,6 +1296,14 @@
             'use strict';
 
             // ================================================================
+            //  🔧 GitHub 配置（请修改以下四个变量）
+            // ================================================================
+            const GITHUB_USER = 'Stardr0p123';          // 替换为你的 GitHub 用户名
+            const GITHUB_REPO = 'bullet-journal-data';          // 替换为你的仓库名
+            const GITHUB_PATH = 'data/albums.json';    // 数据文件在仓库中的路径（可自定义）
+            const GITHUB_TOKEN = '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'; // 你的令牌
+
+            // ================================================================
             //  数据层
             // ================================================================
             const STORAGE_KEY = 'album_recorder_data';
@@ -1303,6 +1312,7 @@
             let selectedId = null;
             let editingId = null;
             let isScoreLocked = false;
+            let isLoading = false;
 
             // ================================================================
             //  工具
@@ -1326,14 +1336,67 @@
             }
 
             // ================================================================
-            //  存储
+            //  GitHub 数据读写
             // ================================================================
-            function loadData() {
+            async function loadDataFromGitHub() {
+                if (isLoading) return;
+                isLoading = true;
+                const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_PATH}`;
+                try {
+                    const res = await fetch(url, {
+                        headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` }
+                    });
+                    if (!res.ok) {
+                        if (res.status === 404) {
+                            console.warn('GitHub 数据文件不存在，使用本地数据或默认示例');
+                            if (!loadDataFromLocalStorage()) {
+                                useDefaultData();
+                            }
+                            renderAll();
+                            return;
+                        }
+                        throw new Error(`HTTP ${res.status}`);
+                    }
+                    const data = await res.json();
+                    const content = atob(data.content);
+                    const parsed = JSON.parse(content);
+                    if (Array.isArray(parsed)) {
+                        albums = parsed;
+                        albums.forEach(a => {
+                            if (!a.tracks) a.tracks = [];
+                            if (a.qualityScore === undefined) a.qualityScore = 5;
+                            if (!a.overview) a.overview = '';
+                            a.trackCount = a.tracks.length;
+                            a.tracks.forEach(t => {
+                                if (t.artist === undefined) t.artist = '';
+                            });
+                        });
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(albums));
+                        showToast('✅ 已从 GitHub 加载数据', 'success');
+                    } else {
+                        throw new Error('数据格式错误');
+                    }
+                } catch (e) {
+                    console.error('从 GitHub 读取失败:', e);
+                    showToast('从 GitHub 读取失败，使用本地缓存', 'warning');
+                    if (!loadDataFromLocalStorage()) {
+                        useDefaultData();
+                    }
+                } finally {
+                    isLoading = false;
+                    if (albums.length > 0 && !selectedId) {
+                        selectedId = albums[0].id;
+                    }
+                    renderAll();
+                }
+            }
+
+            function loadDataFromLocalStorage() {
                 try {
                     const raw = localStorage.getItem(STORAGE_KEY);
                     if (raw) {
                         const data = JSON.parse(raw);
-                        if (Array.isArray(data)) {
+                        if (Array.isArray(data) && data.length > 0) {
                             albums = data;
                             albums.forEach(a => {
                                 if (!a.tracks) a.tracks = [];
@@ -1344,69 +1407,133 @@
                                     if (t.artist === undefined) t.artist = '';
                                 });
                             });
+                            return true;
                         }
                     }
-                } catch (e) { albums = []; }
-                if (albums.length === 0) {
-                    albums = [{
-                        id: genId(),
-                        name: 'Group Therapy',
-                        artist: 'Above & Beyond',
-                        genre: 'Progressive Trance',
-                        hardness: 6,
-                        trackCount: 16,
-                        qualityScore: 9,
-                        overview: 'Anjunabeats 的经典合辑，情感充沛，旋律动人。',
-                        tracks: [
-                            { name: 'Group Therapy Intro', review: '完美的开场，氛围感极强。', artist: 'Above & Beyond' },
-                            { name: 'Sun & Moon', review: '经典中的经典，人声与旋律完美融合。', artist: 'Above & Beyond' },
-                            { name: 'You Got to Go', review: '节奏明快，能量十足。', artist: 'Above & Beyond' },
-                        ]
-                    }, {
-                        id: genId(),
-                        name: 'Worlds',
-                        artist: 'Porter Robinson',
-                        genre: 'Electronic / Synthpop',
-                        hardness: 4,
-                        trackCount: 12,
-                        qualityScore: 10,
-                        overview: '一张改变电子音乐格局的专辑，情感真挚，充满想象力。',
-                        tracks: [
-                            { name: 'Divinity', review: '宏大开场，人声空灵。', artist: 'Porter Robinson' },
-                            { name: 'Sad Machine', review: '治愈系旋律，百听不厌。', artist: 'Porter Robinson' },
-                            { name: 'Flicker', review: '节奏感强，带有日系元素。', artist: 'Porter Robinson' },
-                        ]
-                    }, {
-                        id: genId(),
-                        name: 'In Return',
-                        artist: 'ODESZA',
-                        genre: 'Indie Electronic',
-                        hardness: 3,
-                        trackCount: 14,
-                        qualityScore: 8,
-                        overview: '温暖、细腻，充满夏日气息的电子专辑。',
-                        tracks: [
-                            { name: 'Always This Late', review: '慵懒的节奏，很放松。', artist: 'ODESZA' },
-                            { name: 'Say My Name', review: '律动感十足，人声优美。', artist: 'ODESZA' },
-                            { name: 'Kusanagi', review: '东瀛风格的旋律，很有画面感。', artist: 'ODESZA' },
-                        ]
-                    }];
-                    saveData();
-                }
-                if (albums.length > 0 && !selectedId) {
-                    selectedId = albums[0].id;
-                }
-                renderAll();
+                } catch (e) { /* ignore */ }
+                return false;
             }
 
+            function useDefaultData() {
+                albums = [{
+                    id: genId(),
+                    name: 'Group Therapy',
+                    artist: 'Above & Beyond',
+                    genre: 'Progressive Trance',
+                    hardness: 6,
+                    trackCount: 16,
+                    qualityScore: 9,
+                    overview: 'Anjunabeats 的经典合辑，情感充沛，旋律动人。',
+                    tracks: [
+                        { name: 'Group Therapy Intro', review: '完美的开场，氛围感极强。', artist: 'Above & Beyond' },
+                        { name: 'Sun & Moon', review: '经典中的经典，人声与旋律完美融合。', artist: 'Above & Beyond' },
+                        { name: 'You Got to Go', review: '节奏明快，能量十足。', artist: 'Above & Beyond' },
+                    ]
+                }, {
+                    id: genId(),
+                    name: 'Worlds',
+                    artist: 'Porter Robinson',
+                    genre: 'Electronic / Synthpop',
+                    hardness: 4,
+                    trackCount: 12,
+                    qualityScore: 10,
+                    overview: '一张改变电子音乐格局的专辑，情感真挚，充满想象力。',
+                    tracks: [
+                        { name: 'Divinity', review: '宏大开场，人声空灵。', artist: 'Porter Robinson' },
+                        { name: 'Sad Machine', review: '治愈系旋律，百听不厌。', artist: 'Porter Robinson' },
+                        { name: 'Flicker', review: '节奏感强，带有日系元素。', artist: 'Porter Robinson' },
+                    ]
+                }, {
+                    id: genId(),
+                    name: 'In Return',
+                    artist: 'ODESZA',
+                    genre: 'Indie Electronic',
+                    hardness: 3,
+                    trackCount: 14,
+                    qualityScore: 8,
+                    overview: '温暖、细腻，充满夏日气息的电子专辑。',
+                    tracks: [
+                        { name: 'Always This Late', review: '慵懒的节奏，很放松。', artist: 'ODESZA' },
+                        { name: 'Say My Name', review: '律动感十足，人声优美。', artist: 'ODESZA' },
+                        { name: 'Kusanagi', review: '东瀛风格的旋律，很有画面感。', artist: 'ODESZA' },
+                    ]
+                }];
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(albums));
+                showToast('已加载默认示例数据', 'info');
+            }
+
+            // 上传到 GitHub
+            async function uploadToGitHub() {
+                saveDetailChanges();
+
+                if (albums.length === 0) {
+                    showToast('没有数据可上传', 'warning');
+                    return;
+                }
+
+                try {
+                    const contentStr = JSON.stringify(albums, null, 2);
+                    const encoded = btoa(unescape(encodeURIComponent(contentStr)));
+
+                    let sha = null;
+                    const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_PATH}`;
+                    const getRes = await fetch(url, {
+                        headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` }
+                    });
+                    if (getRes.ok) {
+                        const fileData = await getRes.json();
+                        sha = fileData.sha;
+                    } else if (getRes.status !== 404) {
+                        throw new Error(`获取文件信息失败: ${getRes.status}`);
+                    }
+
+                    const putRes = await fetch(url, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: '从网页更新专辑数据',
+                            content: encoded,
+                            sha: sha
+                        })
+                    });
+
+                    if (putRes.ok) {
+                        showToast('✅ 数据已成功上传至 GitHub', 'success');
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(albums));
+                    } else {
+                        const err = await putRes.json();
+                        showToast('上传失败: ' + (err.message || '未知错误'), 'warning');
+                    }
+                } catch (e) {
+                    console.error(e);
+                    showToast('上传失败: ' + e.message, 'warning');
+                }
+            }
+
+            // 保存到 localStorage（作为缓存）
             function saveData() {
                 try {
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(albums));
                 } catch (e) { /* ignore */ }
             }
 
+            // 加载数据（启动时调用）
+            function loadData() {
+                if (loadDataFromLocalStorage()) {
+                    if (albums.length > 0 && !selectedId) selectedId = albums[0].id;
+                    renderAll();
+                } else {
+                    useDefaultData();
+                    renderAll();
+                }
+                loadDataFromGitHub();
+            }
+
             // ================================================================
-            //  核心操作
+            //  核心操作（基本保持不变，但调用 saveData 更新缓存）
             // ================================================================
             function addAlbum(data) {
                 const album = {
@@ -1478,7 +1605,7 @@
             }
 
             // ================================================================
-            //  详情保存 (包含曲目作者)
+            //  详情保存
             // ================================================================
             function saveDetailChanges() {
                 const album = getSelectedAlbum();
@@ -1760,7 +1887,7 @@
             }
 
             // ================================================================
-            //  曲目更新 (包含作者)
+            //  曲目更新
             // ================================================================
             function updateTrackName(idx, value) {
                 const album = getSelectedAlbum();
@@ -1834,7 +1961,7 @@
             }
 
             // ================================================================
-            //  导出 / 导入
+            //  导出 / 导入（保持不变）
             // ================================================================
             function exportData() {
                 if (albums.length === 0) { showToast('没有数据可导出', 'warning'); return; }
@@ -1929,10 +2056,13 @@
             window.exportData = exportData;
             window.importData = importData;
             window.closeModal = closeModal;
+            window.uploadToGitHub = uploadToGitHub;   // 暴露上传函数
 
+            // 启动
             loadData();
-            console.log('📀 专辑记录器 (按钮点击修复)');
-            console.log('  📊 已加载 ' + albums.length + ' 张专辑');
+            console.log('📀 专辑记录器 (GitHub 集成版)');
+            console.log('  🔗 仓库: ' + GITHUB_USER + '/' + GITHUB_REPO);
+            console.log('  📄 数据文件: ' + GITHUB_PATH);
             console.log('  ⌨️  Ctrl+S 保存详情 | Esc 关闭');
 
         })();
