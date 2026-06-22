@@ -1346,23 +1346,23 @@
             }
         }
 
-        /* ===== GitHub 面板样式 ===== */
+        /* ===== GitHub 面板样式 - 圆润升级 + hover 上浮动效 ===== */
         .github-panel {
             position: fixed;
             bottom: 24px;
             right: 24px;
             z-index: 300;
-            background: rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: var(--radius);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06);
-            padding: 18px 20px;
-            max-width: 380px;
+            background: rgba(255, 255, 255, 0.60);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.30);
+            border-radius: 24px;
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.02);
+            padding: 22px 26px 26px;
+            max-width: 400px;
             width: calc(100% - 48px);
-            transition: transform 0.3s, opacity 0.3s;
-            transform: translateY(calc(100% + 20px));
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+            transform: translateY(calc(100% + 24px));
             opacity: 0;
             pointer-events: none;
         }
@@ -1371,63 +1371,149 @@
             opacity: 1;
             pointer-events: auto;
         }
+
         .github-panel .gp-title {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--text);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.15);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .github-panel .gp-title .close-gp {
             margin-left: auto;
             cursor: pointer;
             color: var(--text-muted);
-            font-size: 18px;
-            padding: 0 4px;
+            font-size: 20px;
+            padding: 0 6px;
+            border-radius: 50%;
+            transition: background 0.2s, color 0.2s;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .github-panel .gp-title .close-gp:hover {
+            background: rgba(0, 0, 0, 0.04);
             color: var(--text);
         }
+
         .github-panel .form-group {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
         .github-panel .form-group label {
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.4px;
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
         .github-panel .form-group input {
             width: 100%;
-            padding: 4px 8px;
-            font-size: 13px;
-            border: 1px solid rgba(255, 255, 255, 0.20);
-            border-radius: var(--radius-sm);
-            background: rgba(255, 255, 255, 0.12);
+            padding: 10px 14px;
+            font-size: 14px;
+            border: 1.5px solid rgba(255, 255, 255, 0.20);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(4px);
             color: var(--text);
             outline: none;
-            transition: border-color var(--transition-smooth);
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+            font-family: var(--font-sans);
         }
         .github-panel .form-group input:focus {
             border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.10);
+            background: rgba(255, 255, 255, 0.28);
+            transform: translateY(-1px);
         }
+        .github-panel .form-group input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
         .github-panel .gp-actions {
             display: flex;
-            gap: 8px;
-            margin-top: 12px;
+            gap: 10px;
+            margin-top: 16px;
             flex-wrap: wrap;
         }
         .github-panel .gp-actions .btn-sm {
             flex: 1;
             justify-content: center;
             min-width: 80px;
+            border-radius: 40px;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-family: var(--font-sans);
         }
+        /* 上浮动效 - 三个按钮共用 */
+        .github-panel .gp-actions .btn-sm:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 28px rgba(6, 182, 212, 0.18);
+        }
+        .github-panel .gp-actions .btn-sm:active {
+            transform: scale(0.95);
+        }
+
+        .github-panel .gp-actions .btn-primary {
+            background: var(--primary-gradient);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(6, 182, 212, 0.20);
+        }
+        .github-panel .gp-actions .btn-primary:hover {
+            box-shadow: 0 8px 32px rgba(6, 182, 212, 0.30);
+        }
+
+        .github-panel .gp-actions .btn-sm:not(.btn-primary) {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-secondary);
+        }
+        .github-panel .gp-actions .btn-sm:not(.btn-primary):hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.22);
+            color: var(--text);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04);
+        }
+
+        .github-panel .gp-hint {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            font-size: 12px;
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1.5;
+        }
+        .github-panel .gp-hint code {
+            background: rgba(0, 0, 0, 0.04);
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-family: var(--font-sans);
+        }
+
+        /* 浮动按钮 */
         .github-toggle-btn {
             position: fixed;
             bottom: 24px;
@@ -1437,29 +1523,27 @@
             color: #fff;
             border: none;
             border-radius: 40px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.20);
-            transition: all var(--transition-smooth);
+            box-shadow: 0 4px 24px rgba(6, 182, 212, 0.22);
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .github-toggle-btn:hover {
-            transform: scale(1.04);
-            box-shadow: 0 6px 28px rgba(6, 182, 212, 0.30);
+            transform: scale(1.05);
+            box-shadow: 0 8px 36px rgba(6, 182, 212, 0.30);
         }
         .github-toggle-btn:active {
             transform: scale(0.94);
         }
-        .github-toggle-btn i {
-            font-size: 16px;
-        }
-        .github-panel.open~.github-toggle-btn {
+        .github-panel.open ~ .github-toggle-btn {
             opacity: 0;
             pointer-events: none;
+            transform: scale(0.9);
         }
 
         .toast-error {
@@ -1697,7 +1781,7 @@
             <div class="header-actions">
                 <button class="btn-ghost-sm" id="exportBtn"><i class="fas fa-download"></i>导出</button>
                 <button class="btn-ghost-sm" id="importBtn"><i class="fas fa-upload"></i>导入</button>
-                <!-- ===== 修复：移除 onclick，改用 id 绑定事件 ===== -->
+                <!-- 修复：移除 onclick，改用 id 绑定事件 -->
                 <button class="btn-ghost-sm" id="openGitHubBtn"><i class="fab fa-github"></i>GitHub同步</button>
                 <button class="btn-ghost-sm" data-url="https://uoj.ac/"><i class="fas fa-globe"></i>UOJ</button>
                 <button class="btn-ghost-sm" data-url="https://vjudge.net/"><i class="fas fa-code-branch"></i>Vjudge</button>
@@ -1882,7 +1966,7 @@
     <div class="github-panel" id="githubPanel">
         <div class="gp-title">
             <i class="fab fa-github"></i> GitHub 同步
-            <!-- ===== 修复：移除 onclick，改用 id 绑定事件 ===== -->
+            <!-- 修复：移除 onclick，改用 id 绑定事件 -->
             <span class="close-gp" id="closeGitHubPanelBtn"><i class="fas fa-times"></i></span>
         </div>
         <div class="form-group">
@@ -1902,13 +1986,12 @@
             <button class="btn-sm btn-primary" id="importFromGitBtn"><i class="fas fa-download"></i> 从Git导入</button>
             <button class="btn-sm" id="linkToGitBtn"><i class="fas fa-link"></i> 链接至github</button>
         </div>
-        <div style="margin-top:8px; font-size:12px; color:var(--text-muted);">
+        <div class="gp-hint">
             <i class="fas fa-info-circle"></i> 令牌需具有 repo 权限。数据保存到 <code>/data/problems.json</code>
         </div>
     </div>
 
     <!-- ===== 浮动按钮 ===== -->
-    <!-- ===== 修复：移除 onclick，改用 id 绑定事件 ===== -->
     <button class="github-toggle-btn" id="githubToggleBtn">
         <i class="fab fa-github"></i> 同步到GitHub
     </button>
