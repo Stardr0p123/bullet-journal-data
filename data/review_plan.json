@@ -1,0 +1,173 @@
+{
+  "algorithms": [
+    {
+      "id": "algo_1782042321317_548ol",
+      "name": "BSGS",
+      "category": "数学",
+      "difficulty": "easy",
+      "description": "",
+      "learnDate": "2026-06-21",
+      "note": "就是求 $a^x\\equiv b\\ (\\bmod\\ p)$ 的一个算法，复杂度 $\\mathcal{O}(\\sqrt{p})$。\n\n开局分成两坨，设 $s=\\lceil \\sqrt {p} \\rceil$（平衡复杂度），令 $x=ps-y$。\n\n所以原方程就可以写成 $a^{ps}\\equiv b\\cdot a^y \\ (\\bmod\\ p)$。\n\n然后就显而易见了，两边直接用 map 找一下就行了（或者手写hash也可以的）\n\n具体代码：\n\n```cpp\nint BSGS(int a,int b,int p)\n{\n    // solving: a^x===b (mod p)\n    if(a==1 && b==1) return 0;\n    if(a==b) return 1;\n    if(a==0) return (b==1?0:-1);\n    map<int,int> mp;\n    int s=ceil(sqrt(p));\n    // cout<<s<<'\\n';\n    int base=1;\n    for(int i=1;i<=s;i++)\n    {\n        base=base*a%p;\n        mp[b*base%p]=i+1;\n    }\n    int base2=base;\n    for(int i=1;i<=s;i++)\n    {\n        if(mp.count(base2)) return i*s-mp[base2]+1;\n        base2=base2*base%p;\n        // cout<<base2<<'\\n';\n    }\n    return -1;\n}\n```",
+      "reviewNodes": [
+        {
+          "label": "第1次",
+          "daysAfter": 1,
+          "key": "d1",
+          "date": "2026-06-22",
+          "done": true,
+          "checkedAt": "2026-06-21T23:49:43.645Z"
+        },
+        {
+          "label": "第2次",
+          "daysAfter": 2,
+          "key": "d2",
+          "date": "2026-06-23",
+          "done": false
+        },
+        {
+          "label": "第3次",
+          "daysAfter": 4,
+          "key": "d4",
+          "date": "2026-06-25",
+          "done": false
+        },
+        {
+          "label": "第4次",
+          "daysAfter": 7,
+          "key": "d7",
+          "date": "2026-06-28",
+          "done": false
+        },
+        {
+          "label": "第5次",
+          "daysAfter": 15,
+          "key": "d15",
+          "date": "2026-07-06",
+          "done": false
+        },
+        {
+          "label": "第6次",
+          "daysAfter": 30,
+          "key": "d30",
+          "date": "2026-07-21",
+          "done": false
+        }
+      ],
+      "createdAt": "2026-06-21T11:45:21.317Z"
+    },
+    {
+      "id": "algo_1781695760265_7lo9h",
+      "name": "扫描线",
+      "category": "数据结构",
+      "difficulty": "easy",
+      "description": "",
+      "learnDate": "2026-06-17",
+      "note": "# 扫描线（矩形面积并）\n\n目前是矩形面积并的应用。\n\n扫描线就是固定一维作为基准，另一维去扫描。\n\n具体求矩形面积并可以用离散化+线段树实现。\n\n也不是很难。\n\n代码：\n\n```cpp\n#include<bits/stdc++.h>\n#define int long long\n#define N 200005\n#define inf 1000000000\n#define mod 998244353\n#define eps 1e-9\nusing namespace std;\nstruct lis{\n    int val,id;\n    bool operator <(const lis &t) const{\n        return val<t.val;\n    }\n}b[N];\nint c[N],w,ys[N];\nint bcnt;\nvoid lisanhua() {\n    sort(b+1,b+bcnt+1);\n    for(int i=1;i<=bcnt;i++) {\n        if(i==1 || b[i].val!=b[i-1].val) w++,ys[w]=b[i].val;\n        c[b[i].id]=w;\n    }\n    bcnt=0;\n}\nvoid read() {\n    cin>>b[++bcnt].val;\n    b[bcnt].id=bcnt;\n}\nint write() {\n    return c[++bcnt];\n}\n//一种新奇的离散化实现\n\nstruct node{\n    int x1,y1,x2,y2;\n}a[N];\nstruct line{\n    int x1,x2,y,kd;\n    bool operator <(const line &t) const{\n        return (y!=t.y)?(y<t.y):(kd<t.kd);\n    }\n}l[N];\n// 把纵向的矩形边当作线段的增加和减少\n\nint lcnt=0;\nstruct tree{\n    int cnt,len,ans;\n}tr[N<<2];\n// 线段树维护：cnt是当前区间被覆盖了多少次，len是区间的实际长度（离散化之前的），ans就是答案（区间被覆盖到的长度）\n\nvoid build(int u,int l,int r)\n{\n    if(l==r)\n    {\n        tr[u]={0,ys[l+1]-ys[l]};\n        return;\n    }\n    int mid=(l+r)>>1;\n    build(u<<1,l,mid);\n    build(u<<1|1,mid+1,r);\n    tr[u].len=tr[u<<1].len+tr[u<<1|1].len;\n}\nvoid mdf(int u,int l,int r,int cl,int cr,int k)\n{\n    if(l>=cl && r<=cr)\n    {\n        tr[u].cnt+=k;\n        if(tr[u].cnt==0) //如果区间没有完全被覆盖，就按下面方法更新\n        {\n            if(l==r) tr[u].ans=0;\n            else tr[u].ans=tr[u<<1].ans+tr[u<<1|1].ans;\n        }\n        else if(tr[u].cnt==1) //如果区间第一次被完全覆盖，就直接更新答案。\n        {\n            tr[u].ans=tr[u].len;\n        }\n        return;\n    }\n    int mid=(l+r)>>1;\n    if(mid>=cl) mdf(u<<1,l,mid,cl,cr,k);\n    if(mid<cr) mdf(u<<1|1,mid+1,r,cl,cr,k);\n    if(tr[u].cnt==0) tr[u].ans=tr[u<<1].ans+tr[u<<1|1].ans;\n}\nsigned main()\n{\n    ios::sync_with_stdio(0);\n    //cin.tie(0);\n    //cout.tie(0);\n    int n;\n    cin>>n;\n    for(int i=1;i<=n;i++)\n    {\n        read();\n        cin>>a[i].y1;\n        read();\n        cin>>a[i].y2;\n    }\n    lisanhua();\n    for(int i=1;i<=n;i++)\n    {\n        a[i].x1=write();\n        a[i].x2=write();\n        l[++lcnt]={a[i].x1,a[i].x2-1,a[i].y1,1};\n        l[++lcnt]={a[i].x1,a[i].x2-1,a[i].y2,-1}; //注意是.x2-1，因为要把这个当作一条条线段处理。\n    }\n    build(1,1,w-1);\n    sort(l+1,l+lcnt+1);\n    int ans=0;\n    for(int i=1;i<=lcnt;i++)\n    {\n        if(i!=1) ans+=tr[1].ans*(l[i].y-l[i-1].y); //统计答案\n        mdf(1,1,w-1,l[i].x1,l[i].x2,l[i].kd);\n    }\n    cout<<ans<<'\\n';\n    return 0;\n}\n```",
+      "reviewNodes": [
+        {
+          "label": "第1次",
+          "daysAfter": 1,
+          "key": "d1",
+          "date": "2026-06-18",
+          "done": true,
+          "checkedAt": "2026-06-17T23:16:38.652Z"
+        },
+        {
+          "label": "第2次",
+          "daysAfter": 2,
+          "key": "d2",
+          "date": "2026-06-19",
+          "done": true,
+          "checkedAt": "2026-06-20T02:25:19.837Z"
+        },
+        {
+          "label": "第3次",
+          "daysAfter": 4,
+          "key": "d4",
+          "date": "2026-06-21",
+          "done": true,
+          "checkedAt": "2026-06-20T23:31:26.074Z"
+        },
+        {
+          "label": "第4次",
+          "daysAfter": 7,
+          "key": "d7",
+          "date": "2026-06-24",
+          "done": false
+        },
+        {
+          "label": "第5次",
+          "daysAfter": 15,
+          "key": "d15",
+          "date": "2026-07-02",
+          "done": false
+        },
+        {
+          "label": "第6次",
+          "daysAfter": 30,
+          "key": "d30",
+          "date": "2026-07-17",
+          "done": false
+        }
+      ],
+      "createdAt": "2026-06-17T11:29:20.265Z"
+    },
+    {
+      "id": "algo_1781677757092_ff49d",
+      "name": "吉斯机线段树",
+      "category": "数据结构",
+      "difficulty": "hard",
+      "description": "区间取最值操作",
+      "learnDate": "2026-06-17",
+      "note": "我写错了哈哈哈，其实是吉司机线段树。\n\n下文是Deepseek所写，还是非常透彻的。\n\n# 吉司机线段树\n\n---\n\n## 1. 为什么普通线段树搞不定“区间取最小值”？\n\n普通线段树的懒标记是“对区间内**所有数**一视同仁”的（比如统统加5）。但 `区间对 v 取 min`（把大于 v 的数全变成 v）是**看人下菜碟**的。\n\n比如数组是 `[5, 4, 3]`，要对整个区间取 `min(4)`。\n- 5 要变成 4（变了）\n- 4 和 3 不用变\n\n**卡点来了**：如果直接给整个区间打懒标记，子节点收到后，它怎么知道当初哪些数该变、哪些不该变？它没有“历史现场”。\n\n---\n\n## 2. 吉司机线段树的破局点：只看“最大值”\n\n它最精妙的一招是：**只对“最大值”这个群体搞特殊化**。\n\n每个节点维护三个关键值：\n\n- **`mx`（最大值）**：比如当前区间最大值是 5\n- **`se`（严格次大值）**：比最大值小的里面最大的那个，比如是 3\n- **`cnt`（最大值个数）**：有几个 5\n\n现在要对这个区间取 `min(4)`（v=4）：\n1. 如果 `v >= mx`（比如 v=6），那谁都动不着，**直接返回**。\n2. 如果 `se < v < mx`（即 3 < 4 < 5），**只有最大值 5 需要变成 4**，其他的（3和4）本来就不大于 4，一律不动。\n   - 此时我根本不需要递归到叶子！直接在当前节点算账：`总和 -= (5-4) * cnt`，然后把 `mx` 改成 4。完美收工，**打个标记记录“最大值被改过”就行**。\n3. 如果 `v <= se`（比如 v=2），这意味着不仅最大值 5 要变，次大值 3 也要变。**这时候没法偷懒，必须递归往下走**。\n\n**这个分类的核心意义**：只要修改值卡在“次大值”和“最大值”之间，操作就被“剪枝”在高层了。\n\n---\n\n## 3. 为什么要有“两套加法标记”（最大值 vs 非最大值）？\n\n这是最大的难点。因为**最大值是“动态变化”的**。\n\n假设父节点打了取 `min(4)` 的标记后，数组最大值从 5 变成了 4（此时 `mx=4`，`se=3`）。\n过一会儿，父节点又收到了一个“区间加 1”的命令。\n现在的数组是 `[4, 4, 3]`，加完后变成 `[5, 5, 4]`。\n\n如果我只打一个统一的懒标记 `add`，传给子节点时就会出乱子：\n- 子节点里原本的 `5` 和 `3`，它们被加的量其实不一样（历史上的 5 被砍了一刀变成 4 后又加了 1，而 3 只加了 1）。\n\n**解决办法**：维护两套加法标记。\n\n- **`add1`**：专门给“当前最大值”这个群体加的标记。\n- **`add2`**：专门给“非最大值”群体加的标记。\n\n当父节点要往下传标记给子节点时，会做一个**“认领”动作**：\n先看子节点的最大值是多少。如果子节点的最大值 **等于** 父节点的最大值，那就说明子节点的最大值群体属于“被砍过的那拨人”，给它应用 `add1`；否则应用 `add2`。\n\n> 用大白话讲：父节点记得“我当年对最高个子的人做了什么特殊处理”，传下去的时候，儿子们必须重新排队，谁现在是最高个子，谁就领那份“特殊标记”。\n\n---\n\n## 4. 区间历史最值到底怎么维护？（这步最绕）\n\n历史最值问的是：**在经历了一系列加减、取 min 操作后，这个位置曾经到达过的最大值是多少？**\n\n如果频繁下推标记，复杂度会爆炸。吉司机线段树的骚操作是：**“标记叠加”**。\n\n假设一个节点挂着一个懒惰的“区间加 5”还没下传。这时候又来了一个“区间加 3”。\n- 当前实际加的累积是 `5 + 3 = 8`。\n- 但**历史最大加了多少**？是 `max(5, 5+3) = 8`。\n\n所以它维护两个东西：\n\n- **当前增量标记（`add`）**：代表还没下传给儿子的累计加减值。\n- **历史最大增量标记（`hadd`）**：代表这个累计值在历史上最高涨到了多少。\n\n**关键时刻**：当父节点要把这堆烂账下传给儿子时，它不需要把每一次加减都重演一遍。它直接把 `hadd` 告诉儿子：\n> “儿子，在我管着你的这段时间里，虽然我只给你加了最终的值，但过程中你最多曾经被加上过 `hadd` 这么多，所以**你的历史最大值 = 你现在的值 + 这个过程中最大的增量**。”\n\n这样就 O(1) 地把历史的“峰值瞬间”传递下去了，而不需要回溯时间线。\n\n---\n\n## 5. 结合你的需求串一遍流程\n\n假设你对 `[1, 5, 3]` 做这些事：\n\n1. **区间加 2**：整个区间变成 `[3, 7, 5]`。此时标记正常累加。\n2. **区间取 min(4)**：\n   - 根节点发现最大值 7 > 4，次大值 5 > 4（不满足 `se < v < mx`），于是**暴力递归**。\n   - 递归到 `[5]` 这个叶子，变成 4。\n   - 递归到 `[3]` 这个叶子，变成 3（因为 3<4，不变）。\n   - 回溯时，根节点的最大值变为 5，次大值变为 3。\n3. **查询历史最大值**：\n   - 如果在第1步加完后、第2步取min之前查询，历史最大是 7。\n   - 第2步取完min后，当前值是 4，但节点里通过 `hadd` 标记依然牢牢记得自己曾经到过 7。\n\n---\n\n## 总结一句“人话”版理解：\n\n- **区间取 min**：我只管砍掉“最高的那一撮头”，只要砍不到第二高的头上，我就只改统计数字，不动底层。\n- **两套标记**：因为“最高的那撮人”随时会变，所以必须区分标记是给“现役最高”还是“普通群众”。\n- **历史最值**：我不记录每一步操作，只记录“我手上攥着的指令，在历史上最巅峰的时候是多少”，传下去的时候直接把这个巅峰值传给儿子。\n\n代码实现（板P6242）：\n```cpp\n#include<bits/stdc++.h>\n#define int long long\n#define N 500005\n#define inf 1000000000000000000\n#define mod 998244353\n#define eps 1e-9\nusing namespace std;\nint a[N];\nstruct node{\n    int mx,se,madd,sadd,hm,hs,mcnt,sum,len,hmx;\n}tr[N<<2];\n#define mx(u) tr[u].mx     //最大值\n#define se(u) tr[u].se     //次大值\n#define madd(u) tr[u].madd //对max的加懒标记\n#define sadd(u) tr[u].sadd //对非max的加懒标记\n#define hm(u) tr[u].hm     //对max的历史最大懒标记\n#define hs(u) tr[u].hs     //对非max的历史最大懒标记\n#define mcnt(u) tr[u].mcnt //max值个数\n#define sum(u) tr[u].sum   //和\n#define ls(u) (u<<1)       //\n#define rs(u) (u<<1|1)     //\n#define len(u) tr[u].len   //区间长度\n#define hmx(u) tr[u].hmx   //历史最大值\nvoid upd(int u)\n{\n    if(mx(ls(u))==mx(rs(u))) mx(u)=mx(ls(u)),se(u)=max(se(ls(u)),se(rs(u))),mcnt(u)=mcnt(ls(u))+mcnt(rs(u));\n    else if(mx(ls(u))>mx(rs(u))) mx(u)=mx(ls(u)),se(u)=max(se(ls(u)),mx(rs(u))),mcnt(u)=mcnt(ls(u));\n    else mx(u)=mx(rs(u)),se(u)=max(se(rs(u)),mx(ls(u))),mcnt(u)=mcnt(rs(u));\n    //分三种情况更新mx,se,mcnt\n    sum(u)=sum(ls(u))+sum(rs(u));\n    hmx(u)=max(hmx(ls(u)),hmx(rs(u)));\n}\nvoid ccur(int u,int vm,int vs)              //对当前值进行修改\n{\n    sum(u)+=mcnt(u)*vm+(len(u)-mcnt(u))*vs; //更新sum\n    mx(u)+=vm;                              //更新mx\n    if(se(u)!=-inf) se(u)+=vs;              //更新se\n    madd(u)+=vm;                            //懒标记下传\n    sadd(u)+=vs;                            //同上\n}\nvoid chis(int u,int vm,int vs)              //对历史值进行修改\n{\n    hmx(u)=max(hmx(u),mx(u)+vm);            //更新hmx\n    hm(u)=max(hm(u),madd(u)+vm);            //懒标记下传\n    hs(u)=max(hs(u),sadd(u)+vs);            //同上\n}\nvoid cmin(int u,int v)                      //只对最大值取min\n{\n    if(mx(u)<=v) return;                    //不解释\n    sum(u)-=(mx(u)-v)*mcnt(u);              //更新sum\n    madd(u)-=(mx(u)-v);                     //更新懒标记\n    mx(u)=v;                                //更新mx\n}\nvoid pushdown(int u)\n{\n    int mxu=max(mx(ls(u)),mx(rs(u)));\n    if(madd(u)==0 && sadd(u)==0 && hm(u)==0 && hs(u)==0) return;\n    if(mx(ls(u))==mxu) chis(ls(u),hm(u),hs(u)),ccur(ls(u),madd(u),sadd(u));\n    else chis(ls(u),hs(u),hs(u)),ccur(ls(u),sadd(u),sadd(u));\n    if(mx(rs(u))==mxu) chis(rs(u),hm(u),hs(u)),ccur(rs(u),madd(u),sadd(u));\n    else chis(rs(u),hs(u),hs(u)),ccur(rs(u),sadd(u),sadd(u));\n    madd(u)=sadd(u)=hm(u)=hs(u)=0;\n    //地狱码风，自行理解，这块我也不是很懂，反正就是左右儿子哪个是最大就按最大的传，不是最大就按次大的传\n}\nvoid build(int u,int l,int r) //建树\n{\n    len(u)=r-l+1;\n    if(l==r)\n    {\n        tr[u]={a[l],-inf,0,0,0,0,1,a[l],r-l+1,a[l]};\n        return;\n    }\n    int mid=(l+r)>>1;\n    build(ls(u),l,mid);\n    build(rs(u),mid+1,r);\n    upd(u);\n}\nvoid uadd(int u,int l,int r,int cl,int cr,int k) //区间加\n{\n    if(l>=cl && r<=cr)\n    {\n        chis(u,k,k);\n        ccur(u,k,k);\n        return;\n    }\n    int mid=(l+r)>>1;\n    pushdown(u);\n    if(mid>=cl) uadd(ls(u),l,mid,cl,cr,k);\n    if(mid<cr) uadd(rs(u),mid+1,r,cl,cr,k);\n    upd(u);\n}\nvoid umin(int u,int l,int r,int cl,int cr,int k) //区间取min\n{\n    if(mx(u)<=k) return;\n    if(l>=cl && r<=cr && se(u)<k) //关键剪枝，se<k<mx时就传个懒标记\n    {\n        cmin(u,k);\n        return;\n    }\n    int mid=(l+r)>>1;\n    pushdown(u);\n    if(mid>=cl) umin(ls(u),l,mid,cl,cr,k);\n    if(mid<cr) umin(rs(u),mid+1,r,cl,cr,k);\n    upd(u);\n}\nint qsum(int u,int l,int r,int cl,int cr) //区间和\n{\n    if(l>=cl && r<=cr) return sum(u);\n    int mid=(l+r)>>1,ans=0;\n    pushdown(u);\n    if(mid>=cl) ans+=qsum(ls(u),l,mid,cl,cr);\n    if(mid<cr) ans+=qsum(rs(u),mid+1,r,cl,cr);\n    return ans;\n}\nint qmax(int u,int l,int r,int cl,int cr) //区间最大值\n{\n    if(l>=cl && r<=cr) return mx(u);\n    int mid=(l+r)>>1,ans=-inf;\n    pushdown(u);\n    if(mid>=cl) ans=max(ans,qmax(ls(u),l,mid,cl,cr));\n    if(mid<cr) ans=max(ans,qmax(rs(u),mid+1,r,cl,cr));\n    return ans;\n}\nint qhis(int u,int l,int r,int cl,int cr) //区间历史最大值\n{\n    if(l>=cl && r<=cr) return hmx(u);\n    int mid=(l+r)>>1,ans=-inf;\n    pushdown(u);\n    if(mid>=cl) ans=max(ans,qhis(ls(u),l,mid,cl,cr));\n    if(mid<cr) ans=max(ans,qhis(rs(u),mid+1,r,cl,cr));\n    return ans;\n}\nsigned main()\n{\n    ios::sync_with_stdio(0);\n    //cin.tie(0);\n    //cout.tie(0);\n    int n,m;\n    cin>>n>>m;\n    for(int i=1;i<=n;i++) cin>>a[i];\n    build(1,1,n);\n    for(int i=1;i<=m;i++)\n    {\n        int op,l,r,k;\n        cin>>op>>l>>r;\n        if(op<3) cin>>k;\n        if(op==1) uadd(1,1,n,l,r,k);\n        else if(op==2) umin(1,1,n,l,r,k);\n        else if(op==3) cout<<qsum(1,1,n,l,r)<<'\\n';\n        else if(op==4) cout<<qmax(1,1,n,l,r)<<'\\n';\n        else cout<<qhis(1,1,n,l,r)<<'\\n';\n    }\n    return 0;\n}\n```\n\n好像也不是很难来着，只是初次理解比较困难\n",
+      "reviewNodes": [
+        {
+          "label": "第1次",
+          "daysAfter": 1,
+          "key": "d1",
+          "date": "2026-06-18",
+          "done": true,
+          "checkedAt": "2026-06-17T23:16:33.690Z"
+        },
+        {
+          "label": "第2次",
+          "daysAfter": 2,
+          "key": "d2",
+          "date": "2026-06-19",
+          "done": true,
+          "checkedAt": "2026-06-20T02:25:37.005Z"
+        },
+        {
+          "label": "第3次",
+          "daysAfter": 4,
+          "key": "d4",
+          "date": "2026-06-21",
+          "done": true,
+          "checkedAt": "2026-06-20T23:31:33.790Z"
+        },
+        {
+          "label": "第4次",
+          "daysAfter": 7,
+          "key": "d7",
+          "date": "2026-06-24",
+          "done": false
+        },
+        {
+          "label": "第5次",
+          "daysAfter": 15,
+          "key": "d15",
+          "date": "2026-07-02",
+          "done": false
+        },
+        {
+          "label": "第6次",
+          "daysAfter": 30,
+          "key": "d30",
+          "date": "2026-07-17",
+          "done": false
+        }
+      ],
+      "createdAt": "2026-06-17T06:29:17.092Z"
+    }
+  ]
+}
