@@ -410,6 +410,14 @@
             word-break: break-word;
         }
 
+        /* ===== 迁移暂存容器 — 重新构建，更健壮 ===== */
+        .temp-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+        }
+
         .temp-area {
             background: rgba(255, 255, 255, 0.04);
             border-radius: var(--radius-sm);
@@ -419,6 +427,7 @@
             overflow-y: auto;
             border: 1px dashed rgba(255, 255, 255, 0.08);
             transition: border-color var(--transition-smooth);
+            flex-shrink: 0;
         }
         .temp-area:hover {
             border-color: rgba(155, 138, 176, 0.15);
@@ -430,6 +439,7 @@
             padding: 12px 0;
             opacity: 0.4;
         }
+
         .temp-item {
             display: flex;
             align-items: center;
@@ -439,6 +449,17 @@
             border-radius: 4px;
             background: rgba(255, 255, 255, 0.04);
             margin-bottom: 2px;
+            animation: tempItemIn 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes tempItemIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         .temp-item .t-icon {
             font-size: 12px;
@@ -453,6 +474,9 @@
         .temp-item .t-icon.type-note {
             color: var(--text-muted);
         }
+        .temp-item .t-icon.status-migrated {
+            color: var(--primary);
+        }
         .temp-item .t-text {
             flex: 1;
             word-break: break-word;
@@ -465,20 +489,27 @@
             font-size: 11px;
             padding: 0 4px;
             transition: color var(--transition-smooth);
+            opacity: 0.3;
+        }
+        .temp-item:hover .t-rm {
+            opacity: 0.8;
         }
         .temp-item .t-rm:hover {
             color: var(--danger);
+            opacity: 1;
+            transform: scale(1.2);
         }
 
-        .extract-tool {
+        .temp-toolbar {
             display: flex;
             gap: 6px;
             flex-wrap: wrap;
             align-items: center;
             margin-top: 6px;
+            flex-shrink: 0;
         }
-        .extract-tool select,
-        .extract-tool input {
+        .temp-toolbar select,
+        .temp-toolbar input {
             padding: 4px 10px;
             border: 1.5px solid rgba(255, 255, 255, 0.15);
             border-radius: var(--radius-sm);
@@ -489,13 +520,13 @@
             color: var(--text);
             transition: var(--transition-smooth);
         }
-        .extract-tool select:focus,
-        .extract-tool input:focus {
+        .temp-toolbar select:focus,
+        .temp-toolbar input:focus {
             outline: none;
             border-color: var(--primary);
             background: rgba(255, 255, 255, 0.30);
         }
-        .extract-tool .btn-sm {
+        .temp-toolbar .btn-sm {
             padding: 4px 14px;
             border-radius: var(--radius-sm);
             border: none;
@@ -507,26 +538,33 @@
             transition: all var(--transition-smooth);
             font-family: inherit;
             box-shadow: 0 2px 12px rgba(155, 138, 176, 0.10);
+            white-space: nowrap;
         }
-        .extract-tool .btn-sm:hover {
+        .temp-toolbar .btn-sm:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 20px rgba(155, 138, 176, 0.18);
         }
-        .extract-tool .btn-sm:active {
+        .temp-toolbar .btn-sm:active {
             transform: scale(0.94);
         }
-        .extract-tool .btn-sm.danger-sm {
+        .temp-toolbar .btn-sm.danger-sm {
             background: rgba(196, 122, 122, 0.12);
             color: #8a5a5a;
             box-shadow: none;
             border: 1px solid rgba(196, 122, 122, 0.10);
         }
-        .extract-tool .btn-sm.danger-sm:hover {
+        .temp-toolbar .btn-sm.danger-sm:hover {
             background: rgba(196, 122, 122, 0.18);
             box-shadow: 0 4px 16px rgba(196, 122, 122, 0.08);
         }
-        .extract-tool .btn-sm.rounded-full {
+        .temp-toolbar .btn-sm.rounded-full {
             border-radius: var(--radius-full);
+        }
+        .temp-toolbar .hint-text {
+            font-size: 10px;
+            color: var(--text-muted);
+            opacity: 0.5;
+            align-self: center;
         }
 
         /* ================================================================
@@ -817,7 +855,6 @@
             border: none;
             color: var(--text-muted);
         }
-        /* 任务状态图标 — 可点击 */
         .task-item .task-icon.status-toggle {
             cursor: pointer;
             background: rgba(255, 255, 255, 0.04);
@@ -842,13 +879,10 @@
         .task-icon.status-scheduled {
             color: var(--warning);
         }
-
-        /* 事件类型图标 */
         .task-icon.type-event {
             color: var(--info);
             font-size: 14px;
         }
-        /* 笔记类型图标 */
         .task-icon.type-note {
             color: var(--text-muted);
             font-size: 14px;
@@ -1747,11 +1781,11 @@
             .goal-item .goal-text {
                 font-size: 12px;
             }
-            .extract-tool {
+            .temp-toolbar {
                 flex-wrap: wrap;
             }
-            .extract-tool select,
-            .extract-tool input {
+            .temp-toolbar select,
+            .temp-toolbar input {
                 font-size: 11px;
                 padding: 3px 8px;
             }
@@ -1857,26 +1891,31 @@
                 </div>
             </div>
 
-            <!-- 迁移暂存 + 提取工具 -->
+            <!-- ===== 迁移暂存 — 重新构建的容器 ===== -->
             <div class="glass">
                 <div class="sidebar-title">
                     <i class="fas fa-arrows-alt-h" style="color:var(--primary);"></i> 迁移暂存
                     <span class="badge" id="tempCount">0</span>
                 </div>
+
+                <!-- 暂存列表容器 -->
                 <div class="temp-area" id="tempArea">
                     <div class="temp-empty">暂无迁移项，使用下方工具提取</div>
                 </div>
 
-                <div class="extract-tool">
+                <!-- 工具栏 -->
+                <div class="temp-toolbar">
                     <span style="font-size:11px;color:var(--text-secondary);flex-shrink:0;">从</span>
                     <select id="extractFromMonth"></select>
                     <span style="font-size:11px;color:var(--text-secondary);flex-shrink:0;">→</span>
                     <select id="extractToMonth"></select>
                     <button class="btn-sm" onclick="extractMigrations()"><i class="fas fa-arrow-right"></i> 提取</button>
                 </div>
-                <div style="margin-top:4px;display:flex;gap:6px;flex-wrap:wrap;">
-                    <button class="btn-sm danger-sm rounded-full" onclick="clearTemp()" style="font-size:10px;padding:2px 14px;"><i class="fas fa-eraser"></i> 清空暂存</button>
-                    <span style="font-size:10px;color:var(--text-muted);opacity:0.5;align-self:center;">提取后复制到右侧抄写</span>
+                <div style="margin-top:4px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+                    <button class="btn-sm danger-sm rounded-full" onclick="clearTemp()" style="font-size:10px;padding:2px 14px;">
+                        <i class="fas fa-eraser"></i> 清空暂存
+                    </button>
+                    <span class="hint-text">提取后复制到右侧抄写</span>
                 </div>
             </div>
         </div>
@@ -2241,7 +2280,7 @@
                         if (!data.dailyEntries) data.dailyEntries = {};
                         if (!data.weeklyNotes) data.weeklyNotes = {};
                         if (!data.tempItems) data.tempItems = [];
-                        // 兼容旧数据：确保每个条目有 type
+                        // 兼容旧数据
                         Object.keys(data.dailyEntries).forEach(key => {
                             const entry = data.dailyEntries[key];
                             if (entry.tasks) {
@@ -2923,7 +2962,7 @@
             }
 
             // ================================================================
-            //  左侧面板
+            //  左侧面板 — 计划中 & 暂存
             // ================================================================
             function refreshScheduled() {
                 renderScheduled();
@@ -2966,7 +3005,7 @@
             }
 
             // ================================================================
-            //  迁移提取
+            //  迁移暂存 — 重新构建，稳定可靠
             // ================================================================
             function updateExtractSelects() {
                 const fromSel = document.getElementById('extractFromMonth');
@@ -3028,42 +3067,83 @@
                 showToast(`✅ 已提取 ${added} 项到暂存区（共 ${migrated.length} 项）`, 'success');
             }
 
+            // ===== 核心：渲染暂存容器 =====
             function renderTemp() {
                 const container = document.getElementById('tempArea');
-                document.getElementById('tempCount').textContent = data.tempItems.length;
+                const countBadge = document.getElementById('tempCount');
 
-                if (data.tempItems.length === 0) {
+                // 防御：确保容器存在
+                if (!container) {
+                    console.warn('tempArea 容器未找到');
+                    return;
+                }
+
+                const items = data.tempItems || [];
+                countBadge.textContent = items.length;
+
+                if (items.length === 0) {
                     container.innerHTML = `<div class="temp-empty">暂无迁移项，使用下方工具提取</div>`;
-                } else {
-                    container.innerHTML = data.tempItems.map(t => {
+                    return;
+                }
+
+                // 渲染每一项，带防御
+                let html = '';
+                for (const t of items) {
+                    try {
                         const iconHtml = getIconHtml(t);
-                        const cls = t.type === 'event' ? 'type-event' : (t.type === 'note' ? 'type-note' :
-                            '');
-                        return `
-                            <div class="temp-item">
-                                <span style="font-size:10px;color:var(--text-muted);flex-shrink:0;">${t.targetMonth || '?'}</span>
+                        const cls = t.type === 'event' ? 'type-event' : (t.type === 'note' ? 'type-note' : '');
+                        const safeText = escapeHtml(t.text || '(空)');
+                        const targetLabel = t.targetMonth || '?';
+                        html += `
+                            <div class="temp-item" data-id="${t.id}">
+                                <span style="font-size:10px;color:var(--text-muted);flex-shrink:0;">${targetLabel}</span>
                                 <span class="t-icon ${cls}">${iconHtml}</span>
-                                <span class="t-text">${escapeHtml(t.text)}</span>
+                                <span class="t-text">${safeText}</span>
                                 <button class="t-rm" onclick="removeTempItem('${t.id}')" title="移除"><i class="fas fa-times"></i></button>
                             </div>
                         `;
-                    }).join('');
+                    } catch (e) {
+                        console.warn('渲染暂存项失败:', t, e);
+                        // 跳过有问题的项
+                        continue;
+                    }
+                }
+
+                // 如果所有项都渲染失败，显示空状态
+                if (!html) {
+                    container.innerHTML = `<div class="temp-empty">暂存项数据异常，请清空后重新提取</div>`;
+                } else {
+                    container.innerHTML = html;
                 }
             }
 
+            // ===== 移除单个暂存项 =====
             function removeTempItem(id) {
+                if (!id) return;
                 data.tempItems = data.tempItems.filter(t => t.id !== id);
                 saveData();
                 renderTemp();
+                showToast('已移除一项', 'info');
             }
 
+            // ===== 清空所有暂存项（完全重写，确保可靠） =====
             function clearTemp() {
-                if (data.tempItems.length === 0) return;
-                if (confirm('清空所有暂存项？')) {
+                const count = data.tempItems ? data.tempItems.length : 0;
+                if (count === 0) {
+                    showToast('暂存区已经是空的', 'warning');
+                    return;
+                }
+
+                if (confirm('确定要清空所有暂存项吗？')) {
+                    // 直接清空数组
                     data.tempItems = [];
+                    // 保存数据
                     saveData();
+                    // 重新渲染容器
                     renderTemp();
-                    showToast('已清空暂存区', 'info');
+                    // 更新计数
+                    document.getElementById('tempCount').textContent = '0';
+                    showToast('🗑️ 已清空暂存区', 'success');
                 }
             }
 
@@ -3330,7 +3410,7 @@
             updateExtractSelects();
             setTimeout(updateTabSlider, 100);
 
-            console.log('📓 子弹日志 · 四维透视 (薰衣草紫灰版)');
+            console.log('📓 子弹日志 · 四维透视 (容器重构版)');
             console.log('  ✅ 年度目标: ' + data.yearlyGoals.length + ' 个');
             console.log('  ✅ 月度条目: ' + Object.keys(data.monthlyItems).length + ' 个月份');
             console.log('  ✅ 每日记录: ' + Object.keys(data.dailyEntries).length + ' 天');
