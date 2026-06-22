@@ -1697,7 +1697,8 @@
             <div class="header-actions">
                 <button class="btn-ghost-sm" id="exportBtn"><i class="fas fa-download"></i>导出</button>
                 <button class="btn-ghost-sm" id="importBtn"><i class="fas fa-upload"></i>导入</button>
-                <button class="btn-ghost-sm" id="openGitHubBtn" onclick="toggleGitHubPanel()"><i class="fab fa-github"></i>GitHub同步</button>
+                <!-- ===== 修复：移除 onclick，改用 id 绑定事件 ===== -->
+                <button class="btn-ghost-sm" id="openGitHubBtn"><i class="fab fa-github"></i>GitHub同步</button>
                 <button class="btn-ghost-sm" data-url="https://uoj.ac/"><i class="fas fa-globe"></i>UOJ</button>
                 <button class="btn-ghost-sm" data-url="https://vjudge.net/"><i class="fas fa-code-branch"></i>Vjudge</button>
                 <button class="btn-ghost-sm" data-url="https://www.luogu.com.cn/"><i class="fas fa-book-open"></i>洛谷</button>
@@ -1881,7 +1882,8 @@
     <div class="github-panel" id="githubPanel">
         <div class="gp-title">
             <i class="fab fa-github"></i> GitHub 同步
-            <span class="close-gp" onclick="toggleGitHubPanel()"><i class="fas fa-times"></i></span>
+            <!-- ===== 修复：移除 onclick，改用 id 绑定事件 ===== -->
+            <span class="close-gp" id="closeGitHubPanelBtn"><i class="fas fa-times"></i></span>
         </div>
         <div class="form-group">
             <label>用户名</label>
@@ -1906,7 +1908,8 @@
     </div>
 
     <!-- ===== 浮动按钮 ===== -->
-    <button class="github-toggle-btn" id="githubToggleBtn" onclick="toggleGitHubPanel()">
+    <!-- ===== 修复：移除 onclick，改用 id 绑定事件 ===== -->
+    <button class="github-toggle-btn" id="githubToggleBtn">
         <i class="fab fa-github"></i> 同步到GitHub
     </button>
 
@@ -2189,7 +2192,7 @@
             }
 
             // ============================================================
-            //  面板开关
+            //  面板开关 - 修复：统一用 addEventListener，不再依赖全局 onclick
             // ============================================================
             let githubPanelOpen = false;
 
@@ -2206,13 +2209,18 @@
                 }
             }
 
-            // 绑定按钮事件
+            // ===== 使用 addEventListener 绑定三个按钮 =====
+            document.getElementById('openGitHubBtn').addEventListener('click', toggleGitHubPanel);
+            document.getElementById('githubToggleBtn').addEventListener('click', toggleGitHubPanel);
+            document.getElementById('closeGitHubPanelBtn').addEventListener('click', toggleGitHubPanel);
+
+            // ===== 绑定 GitHub 其他操作按钮 =====
             document.getElementById('uploadToGitBtn').addEventListener('click', uploadToGit);
             document.getElementById('importFromGitBtn').addEventListener('click', importFromGit);
             document.getElementById('linkToGitBtn').addEventListener('click', openGitHubRepo);
 
             // ============================================================
-            //  原有数据加载与渲染（保持不变，仅添加注释）
+            //  原有数据加载与渲染（保持不变）
             // ============================================================
             function loadQuestions() {
                 let src = localStorage.getItem('unified_questions');
