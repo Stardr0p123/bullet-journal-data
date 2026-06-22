@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>专辑记录器 · 灰色调</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ================================================================
+           1.  CSS 变量 — 灰色调
+           ================================================================ */
+        :root {
+            --primary: #8bc34a;
+            --primary-dark: #689f38;
+            --primary-light: #dcedc8;
+            --primary-soft: rgba(139, 195, 74, 0.12);
+            --primary-glow: rgba(139, 195, 74, 0.20);
+            --primary-gradient: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+
+            --glass-bg: rgba(255, 255, 255, 0.50);
+            --glass-border: rgba(200, 200, 200, 0.25);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(200, 200, 200, 0.08) inset;
+            --glass-blur: 20px;
+
+            --text: #1a2e1a;
+            --text-secondary: #3d5a3d;
+            --text-muted: #7a8a7a;
+
+            --radius: 14px;
+            --radius-sm: 8px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+
+            --transition: 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+            --transition-bounce: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            min-height: 100vh;
+            color: var(--text);
+            background: #e8eae6;
+            background:
+                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(180, 180, 180, 0.06) 0%, rgba(160, 160, 160, 0.03) 40%, rgba(15, 23, 42, 0.01) 70%, transparent 100%),
+                radial-gradient(ellipse at calc(100% - var(--mouse-x)) calc(100% - var(--mouse-y)), rgba(140, 140, 140, 0.02) 0%, rgba(120, 120, 120, 0.01) 50%, transparent 80%),
+                #e8eae6;
+            background-attachment: fixed;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(139, 195, 74, 0.20);
+            border-radius: 4px;
+            transition: background var(--transition);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 195, 74, 0.35);
+        }
+
+        /* ================================================================
+           2.  毛玻璃通用
+           ================================================================ */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+        }
+        .glass::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.20) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0.4;
+            transition: opacity var(--transition);
+        }
+        .glass:hover {
+            box-shadow: 0 12px 40px rgba(139, 195, 74, 0.04), 0 0 0 1px rgba(139, 195, 74, 0.08) inset;
+            border-color: rgba(139, 195, 74, 0.10);
+        }
+
+        /* ================================================================
+           3.  顶部导航
+           ================================================================ */
+        .app-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 28px;
+            background: rgba(255, 255, 255, 0.40);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(200, 200, 200, 0.20);
+            box-shadow: 0 1px 20px rgba(0, 0, 0, 0.01);
+            flex-shrink: 0;
+            transition: box-shadow var(--transition), background var(--transition);
+        }
+        .app-header:hover {
+            box-shadow: 0 2px 28px rgba(139, 195, 74, 0.03);
+        }
+        .header-inner {
+            max-width: 1640px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+            gap: 16px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(139, 195, 74, 0.20);
+            transition: transform var(--transition-bounce), box-shadow var(--transition);
+        }
+        .logo-icon:hover {
+            transform: scale(1.12) rotate(-6deg);
+            box-shadow: 0 4px 24px rgba(139, 195, 74, 0.35);
+        }
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.3px;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-sm {
+            padding: 6px 18px;
+            font-size: 13px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(200, 200, 200, 0.20);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            cursor: pointer;
+            transition: all var(--transition);
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-sm:hover {
+            background: rgba(255, 255, 255, 0.30);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+        .btn-sm:active {
+            transform: scale(0.94);
+        }
+        .btn-primary-sm {
+            background: var(--primary-gradient);
+            color: #fff;
+            border: none;
+            box-shadow: 0 2px 12px rgba(139, 195, 74, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary-sm::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .btn-primary-sm:hover::after {
+            opacity: 1;
+        }
+        .btn-primary-sm:hover {
+            box-shadow: 0 6px 24px rgba(139, 195, 74, 0.25);
+            transform: translateY(-2px) scale(1.02);
+        }
+        /* 修复：active 时背景色加深，而不是变白 */
+        .btn-primary-sm:active {
+            background-color: var(--primary-dark) !important;
+            background-image: none !important;
+            transform: scale(0.94);
+            box-shadow: 0 2px 8px rgba(104, 159, 56, 0.20);
+        }
+        .btn-danger-sm {
+            background: rgba(239, 68, 68, 0.08);
+            color: #b91c1c;
+            border-color: rgba(239, 68, 68, 0.12);
+        }
+        .btn-danger-sm:hover {
+            background: rgba(239, 68, 68, 0.18);
+            transform: translateY(-1px);
+        }
+
+        /* ================================================================
+           4.  主布局 — 两栏
+           ================================================================ */
+        .main-container {
+            max-width: 1640px;
+            margin: 0 auto;
+            padding: 18px 24px 24px;
+            display: flex;
+            gap: 18px;
+            height: calc(100vh - 56px);
+            min-height: 500px;
+            overflow: hidden;
+        }
+
+        .col-left {
+            flex: 0 0 45%;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        .col-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        /* ================================================================
+           5.  左栏 — 表单 + 筛选器 + 列表
+           ================================================================ */
+        .col-left .glass:first-child {
+            flex-shrink: 0;
+            padding: 14px 16px;
+        }
+        .col-left .glass:last-child {
+            flex: 1;
+            padding: 12px 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        /* ---- 表单 ---- */
+        .form-toggle {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .form-area {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(200, 200, 200, 0.15);
+        }
+        .form-area.open {
+            display: block;
+        }
+        .form-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .form-row .form-group {
+            flex: 1;
+            min-width: 90px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 2px;
+            transition: color var(--transition);
+        }
+        .form-group:hover label {
+            color: var(--primary-dark);
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 6px 10px;
+            font-size: 14px;
+            border: 1px solid rgba(200, 200, 200, 0.20);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            font-family: inherit;
+            outline: none;
+            transition: all var(--transition);
+        }
+        .form-group input:hover,
+        .form-group select:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(200, 200, 200, 0.30);
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.32);
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.06);
+            transform: translateY(-1px);
+        }
+        .form-group input[type="number"] {
+            width: 80px;
+            flex: none;
+        }
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        /* ---- 筛选器 (两栏布局) ---- */
+        .filter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 14px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(200, 200, 200, 0.12);
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .filter-group label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            transition: color var(--transition);
+        }
+        .filter-group:hover label {
+            color: var(--primary-dark);
+        }
+        .filter-group input {
+            width: 100%;
+            padding: 5px 10px;
+            font-size: 14px;
+            border: 1px solid rgba(200, 200, 200, 0.18);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            font-family: inherit;
+            outline: none;
+            transition: all var(--transition);
+        }
+        .filter-group input:hover {
+            background: rgba(255, 255, 255, 0.24);
+            border-color: rgba(200, 200, 200, 0.28);
+        }
+        .filter-group input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.30);
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.06);
+            transform: translateY(-1px);
+        }
+        .filter-group input::placeholder {
+            color: var(--text-muted);
+            font-size: 12px;
+            opacity: 0.6;
+        }
+        .filter-count {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: right;
+            grid-column: 1 / -1;
+            margin-top: 2px;
+        }
+
+        /* ---- 专辑列表 (网格) ---- */
+        .album-list {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 4px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            align-content: start;
+            margin-top: 8px;
+            min-height: 0;
+        }
+        .album-list::-webkit-scrollbar {
+            width: 3px;
+        }
+        .album-list::-webkit-scrollbar-thumb {
+            background: rgba(139, 195, 74, 0.18);
+            border-radius: 3px;
+        }
+
+        .album-card {
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.20);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(200, 200, 200, 0.06);
+            cursor: pointer;
+            transition: all var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .album-card:hover {
+            background: rgba(255, 255, 255, 0.40);
+            transform: translateY(-2px) scale(1.01);
+            border-color: rgba(139, 195, 74, 0.10);
+            box-shadow: 0 4px 16px rgba(139, 195, 74, 0.06);
+        }
+        .album-card:active {
+            transform: scale(0.97);
+        }
+        .album-card.active {
+            border-color: var(--primary);
+            background: rgba(139, 195, 74, 0.12);
+            box-shadow: 0 0 0 2px rgba(139, 195, 74, 0.06), 0 4px 16px rgba(139, 195, 74, 0.04);
+        }
+        .album-card.active:hover {
+            background: rgba(139, 195, 74, 0.16);
+        }
+        .album-card .ac-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .album-card .ac-title .ac-actions {
+            display: flex;
+            gap: 2px;
+        }
+        .album-card .ac-title .ac-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--text-muted);
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: all var(--transition);
+        }
+        .album-card .ac-title .ac-actions button:hover {
+            background: rgba(255, 255, 255, 0.20);
+            color: var(--text);
+            transform: scale(1.15);
+        }
+        .album-card .ac-title .ac-actions .edit-btn:hover {
+            color: var(--primary-dark);
+            background: rgba(139, 195, 74, 0.10);
+        }
+        .album-card .ac-title .ac-actions .del-btn:hover {
+            color: var(--danger);
+            background: rgba(239, 68, 68, 0.10);
+        }
+        .album-card .ac-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: 12px;
+            color: var(--text-secondary);
+            align-items: center;
+        }
+        .album-card .ac-meta .genre-tag {
+            padding: 0 8px;
+            border-radius: var(--radius-full);
+            background: rgba(139, 195, 74, 0.10);
+            color: var(--primary-dark);
+            font-size: 10px;
+            font-weight: 600;
+            transition: background var(--transition);
+        }
+        .album-card:hover .ac-meta .genre-tag {
+            background: rgba(139, 195, 74, 0.18);
+        }
+        .album-card .ac-meta .hardness-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--primary);
+            transition: transform var(--transition);
+        }
+        .album-card:hover .ac-meta .hardness-dot {
+            transform: scale(1.4);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 28px 10px;
+            color: var(--text-muted);
+            font-size: 14px;
+            grid-column: 1 / -1;
+        }
+        .empty-state .icon {
+            font-size: 32px;
+            opacity: 0.25;
+            margin-bottom: 6px;
+            transition: transform var(--transition-bounce), opacity var(--transition);
+        }
+        .empty-state:hover .icon {
+            transform: scale(1.1) rotate(-6deg);
+            opacity: 0.4;
+        }
+
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            margin-bottom: 2px;
+        }
+        .list-header span {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .list-header .total {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ================================================================
+           6.  右栏 — 详情 (曲目增加作者)
+           ================================================================ */
+        .col-right .glass {
+            flex: 1;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        #detailContainer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 0;
+            height: 100%;
+        }
+
+        .detail-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-muted);
+            opacity: 0.5;
+            font-size: 16px;
+            flex: 1;
+        }
+        .detail-empty i {
+            font-size: 44px;
+            margin-bottom: 8px;
+            transition: transform var(--transition-bounce), opacity var(--transition);
+        }
+        .detail-empty:hover i {
+            transform: scale(1.1) rotate(-6deg);
+            opacity: 0.8;
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-shrink: 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(200, 200, 200, 0.10);
+            flex-wrap: wrap;
+        }
+        .detail-header .dh-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 0;
+        }
+        .detail-header .dh-name .dh-artist {
+            font-weight: 400;
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        .detail-header .dh-score {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .detail-header .dh-score label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .detail-header .dh-score input[type="range"] {
+            width: 110px;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(139, 195, 74, 0.20);
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            transition: background var(--transition);
+        }
+        .detail-header .dh-score input[type="range"]:hover {
+            background: rgba(139, 195, 74, 0.30);
+        }
+        .detail-header .dh-score input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.20);
+            box-shadow: 0 2px 8px rgba(139, 195, 74, 0.15);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+        .detail-header .dh-score input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 4px 16px rgba(139, 195, 74, 0.25);
+        }
+        .detail-header .dh-score input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.20);
+        }
+        .detail-header .dh-score .score-val {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            min-width: 32px;
+            text-align: center;
+        }
+        .detail-header .dh-score .lock-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 16px;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: all var(--transition);
+        }
+        .detail-header .dh-score .lock-btn:hover {
+            color: var(--text);
+            transform: scale(1.15);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .detail-header .dh-score .lock-btn.locked {
+            color: var(--primary-dark);
+        }
+        .detail-header .dh-score .lock-btn.locked:hover {
+            color: var(--primary-dark);
+            background: rgba(139, 195, 74, 0.06);
+        }
+
+        .detail-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 12px;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .detail-overview {
+            flex-shrink: 0;
+            margin-bottom: 12px;
+        }
+        .detail-overview label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .detail-overview textarea {
+            width: 100%;
+            min-height: 80px;
+            max-height: 150px;
+            padding: 8px 12px;
+            font-size: 15px;
+            font-family: inherit;
+            border: 1px solid rgba(200, 200, 200, 0.15);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            resize: vertical;
+            outline: none;
+            line-height: 1.7;
+            overflow-y: auto;
+            transition: all var(--transition);
+        }
+        .detail-overview textarea:hover {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(200, 200, 200, 0.22);
+        }
+        .detail-overview textarea:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.20);
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.04);
+        }
+
+        /* ---- 单曲评价 — 新增作者 ---- */
+        .detail-tracks {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 60px;
+        }
+        .detail-tracks .dt-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            flex-shrink: 0;
+            margin-bottom: 4px;
+        }
+        .detail-tracks .dt-list {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 40px;
+        }
+        .detail-tracks .dt-list::-webkit-scrollbar {
+            width: 3px;
+        }
+        .detail-tracks .dt-list::-webkit-scrollbar-thumb {
+            background: rgba(139, 195, 74, 0.18);
+            border-radius: 3px;
+        }
+
+        .track-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            border: 1px solid rgba(200, 200, 200, 0.04);
+            flex-shrink: 0;
+            transition: all var(--transition);
+        }
+        .track-item:hover {
+            background: rgba(255, 255, 255, 0.10);
+            border-color: rgba(139, 195, 74, 0.06);
+        }
+        .track-item .ti-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        .track-item .ti-name {
+            flex: 1;
+            min-width: 0;
+        }
+        .track-item .ti-name input {
+            width: 100%;
+            padding: 3px 8px;
+            font-size: 15px;
+            font-weight: 600;
+            border: 1px solid rgba(200, 200, 200, 0.08);
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            font-family: inherit;
+            outline: none;
+            transition: all var(--transition);
+        }
+        .track-item .ti-name input:hover {
+            background: rgba(255, 255, 255, 0.10);
+        }
+        .track-item .ti-name input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.04);
+        }
+        .track-item .ti-artist {
+            flex: 0 0 140px;
+            min-width: 80px;
+        }
+        .track-item .ti-artist input {
+            width: 100%;
+            padding: 3px 8px;
+            font-size: 14px;
+            border: 1px solid rgba(200, 200, 200, 0.08);
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-secondary);
+            font-family: inherit;
+            outline: none;
+            transition: all var(--transition);
+        }
+        .track-item .ti-artist input:hover {
+            background: rgba(255, 255, 255, 0.10);
+        }
+        .track-item .ti-artist input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.04);
+        }
+        .track-item .ti-review {
+            margin-top: 3px;
+        }
+        .track-item .ti-review textarea {
+            width: 100%;
+            min-height: 60px;
+            max-height: 110px;
+            padding: 5px 10px;
+            font-size: 14px;
+            font-family: inherit;
+            border: 1px solid rgba(200, 200, 200, 0.08);
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(4px);
+            color: var(--text-secondary);
+            resize: vertical;
+            outline: none;
+            line-height: 1.6;
+            overflow-y: auto;
+            transition: all var(--transition);
+        }
+        .track-item .ti-review textarea:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(200, 200, 200, 0.12);
+        }
+        .track-item .ti-review textarea:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.04);
+        }
+
+        /* ================================================================
+           7.  弹窗 & Toast
+           ================================================================ */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }
+        .toast {
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            color: #fff;
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            pointer-events: auto;
+            max-width: 360px;
+            animation: toastIn 0.2s ease-out, toastOut 0.2s ease-in 2s forwards;
+        }
+        .toast.success {
+            background: rgba(16, 185, 129, 0.78);
+        }
+        .toast.info {
+            background: rgba(139, 195, 74, 0.78);
+        }
+        .toast.warning {
+            background: rgba(245, 158, 11, 0.78);
+            color: #1a2e1a;
+        }
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px) scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+        @keyframes toastOut {
+            from {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(30px) scale(0.92);
+            }
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.15);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease-out;
+        }
+        .modal-overlay.show {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .modal-box {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(200, 200, 200, 0.20);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.06);
+            animation: modalSlide 0.25s var(--transition-bounce);
+        }
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.94);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .modal-box h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        .modal-box .msg {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .modal-box .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .modal-box .btn-row .btn {
+            flex: 1;
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all var(--transition);
+        }
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.20);
+            color: #475569;
+        }
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-1px);
+        }
+        .btn-danger-modal {
+            background: #ef4444;
+            color: #fff;
+            border-radius: var(--radius-sm);
+        }
+        .btn-danger-modal:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.16);
+        }
+        .btn-primary-modal {
+            background: var(--primary-gradient);
+            color: #fff;
+            border-radius: var(--radius-sm);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary-modal::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .btn-primary-modal:hover::after {
+            opacity: 1;
+        }
+        .btn-primary-modal:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(139, 195, 74, 0.20);
+        }
+        .btn-primary-modal:active {
+            background-color: var(--primary-dark) !important;
+            background-image: none !important;
+            transform: scale(0.94);
+        }
+
+        /* ================================================================
+           8.  响应式
+           ================================================================ */
+        @media (max-width: 1000px) {
+            .main-container {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+                padding: 14px;
+                gap: 14px;
+            }
+            .col-left {
+                flex: none;
+                width: 100%;
+                max-height: 520px;
+            }
+            .col-right {
+                flex: none;
+                width: 100%;
+                min-height: 400px;
+                max-height: 600px;
+            }
+            body {
+                height: auto;
+                overflow: auto;
+            }
+            .album-list {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            .album-list {
+                grid-template-columns: 1fr;
+            }
+            .filter-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .form-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+            .form-row .form-group {
+                min-width: 0;
+            }
+            .detail-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .detail-header .dh-score {
+                justify-content: flex-start;
+            }
+            .col-left {
+                max-height: 460px;
+            }
+            .col-right {
+                max-height: 480px;
+            }
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+            body {
+                font-size: 15px;
+            }
+            .track-item .ti-row {
+                flex-direction: column;
+                gap: 4px;
+                align-items: stretch;
+            }
+            .track-item .ti-artist {
+                flex: 1;
+            }
+        }
+        @media (max-width: 400px) {
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+            .album-list {
+                grid-template-columns: 1fr;
+            }
+            .modal-box {
+                padding: 20px 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 顶部导航 ===== -->
+    <header class="app-header">
+        <div class="header-inner">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-music"></i></div>
+                <div>
+                    <span class="logo-text">专辑记录器</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-sm" onclick="exportData()"><i class="fas fa-download"></i> 导出</button>
+                <button class="btn-sm" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> 导入</button>
+                <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)" />
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== 主容器 ===== -->
+    <div class="main-container">
+
+        <!-- ===== 左栏：表单 + 筛选 + 列表 ===== -->
+        <div class="col-left">
+
+            <!-- 表单 -->
+            <div class="glass">
+                <div class="form-toggle">
+                    <button class="btn-sm btn-primary-sm" id="toggleFormBtn"><i class="fas fa-plus"></i> 添加专辑</button>
+                    <span style="font-size:13px; color:var(--text-muted);" id="formStatus">准备添加</span>
+                </div>
+                <div class="form-area" id="formArea">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>专辑名称 *</label>
+                            <input type="text" id="inputName" placeholder="专辑名" />
+                        </div>
+                        <div class="form-group">
+                            <label>作者 / 厂牌 *</label>
+                            <input type="text" id="inputArtist" placeholder="作者或厂牌" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>曲风</label>
+                            <input type="text" id="inputGenre" placeholder="如: Progressive House" />
+                        </div>
+                        <div class="form-group" style="flex:0 0 90px;">
+                            <label>硬度 (1-10)</label>
+                            <input type="number" id="inputHardness" min="1" max="10" value="5" />
+                        </div>
+                        <div class="form-group" style="flex:0 0 90px;">
+                            <label>曲目数</label>
+                            <input type="number" id="inputTrackCount" min="1" max="50" value="8" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn-sm btn-primary-sm" id="saveAlbumBtn"><i class="fas fa-save"></i> 保存</button>
+                        <button class="btn-sm" id="cancelFormBtn"><i class="fas fa-times"></i> 取消</button>
+                    </div>
+                </div>
+
+                <!-- 筛选器 (两栏) -->
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label>曲风</label>
+                        <input type="text" id="filterGenre" placeholder="精确匹配" oninput="applyFilters()" />
+                    </div>
+                    <div class="filter-group">
+                        <label>硬度 (1-10)</label>
+                        <input type="number" id="filterHardness" min="1" max="10" placeholder="数值" oninput="applyFilters()" />
+                    </div>
+                    <div class="filter-group">
+                        <label>作者 / 厂牌</label>
+                        <input type="text" id="filterArtist" placeholder="精确匹配" oninput="applyFilters()" />
+                    </div>
+                    <div class="filter-group">
+                        <label>曲目名</label>
+                        <input type="text" id="filterTrack" placeholder="模糊搜索" oninput="applyFilters()" />
+                    </div>
+                    <div class="filter-count" id="filterCount">显示 0 张</div>
+                </div>
+            </div>
+
+            <!-- 专辑列表 (网格) -->
+            <div class="glass">
+                <div class="list-header">
+                    <span><i class="fas fa-album"></i> 专辑列表</span>
+                    <span class="total" id="albumTotal">0 张</span>
+                </div>
+                <div class="album-list" id="albumList">
+                    <div class="empty-state">
+                        <div class="icon"><i class="fas fa-compact-disc"></i></div>
+                        <p>还没有专辑，添加一张吧</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 右栏：详情 ===== -->
+        <div class="col-right">
+            <div class="glass">
+                <div id="detailContainer">
+                    <div class="detail-empty">
+                        <i class="fas fa-hand-point-left"></i>
+                        <span>选择一张专辑查看详情</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Toast ===== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ===== 模态框 ===== -->
+    <div class="modal-overlay" id="confirmModal" onclick="if(event.target===this)closeModal()">
+        <div class="modal-box">
+            <h3 id="modalTitle">确认</h3>
+            <div class="msg" id="modalMsg"></div>
+            <div class="btn-row">
+                <button class="btn btn-ghost" onclick="closeModal()">取消</button>
+                <button class="btn btn-danger-modal" id="modalConfirmBtn">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ================================================================
+            //  数据层
+            // ================================================================
+            const STORAGE_KEY = 'album_recorder_data';
+
+            let albums = [];
+            let selectedId = null;
+            let editingId = null;
+            let isScoreLocked = false;
+
+            // ================================================================
+            //  工具
+            // ================================================================
+            function genId() { return 'a_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7); }
+
+            function escapeHtml(str) {
+                if (!str) return '';
+                const d = document.createElement('div');
+                d.textContent = str;
+                return d.innerHTML;
+            }
+
+            function showToast(msg, type = 'info') {
+                const container = document.getElementById('toastContainer');
+                const t = document.createElement('div');
+                t.className = 'toast ' + type;
+                t.textContent = msg;
+                container.appendChild(t);
+                setTimeout(() => { if (t.parentNode) t.remove(); }, 2200);
+            }
+
+            // ================================================================
+            //  存储
+            // ================================================================
+            function loadData() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (raw) {
+                        const data = JSON.parse(raw);
+                        if (Array.isArray(data)) {
+                            albums = data;
+                            albums.forEach(a => {
+                                if (!a.tracks) a.tracks = [];
+                                if (a.qualityScore === undefined) a.qualityScore = 5;
+                                if (!a.overview) a.overview = '';
+                                a.trackCount = a.tracks.length;
+                                a.tracks.forEach(t => {
+                                    if (t.artist === undefined) t.artist = '';
+                                });
+                            });
+                        }
+                    }
+                } catch (e) { albums = []; }
+                if (albums.length === 0) {
+                    albums = [{
+                        id: genId(),
+                        name: 'Group Therapy',
+                        artist: 'Above & Beyond',
+                        genre: 'Progressive Trance',
+                        hardness: 6,
+                        trackCount: 16,
+                        qualityScore: 9,
+                        overview: 'Anjunabeats 的经典合辑，情感充沛，旋律动人。',
+                        tracks: [
+                            { name: 'Group Therapy Intro', review: '完美的开场，氛围感极强。', artist: 'Above & Beyond' },
+                            { name: 'Sun & Moon', review: '经典中的经典，人声与旋律完美融合。', artist: 'Above & Beyond' },
+                            { name: 'You Got to Go', review: '节奏明快，能量十足。', artist: 'Above & Beyond' },
+                        ]
+                    }, {
+                        id: genId(),
+                        name: 'Worlds',
+                        artist: 'Porter Robinson',
+                        genre: 'Electronic / Synthpop',
+                        hardness: 4,
+                        trackCount: 12,
+                        qualityScore: 10,
+                        overview: '一张改变电子音乐格局的专辑，情感真挚，充满想象力。',
+                        tracks: [
+                            { name: 'Divinity', review: '宏大开场，人声空灵。', artist: 'Porter Robinson' },
+                            { name: 'Sad Machine', review: '治愈系旋律，百听不厌。', artist: 'Porter Robinson' },
+                            { name: 'Flicker', review: '节奏感强，带有日系元素。', artist: 'Porter Robinson' },
+                        ]
+                    }, {
+                        id: genId(),
+                        name: 'In Return',
+                        artist: 'ODESZA',
+                        genre: 'Indie Electronic',
+                        hardness: 3,
+                        trackCount: 14,
+                        qualityScore: 8,
+                        overview: '温暖、细腻，充满夏日气息的电子专辑。',
+                        tracks: [
+                            { name: 'Always This Late', review: '慵懒的节奏，很放松。', artist: 'ODESZA' },
+                            { name: 'Say My Name', review: '律动感十足，人声优美。', artist: 'ODESZA' },
+                            { name: 'Kusanagi', review: '东瀛风格的旋律，很有画面感。', artist: 'ODESZA' },
+                        ]
+                    }];
+                    saveData();
+                }
+                if (albums.length > 0 && !selectedId) {
+                    selectedId = albums[0].id;
+                }
+                renderAll();
+            }
+
+            function saveData() {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(albums));
+                } catch (e) { /* ignore */ }
+            }
+
+            // ================================================================
+            //  核心操作
+            // ================================================================
+            function addAlbum(data) {
+                const album = {
+                    id: genId(),
+                    name: data.name.trim(),
+                    artist: data.artist.trim(),
+                    genre: data.genre.trim(),
+                    hardness: parseInt(data.hardness) || 5,
+                    trackCount: parseInt(data.trackCount) || 0,
+                    qualityScore: 5,
+                    overview: '',
+                    tracks: []
+                };
+                for (let i = 0; i < album.trackCount; i++) {
+                    album.tracks.push({ name: '', review: '', artist: '' });
+                }
+                albums.unshift(album);
+                saveData();
+                renderAll();
+                selectAlbum(album.id);
+                showToast('✅ 已添加「' + album.name + '」', 'success');
+                return album;
+            }
+
+            function updateAlbum(id, data) {
+                const idx = albums.findIndex(a => a.id === id);
+                if (idx === -1) return null;
+                const album = albums[idx];
+                album.name = data.name.trim();
+                album.artist = data.artist.trim();
+                album.genre = data.genre.trim();
+                album.hardness = parseInt(data.hardness) || 5;
+                const newCount = parseInt(data.trackCount) || 0;
+                while (album.tracks.length < newCount) {
+                    album.tracks.push({ name: '', review: '', artist: '' });
+                }
+                while (album.tracks.length > newCount) {
+                    album.tracks.pop();
+                }
+                album.trackCount = album.tracks.length;
+                saveData();
+                renderAll();
+                showToast('✅ 已更新「' + album.name + '」', 'success');
+                return album;
+            }
+
+            function deleteAlbum(id) {
+                const album = albums.find(a => a.id === id);
+                if (!album) return;
+                showConfirm('删除专辑', '确定要删除 <strong>' + escapeHtml(album.name) + '</strong> 吗？<br><span style="font-size:13px;color:var(--text-muted);">所有曲目评价将丢失</span>', () => {
+                    albums = albums.filter(a => a.id !== id);
+                    if (selectedId === id) {
+                        selectedId = albums.length > 0 ? albums[0].id : null;
+                    }
+                    saveData();
+                    renderAll();
+                    showToast('已删除「' + album.name + '」', 'info');
+                });
+            }
+
+            function selectAlbum(id) {
+                if (selectedId === id) {
+                    renderDetail();
+                    return;
+                }
+                saveDetailChanges();
+                selectedId = id;
+                renderAll();
+            }
+
+            // ================================================================
+            //  详情保存 (包含曲目作者)
+            // ================================================================
+            function saveDetailChanges() {
+                const album = getSelectedAlbum();
+                if (!album) return;
+                const scoreInput = document.getElementById('detailScore');
+                if (scoreInput) {
+                    album.qualityScore = parseFloat(scoreInput.value) || 0;
+                }
+                const overviewEl = document.getElementById('detailOverview');
+                if (overviewEl) {
+                    album.overview = overviewEl.value;
+                }
+                const trackItems = document.querySelectorAll('.track-item');
+                trackItems.forEach((item, idx) => {
+                    if (idx < album.tracks.length) {
+                        const nameInput = item.querySelector('.ti-name input');
+                        const artistInput = item.querySelector('.ti-artist input');
+                        const reviewTextarea = item.querySelector('.ti-review textarea');
+                        if (nameInput) album.tracks[idx].name = nameInput.value;
+                        if (artistInput) album.tracks[idx].artist = artistInput.value;
+                        if (reviewTextarea) album.tracks[idx].review = reviewTextarea.value;
+                    }
+                });
+                saveData();
+            }
+
+            function getSelectedAlbum() {
+                return albums.find(a => a.id === selectedId) || null;
+            }
+
+            // ================================================================
+            //  筛选
+            // ================================================================
+            function getFilteredAlbums() {
+                const genreFilter = document.getElementById('filterGenre').value.trim().toLowerCase();
+                const hardnessFilter = document.getElementById('filterHardness').value.trim();
+                const artistFilter = document.getElementById('filterArtist').value.trim().toLowerCase();
+                const trackFilter = document.getElementById('filterTrack').value.trim().toLowerCase();
+
+                return albums.filter(a => {
+                    if (genreFilter && a.genre.toLowerCase() !== genreFilter) return false;
+                    if (hardnessFilter && a.hardness !== parseInt(hardnessFilter)) return false;
+                    if (artistFilter && a.artist.toLowerCase() !== artistFilter) return false;
+                    if (trackFilter) {
+                        const found = a.tracks.some(t => t.name.toLowerCase().includes(trackFilter));
+                        if (!found) return false;
+                    }
+                    return true;
+                });
+            }
+
+            function applyFilters() {
+                const filtered = getFilteredAlbums();
+                document.getElementById('filterCount').textContent = '显示 ' + filtered.length + ' 张';
+                if (selectedId && !filtered.some(a => a.id === selectedId)) {
+                    selectedId = null;
+                }
+                renderList();
+            }
+
+            // ================================================================
+            //  渲染
+            // ================================================================
+            function renderAll() {
+                renderList();
+                renderDetail();
+                updateTotal();
+                const filtered = getFilteredAlbums();
+                document.getElementById('filterCount').textContent = '显示 ' + filtered.length + ' 张';
+                if (editingId) {
+                    const album = albums.find(a => a.id === editingId);
+                    if (album) {
+                        fillForm(album);
+                        document.getElementById('formStatus').textContent = '✏️ 编辑: ' + album.name;
+                    } else {
+                        cancelForm();
+                    }
+                }
+                updateLockState();
+            }
+
+            function renderList() {
+                const container = document.getElementById('albumList');
+                const filtered = getFilteredAlbums();
+
+                if (filtered.length === 0) {
+                    container.innerHTML =
+                        `<div class="empty-state"><div class="icon"><i class="fas fa-compact-disc"></i></div><p>没有匹配的专辑</p></div>`;
+                    return;
+                }
+
+                container.innerHTML = filtered.map(a => {
+                    const active = a.id === selectedId ? 'active' : '';
+                    return `
+                            <div class="album-card ${active}" onclick="window.selectAlbum('${a.id}')">
+                                <div class="ac-title">
+                                    <span>${escapeHtml(a.name)}</span>
+                                    <div class="ac-actions">
+                                        <button class="edit-btn" onclick="event.stopPropagation();window.startEdit('${a.id}')" title="编辑"><i class="fas fa-pen"></i></button>
+                                        <button class="del-btn" onclick="event.stopPropagation();window.deleteAlbum('${a.id}')" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="ac-meta">
+                                    <span>${escapeHtml(a.artist)}</span>
+                                    <span class="genre-tag">${escapeHtml(a.genre)}</span>
+                                    <span><span class="hardness-dot" style="background:${getHardnessColor(a.hardness)};"></span> ${a.hardness}/10</span>
+                                    <span><i class="fas fa-music"></i> ${a.trackCount} 首</span>
+                                </div>
+                            </div>
+                        `;
+                }).join('');
+            }
+
+            function getHardnessColor(val) {
+                const v = Math.min(Math.max(val, 1), 10);
+                const r = Math.round(100 + (v / 10) * 120);
+                const g = Math.round(180 - (v / 10) * 50);
+                const b = Math.round(60 - (v / 10) * 30);
+                return `rgb(${r}, ${g}, ${b})`;
+            }
+
+            function renderDetail() {
+                const container = document.getElementById('detailContainer');
+                const album = albums.find(a => a.id === selectedId) || null;
+
+                if (!album) {
+                    container.innerHTML = `
+                            <div class="detail-empty" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;">
+                                <i class="fas fa-hand-point-left"></i>
+                                <span>选择一张专辑查看详情</span>
+                            </div>
+                        `;
+                    return;
+                }
+
+                let tracksHtml = album.tracks.map((t, idx) => `
+                        <div class="track-item">
+                            <div class="ti-row">
+                                <div class="ti-name">
+                                    <input type="text" value="${escapeHtml(t.name)}" placeholder="曲目 ${idx+1} 名称" data-track-idx="${idx}" onchange="window.updateTrackName(${idx}, this.value)" />
+                                </div>
+                                <div class="ti-artist">
+                                    <input type="text" value="${escapeHtml(t.artist)}" placeholder="作者" data-track-idx="${idx}" onchange="window.updateTrackArtist(${idx}, this.value)" />
+                                </div>
+                            </div>
+                            <div class="ti-review">
+                                <textarea placeholder="评价..." data-track-idx="${idx}" onchange="window.updateTrackReview(${idx}, this.value)" rows="3">${escapeHtml(t.review)}</textarea>
+                            </div>
+                        </div>
+                    `).join('');
+
+                container.innerHTML = `
+                        <div class="detail-header">
+                            <div class="dh-name">
+                                ${escapeHtml(album.name)}
+                                <span class="dh-artist">· ${escapeHtml(album.artist)}</span>
+                            </div>
+                            <div class="dh-score">
+                                <label>质量</label>
+                                <input type="range" id="detailScore" min="0" max="10" step="0.5" value="${album.qualityScore}" ${isScoreLocked ? 'disabled' : ''} oninput="document.getElementById('scoreVal').textContent=this.value; window.saveDetailChanges()" />
+                                <span class="score-val" id="scoreVal">${album.qualityScore}</span>
+                                <button class="lock-btn ${isScoreLocked ? 'locked' : ''}" id="scoreLockBtn" onclick="window.toggleScoreLock()" title="${isScoreLocked ? '解锁' : '锁定'}">
+                                    <i class="fas ${isScoreLocked ? 'fa-lock' : 'fa-unlock'}"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="detail-body">
+                            <div class="detail-overview">
+                                <label><i class="fas fa-align-left"></i> 专辑总览</label>
+                                <textarea id="detailOverview" placeholder="写下你对这张专辑的整体感受..." rows="4" onchange="window.saveDetailChanges()">${escapeHtml(album.overview)}</textarea>
+                            </div>
+                            <div class="detail-tracks">
+                                <div class="dt-label"><i class="fas fa-list-ul"></i> 单曲评价 (${album.tracks.length} 首)</div>
+                                <div class="dt-list">
+                                    ${tracksHtml}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            function updateTotal() {
+                document.getElementById('albumTotal').textContent = albums.length + ' 张';
+            }
+
+            // ================================================================
+            //  表单操作
+            // ================================================================
+            function toggleForm(show) {
+                const area = document.getElementById('formArea');
+                const btn = document.getElementById('toggleFormBtn');
+                if (show === undefined) {
+                    const isOpen = area.classList.contains('open');
+                    if (isOpen) cancelForm();
+                    else { area.classList.add('open');
+                        btn.innerHTML = '<i class="fas fa-times"></i> 关闭表单'; }
+                } else if (show) {
+                    area.classList.add('open');
+                    btn.innerHTML = '<i class="fas fa-times"></i> 关闭表单';
+                } else {
+                    area.classList.remove('open');
+                    btn.innerHTML = '<i class="fas fa-plus"></i> 添加专辑';
+                }
+            }
+
+            function fillForm(album) {
+                document.getElementById('inputName').value = album.name || '';
+                document.getElementById('inputArtist').value = album.artist || '';
+                document.getElementById('inputGenre').value = album.genre || '';
+                document.getElementById('inputHardness').value = album.hardness || 5;
+                document.getElementById('inputTrackCount').value = album.trackCount || 0;
+            }
+
+            function resetForm() {
+                document.getElementById('inputName').value = '';
+                document.getElementById('inputArtist').value = '';
+                document.getElementById('inputGenre').value = '';
+                document.getElementById('inputHardness').value = 5;
+                document.getElementById('inputTrackCount').value = 8;
+                editingId = null;
+                document.getElementById('formStatus').textContent = '准备添加';
+                document.getElementById('saveAlbumBtn').innerHTML = '<i class="fas fa-save"></i> 保存';
+            }
+
+            function cancelForm() {
+                resetForm();
+                toggleForm(false);
+            }
+
+            function startEdit(id) {
+                const album = albums.find(a => a.id === id);
+                if (!album) return;
+                saveDetailChanges();
+                editingId = id;
+                fillForm(album);
+                document.getElementById('formStatus').textContent = '✏️ 编辑: ' + album.name;
+                document.getElementById('saveAlbumBtn').innerHTML = '<i class="fas fa-pen"></i> 更新';
+                toggleForm(true);
+            }
+
+            function saveAlbum() {
+                const name = document.getElementById('inputName').value.trim();
+                const artist = document.getElementById('inputArtist').value.trim();
+                const genre = document.getElementById('inputGenre').value.trim();
+                const hardness = parseInt(document.getElementById('inputHardness').value) || 5;
+                const trackCount = parseInt(document.getElementById('inputTrackCount').value) || 0;
+
+                if (!name || !artist) {
+                    showToast('请填写专辑名称和作者/厂牌', 'warning');
+                    return;
+                }
+                if (hardness < 1 || hardness > 10) {
+                    showToast('硬度范围 1-10', 'warning');
+                    return;
+                }
+                if (trackCount < 0 || trackCount > 50) {
+                    showToast('曲目数范围 1-50', 'warning');
+                    return;
+                }
+
+                const data = { name, artist, genre, hardness, trackCount };
+
+                if (editingId) {
+                    const updated = updateAlbum(editingId, data);
+                    if (updated) {
+                        editingId = null;
+                        resetForm();
+                        toggleForm(false);
+                        renderAll();
+                        selectAlbum(updated.id);
+                    }
+                } else {
+                    const newAlbum = addAlbum(data);
+                    resetForm();
+                    toggleForm(false);
+                    renderAll();
+                    selectAlbum(newAlbum.id);
+                }
+            }
+
+            // ================================================================
+            //  曲目更新 (包含作者)
+            // ================================================================
+            function updateTrackName(idx, value) {
+                const album = getSelectedAlbum();
+                if (!album || idx >= album.tracks.length) return;
+                album.tracks[idx].name = value;
+                saveData();
+            }
+
+            function updateTrackArtist(idx, value) {
+                const album = getSelectedAlbum();
+                if (!album || idx >= album.tracks.length) return;
+                album.tracks[idx].artist = value;
+                saveData();
+            }
+
+            function updateTrackReview(idx, value) {
+                const album = getSelectedAlbum();
+                if (!album || idx >= album.tracks.length) return;
+                album.tracks[idx].review = value;
+                saveData();
+            }
+
+            // ================================================================
+            //  质量评分锁定
+            // ================================================================
+            function toggleScoreLock() {
+                isScoreLocked = !isScoreLocked;
+                updateLockState();
+                const slider = document.getElementById('detailScore');
+                if (slider) slider.disabled = isScoreLocked;
+                const btn = document.getElementById('scoreLockBtn');
+                if (btn) {
+                    btn.innerHTML = `<i class="fas ${isScoreLocked ? 'fa-lock' : 'fa-unlock'}"></i>`;
+                    btn.classList.toggle('locked', isScoreLocked);
+                    btn.title = isScoreLocked ? '解锁' : '锁定';
+                }
+                showToast(isScoreLocked ? '质量评分已锁定' : '质量评分已解锁', 'info');
+            }
+
+            function updateLockState() {
+                const btn = document.getElementById('scoreLockBtn');
+                if (btn) {
+                    btn.innerHTML = `<i class="fas ${isScoreLocked ? 'fa-lock' : 'fa-unlock'}"></i>`;
+                    btn.classList.toggle('locked', isScoreLocked);
+                    btn.title = isScoreLocked ? '解锁' : '锁定';
+                }
+                const slider = document.getElementById('detailScore');
+                if (slider) slider.disabled = isScoreLocked;
+            }
+
+            // ================================================================
+            //  模态框
+            // ================================================================
+            let modalCallback = null;
+
+            function showConfirm(title, msg, cb) {
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalMsg').innerHTML = msg;
+                document.getElementById('confirmModal').classList.add('show');
+                modalCallback = cb;
+                document.getElementById('modalConfirmBtn').onclick = function() {
+                    document.getElementById('confirmModal').classList.remove('show');
+                    if (modalCallback) modalCallback();
+                    modalCallback = null;
+                };
+            }
+
+            function closeModal() {
+                document.getElementById('confirmModal').classList.remove('show');
+                modalCallback = null;
+            }
+
+            // ================================================================
+            //  导出 / 导入
+            // ================================================================
+            function exportData() {
+                if (albums.length === 0) { showToast('没有数据可导出', 'warning'); return; }
+                saveDetailChanges();
+                const blob = new Blob([JSON.stringify(albums, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = '专辑记录_' + new Date().toISOString().slice(0, 10) + '.json';
+                a.click();
+                URL.revokeObjectURL(url);
+                showToast('导出成功！', 'success');
+            }
+
+            function importData(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    try {
+                        const data = JSON.parse(ev.target.result);
+                        if (!Array.isArray(data)) throw new Error('格式错误');
+                        showConfirm('导入数据', '即将导入 <strong>' + data.length +
+                            '</strong> 张专辑，将 <span style="color:#ef4444;">替换</span> 当前所有数据，是否继续？', () => {
+                            albums = data;
+                            albums.forEach(a => {
+                                if (!a.tracks) a.tracks = [];
+                                if (a.qualityScore === undefined) a.qualityScore = 5;
+                                if (!a.overview) a.overview = '';
+                                a.trackCount = a.tracks.length;
+                                a.tracks.forEach(t => {
+                                    if (t.artist === undefined) t.artist = '';
+                                });
+                            });
+                            selectedId = albums.length > 0 ? albums[0].id : null;
+                            saveData();
+                            renderAll();
+                            showToast('成功导入 ' + albums.length + ' 张专辑！', 'success');
+                        });
+                    } catch (err) {
+                        showToast('导入失败：' + err.message, 'warning');
+                    }
+                };
+                reader.readAsText(file);
+                e.target.value = '';
+            }
+
+            // ================================================================
+            //  背景鼠标跟随
+            // ================================================================
+            const body = document.body;
+            document.addEventListener('mousemove', function(e) {
+                const x = e.clientX / window.innerWidth * 100;
+                const y = e.clientY / window.innerHeight * 100;
+                body.style.setProperty('--mouse-x', x + '%');
+                body.style.setProperty('--mouse-y', y + '%');
+            });
+
+            // ================================================================
+            //  事件绑定 & 初始化
+            // ================================================================
+            document.getElementById('toggleFormBtn').addEventListener('click', function() {
+                if (editingId) cancelForm();
+                else toggleForm();
+            });
+            document.getElementById('cancelFormBtn').addEventListener('click', cancelForm);
+            document.getElementById('saveAlbumBtn').addEventListener('click', saveAlbum);
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (document.getElementById('confirmModal').classList.contains('show')) closeModal();
+                    else if (document.getElementById('formArea').classList.contains('open')) cancelForm();
+                }
+                if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                    if (document.activeElement?.closest('.detail-body')) {
+                        e.preventDefault();
+                        saveDetailChanges();
+                        showToast('已保存', 'success');
+                    }
+                }
+            });
+
+            window.selectAlbum = selectAlbum;
+            window.deleteAlbum = deleteAlbum;
+            window.startEdit = startEdit;
+            window.saveDetailChanges = saveDetailChanges;
+            window.updateTrackName = updateTrackName;
+            window.updateTrackArtist = updateTrackArtist;
+            window.updateTrackReview = updateTrackReview;
+            window.toggleScoreLock = toggleScoreLock;
+            window.applyFilters = applyFilters;
+            window.exportData = exportData;
+            window.importData = importData;
+            window.closeModal = closeModal;
+
+            loadData();
+            console.log('📀 专辑记录器 (按钮点击修复)');
+            console.log('  📊 已加载 ' + albums.length + ' 张专辑');
+            console.log('  ⌨️  Ctrl+S 保存详情 | Esc 关闭');
+
+        })();
+    </script>
+</body>
+</html>
