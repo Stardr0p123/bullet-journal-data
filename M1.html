@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>专辑记录器 · 灰色调</title>
+    <title>专辑记录器 · 同步版</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         /* ================================================================
-           1.  CSS 变量 — 灰色调
+           1.  CSS 变量 — 淡紫灰
            ================================================================ */
         :root {
-            --primary: #8bc34a;
-            --primary-dark: #689f38;
-            --primary-light: #dcedc8;
-            --primary-soft: rgba(139, 195, 74, 0.12);
-            --primary-glow: rgba(139, 195, 74, 0.20);
-            --primary-gradient: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+            --primary: #8b7bb5;
+            --primary-dark: #6d5a9e;
+            --primary-light: #c8bce0;
+            --primary-soft: rgba(139, 123, 181, 0.10);
+            --primary-glow: rgba(139, 123, 181, 0.20);
+            --primary-gradient: linear-gradient(135deg, #8b7bb5 0%, #6d5a9e 100%);
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
 
-            --glass-bg: rgba(255, 255, 255, 0.50);
-            --glass-border: rgba(200, 200, 200, 0.25);
-            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(200, 200, 200, 0.08) inset;
+            --glass-bg: rgba(255, 255, 255, 0.48);
+            --glass-border: rgba(200, 200, 210, 0.20);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(200, 200, 210, 0.06) inset;
             --glass-blur: 20px;
 
-            --text: #1a2e1a;
-            --text-secondary: #3d5a3d;
-            --text-muted: #7a8a7a;
+            --text: #1a1a2e;
+            --text-secondary: #4a4a5e;
+            --text-muted: #8a8a9e;
 
             --radius: 14px;
             --radius-sm: 8px;
@@ -40,8 +40,8 @@
             --mouse-x: 50%;
             --mouse-y: 50%;
 
-            --transition: 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-            --transition-bounce: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition: 0.2s ease;
+            --transition-bounce: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         * {
@@ -52,14 +52,14 @@
 
         body {
             font-family: var(--font-sans);
-            font-size: 16px;
+            font-size: 15px;
             min-height: 100vh;
             color: var(--text);
-            background: #e8eae6;
+            background: #eceaf0;
             background:
-                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(180, 180, 180, 0.06) 0%, rgba(160, 160, 160, 0.03) 40%, rgba(15, 23, 42, 0.01) 70%, transparent 100%),
-                radial-gradient(ellipse at calc(100% - var(--mouse-x)) calc(100% - var(--mouse-y)), rgba(140, 140, 140, 0.02) 0%, rgba(120, 120, 120, 0.01) 50%, transparent 80%),
-                #e8eae6;
+                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(139, 123, 181, 0.06) 0%, rgba(160, 150, 180, 0.03) 40%, rgba(15, 23, 42, 0.01) 70%, transparent 100%),
+                radial-gradient(ellipse at calc(100% - var(--mouse-x)) calc(100% - var(--mouse-y)), rgba(120, 110, 150, 0.02) 0%, rgba(100, 90, 130, 0.01) 50%, transparent 80%),
+                #eceaf0;
             background-attachment: fixed;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
@@ -75,12 +75,12 @@
             background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(139, 195, 74, 0.20);
+            background: rgba(139, 123, 181, 0.20);
             border-radius: 4px;
             transition: background var(--transition);
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(139, 195, 74, 0.35);
+            background: rgba(139, 123, 181, 0.35);
         }
 
         /* ================================================================
@@ -95,21 +95,20 @@
             box-shadow: var(--glass-shadow);
             position: relative;
             overflow: hidden;
-            transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .glass::before {
             content: '';
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.20) 0%, transparent 70%);
+            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.18) 0%, transparent 70%);
             pointer-events: none;
             opacity: 0.4;
-            transition: opacity var(--transition);
         }
         .glass:hover {
-            box-shadow: 0 12px 40px rgba(139, 195, 74, 0.04), 0 0 0 1px rgba(139, 195, 74, 0.08) inset;
-            border-color: rgba(139, 195, 74, 0.10);
+            box-shadow: 0 12px 40px rgba(139, 123, 181, 0.04), 0 0 0 1px rgba(139, 123, 181, 0.06) inset;
+            border-color: rgba(139, 123, 181, 0.08);
         }
 
         /* ================================================================
@@ -119,17 +118,13 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            padding: 0 28px;
+            padding: 0 20px;
             background: rgba(255, 255, 255, 0.40);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(200, 200, 200, 0.20);
+            border-bottom: 1px solid rgba(200, 200, 210, 0.15);
             box-shadow: 0 1px 20px rgba(0, 0, 0, 0.01);
             flex-shrink: 0;
-            transition: box-shadow var(--transition), background var(--transition);
-        }
-        .app-header:hover {
-            box-shadow: 0 2px 28px rgba(139, 195, 74, 0.03);
         }
         .header-inner {
             max-width: 1640px;
@@ -137,64 +132,63 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 56px;
-            gap: 16px;
+            height: 52px;
+            gap: 12px;
         }
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             flex-shrink: 0;
         }
         .logo-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
             background: var(--primary-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             color: #fff;
-            box-shadow: 0 2px 12px rgba(139, 195, 74, 0.20);
-            transition: transform var(--transition-bounce), box-shadow var(--transition);
+            box-shadow: 0 2px 12px rgba(139, 123, 181, 0.20);
+            transition: transform 0.3s ease;
         }
         .logo-icon:hover {
-            transform: scale(1.12) rotate(-6deg);
-            box-shadow: 0 4px 24px rgba(139, 195, 74, 0.35);
+            transform: scale(1.08) rotate(-4deg);
         }
         .logo-text {
-            font-size: 20px;
+            font-size: 17px;
             font-weight: 700;
             color: var(--text);
-            letter-spacing: -0.3px;
+            letter-spacing: -0.2px;
         }
+
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
         .btn-sm {
-            padding: 6px 18px;
-            font-size: 13px;
+            padding: 4px 14px;
+            font-size: 12px;
             border-radius: var(--radius-sm);
-            border: 1px solid rgba(200, 200, 200, 0.20);
+            border: 1px solid rgba(200, 200, 210, 0.20);
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(4px);
             cursor: pointer;
-            transition: all var(--transition);
+            transition: all 0.15s ease;
             color: var(--text-secondary);
             font-weight: 500;
             font-family: inherit;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
         }
         .btn-sm:hover {
             background: rgba(255, 255, 255, 0.30);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
         }
         .btn-sm:active {
             transform: scale(0.94);
@@ -203,33 +197,11 @@
             background: var(--primary-gradient);
             color: #fff;
             border: none;
-            box-shadow: 0 2px 12px rgba(139, 195, 74, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-primary-sm::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity var(--transition);
-        }
-        .btn-primary-sm:hover::after {
-            opacity: 1;
+            box-shadow: 0 2px 12px rgba(139, 123, 181, 0.15);
         }
         .btn-primary-sm:hover {
-            box-shadow: 0 6px 24px rgba(139, 195, 74, 0.25);
+            box-shadow: 0 6px 24px rgba(139, 123, 181, 0.25);
             transform: translateY(-2px) scale(1.02);
-        }
-        /* 修复：active 时背景色加深，而不是变白 */
-        .btn-primary-sm:active {
-            background-color: var(--primary-dark) !important;
-            background-image: none !important;
-            transform: scale(0.94);
-            box-shadow: 0 2px 8px rgba(104, 159, 56, 0.20);
         }
         .btn-danger-sm {
             background: rgba(239, 68, 68, 0.08);
@@ -238,83 +210,158 @@
         }
         .btn-danger-sm:hover {
             background: rgba(239, 68, 68, 0.18);
+        }
+        .btn-success-sm {
+            background: var(--success);
+            color: #fff;
+            border: none;
+        }
+        .btn-success-sm:hover {
+            background: #059669;
             transform: translateY(-1px);
         }
 
+        /* ===== 同步状态指示 ===== */
+        .sync-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--text-muted);
+            padding: 2px 10px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.10);
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .sync-status .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .sync-status .dot.synced {
+            background: var(--success);
+        }
+        .sync-status .dot.syncing {
+            background: var(--warning);
+            animation: pulse-dot 0.8s infinite;
+        }
+        .sync-status .dot.error {
+            background: var(--danger);
+        }
+        .sync-status .dot.offline {
+            background: var(--text-muted);
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+
         /* ================================================================
-           4.  主布局 — 两栏
+           4.  主布局
            ================================================================ */
         .main-container {
             max-width: 1640px;
             margin: 0 auto;
-            padding: 18px 24px 24px;
+            padding: 14px 20px 20px;
             display: flex;
-            gap: 18px;
-            height: calc(100vh - 56px);
+            gap: 16px;
+            height: calc(100vh - 52px);
             min-height: 500px;
             overflow: hidden;
         }
 
         .col-left {
-            flex: 0 0 45%;
+            flex: 0 0 30%;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
             overflow: hidden;
-            min-width: 0;
+            min-width: 220px;
+        }
+        .col-left .glass {
+            flex: 1;
+            padding: 14px 16px;
+            overflow-y: auto;
+            min-height: 0;
         }
 
         .col-right {
             flex: 1;
             display: flex;
             flex-direction: column;
+            gap: 12px;
             overflow: hidden;
             min-width: 0;
         }
-
-        /* ================================================================
-           5.  左栏 — 表单 + 筛选器 + 列表
-           ================================================================ */
-        .col-left .glass:first-child {
-            flex-shrink: 0;
-            padding: 14px 16px;
-        }
-        .col-left .glass:last-child {
+        .col-right .glass:first-child {
             flex: 1;
-            padding: 12px 14px;
+            padding: 14px 16px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             min-height: 0;
         }
+        .col-right .glass:last-child {
+            flex-shrink: 0;
+            padding: 12px 16px;
+            max-height: 220px;
+            overflow-y: auto;
+            min-height: 120px;
+        }
 
-        /* ---- 表单 ---- */
-        .form-toggle {
+        /* ================================================================
+           5.  筛选器
+           ================================================================ */
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
             display: flex;
-            gap: 10px;
             align-items: center;
-            flex-wrap: wrap;
+            gap: 6px;
+            flex-shrink: 0;
         }
-        .form-area {
-            display: none;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(200, 200, 200, 0.15);
+        .section-title .badge {
+            font-size: 10px;
+            background: rgba(139, 123, 181, 0.08);
+            padding: 0 8px;
+            border-radius: var(--radius-full);
+            color: var(--primary-dark);
+            font-weight: 600;
         }
-        .form-area.open {
-            display: block;
+        .section-title .action-link {
+            margin-left: auto;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--primary-dark);
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.15s ease;
         }
-        .form-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+        .section-title .action-link:hover {
+            opacity: 0.7;
+        }
+
+        .filter-group {
             margin-bottom: 8px;
         }
-        .form-row .form-group {
-            flex: 1;
-            min-width: 90px;
+        .filter-group:last-child {
+            margin-bottom: 0;
         }
-        .form-group label {
+        .filter-group label {
             display: block;
             font-size: 11px;
             font-weight: 600;
@@ -322,125 +369,107 @@
             text-transform: uppercase;
             letter-spacing: 0.3px;
             margin-bottom: 2px;
-            transition: color var(--transition);
         }
-        .form-group:hover label {
-            color: var(--primary-dark);
-        }
-        .form-group input,
-        .form-group select {
+        .filter-group input[type="text"],
+        .filter-group select {
             width: 100%;
-            padding: 6px 10px;
-            font-size: 14px;
-            border: 1px solid rgba(200, 200, 200, 0.20);
+            padding: 4px 10px;
+            font-size: 13px;
+            border: 1px solid rgba(200, 200, 210, 0.15);
             border-radius: var(--radius-sm);
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(4px);
             color: var(--text);
             font-family: inherit;
             outline: none;
-            transition: all var(--transition);
+            transition: border-color 0.15s ease;
         }
-        .form-group input:hover,
-        .form-group select:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(200, 200, 200, 0.30);
-        }
-        .form-group input:focus,
-        .form-group select:focus {
+        .filter-group input[type="text"]:focus,
+        .filter-group select:focus {
             border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.32);
-            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.06);
-            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.22);
         }
-        .form-group input[type="number"] {
-            width: 80px;
-            flex: none;
-        }
-        .form-actions {
+        .filter-group .radio-group,
+        .filter-group .multi-group {
             display: flex;
-            gap: 10px;
-            margin-top: 6px;
+            flex-wrap: wrap;
+            gap: 4px 10px;
+            padding: 2px 0;
+        }
+        .filter-group .radio-group label,
+        .filter-group .multi-group label {
+            font-size: 13px;
+            font-weight: 400;
+            text-transform: none;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background 0.15s ease;
+        }
+        .filter-group .radio-group label:hover,
+        .filter-group .multi-group label:hover {
+            background: rgba(139, 123, 181, 0.06);
+        }
+        .filter-group .radio-group input[type="radio"],
+        .filter-group .multi-group input[type="checkbox"] {
+            accent-color: var(--primary);
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
         }
 
-        /* ---- 筛选器 (两栏布局) ---- */
-        .filter-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px 14px;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(200, 200, 200, 0.12);
-        }
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        .filter-group label {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            transition: color var(--transition);
-        }
-        .filter-group:hover label {
-            color: var(--primary-dark);
-        }
-        .filter-group input {
-            width: 100%;
-            padding: 5px 10px;
-            font-size: 14px;
-            border: 1px solid rgba(200, 200, 200, 0.18);
-            border-radius: var(--radius-sm);
-            background: rgba(255, 255, 255, 0.14);
-            backdrop-filter: blur(4px);
-            color: var(--text);
-            font-family: inherit;
-            outline: none;
-            transition: all var(--transition);
-        }
-        .filter-group input:hover {
-            background: rgba(255, 255, 255, 0.24);
-            border-color: rgba(200, 200, 200, 0.28);
-        }
-        .filter-group input:focus {
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.30);
-            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.06);
-            transform: translateY(-1px);
-        }
-        .filter-group input::placeholder {
-            color: var(--text-muted);
-            font-size: 12px;
-            opacity: 0.6;
+        .filter-reset {
+            margin-top: 6px;
+            text-align: right;
         }
         .filter-count {
             font-size: 12px;
             color: var(--text-muted);
-            text-align: right;
-            grid-column: 1 / -1;
-            margin-top: 2px;
+            text-align: center;
+            padding: 4px 0;
+            border-top: 1px solid rgba(200, 200, 210, 0.08);
+            margin-top: 6px;
+            flex-shrink: 0;
         }
 
-        /* ---- 专辑列表 (网格) ---- */
+        /* ================================================================
+           6.  专辑列表
+           ================================================================ */
+        .album-list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            margin-bottom: 8px;
+        }
+        .album-list-header .title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .album-list-header .total {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
         .album-list {
             flex: 1;
             overflow-y: auto;
             padding-right: 4px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            align-content: start;
-            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
             min-height: 0;
         }
         .album-list::-webkit-scrollbar {
             width: 3px;
         }
         .album-list::-webkit-scrollbar-thumb {
-            background: rgba(139, 195, 74, 0.18);
+            background: rgba(139, 123, 181, 0.15);
             border-radius: 3px;
         }
 
@@ -448,34 +477,26 @@
             padding: 10px 12px;
             background: rgba(255, 255, 255, 0.20);
             border-radius: var(--radius-sm);
-            border: 1px solid rgba(200, 200, 200, 0.06);
+            border: 1px solid rgba(200, 200, 210, 0.06);
             cursor: pointer;
-            transition: all var(--transition);
-            position: relative;
+            transition: all 0.15s ease;
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 2px;
         }
         .album-card:hover {
-            background: rgba(255, 255, 255, 0.40);
-            transform: translateY(-2px) scale(1.01);
-            border-color: rgba(139, 195, 74, 0.10);
-            box-shadow: 0 4px 16px rgba(139, 195, 74, 0.06);
-        }
-        .album-card:active {
-            transform: scale(0.97);
+            background: rgba(255, 255, 255, 0.38);
+            transform: translateX(2px);
+            border-color: rgba(139, 123, 181, 0.08);
         }
         .album-card.active {
             border-color: var(--primary);
-            background: rgba(139, 195, 74, 0.12);
-            box-shadow: 0 0 0 2px rgba(139, 195, 74, 0.06), 0 4px 16px rgba(139, 195, 74, 0.04);
-        }
-        .album-card.active:hover {
-            background: rgba(139, 195, 74, 0.16);
+            background: rgba(139, 123, 181, 0.08);
+            box-shadow: 0 0 0 2px rgba(139, 123, 181, 0.04);
         }
         .album-card .ac-title {
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text);
             display: flex;
             justify-content: space-between;
@@ -489,422 +510,345 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
             padding: 2px 4px;
             border-radius: 4px;
-            transition: all var(--transition);
+            transition: all 0.15s ease;
         }
         .album-card .ac-title .ac-actions button:hover {
-            background: rgba(255, 255, 255, 0.20);
+            background: rgba(255, 255, 255, 0.15);
             color: var(--text);
-            transform: scale(1.15);
         }
         .album-card .ac-title .ac-actions .edit-btn:hover {
             color: var(--primary-dark);
-            background: rgba(139, 195, 74, 0.10);
         }
         .album-card .ac-title .ac-actions .del-btn:hover {
             color: var(--danger);
-            background: rgba(239, 68, 68, 0.10);
         }
         .album-card .ac-meta {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-secondary);
-            align-items: center;
         }
         .album-card .ac-meta .genre-tag {
             padding: 0 8px;
             border-radius: var(--radius-full);
-            background: rgba(139, 195, 74, 0.10);
+            background: rgba(139, 123, 181, 0.08);
             color: var(--primary-dark);
             font-size: 10px;
             font-weight: 600;
-            transition: background var(--transition);
-        }
-        .album-card:hover .ac-meta .genre-tag {
-            background: rgba(139, 195, 74, 0.18);
         }
         .album-card .ac-meta .hardness-dot {
             display: inline-block;
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: var(--primary);
-            transition: transform var(--transition);
-        }
-        .album-card:hover .ac-meta .hardness-dot {
-            transform: scale(1.4);
         }
 
         .empty-state {
             text-align: center;
-            padding: 28px 10px;
+            padding: 24px 10px;
             color: var(--text-muted);
-            font-size: 14px;
-            grid-column: 1 / -1;
+            font-size: 13px;
         }
         .empty-state .icon {
-            font-size: 32px;
+            font-size: 28px;
             opacity: 0.25;
-            margin-bottom: 6px;
-            transition: transform var(--transition-bounce), opacity var(--transition);
-        }
-        .empty-state:hover .icon {
-            transform: scale(1.1) rotate(-6deg);
-            opacity: 0.4;
-        }
-
-        .list-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-shrink: 0;
-            margin-bottom: 2px;
-        }
-        .list-header span {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-        .list-header .total {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* ================================================================
-           6.  右栏 — 详情 (曲目增加作者)
-           ================================================================ */
-        .col-right .glass {
-            flex: 1;
-            padding: 18px 20px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            min-height: 0;
-        }
-
-        #detailContainer {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            min-height: 0;
-            height: 100%;
-        }
-
-        .detail-empty {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            color: var(--text-muted);
-            opacity: 0.5;
-            font-size: 16px;
-            flex: 1;
-        }
-        .detail-empty i {
-            font-size: 44px;
-            margin-bottom: 8px;
-            transition: transform var(--transition-bounce), opacity var(--transition);
-        }
-        .detail-empty:hover i {
-            transform: scale(1.1) rotate(-6deg);
-            opacity: 0.8;
-        }
-
-        .detail-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            flex-shrink: 0;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(200, 200, 200, 0.10);
-            flex-wrap: wrap;
-        }
-        .detail-header .dh-name {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-            min-width: 0;
-        }
-        .detail-header .dh-name .dh-artist {
-            font-weight: 400;
-            font-size: 16px;
-            color: var(--text-secondary);
-        }
-        .detail-header .dh-score {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-        .detail-header .dh-score label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-        .detail-header .dh-score input[type="range"] {
-            width: 110px;
-            height: 4px;
-            -webkit-appearance: none;
-            appearance: none;
-            background: rgba(139, 195, 74, 0.20);
-            border-radius: 4px;
-            outline: none;
-            cursor: pointer;
-            transition: background var(--transition);
-        }
-        .detail-header .dh-score input[type="range"]:hover {
-            background: rgba(139, 195, 74, 0.30);
-        }
-        .detail-header .dh-score input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary-gradient);
-            cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0.20);
-            box-shadow: 0 2px 8px rgba(139, 195, 74, 0.15);
-            transition: transform var(--transition), box-shadow var(--transition);
-        }
-        .detail-header .dh-score input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.15);
-            box-shadow: 0 4px 16px rgba(139, 195, 74, 0.25);
-        }
-        .detail-header .dh-score input[type="range"]::-moz-range-thumb {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary-gradient);
-            cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0.20);
-        }
-        .detail-header .dh-score .score-val {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--primary-dark);
-            min-width: 32px;
-            text-align: center;
-        }
-        .detail-header .dh-score .lock-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-muted);
-            font-size: 16px;
-            padding: 2px 4px;
-            border-radius: 4px;
-            transition: all var(--transition);
-        }
-        .detail-header .dh-score .lock-btn:hover {
-            color: var(--text);
-            transform: scale(1.15);
-            background: rgba(255, 255, 255, 0.08);
-        }
-        .detail-header .dh-score .lock-btn.locked {
-            color: var(--primary-dark);
-        }
-        .detail-header .dh-score .lock-btn.locked:hover {
-            color: var(--primary-dark);
-            background: rgba(139, 195, 74, 0.06);
-        }
-
-        .detail-body {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            margin-top: 12px;
-            overflow: hidden;
-            min-height: 0;
-        }
-
-        .detail-overview {
-            flex-shrink: 0;
-            margin-bottom: 12px;
-        }
-        .detail-overview label {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            display: block;
-            margin-bottom: 3px;
-        }
-        .detail-overview textarea {
-            width: 100%;
-            min-height: 80px;
-            max-height: 150px;
-            padding: 8px 12px;
-            font-size: 15px;
-            font-family: inherit;
-            border: 1px solid rgba(200, 200, 200, 0.15);
-            border-radius: var(--radius-sm);
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(4px);
-            color: var(--text);
-            resize: vertical;
-            outline: none;
-            line-height: 1.7;
-            overflow-y: auto;
-            transition: all var(--transition);
-        }
-        .detail-overview textarea:hover {
-            background: rgba(255, 255, 255, 0.14);
-            border-color: rgba(200, 200, 200, 0.22);
-        }
-        .detail-overview textarea:focus {
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.20);
-            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.04);
-        }
-
-        /* ---- 单曲评价 — 新增作者 ---- */
-        .detail-tracks {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            min-height: 60px;
-        }
-        .detail-tracks .dt-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            flex-shrink: 0;
             margin-bottom: 4px;
         }
-        .detail-tracks .dt-list {
-            flex: 1;
-            overflow-y: auto;
-            padding-right: 4px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            min-height: 40px;
-        }
-        .detail-tracks .dt-list::-webkit-scrollbar {
-            width: 3px;
-        }
-        .detail-tracks .dt-list::-webkit-scrollbar-thumb {
-            background: rgba(139, 195, 74, 0.18);
-            border-radius: 3px;
-        }
 
-        .track-item {
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: var(--radius-sm);
-            padding: 8px 12px;
-            border: 1px solid rgba(200, 200, 200, 0.04);
+        .list-actions {
             flex-shrink: 0;
-            transition: all var(--transition);
-        }
-        .track-item:hover {
-            background: rgba(255, 255, 255, 0.10);
-            border-color: rgba(139, 195, 74, 0.06);
-        }
-        .track-item .ti-row {
+            margin-top: 6px;
             display: flex;
-            gap: 8px;
-            align-items: center;
-            margin-bottom: 2px;
-        }
-        .track-item .ti-name {
-            flex: 1;
-            min-width: 0;
-        }
-        .track-item .ti-name input {
-            width: 100%;
-            padding: 3px 8px;
-            font-size: 15px;
-            font-weight: 600;
-            border: 1px solid rgba(200, 200, 200, 0.08);
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text);
-            font-family: inherit;
-            outline: none;
-            transition: all var(--transition);
-        }
-        .track-item .ti-name input:hover {
-            background: rgba(255, 255, 255, 0.10);
-        }
-        .track-item .ti-name input:focus {
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.14);
-            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.04);
-        }
-        .track-item .ti-artist {
-            flex: 0 0 140px;
-            min-width: 80px;
-        }
-        .track-item .ti-artist input {
-            width: 100%;
-            padding: 3px 8px;
-            font-size: 14px;
-            border: 1px solid rgba(200, 200, 200, 0.08);
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-secondary);
-            font-family: inherit;
-            outline: none;
-            transition: all var(--transition);
-        }
-        .track-item .ti-artist input:hover {
-            background: rgba(255, 255, 255, 0.10);
-        }
-        .track-item .ti-artist input:focus {
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.14);
-            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.04);
-        }
-        .track-item .ti-review {
-            margin-top: 3px;
-        }
-        .track-item .ti-review textarea {
-            width: 100%;
-            min-height: 60px;
-            max-height: 110px;
-            padding: 5px 10px;
-            font-size: 14px;
-            font-family: inherit;
-            border: 1px solid rgba(200, 200, 200, 0.08);
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(4px);
-            color: var(--text-secondary);
-            resize: vertical;
-            outline: none;
-            line-height: 1.6;
-            overflow-y: auto;
-            transition: all var(--transition);
-        }
-        .track-item .ti-review textarea:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(200, 200, 200, 0.12);
-        }
-        .track-item .ti-review textarea:focus {
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.04);
+            gap: 6px;
+            flex-wrap: wrap;
         }
 
         /* ================================================================
-           7.  弹窗 & Toast
+           7.  编辑面板 (右侧下方)
+           ================================================================ */
+        .edit-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .edit-panel .ep-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .edit-panel .ep-header .ep-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text);
+        }
+        .edit-panel .ep-header .ep-title .ep-sub {
+            font-weight: 400;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .edit-panel .ep-body {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            overflow-y: auto;
+            padding-right: 4px;
+            max-height: 150px;
+        }
+        .edit-panel .ep-body::-webkit-scrollbar {
+            width: 3px;
+        }
+        .edit-panel .ep-body::-webkit-scrollbar-thumb {
+            background: rgba(139, 123, 181, 0.15);
+            border-radius: 3px;
+        }
+        .edit-panel .ep-field {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .edit-panel .ep-field label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .edit-panel .ep-field input[type="text"],
+        .edit-panel .ep-field select,
+        .edit-panel .ep-field textarea {
+            padding: 4px 10px;
+            font-size: 13px;
+            border: 1px solid rgba(200, 200, 210, 0.15);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            font-family: inherit;
+            outline: none;
+            width: 100%;
+            transition: border-color 0.15s ease;
+        }
+        .edit-panel .ep-field input[type="text"]:focus,
+        .edit-panel .ep-field select:focus,
+        .edit-panel .ep-field textarea:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.22);
+        }
+        .edit-panel .ep-field textarea {
+            resize: vertical;
+            min-height: 32px;
+            max-height: 80px;
+        }
+        .edit-panel .ep-field .radio-group,
+        .edit-panel .ep-field .multi-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 14px;
+            padding: 2px 0;
+        }
+        .edit-panel .ep-field .radio-group label,
+        .edit-panel .ep-field .multi-group label {
+            font-size: 13px;
+            font-weight: 400;
+            text-transform: none;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+        .edit-panel .ep-field .radio-group input[type="radio"],
+        .edit-panel .ep-field .multi-group input[type="checkbox"] {
+            accent-color: var(--primary);
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+        }
+        .edit-panel .ep-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        /* ================================================================
+           8.  同步设置面板 (模态)
+           ================================================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.15);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease;
+        }
+        .modal-overlay.show {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .modal-box {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(200, 200, 210, 0.20);
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            max-width: 520px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.06);
+            animation: modalSlide 0.25s var(--transition-bounce);
+        }
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.94);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .modal-box h3 {
+            font-size: 17px;
+            margin-bottom: 12px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-box .modal-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0 4px;
+        }
+        .modal-box .modal-close:hover {
+            color: var(--text);
+        }
+        .modal-box .form-group {
+            margin-bottom: 12px;
+        }
+        .modal-box .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 2px;
+        }
+        .modal-box .form-group input[type="text"],
+        .modal-box .form-group input[type="password"],
+        .modal-box .form-group select {
+            width: 100%;
+            padding: 6px 10px;
+            font-size: 13px;
+            border: 1px solid rgba(200, 200, 210, 0.15);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.15s ease;
+        }
+        .modal-box .form-group input:focus,
+        .modal-box .form-group select:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.22);
+        }
+        .modal-box .form-group .hint {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .modal-box .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .modal-box .btn-row .btn {
+            flex: 1;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.15s ease;
+            min-width: 80px;
+            text-align: center;
+        }
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.20);
+            color: #475569;
+        }
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-1px);
+        }
+        .btn-primary-modal {
+            background: var(--primary-gradient);
+            color: #fff;
+        }
+        .btn-primary-modal:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(139, 123, 181, 0.20);
+        }
+        .btn-danger-modal {
+            background: #ef4444;
+            color: #fff;
+        }
+        .btn-danger-modal:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+        .btn-success-modal {
+            background: var(--success);
+            color: #fff;
+        }
+        .btn-success-modal:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .sync-status-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* ================================================================
+           9.  Toast
            ================================================================ */
         .toast-container {
             position: fixed;
@@ -913,14 +857,14 @@
             z-index: 9999;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             pointer-events: none;
         }
         .toast {
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: var(--radius-sm);
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             color: #fff;
             background: rgba(15, 23, 42, 0.72);
             backdrop-filter: blur(16px);
@@ -928,13 +872,13 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
             pointer-events: auto;
             max-width: 360px;
-            animation: toastIn 0.2s ease-out, toastOut 0.2s ease-in 2s forwards;
+            animation: toastIn 0.2s ease, toastOut 0.2s ease 2s forwards;
         }
         .toast.success {
             background: rgba(16, 185, 129, 0.78);
         }
         .toast.info {
-            background: rgba(139, 195, 74, 0.78);
+            background: rgba(139, 123, 181, 0.78);
         }
         .toast.warning {
             background: rgba(245, 158, 11, 0.78);
@@ -961,138 +905,21 @@
             }
         }
 
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.15);
-            backdrop-filter: blur(4px);
-            z-index: 200;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.2s ease-out;
-        }
-        .modal-overlay.show {
-            display: flex;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        .modal-box {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(32px);
-            border: 1px solid rgba(200, 200, 200, 0.20);
-            border-radius: var(--radius-lg);
-            padding: 28px 32px;
-            max-width: 420px;
-            width: 90%;
-            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.06);
-            animation: modalSlide 0.25s var(--transition-bounce);
-        }
-        @keyframes modalSlide {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.94);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        .modal-box h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-        .modal-box .msg {
-            color: var(--text-secondary);
-            font-size: 15px;
-            line-height: 1.7;
-        }
-        .modal-box .btn-row {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        .modal-box .btn-row .btn {
-            flex: 1;
-            padding: 10px 18px;
-            border-radius: var(--radius-sm);
-            border: none;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all var(--transition);
-        }
-        .btn-ghost {
-            background: rgba(255, 255, 255, 0.20);
-            color: #475569;
-        }
-        .btn-ghost:hover {
-            background: rgba(255, 255, 255, 0.35);
-            transform: translateY(-1px);
-        }
-        .btn-danger-modal {
-            background: #ef4444;
-            color: #fff;
-            border-radius: var(--radius-sm);
-        }
-        .btn-danger-modal:hover {
-            background: #dc2626;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.16);
-        }
-        .btn-primary-modal {
-            background: var(--primary-gradient);
-            color: #fff;
-            border-radius: var(--radius-sm);
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-primary-modal::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity var(--transition);
-        }
-        .btn-primary-modal:hover::after {
-            opacity: 1;
-        }
-        .btn-primary-modal:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(139, 195, 74, 0.20);
-        }
-        .btn-primary-modal:active {
-            background-color: var(--primary-dark) !important;
-            background-image: none !important;
-            transform: scale(0.94);
-        }
-
         /* ================================================================
-           8.  响应式
+           10. 响应式
            ================================================================ */
         @media (max-width: 1000px) {
             .main-container {
                 flex-direction: column;
                 height: auto;
                 overflow: visible;
-                padding: 14px;
-                gap: 14px;
+                padding: 12px;
+                gap: 12px;
             }
             .col-left {
                 flex: none;
                 width: 100%;
-                max-height: 520px;
+                max-height: 320px;
             }
             .col-right {
                 flex: none;
@@ -1104,61 +931,29 @@
                 height: auto;
                 overflow: auto;
             }
-            .album-list {
-                grid-template-columns: 1fr 1fr;
-            }
         }
         @media (max-width: 600px) {
-            .album-list {
-                grid-template-columns: 1fr;
-            }
-            .filter-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .form-row {
-                flex-direction: column;
-                gap: 4px;
-            }
-            .form-row .form-group {
-                min-width: 0;
-            }
-            .detail-header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .detail-header .dh-score {
-                justify-content: flex-start;
+            .header-inner {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 6px 0;
             }
             .col-left {
-                max-height: 460px;
+                max-height: 280px;
             }
             .col-right {
+                min-height: 320px;
                 max-height: 480px;
             }
-            .filter-grid {
-                grid-template-columns: 1fr;
-            }
-            body {
-                font-size: 15px;
-            }
-            .track-item .ti-row {
-                flex-direction: column;
-                gap: 4px;
-                align-items: stretch;
-            }
-            .track-item .ti-artist {
-                flex: 1;
-            }
-        }
-        @media (max-width: 400px) {
-            .filter-grid {
-                grid-template-columns: 1fr;
-            }
-            .album-list {
-                grid-template-columns: 1fr;
-            }
             .modal-box {
-                padding: 20px 22px;
+                padding: 18px 16px;
+            }
+            .edit-panel .ep-body {
+                max-height: 120px;
+            }
+            .header-actions .sync-status {
+                font-size: 10px;
+                padding: 1px 8px;
             }
         }
     </style>
@@ -1169,12 +964,18 @@
     <header class="app-header">
         <div class="header-inner">
             <div class="logo-area">
-                <div class="logo-icon"><i class="fas fa-music"></i></div>
+                <div class="logo-icon"><i class="fas fa-compact-disc"></i></div>
                 <div>
                     <span class="logo-text">专辑记录器</span>
                 </div>
             </div>
             <div class="header-actions">
+                <span class="sync-status" id="syncStatus">
+                    <span class="dot offline" id="syncDot"></span>
+                    <span id="syncLabel">未连接</span>
+                </span>
+                <button class="btn-sm" id="syncBtn" onclick="manualSync()"><i class="fas fa-sync"></i> 同步</button>
+                <button class="btn-sm" onclick="openSyncSettings()"><i class="fas fa-cloud-upload-alt"></i> 云端</button>
                 <button class="btn-sm" onclick="exportData()"><i class="fas fa-download"></i> 导出</button>
                 <button class="btn-sm" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> 导入</button>
                 <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)" />
@@ -1185,110 +986,104 @@
     <!-- ===== 主容器 ===== -->
     <div class="main-container">
 
-        <!-- ===== 左栏：表单 + 筛选 + 列表 ===== -->
+        <!-- ===== 左栏：筛选 ===== -->
         <div class="col-left">
-
-            <!-- 表单 -->
-            <div class="glass">
-                <div class="form-toggle">
-                    <button class="btn-sm btn-primary-sm" id="toggleFormBtn"><i class="fas fa-plus"></i> 添加专辑</button>
-                    <span style="font-size:13px; color:var(--text-muted);" id="formStatus">准备添加</span>
+            <div class="glass" id="filterPanel">
+                <div class="section-title">
+                    <i class="fas fa-filter"></i> 筛选
+                    <span class="badge" id="filterResultCount">0</span>
+                    <span class="action-link" onclick="resetFilters()">重置</span>
                 </div>
-                <div class="form-area" id="formArea">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>专辑名称 *</label>
-                            <input type="text" id="inputName" placeholder="专辑名" />
-                        </div>
-                        <div class="form-group">
-                            <label>作者 / 厂牌 *</label>
-                            <input type="text" id="inputArtist" placeholder="作者或厂牌" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>曲风</label>
-                            <input type="text" id="inputGenre" placeholder="如: Progressive House" />
-                        </div>
-                        <div class="form-group" style="flex:0 0 90px;">
-                            <label>硬度 (1-10)</label>
-                            <input type="number" id="inputHardness" min="1" max="10" value="5" />
-                        </div>
-                        <div class="form-group" style="flex:0 0 90px;">
-                            <label>曲目数</label>
-                            <input type="number" id="inputTrackCount" min="1" max="50" value="8" />
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button class="btn-sm btn-primary-sm" id="saveAlbumBtn"><i class="fas fa-save"></i> 保存</button>
-                        <button class="btn-sm" id="cancelFormBtn"><i class="fas fa-times"></i> 取消</button>
+                <div id="filterContainer">
+                    <div class="empty-state" style="padding:8px 0;">
+                        <div class="icon" style="font-size:20px;"><i class="fas fa-compact-disc"></i></div>
+                        <p>添加专辑开始记录</p>
                     </div>
                 </div>
-
-                <!-- 筛选器 (两栏) -->
-                <div class="filter-grid">
-                    <div class="filter-group">
-                        <label>曲风</label>
-                        <input type="text" id="filterGenre" placeholder="精确匹配" oninput="applyFilters()" />
-                    </div>
-                    <div class="filter-group">
-                        <label>硬度 (1-10)</label>
-                        <input type="number" id="filterHardness" min="1" max="10" placeholder="数值" oninput="applyFilters()" />
-                    </div>
-                    <div class="filter-group">
-                        <label>作者 / 厂牌</label>
-                        <input type="text" id="filterArtist" placeholder="精确匹配" oninput="applyFilters()" />
-                    </div>
-                    <div class="filter-group">
-                        <label>曲目名</label>
-                        <input type="text" id="filterTrack" placeholder="模糊搜索" oninput="applyFilters()" />
-                    </div>
-                    <div class="filter-count" id="filterCount">显示 0 张</div>
-                </div>
+                <div class="filter-count" id="filterCountDisplay">共 0 张专辑</div>
             </div>
+        </div>
 
-            <!-- 专辑列表 (网格) -->
+        <!-- ===== 右栏 ===== -->
+        <div class="col-right">
+
+            <!-- 专辑列表 -->
             <div class="glass">
-                <div class="list-header">
-                    <span><i class="fas fa-album"></i> 专辑列表</span>
+                <div class="album-list-header">
+                    <span class="title"><i class="fas fa-album"></i> 专辑列表</span>
                     <span class="total" id="albumTotal">0 张</span>
                 </div>
                 <div class="album-list" id="albumList">
                     <div class="empty-state">
                         <div class="icon"><i class="fas fa-compact-disc"></i></div>
-                        <p>还没有专辑，添加一张吧</p>
+                        <p>还没有专辑，点击下方添加</p>
+                    </div>
+                </div>
+                <div class="list-actions">
+                    <button class="btn-sm btn-primary-sm" id="addAlbumBtn"><i class="fas fa-plus"></i> 添加专辑</button>
+                </div>
+            </div>
+
+            <!-- 编辑面板 -->
+            <div class="glass" id="editPanelGlass">
+                <div class="edit-panel" id="editPanel">
+                    <div class="ep-header">
+                        <span class="ep-title" id="editPanelTitle">选择专辑 <span class="ep-sub" id="editPanelSub"></span></span>
+                        <button class="btn-sm" onclick="closeEditPanel()"><i class="fas fa-times"></i> 关闭</button>
+                    </div>
+                    <div class="ep-body" id="editPanelBody">
+                        <div class="empty-state" style="padding:4px 0; font-size:13px;">
+                            <i class="fas fa-hand-point-left" style="display:block; font-size:20px; opacity:0.3; margin-bottom:4px;"></i>
+                            点击左侧专辑开始编辑
+                        </div>
+                    </div>
+                    <div class="ep-actions">
+                        <button class="btn-sm btn-primary-sm" id="saveAlbumBtn"><i class="fas fa-save"></i> 保存</button>
+                        <button class="btn-sm" id="cancelEditBtn" onclick="closeEditPanel()">取消</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- ===== 右栏：详情 ===== -->
-        <div class="col-right">
-            <div class="glass">
-                <div id="detailContainer">
-                    <div class="detail-empty">
-                        <i class="fas fa-hand-point-left"></i>
-                        <span>选择一张专辑查看详情</span>
-                    </div>
+    <!-- ===== 同步设置模态框 ===== -->
+    <div class="modal-overlay" id="syncModal" onclick="if(event.target===this)closeModal('syncModal')">
+        <div class="modal-box">
+            <h3>
+                <i class="fas fa-cloud-upload-alt"></i> 云端同步设置
+                <button class="modal-close" onclick="closeModal('syncModal')"><i class="fas fa-times"></i></button>
+            </h3>
+            <div class="form-group">
+                <label>GitHub Token</label>
+                <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxx" />
+                <div class="hint">
+                    <a href="https://github.com/settings/tokens" target="_blank">点击生成 Token</a>
+                    · 权限勾选 <strong>gist</strong>
                 </div>
+            </div>
+            <div class="form-group">
+                <label>Gist ID</label>
+                <input type="text" id="gistId" placeholder="abc123def456..." />
+                <div class="hint">
+                    创建 Gist 后复制 URL 末尾的 ID
+                </div>
+            </div>
+            <div class="sync-status-detail" id="syncStatusDetail">
+                <span id="syncDetailText">当前未连接</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-success-modal" onclick="saveSyncConfig()"><i class="fas fa-save"></i> 保存配置</button>
+                <button class="btn btn-primary-modal" onclick="testSync()"><i class="fas fa-plug"></i> 测试连接</button>
+                <button class="btn btn-danger-modal" onclick="clearSyncConfig()"><i class="fas fa-trash-alt"></i> 清除</button>
+            </div>
+            <div class="btn-row" style="margin-top:8px;">
+                <button class="btn btn-ghost" onclick="closeModal('syncModal')">关闭</button>
             </div>
         </div>
     </div>
 
     <!-- ===== Toast ===== -->
     <div class="toast-container" id="toastContainer"></div>
-
-    <!-- ===== 模态框 ===== -->
-    <div class="modal-overlay" id="confirmModal" onclick="if(event.target===this)closeModal()">
-        <div class="modal-box">
-            <h3 id="modalTitle">确认</h3>
-            <div class="msg" id="modalMsg"></div>
-            <div class="btn-row">
-                <button class="btn btn-ghost" onclick="closeModal()">取消</button>
-                <button class="btn btn-danger-modal" id="modalConfirmBtn">确认</button>
-            </div>
-        </div>
-    </div>
 
     <script>
         (function() {
@@ -1298,11 +1093,14 @@
             //  数据层
             // ================================================================
             const STORAGE_KEY = 'album_recorder_data';
+            const SYNC_CONFIG_KEY = 'album_sync_config';
 
             let albums = [];
             let selectedId = null;
             let editingId = null;
             let isScoreLocked = false;
+            let syncConfig = null;
+            let isSyncing = false;
 
             // ================================================================
             //  工具
@@ -1362,40 +1160,10 @@
                             { name: 'Sun & Moon', review: '经典中的经典，人声与旋律完美融合。', artist: 'Above & Beyond' },
                             { name: 'You Got to Go', review: '节奏明快，能量十足。', artist: 'Above & Beyond' },
                         ]
-                    }, {
-                        id: genId(),
-                        name: 'Worlds',
-                        artist: 'Porter Robinson',
-                        genre: 'Electronic / Synthpop',
-                        hardness: 4,
-                        trackCount: 12,
-                        qualityScore: 10,
-                        overview: '一张改变电子音乐格局的专辑，情感真挚，充满想象力。',
-                        tracks: [
-                            { name: 'Divinity', review: '宏大开场，人声空灵。', artist: 'Porter Robinson' },
-                            { name: 'Sad Machine', review: '治愈系旋律，百听不厌。', artist: 'Porter Robinson' },
-                            { name: 'Flicker', review: '节奏感强，带有日系元素。', artist: 'Porter Robinson' },
-                        ]
-                    }, {
-                        id: genId(),
-                        name: 'In Return',
-                        artist: 'ODESZA',
-                        genre: 'Indie Electronic',
-                        hardness: 3,
-                        trackCount: 14,
-                        qualityScore: 8,
-                        overview: '温暖、细腻，充满夏日气息的电子专辑。',
-                        tracks: [
-                            { name: 'Always This Late', review: '慵懒的节奏，很放松。', artist: 'ODESZA' },
-                            { name: 'Say My Name', review: '律动感十足，人声优美。', artist: 'ODESZA' },
-                            { name: 'Kusanagi', review: '东瀛风格的旋律，很有画面感。', artist: 'ODESZA' },
-                        ]
                     }];
                     saveData();
                 }
-                if (albums.length > 0 && !selectedId) {
-                    selectedId = albums[0].id;
-                }
+                if (albums.length > 0 && !selectedId) selectedId = albums[0].id;
                 renderAll();
             }
 
@@ -1403,6 +1171,213 @@
                 try {
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(albums));
                 } catch (e) { /* ignore */ }
+                // 同步到云端（如果配置了自动同步）
+                autoSyncToCloud();
+            }
+
+            // ================================================================
+            //  同步配置
+            // ================================================================
+            function loadSyncConfig() {
+                try {
+                    const raw = localStorage.getItem(SYNC_CONFIG_KEY);
+                    if (raw) syncConfig = JSON.parse(raw);
+                    else syncConfig = null;
+                } catch (e) { syncConfig = null; }
+                updateSyncStatusUI();
+            }
+
+            function saveSyncConfigToLocal() {
+                const token = document.getElementById('githubToken').value.trim();
+                const gistId = document.getElementById('gistId').value.trim();
+                if (!token || !gistId) {
+                    showToast('请填写 Token 和 Gist ID', 'warning');
+                    return;
+                }
+                syncConfig = { token, gistId };
+                localStorage.setItem(SYNC_CONFIG_KEY, JSON.stringify(syncConfig));
+                showToast('✅ 配置已保存', 'success');
+                updateSyncStatusUI();
+                closeModal('syncModal');
+                // 自动测试连接
+                testSyncConnection();
+            }
+
+            function clearSyncConfig() {
+                if (!confirm('确定清除同步配置吗？')) return;
+                syncConfig = null;
+                localStorage.removeItem(SYNC_CONFIG_KEY);
+                updateSyncStatusUI();
+                showToast('已清除配置', 'info');
+                closeModal('syncModal');
+            }
+
+            function updateSyncStatusUI() {
+                const dot = document.getElementById('syncDot');
+                const label = document.getElementById('syncLabel');
+                const detail = document.getElementById('syncDetailText');
+                if (syncConfig && syncConfig.token && syncConfig.gistId) {
+                    dot.className = 'dot offline';
+                    label.textContent = '已配置';
+                    if (detail) detail.textContent = '已配置，点击"测试连接"验证';
+                    // 尝试自动拉取
+                    autoPullFromCloud();
+                } else {
+                    dot.className = 'dot offline';
+                    label.textContent = '未连接';
+                    if (detail) detail.textContent = '未配置同步';
+                }
+                // 同步按钮状态
+                document.getElementById('syncBtn').disabled = !syncConfig;
+            }
+
+            function setSyncStatus(status, msg) {
+                const dot = document.getElementById('syncDot');
+                const label = document.getElementById('syncLabel');
+                const detail = document.getElementById('syncDetailText');
+                dot.className = 'dot ' + status;
+                if (status === 'synced') { dot.className = 'dot synced';
+                    label.textContent = '已同步'; } else if (status === 'syncing') { dot.className = 'dot syncing';
+                    label.textContent = '同步中...'; } else if (status === 'error') { dot.className = 'dot error';
+                    label.textContent = '同步失败'; } else { dot.className = 'dot offline';
+                    label.textContent = '未连接'; }
+                if (detail && msg) detail.textContent = msg;
+            }
+
+            // ================================================================
+            //  Gist API 操作
+            // ================================================================
+            async function fetchFromGist(token, gistId) {
+                const url = `https://api.github.com/gists/${gistId}`;
+                const res = await fetch(url, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/json'
+                    }
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                const data = await res.json();
+                const file = data.files['albums_data.json'];
+                if (!file) throw new Error('找不到 albums_data.json 文件');
+                return JSON.parse(file.content);
+            }
+
+            async function pushToGist(token, gistId, data) {
+                const url = `https://api.github.com/gists/${gistId}`;
+                const body = {
+                    files: {
+                        'albums_data.json': {
+                            content: JSON.stringify(data, null, 2)
+                        }
+                    }
+                };
+                const res = await fetch(url, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                return await res.json();
+            }
+
+            // ================================================================
+            //  同步操作
+            // ================================================================
+            async function testSyncConnection() {
+                if (!syncConfig) {
+                    showToast('请先配置同步', 'warning');
+                    return;
+                }
+                setSyncStatus('syncing', '测试连接中...');
+                try {
+                    await fetchFromGist(syncConfig.token, syncConfig.gistId);
+                    setSyncStatus('synced', '连接成功！');
+                    showToast('✅ 连接成功！', 'success');
+                } catch (err) {
+                    setSyncStatus('error', '连接失败: ' + err.message);
+                    showToast('❌ 连接失败: ' + err.message, 'warning');
+                }
+            }
+
+            async function autoPullFromCloud() {
+                if (!syncConfig || isSyncing) return;
+                try {
+                    isSyncing = true;
+                    setSyncStatus('syncing', '拉取云端数据...');
+                    const cloudData = await fetchFromGist(syncConfig.token, syncConfig.gistId);
+                    if (cloudData && Array.isArray(cloudData) && cloudData.length > 0) {
+                        // 检查本地是否有数据，如果没有则直接使用云端数据
+                        if (albums.length === 0) {
+                            albums = cloudData;
+                            saveData();
+                            renderAll();
+                            setSyncStatus('synced', '已从云端同步');
+                            showToast('📥 已从云端拉取数据', 'info');
+                        } else {
+                            // 比较数据，如果有差异则提示用户
+                            const localStr = JSON.stringify(albums);
+                            const cloudStr = JSON.stringify(cloudData);
+                            if (localStr !== cloudStr) {
+                                // 云端数据更新，自动合并（采用云端数据，因为云端可能更新）
+                                // 更安全的做法：让用户选择，但为了自动化，我们采用云端数据
+                                // 但为了避免覆盖本地数据，提示用户
+                                showToast('📥 云端数据有更新，请手动同步或检查', 'warning');
+                                // 不自动覆盖，让用户通过手动同步按钮操作
+                            }
+                        }
+                    }
+                    isSyncing = false;
+                } catch (err) {
+                    isSyncing = false;
+                    setSyncStatus('error', '拉取失败: ' + err.message);
+                    // 不弹Toast，静默失败
+                }
+            }
+
+            async function autoSyncToCloud() {
+                if (!syncConfig || isSyncing || albums.length === 0) return;
+                // 防抖：延迟1秒后同步
+                if (window._syncTimer) clearTimeout(window._syncTimer);
+                window._syncTimer = setTimeout(async () => {
+                    try {
+                        isSyncing = true;
+                        setSyncStatus('syncing', '推送到云端...');
+                        await pushToGist(syncConfig.token, syncConfig.gistId, albums);
+                        setSyncStatus('synced', '已同步');
+                        isSyncing = false;
+                    } catch (err) {
+                        isSyncing = false;
+                        setSyncStatus('error', '推送失败: ' + err.message);
+                        showToast('❌ 同步失败: ' + err.message, 'warning');
+                    }
+                }, 1000);
+            }
+
+            async function manualSync() {
+                if (!syncConfig) {
+                    showToast('请先配置同步', 'warning');
+                    return;
+                }
+                if (isSyncing) {
+                    showToast('同步中，请稍候...', 'info');
+                    return;
+                }
+                // 先推送本地数据到云端
+                try {
+                    isSyncing = true;
+                    setSyncStatus('syncing', '推送中...');
+                    await pushToGist(syncConfig.token, syncConfig.gistId, albums);
+                    setSyncStatus('synced', '已推送');
+                    showToast('✅ 已推送到云端', 'success');
+                    isSyncing = false;
+                } catch (err) {
+                    isSyncing = false;
+                    setSyncStatus('error', '推送失败: ' + err.message);
+                    showToast('❌ 推送失败: ' + err.message, 'warning');
+                }
             }
 
             // ================================================================
@@ -1456,15 +1431,14 @@
             function deleteAlbum(id) {
                 const album = albums.find(a => a.id === id);
                 if (!album) return;
-                showConfirm('删除专辑', '确定要删除 <strong>' + escapeHtml(album.name) + '</strong> 吗？<br><span style="font-size:13px;color:var(--text-muted);">所有曲目评价将丢失</span>', () => {
-                    albums = albums.filter(a => a.id !== id);
-                    if (selectedId === id) {
-                        selectedId = albums.length > 0 ? albums[0].id : null;
-                    }
-                    saveData();
-                    renderAll();
-                    showToast('已删除「' + album.name + '」', 'info');
-                });
+                if (!confirm('确定要删除 <strong>' + escapeHtml(album.name) + '</strong> 吗？')) return;
+                albums = albums.filter(a => a.id !== id);
+                if (selectedId === id) {
+                    selectedId = albums.length > 0 ? albums[0].id : null;
+                }
+                saveData();
+                renderAll();
+                showToast('已删除「' + album.name + '」', 'info');
             }
 
             function selectAlbum(id) {
@@ -1478,7 +1452,7 @@
             }
 
             // ================================================================
-            //  详情保存 (包含曲目作者)
+            //  详情保存
             // ================================================================
             function saveDetailChanges() {
                 const album = getSelectedAlbum();
@@ -1513,10 +1487,10 @@
             //  筛选
             // ================================================================
             function getFilteredAlbums() {
-                const genreFilter = document.getElementById('filterGenre').value.trim().toLowerCase();
-                const hardnessFilter = document.getElementById('filterHardness').value.trim();
-                const artistFilter = document.getElementById('filterArtist').value.trim().toLowerCase();
-                const trackFilter = document.getElementById('filterTrack').value.trim().toLowerCase();
+                const genreFilter = document.getElementById('filterGenre')?.value.trim().toLowerCase() || '';
+                const hardnessFilter = document.getElementById('filterHardness')?.value.trim() || '';
+                const artistFilter = document.getElementById('filterArtist')?.value.trim().toLowerCase() || '';
+                const trackFilter = document.getElementById('filterTrack')?.value.trim().toLowerCase() || '';
 
                 return albums.filter(a => {
                     if (genreFilter && a.genre.toLowerCase() !== genreFilter) return false;
@@ -1532,32 +1506,60 @@
 
             function applyFilters() {
                 const filtered = getFilteredAlbums();
-                document.getElementById('filterCount').textContent = '显示 ' + filtered.length + ' 张';
+                document.getElementById('filterResultCount').textContent = filtered.length;
+                document.getElementById('filterCountDisplay').textContent = `共 ${filtered.length} 张专辑`;
                 if (selectedId && !filtered.some(a => a.id === selectedId)) {
                     selectedId = null;
                 }
                 renderList();
             }
 
+            function resetFilters() {
+                document.querySelectorAll('#filterContainer input, #filterContainer select').forEach(el => {
+                    if (el.type === 'text' || el.type === 'textarea') el.value = '';
+                    else if (el.type === 'select') el.selectedIndex = 0;
+                });
+                applyFilters();
+            }
+
             // ================================================================
             //  渲染
             // ================================================================
             function renderAll() {
+                buildFilters();
                 renderList();
                 renderDetail();
                 updateTotal();
-                const filtered = getFilteredAlbums();
-                document.getElementById('filterCount').textContent = '显示 ' + filtered.length + ' 张';
-                if (editingId) {
-                    const album = albums.find(a => a.id === editingId);
-                    if (album) {
-                        fillForm(album);
-                        document.getElementById('formStatus').textContent = '✏️ 编辑: ' + album.name;
-                    } else {
-                        cancelForm();
-                    }
-                }
+                applyFilters();
                 updateLockState();
+                // 同步状态显示
+                updateSyncStatusUI();
+            }
+
+            function buildFilters() {
+                const container = document.getElementById('filterContainer');
+                // 简单的硬编码筛选，保持简洁
+                container.innerHTML = `
+                        <div class="filter-group">
+                            <label>曲风</label>
+                            <input type="text" id="filterGenre" placeholder="精确匹配" oninput="applyFilters()" />
+                        </div>
+                        <div class="filter-group">
+                            <label>硬度 (1-10)</label>
+                            <input type="number" id="filterHardness" min="1" max="10" placeholder="数值" oninput="applyFilters()" />
+                        </div>
+                        <div class="filter-group">
+                            <label>作者 / 厂牌</label>
+                            <input type="text" id="filterArtist" placeholder="精确匹配" oninput="applyFilters()" />
+                        </div>
+                        <div class="filter-group">
+                            <label>曲目名</label>
+                            <input type="text" id="filterTrack" placeholder="模糊搜索" oninput="applyFilters()" />
+                        </div>
+                        <div class="filter-reset">
+                            <button class="btn-sm" onclick="resetFilters()">重置筛选</button>
+                        </div>
+                    `;
             }
 
             function renderList() {
@@ -1601,60 +1603,57 @@
             }
 
             function renderDetail() {
-                const container = document.getElementById('detailContainer');
-                const album = albums.find(a => a.id === selectedId) || null;
+                const container = document.getElementById('editPanelBody');
+                const titleEl = document.getElementById('editPanelTitle');
+                const album = getSelectedAlbum();
 
                 if (!album) {
+                    titleEl.innerHTML = '选择专辑 <span class="ep-sub" id="editPanelSub"></span>';
                     container.innerHTML = `
-                            <div class="detail-empty" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;">
-                                <i class="fas fa-hand-point-left"></i>
-                                <span>选择一张专辑查看详情</span>
+                            <div class="empty-state" style="padding:4px 0; font-size:13px;">
+                                <i class="fas fa-hand-point-left" style="display:block; font-size:20px; opacity:0.3; margin-bottom:4px;"></i>
+                                点击左侧专辑开始编辑
                             </div>
                         `;
                     return;
                 }
 
+                titleEl.innerHTML =
+                    `${escapeHtml(album.name)} <span class="ep-sub">· ${escapeHtml(album.artist)}</span>`;
+
                 let tracksHtml = album.tracks.map((t, idx) => `
-                        <div class="track-item">
-                            <div class="ti-row">
-                                <div class="ti-name">
-                                    <input type="text" value="${escapeHtml(t.name)}" placeholder="曲目 ${idx+1} 名称" data-track-idx="${idx}" onchange="window.updateTrackName(${idx}, this.value)" />
+                        <div class="track-item" style="background:rgba(255,255,255,0.04);border-radius:6px;padding:6px 10px;border:1px solid rgba(200,200,210,0.04);">
+                            <div style="display:flex;gap:8px;align-items:center;margin-bottom:2px;">
+                                <div style="flex:1;min-width:0;">
+                                    <input type="text" value="${escapeHtml(t.name)}" placeholder="曲目 ${idx+1} 名称" style="width:100%;padding:2px 8px;font-size:13px;font-weight:600;border:1px solid rgba(200,200,210,0.08);border-radius:4px;background:rgba(255,255,255,0.04);color:var(--text);font-family:inherit;outline:none;" data-track-idx="${idx}" onchange="window.updateTrackName(${idx}, this.value)" />
                                 </div>
-                                <div class="ti-artist">
-                                    <input type="text" value="${escapeHtml(t.artist)}" placeholder="作者" data-track-idx="${idx}" onchange="window.updateTrackArtist(${idx}, this.value)" />
+                                <div style="flex:0 0 120px;min-width:60px;">
+                                    <input type="text" value="${escapeHtml(t.artist)}" placeholder="作者" style="width:100%;padding:2px 8px;font-size:12px;border:1px solid rgba(200,200,210,0.08);border-radius:4px;background:rgba(255,255,255,0.04);color:var(--text-secondary);font-family:inherit;outline:none;" data-track-idx="${idx}" onchange="window.updateTrackArtist(${idx}, this.value)" />
                                 </div>
                             </div>
-                            <div class="ti-review">
-                                <textarea placeholder="评价..." data-track-idx="${idx}" onchange="window.updateTrackReview(${idx}, this.value)" rows="3">${escapeHtml(t.review)}</textarea>
+                            <div>
+                                <textarea placeholder="评价..." style="width:100%;min-height:48px;max-height:80px;padding:4px 8px;font-size:12px;border:1px solid rgba(200,200,210,0.08);border-radius:4px;background:rgba(255,255,255,0.03);color:var(--text-secondary);font-family:inherit;outline:none;resize:vertical;line-height:1.5;" data-track-idx="${idx}" onchange="window.updateTrackReview(${idx}, this.value)" rows="2">${escapeHtml(t.review)}</textarea>
                             </div>
                         </div>
                     `).join('');
 
                 container.innerHTML = `
-                        <div class="detail-header">
-                            <div class="dh-name">
-                                ${escapeHtml(album.name)}
-                                <span class="dh-artist">· ${escapeHtml(album.artist)}</span>
-                            </div>
-                            <div class="dh-score">
-                                <label>质量</label>
-                                <input type="range" id="detailScore" min="0" max="10" step="0.5" value="${album.qualityScore}" ${isScoreLocked ? 'disabled' : ''} oninput="document.getElementById('scoreVal').textContent=this.value; window.saveDetailChanges()" />
-                                <span class="score-val" id="scoreVal">${album.qualityScore}</span>
-                                <button class="lock-btn ${isScoreLocked ? 'locked' : ''}" id="scoreLockBtn" onclick="window.toggleScoreLock()" title="${isScoreLocked ? '解锁' : '锁定'}">
-                                    <i class="fas ${isScoreLocked ? 'fa-lock' : 'fa-unlock'}"></i>
-                                </button>
-                            </div>
+                        <div style="display:flex;gap:12px;align-items:center;flex-shrink:0;flex-wrap:wrap;padding-bottom:8px;border-bottom:1px solid rgba(200,200,210,0.08);">
+                            <label style="font-size:12px;font-weight:600;color:var(--text-secondary);">质量</label>
+                            <input type="range" id="detailScore" min="0" max="10" step="0.5" value="${album.qualityScore}" ${isScoreLocked ? 'disabled' : ''} style="flex:1;min-width:80px;height:4px;appearance:none;background:rgba(139,123,181,0.20);border-radius:4px;outline:none;" oninput="document.getElementById('scoreVal').textContent=this.value; window.saveDetailChanges()" />
+                            <span class="score-val" id="scoreVal" style="font-size:16px;font-weight:700;color:var(--primary-dark);min-width:28px;text-align:center;">${album.qualityScore}</span>
+                            <button class="lock-btn ${isScoreLocked ? 'locked' : ''}" onclick="window.toggleScoreLock()" title="${isScoreLocked ? '解锁' : '锁定'}" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:14px;padding:2px 4px;">
+                                <i class="fas ${isScoreLocked ? 'fa-lock' : 'fa-unlock'}"></i>
+                            </button>
                         </div>
-                        <div class="detail-body">
-                            <div class="detail-overview">
-                                <label><i class="fas fa-align-left"></i> 专辑总览</label>
-                                <textarea id="detailOverview" placeholder="写下你对这张专辑的整体感受..." rows="4" onchange="window.saveDetailChanges()">${escapeHtml(album.overview)}</textarea>
-                            </div>
-                            <div class="detail-tracks">
-                                <div class="dt-label"><i class="fas fa-list-ul"></i> 单曲评价 (${album.tracks.length} 首)</div>
-                                <div class="dt-list">
-                                    ${tracksHtml}
-                                </div>
+                        <div style="flex-shrink:0;margin:6px 0 8px;">
+                            <label style="font-size:11px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.3px;display:block;margin-bottom:2px;"><i class="fas fa-align-left"></i> 专辑总览</label>
+                            <textarea id="detailOverview" placeholder="写下你对这张专辑的整体感受..." style="width:100%;min-height:60px;max-height:120px;padding:6px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(200,200,210,0.12);border-radius:6px;background:rgba(255,255,255,0.06);color:var(--text);resize:vertical;outline:none;line-height:1.6;" rows="3" onchange="window.saveDetailChanges()">${escapeHtml(album.overview)}</textarea>
+                        </div>
+                        <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:60px;">
+                            <label style="font-size:11px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.3px;flex-shrink:0;margin-bottom:2px;"><i class="fas fa-list-ul"></i> 单曲评价 (${album.tracks.length} 首)</label>
+                            <div style="flex:1;overflow-y:auto;padding-right:4px;display:flex;flex-direction:column;gap:4px;min-height:40px;">
+                                ${tracksHtml}
                             </div>
                         </div>
                     `;
@@ -1667,100 +1666,35 @@
             // ================================================================
             //  表单操作
             // ================================================================
-            function toggleForm(show) {
-                const area = document.getElementById('formArea');
-                const btn = document.getElementById('toggleFormBtn');
-                if (show === undefined) {
-                    const isOpen = area.classList.contains('open');
-                    if (isOpen) cancelForm();
-                    else { area.classList.add('open');
-                        btn.innerHTML = '<i class="fas fa-times"></i> 关闭表单'; }
-                } else if (show) {
-                    area.classList.add('open');
-                    btn.innerHTML = '<i class="fas fa-times"></i> 关闭表单';
-                } else {
-                    area.classList.remove('open');
-                    btn.innerHTML = '<i class="fas fa-plus"></i> 添加专辑';
-                }
-            }
-
-            function fillForm(album) {
-                document.getElementById('inputName').value = album.name || '';
-                document.getElementById('inputArtist').value = album.artist || '';
-                document.getElementById('inputGenre').value = album.genre || '';
-                document.getElementById('inputHardness').value = album.hardness || 5;
-                document.getElementById('inputTrackCount').value = album.trackCount || 0;
-            }
-
-            function resetForm() {
-                document.getElementById('inputName').value = '';
-                document.getElementById('inputArtist').value = '';
-                document.getElementById('inputGenre').value = '';
-                document.getElementById('inputHardness').value = 5;
-                document.getElementById('inputTrackCount').value = 8;
-                editingId = null;
-                document.getElementById('formStatus').textContent = '准备添加';
-                document.getElementById('saveAlbumBtn').innerHTML = '<i class="fas fa-save"></i> 保存';
-            }
-
-            function cancelForm() {
-                resetForm();
-                toggleForm(false);
-            }
-
             function startEdit(id) {
                 const album = albums.find(a => a.id === id);
                 if (!album) return;
                 saveDetailChanges();
                 editingId = id;
-                fillForm(album);
-                document.getElementById('formStatus').textContent = '✏️ 编辑: ' + album.name;
-                document.getElementById('saveAlbumBtn').innerHTML = '<i class="fas fa-pen"></i> 更新';
-                toggleForm(true);
+                // 填充表单 (使用弹窗或内联编辑，这里直接在内联编辑中处理)
+                // 我们使用内联编辑，所以不需要额外填充
+                // 如果编辑模式，可以展开编辑面板
+                document.getElementById('editPanelGlass').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                selectAlbum(id);
+                showToast('✏️ 编辑「' + album.name + '」', 'info');
             }
 
             function saveAlbum() {
-                const name = document.getElementById('inputName').value.trim();
-                const artist = document.getElementById('inputArtist').value.trim();
-                const genre = document.getElementById('inputGenre').value.trim();
-                const hardness = parseInt(document.getElementById('inputHardness').value) || 5;
-                const trackCount = parseInt(document.getElementById('inputTrackCount').value) || 0;
+                const album = getSelectedAlbum();
+                if (!album) { showToast('请先选择专辑', 'warning'); return; }
+                saveDetailChanges();
+                showToast('✅ 已保存「' + album.name + '」', 'success');
+            }
 
-                if (!name || !artist) {
-                    showToast('请填写专辑名称和作者/厂牌', 'warning');
-                    return;
-                }
-                if (hardness < 1 || hardness > 10) {
-                    showToast('硬度范围 1-10', 'warning');
-                    return;
-                }
-                if (trackCount < 0 || trackCount > 50) {
-                    showToast('曲目数范围 1-50', 'warning');
-                    return;
-                }
-
-                const data = { name, artist, genre, hardness, trackCount };
-
-                if (editingId) {
-                    const updated = updateAlbum(editingId, data);
-                    if (updated) {
-                        editingId = null;
-                        resetForm();
-                        toggleForm(false);
-                        renderAll();
-                        selectAlbum(updated.id);
-                    }
-                } else {
-                    const newAlbum = addAlbum(data);
-                    resetForm();
-                    toggleForm(false);
-                    renderAll();
-                    selectAlbum(newAlbum.id);
-                }
+            function closeEditPanel() {
+                // 保存当前编辑
+                saveDetailChanges();
+                editingId = null;
+                renderAll();
             }
 
             // ================================================================
-            //  曲目更新 (包含作者)
+            //  曲目更新
             // ================================================================
             function updateTrackName(idx, value) {
                 const album = getSelectedAlbum();
@@ -1791,17 +1725,11 @@
                 updateLockState();
                 const slider = document.getElementById('detailScore');
                 if (slider) slider.disabled = isScoreLocked;
-                const btn = document.getElementById('scoreLockBtn');
-                if (btn) {
-                    btn.innerHTML = `<i class="fas ${isScoreLocked ? 'fa-lock' : 'fa-unlock'}"></i>`;
-                    btn.classList.toggle('locked', isScoreLocked);
-                    btn.title = isScoreLocked ? '解锁' : '锁定';
-                }
-                showToast(isScoreLocked ? '质量评分已锁定' : '质量评分已解锁', 'info');
+                showToast(isScoreLocked ? '🔒 质量评分已锁定' : '🔓 质量评分已解锁', 'info');
             }
 
             function updateLockState() {
-                const btn = document.getElementById('scoreLockBtn');
+                const btn = document.querySelector('.lock-btn');
                 if (btn) {
                     btn.innerHTML = `<i class="fas ${isScoreLocked ? 'fa-lock' : 'fa-unlock'}"></i>`;
                     btn.classList.toggle('locked', isScoreLocked);
@@ -1812,25 +1740,23 @@
             }
 
             // ================================================================
-            //  模态框
+            //  同步设置弹窗
             // ================================================================
-            let modalCallback = null;
-
-            function showConfirm(title, msg, cb) {
-                document.getElementById('modalTitle').textContent = title;
-                document.getElementById('modalMsg').innerHTML = msg;
-                document.getElementById('confirmModal').classList.add('show');
-                modalCallback = cb;
-                document.getElementById('modalConfirmBtn').onclick = function() {
-                    document.getElementById('confirmModal').classList.remove('show');
-                    if (modalCallback) modalCallback();
-                    modalCallback = null;
-                };
+            function openSyncSettings() {
+                const modal = document.getElementById('syncModal');
+                modal.classList.add('show');
+                if (syncConfig) {
+                    document.getElementById('githubToken').value = syncConfig.token || '';
+                    document.getElementById('gistId').value = syncConfig.gistId || '';
+                } else {
+                    document.getElementById('githubToken').value = '';
+                    document.getElementById('gistId').value = '';
+                }
+                updateSyncStatusUI();
             }
 
-            function closeModal() {
-                document.getElementById('confirmModal').classList.remove('show');
-                modalCallback = null;
+            function closeModal(id) {
+                document.getElementById(id).classList.remove('show');
             }
 
             // ================================================================
@@ -1857,23 +1783,22 @@
                     try {
                         const data = JSON.parse(ev.target.result);
                         if (!Array.isArray(data)) throw new Error('格式错误');
-                        showConfirm('导入数据', '即将导入 <strong>' + data.length +
-                            '</strong> 张专辑，将 <span style="color:#ef4444;">替换</span> 当前所有数据，是否继续？', () => {
-                            albums = data;
-                            albums.forEach(a => {
-                                if (!a.tracks) a.tracks = [];
-                                if (a.qualityScore === undefined) a.qualityScore = 5;
-                                if (!a.overview) a.overview = '';
-                                a.trackCount = a.tracks.length;
-                                a.tracks.forEach(t => {
-                                    if (t.artist === undefined) t.artist = '';
-                                });
+                        if (!confirm('即将导入 <strong>' + data.length +
+                                '</strong> 张专辑，将 <span style="color:#ef4444;">替换</span> 当前所有数据，是否继续？')) return;
+                        albums = data;
+                        albums.forEach(a => {
+                            if (!a.tracks) a.tracks = [];
+                            if (a.qualityScore === undefined) a.qualityScore = 5;
+                            if (!a.overview) a.overview = '';
+                            a.trackCount = a.tracks.length;
+                            a.tracks.forEach(t => {
+                                if (t.artist === undefined) t.artist = '';
                             });
-                            selectedId = albums.length > 0 ? albums[0].id : null;
-                            saveData();
-                            renderAll();
-                            showToast('成功导入 ' + albums.length + ' 张专辑！', 'success');
                         });
+                        selectedId = albums.length > 0 ? albums[0].id : null;
+                        saveData();
+                        renderAll();
+                        showToast('成功导入 ' + albums.length + ' 张专辑！', 'success');
                     } catch (err) {
                         showToast('导入失败：' + err.message, 'warning');
                     }
@@ -1894,22 +1819,31 @@
             });
 
             // ================================================================
-            //  事件绑定 & 初始化
+            //  事件绑定 & 全局暴露
             // ================================================================
-            document.getElementById('toggleFormBtn').addEventListener('click', function() {
-                if (editingId) cancelForm();
-                else toggleForm();
+            document.getElementById('addAlbumBtn').addEventListener('click', function() {
+                const name = prompt('请输入专辑名称：');
+                if (!name) return;
+                const artist = prompt('请输入作者/厂牌：') || '未知';
+                const genre = prompt('请输入曲风：') || '未分类';
+                const hardness = parseInt(prompt('请输入硬度 (1-10)：', '5')) || 5;
+                const trackCount = parseInt(prompt('请输入曲目数：', '8')) || 8;
+                if (hardness < 1 || hardness > 10) { showToast('硬度范围 1-10', 'warning'); return; }
+                if (trackCount < 1 || trackCount > 50) { showToast('曲目数范围 1-50', 'warning'); return; }
+                addAlbum({ name, artist, genre, hardness, trackCount });
             });
-            document.getElementById('cancelFormBtn').addEventListener('click', cancelForm);
+
             document.getElementById('saveAlbumBtn').addEventListener('click', saveAlbum);
 
+            // 键盘快捷键
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
-                    if (document.getElementById('confirmModal').classList.contains('show')) closeModal();
-                    else if (document.getElementById('formArea').classList.contains('open')) cancelForm();
+                    if (document.getElementById('syncModal').classList.contains('show')) {
+                        closeModal('syncModal');
+                    }
                 }
                 if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-                    if (document.activeElement?.closest('.detail-body')) {
+                    if (document.activeElement?.closest('.ep-body')) {
                         e.preventDefault();
                         saveDetailChanges();
                         showToast('已保存', 'success');
@@ -1917,6 +1851,7 @@
                 }
             });
 
+            // 暴露全局
             window.selectAlbum = selectAlbum;
             window.deleteAlbum = deleteAlbum;
             window.startEdit = startEdit;
@@ -1926,14 +1861,27 @@
             window.updateTrackReview = updateTrackReview;
             window.toggleScoreLock = toggleScoreLock;
             window.applyFilters = applyFilters;
+            window.resetFilters = resetFilters;
             window.exportData = exportData;
             window.importData = importData;
             window.closeModal = closeModal;
+            window.openSyncSettings = openSyncSettings;
+            window.saveSyncConfig = saveSyncConfigToLocal;
+            window.clearSyncConfig = clearSyncConfig;
+            window.testSync = testSyncConnection;
+            window.manualSync = manualSync;
+            window.closeEditPanel = closeEditPanel;
+            window.saveAlbum = saveAlbum;
 
+            // ================================================================
+            //  启动
+            // ================================================================
+            loadSyncConfig();
             loadData();
-            console.log('📀 专辑记录器 (按钮点击修复)');
+            console.log('📀 专辑记录器 · 同步版');
             console.log('  📊 已加载 ' + albums.length + ' 张专辑');
-            console.log('  ⌨️  Ctrl+S 保存详情 | Esc 关闭');
+            console.log('  ☁️  同步状态: ' + (syncConfig ? '已配置' : '未配置'));
+            console.log('  ⌨️  Ctrl+S 保存详情 | Esc 关闭弹窗');
 
         })();
     </script>
