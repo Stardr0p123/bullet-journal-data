@@ -7,30 +7,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         /* ================================================================
-           1.  CSS 变量 — 紫灰色系 · 克制优雅
+           1.  CSS 变量 — 薰衣草紫灰 · 克制柔和
            ================================================================ */
         :root {
-            --primary: #8b5cf6;
-            --primary-dark: #6d28d9;
-            --primary-light: #a78bfa;
-            --primary-soft: rgba(139, 92, 246, 0.12);
-            --primary-glow: rgba(139, 92, 246, 0.20);
-            --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+            --primary: #9b8ab0;
+            --primary-dark: #7a6890;
+            --primary-light: #c8bcd8;
+            --primary-soft: rgba(155, 138, 176, 0.14);
+            --primary-glow: rgba(155, 138, 176, 0.20);
+            --primary-gradient: linear-gradient(135deg, #9b8ab0 0%, #8a78a0 50%, #7a6890 100%);
 
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
+            --success: #6f9e7a;
+            --warning: #c4a86a;
+            --danger: #c47a7a;
+            --info: #7a9ec4;
 
-            --glass-bg: rgba(255, 255, 255, 0.42);
-            --glass-bg-hover: rgba(255, 255, 255, 0.58);
-            --glass-border: rgba(255, 255, 255, 0.32);
-            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.03);
-            --glass-hover-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-bg-hover: rgba(255, 255, 255, 0.60);
+            --glass-border: rgba(255, 255, 255, 0.30);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+            --glass-hover-shadow: 0 20px 60px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03);
             --glass-blur: 22px;
 
-            --text: #1e1b2e;
-            --text-secondary: #5b5170;
-            --text-muted: #9488a8;
+            --text: #2a2438;
+            --text-secondary: #5a4e6a;
+            --text-muted: #9a8aaa;
 
             --radius: 20px;
             --radius-sm: 12px;
@@ -44,11 +45,11 @@
 
             --mouse-x: 50%;
             --mouse-y: 50%;
-            --icon-bg: rgba(139, 92, 246, 0.10);
+            --icon-bg: rgba(155, 138, 176, 0.10);
             --icon-radius: 10px;
 
-            --bg-start: #e8e4f0;
-            --bg-end: #d5cfe0;
+            --bg-start: #ece6f0;
+            --bg-end: #ddd6e4;
         }
 
         /* ================================================================
@@ -67,8 +68,8 @@
             color: var(--text);
             background: var(--bg-start);
             background:
-                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(139, 92, 246, 0.12) 0%, rgba(167, 139, 250, 0.04) 40%, rgba(15, 23, 42, 0.01) 70%, transparent 100%),
-                radial-gradient(ellipse at calc(100% - var(--mouse-x)) calc(100% - var(--mouse-y)), rgba(109, 40, 217, 0.06) 0%, rgba(139, 92, 246, 0.02) 50%, transparent 80%),
+                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(155, 138, 176, 0.10) 0%, rgba(200, 188, 216, 0.04) 40%, rgba(15, 23, 42, 0.01) 70%, transparent 100%),
+                radial-gradient(ellipse at calc(100% - var(--mouse-x)) calc(100% - var(--mouse-y)), rgba(122, 104, 144, 0.05) 0%, rgba(155, 138, 176, 0.02) 50%, transparent 80%),
                 var(--bg-start);
             background-attachment: fixed;
             transition: background 0.08s ease;
@@ -87,7 +88,7 @@
             pointer-events: none;
             z-index: 0;
             background:
-                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.05) 0%, transparent 50%),
                 radial-gradient(ellipse at calc(100% - var(--mouse-x)) calc(100% - var(--mouse-y)), rgba(255, 255, 255, 0.03) 0%, transparent 40%);
             transition: background 0.08s ease;
             opacity: 0.7;
@@ -101,11 +102,11 @@
             background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(148, 136, 168, 0.25);
+            background: rgba(154, 138, 170, 0.25);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(148, 136, 168, 0.45);
+            background: rgba(154, 138, 170, 0.45);
         }
 
         /* ================================================================
@@ -127,7 +128,7 @@
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.22) 0%, transparent 70%);
             pointer-events: none;
             opacity: 0.4;
             transition: opacity var(--transition-smooth);
@@ -138,7 +139,7 @@
         }
         .glass:hover {
             background: var(--glass-bg-hover);
-            border-color: rgba(255, 255, 255, 0.50);
+            border-color: rgba(255, 255, 255, 0.45);
             box-shadow: var(--glass-hover-shadow);
             transform: translateY(-2px);
         }
@@ -163,7 +164,7 @@
             width: 100%;
             margin: 0 auto 18px;
             padding: 10px 22px;
-            background: rgba(255, 255, 255, 0.38);
+            background: rgba(255, 255, 255, 0.40);
             backdrop-filter: blur(28px);
             -webkit-backdrop-filter: blur(28px);
             border: 1px solid rgba(255, 255, 255, 0.30);
@@ -178,7 +179,7 @@
         }
         .app-header:hover {
             border-color: rgba(255, 255, 255, 0.45);
-            box-shadow: 0 4px 28px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 28px rgba(0, 0, 0, 0.03);
         }
         .logo-area {
             display: flex;
@@ -195,12 +196,12 @@
             justify-content: center;
             font-size: 18px;
             color: #fff;
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.25);
+            box-shadow: 0 4px 20px rgba(155, 138, 176, 0.25);
             transition: transform var(--transition-bounce), box-shadow var(--transition-smooth);
         }
         .logo-icon:hover {
             transform: scale(1.15) rotate(-8deg);
-            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.40);
+            box-shadow: 0 8px 32px rgba(155, 138, 176, 0.40);
         }
         .logo-text {
             font-size: 18px;
@@ -239,7 +240,7 @@
         }
         .btn-ghost-sm:hover {
             background: rgba(255, 255, 255, 0.40);
-            border-color: rgba(139, 92, 246, 0.20);
+            border-color: rgba(155, 138, 176, 0.25);
             color: var(--text);
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
@@ -248,13 +249,13 @@
             transform: scale(0.94);
         }
         .btn-ghost-sm.danger {
-            color: #b91c1c;
-            border-color: rgba(239, 68, 68, 0.15);
+            color: #b97a7a;
+            border-color: rgba(196, 122, 122, 0.15);
         }
         .btn-ghost-sm.danger:hover {
-            background: rgba(239, 68, 68, 0.10);
-            border-color: rgba(239, 68, 68, 0.25);
-            color: #7f1d1d;
+            background: rgba(196, 122, 122, 0.10);
+            border-color: rgba(196, 122, 122, 0.25);
+            color: #8a5a5a;
         }
 
         /* ================================================================
@@ -270,7 +271,6 @@
             min-height: 0;
         }
 
-        /* 左侧栏 35% */
         .left-sidebar {
             flex: 0 0 35%;
             min-width: 220px;
@@ -296,7 +296,6 @@
             flex: 1;
         }
 
-        /* 右侧栏 65% */
         .right-main {
             flex: 1;
             min-width: 0;
@@ -313,7 +312,6 @@
             padding: 16px 18px;
         }
 
-        /* 滚动容器 */
         .scroll-y {
             overflow-y: auto;
             flex: 1;
@@ -324,7 +322,7 @@
             width: 3px;
         }
         .scroll-y::-webkit-scrollbar-thumb {
-            background: rgba(148, 136, 168, 0.20);
+            background: rgba(154, 138, 170, 0.20);
             border-radius: 3px;
         }
 
@@ -350,6 +348,23 @@
             padding: 0 8px;
             border-radius: var(--radius-full);
             color: var(--text-muted);
+        }
+        .sidebar-title .refresh-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 50%;
+            transition: all var(--transition-smooth);
+            opacity: 0.4;
+        }
+        .sidebar-title .refresh-btn:hover {
+            opacity: 1;
+            color: var(--primary-dark);
+            transform: rotate(60deg);
+            background: rgba(155, 138, 176, 0.08);
         }
 
         .scheduled-list {
@@ -377,6 +392,19 @@
             flex-shrink: 0;
             min-width: 48px;
         }
+        .scheduled-item .s-icon {
+            font-size: 12px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            width: 18px;
+            text-align: center;
+        }
+        .scheduled-item .s-icon.type-event {
+            color: var(--info);
+        }
+        .scheduled-item .s-icon.type-note {
+            color: var(--text-muted);
+        }
         .scheduled-item .s-text {
             flex: 1;
             word-break: break-word;
@@ -393,7 +421,7 @@
             transition: border-color var(--transition-smooth);
         }
         .temp-area:hover {
-            border-color: rgba(139, 92, 246, 0.15);
+            border-color: rgba(155, 138, 176, 0.15);
         }
         .temp-area .temp-empty {
             text-align: center;
@@ -411,6 +439,19 @@
             border-radius: 4px;
             background: rgba(255, 255, 255, 0.04);
             margin-bottom: 2px;
+        }
+        .temp-item .t-icon {
+            font-size: 12px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            width: 16px;
+            text-align: center;
+        }
+        .temp-item .t-icon.type-event {
+            color: var(--info);
+        }
+        .temp-item .t-icon.type-note {
+            color: var(--text-muted);
         }
         .temp-item .t-text {
             flex: 1;
@@ -465,24 +506,24 @@
             cursor: pointer;
             transition: all var(--transition-smooth);
             font-family: inherit;
-            box-shadow: 0 2px 12px rgba(139, 92, 246, 0.10);
+            box-shadow: 0 2px 12px rgba(155, 138, 176, 0.10);
         }
         .extract-tool .btn-sm:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.18);
+            box-shadow: 0 4px 20px rgba(155, 138, 176, 0.18);
         }
         .extract-tool .btn-sm:active {
             transform: scale(0.94);
         }
         .extract-tool .btn-sm.danger-sm {
-            background: rgba(239, 68, 68, 0.12);
-            color: #b91c1c;
+            background: rgba(196, 122, 122, 0.12);
+            color: #8a5a5a;
             box-shadow: none;
-            border: 1px solid rgba(239, 68, 68, 0.10);
+            border: 1px solid rgba(196, 122, 122, 0.10);
         }
         .extract-tool .btn-sm.danger-sm:hover {
-            background: rgba(239, 68, 68, 0.18);
-            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.08);
+            background: rgba(196, 122, 122, 0.18);
+            box-shadow: 0 4px 16px rgba(196, 122, 122, 0.08);
         }
         .extract-tool .btn-sm.rounded-full {
             border-radius: var(--radius-full);
@@ -560,7 +601,7 @@
         }
 
         /* ================================================================
-           8.  右侧面板 — 月度日历（圆点背景版）
+           8.  右侧面板 — 月度日历
            ================================================================ */
         .date-indicator {
             display: flex;
@@ -630,7 +671,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* 日历单元格 — 大圆点背景 */
         .calendar-grid .day-cell {
             aspect-ratio: 1 / 1;
             display: flex;
@@ -659,22 +699,21 @@
             color: var(--primary-dark);
             font-weight: 700;
         }
-        /* 状态背景色 — 大圆点 */
         .calendar-grid .day-cell.has-task {
             background: var(--primary-soft);
             color: var(--primary-dark);
         }
         .calendar-grid .day-cell.has-event {
-            background: rgba(16, 185, 129, 0.15);
-            color: #065f46;
+            background: rgba(122, 158, 196, 0.15);
+            color: #4a6a8a;
         }
         .calendar-grid .day-cell.has-note {
-            background: rgba(148, 136, 168, 0.12);
+            background: rgba(154, 138, 170, 0.10);
             color: var(--text-secondary);
         }
         .calendar-grid .day-cell.all-done {
-            background: rgba(16, 185, 129, 0.20);
-            color: #065f46;
+            background: rgba(111, 158, 122, 0.18);
+            color: #4a7a5a;
         }
         .calendar-grid .day-cell.has-task.today {
             border-color: var(--primary);
@@ -682,16 +721,14 @@
         }
         .calendar-grid .day-cell.all-done.today {
             border-color: var(--success);
-            background: rgba(16, 185, 129, 0.20);
+            background: rgba(111, 158, 122, 0.18);
         }
-
         .calendar-grid .day-cell:hover {
             transform: scale(1.06);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
             z-index: 2;
         }
 
-        /* 图例 */
         .legend-row {
             display: flex;
             gap: 14px;
@@ -718,20 +755,20 @@
             border: 1px solid var(--primary);
         }
         .legend-dot.ld-event {
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid #10b981;
+            background: rgba(122, 158, 196, 0.15);
+            border: 1px solid var(--info);
         }
         .legend-dot.ld-note {
-            background: rgba(148, 136, 168, 0.12);
-            border: 1px solid #9488a8;
+            background: rgba(154, 138, 170, 0.10);
+            border: 1px solid var(--text-muted);
         }
         .legend-dot.ld-done {
-            background: rgba(16, 185, 129, 0.25);
-            border: 1px solid #10b981;
+            background: rgba(111, 158, 122, 0.18);
+            border: 1px solid var(--success);
         }
 
         /* ================================================================
-           9.  右侧面板 — 月度任务列表
+           9.  条目列表 — 任务/事件/笔记统一
            ================================================================ */
         .task-list {
             display: flex;
@@ -764,6 +801,59 @@
             background: rgba(255, 255, 255, 0.20);
             border-color: rgba(255, 255, 255, 0.08);
         }
+
+        .task-item .task-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            transition: all var(--transition-bounce);
+            cursor: default;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+        }
+        /* 任务状态图标 — 可点击 */
+        .task-item .task-icon.status-toggle {
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .task-item .task-icon.status-toggle:hover {
+            transform: scale(1.15) rotate(-6deg);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .task-item .task-icon.status-toggle:active {
+            transform: scale(0.85);
+        }
+
+        .task-icon.status-todo {
+            color: var(--text-muted);
+        }
+        .task-icon.status-done {
+            color: var(--success);
+        }
+        .task-icon.status-migrated {
+            color: var(--primary);
+        }
+        .task-icon.status-scheduled {
+            color: var(--warning);
+        }
+
+        /* 事件类型图标 */
+        .task-icon.type-event {
+            color: var(--info);
+            font-size: 14px;
+        }
+        /* 笔记类型图标 */
+        .task-icon.type-note {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
         .task-item .task-text {
             flex: 1;
             font-size: 14px;
@@ -780,64 +870,6 @@
         }
         .task-item .task-text.scheduled {
             color: var(--warning);
-        }
-        .task-item .task-type-icon {
-            font-size: 14px;
-            flex-shrink: 0;
-            width: 20px;
-            text-align: center;
-            color: var(--text-muted);
-        }
-        .task-item .task-type-icon.type-task {
-            color: var(--primary);
-        }
-        .task-item .task-type-icon.type-event {
-            color: var(--success);
-        }
-        .task-item .task-type-icon.type-note {
-            color: var(--text-muted);
-        }
-
-        /* 状态切换 */
-        .status-toggle {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(255, 255, 255, 0.08);
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-muted);
-            transition: all var(--transition-bounce);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-family: var(--font-sans);
-        }
-        .status-toggle:hover {
-            transform: scale(1.12) rotate(-4deg);
-            background: rgba(255, 255, 255, 0.20);
-        }
-        .status-toggle:active {
-            transform: scale(0.85);
-        }
-        .status-toggle.status-todo {
-            color: var(--text-muted);
-            background: rgba(148, 136, 168, 0.08);
-        }
-        .status-toggle.status-done {
-            color: var(--success);
-            background: rgba(16, 185, 129, 0.12);
-        }
-        .status-toggle.status-migrated {
-            color: var(--primary);
-            background: rgba(139, 92, 246, 0.12);
-        }
-        .status-toggle.status-scheduled {
-            color: var(--warning);
-            background: rgba(245, 158, 11, 0.12);
         }
 
         .order-btn {
@@ -857,7 +889,7 @@
             border-radius: 4px;
         }
         .task-item:hover .order-btn {
-            opacity: 0.6;
+            opacity: 0.5;
         }
         .order-btn:hover {
             opacity: 1 !important;
@@ -878,7 +910,7 @@
             padding: 2px 4px;
             border-radius: 50%;
             transition: all var(--transition-smooth);
-            opacity: 0.2;
+            opacity: 0.15;
             width: 24px;
             height: 24px;
             display: flex;
@@ -886,7 +918,7 @@
             justify-content: center;
         }
         .task-item:hover .del-task {
-            opacity: 0.6;
+            opacity: 0.5;
         }
         .task-item .del-task:hover {
             color: var(--danger);
@@ -894,16 +926,18 @@
             transform: scale(1.1);
         }
 
-        /* 输入组 */
+        /* ================================================================
+           10. 添加表单 — 类型选择器
+           ================================================================ */
         .input-group {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
             margin-bottom: 8px;
+            align-items: center;
         }
         .input-group input,
-        .input-group textarea,
-        .input-group select {
+        .input-group textarea {
             flex: 1;
             padding: 6px 12px;
             border: 1.5px solid rgba(255, 255, 255, 0.15);
@@ -914,15 +948,14 @@
             background: rgba(255, 255, 255, 0.14);
             backdrop-filter: blur(4px);
             color: var(--text);
-            min-width: 80px;
+            min-width: 60px;
         }
         .input-group input:focus,
-        .input-group textarea:focus,
-        .input-group select:focus {
+        .input-group textarea:focus {
             outline: none;
             border-color: var(--primary);
             background: rgba(255, 255, 255, 0.30);
-            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.06);
+            box-shadow: 0 0 0 4px rgba(155, 138, 176, 0.06);
             transform: translateY(-1px);
         }
         .input-group textarea {
@@ -930,6 +963,53 @@
             max-height: 48px;
             resize: vertical;
         }
+
+        .type-selector {
+            display: flex;
+            gap: 2px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-sm);
+            padding: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            flex-shrink: 0;
+        }
+        .type-selector .type-btn {
+            padding: 4px 10px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-muted);
+            transition: all var(--transition-smooth);
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            font-weight: 500;
+        }
+        .type-selector .type-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+        }
+        .type-selector .type-btn.active {
+            background: rgba(255, 255, 255, 0.20);
+            color: var(--text);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+        .type-selector .type-btn .t-icon {
+            font-size: 13px;
+        }
+        .type-selector .type-btn .t-icon.task-icon {
+            color: var(--primary);
+        }
+        .type-selector .type-btn .t-icon.event-icon {
+            color: var(--info);
+        }
+        .type-selector .type-btn .t-icon.note-icon {
+            color: var(--text-muted);
+        }
+
         .input-group .btn-sm {
             padding: 6px 16px;
             border-radius: var(--radius-sm);
@@ -941,19 +1021,15 @@
             cursor: pointer;
             transition: all var(--transition-smooth);
             font-family: inherit;
-            box-shadow: 0 2px 12px rgba(139, 92, 246, 0.10);
+            box-shadow: 0 2px 12px rgba(155, 138, 176, 0.10);
             white-space: nowrap;
         }
         .input-group .btn-sm:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.18);
+            box-shadow: 0 4px 20px rgba(155, 138, 176, 0.18);
         }
         .input-group .btn-sm:active {
             transform: scale(0.94);
-        }
-        .input-group .type-select {
-            flex: 0 0 auto;
-            width: 80px;
         }
 
         .empty-state {
@@ -969,7 +1045,7 @@
         }
 
         /* ================================================================
-           10. 周视图
+           11. 周视图
            ================================================================ */
         .week-grid {
             display: grid;
@@ -1022,21 +1098,29 @@
             text-overflow: ellipsis;
         }
         .week-day .wd-tasks .wd-task .wd-icon {
-            font-size: 12px;
+            font-size: 11px;
             flex-shrink: 0;
-        }
-        .week-day .wd-tasks .wd-task .wd-icon.type-task {
-            color: var(--primary);
+            width: 14px;
+            text-align: center;
         }
         .week-day .wd-tasks .wd-task .wd-icon.type-event {
-            color: var(--success);
+            color: var(--info);
         }
         .week-day .wd-tasks .wd-task .wd-icon.type-note {
             color: var(--text-muted);
         }
+        .week-day .wd-tasks .wd-task .wd-icon.status-done {
+            color: var(--success);
+        }
+        .week-day .wd-tasks .wd-task .wd-icon.status-migrated {
+            color: var(--primary);
+        }
+        .week-day .wd-tasks .wd-task .wd-icon.status-scheduled {
+            color: var(--warning);
+        }
 
         /* ================================================================
-           11. Tab 切换 + 底部滑动条
+           12. Tab 切换 + 底部滑动条
            ================================================================ */
         .tab-nav-wrapper {
             position: relative;
@@ -1102,7 +1186,7 @@
         }
 
         /* ================================================================
-           12. GitHub 面板
+           13. GitHub 面板
            ================================================================ */
         .github-panel {
             position: fixed;
@@ -1114,7 +1198,7 @@
             -webkit-backdrop-filter: blur(32px);
             border: 1px solid rgba(255, 255, 255, 0.30);
             border-radius: 24px;
-            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.06);
             padding: 22px 26px 26px;
             max-width: 400px;
             width: calc(100% - 48px);
@@ -1184,7 +1268,7 @@
         }
         .github-panel .form-group input:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.10);
+            box-shadow: 0 0 0 4px rgba(155, 138, 176, 0.10);
             background: rgba(255, 255, 255, 0.28);
             transform: translateY(-1px);
         }
@@ -1213,7 +1297,7 @@
         }
         .github-panel .gp-actions .btn-sm:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 28px rgba(139, 92, 246, 0.18);
+            box-shadow: 0 8px 28px rgba(155, 138, 176, 0.18);
         }
         .github-panel .gp-actions .btn-sm:active {
             transform: scale(0.95);
@@ -1221,10 +1305,10 @@
         .github-panel .gp-actions .btn-primary {
             background: var(--primary-gradient);
             color: #fff;
-            box-shadow: 0 4px 18px rgba(139, 92, 246, 0.20);
+            box-shadow: 0 4px 18px rgba(155, 138, 176, 0.20);
         }
         .github-panel .gp-actions .btn-primary:hover {
-            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.30);
+            box-shadow: 0 8px 32px rgba(155, 138, 176, 0.30);
         }
         .github-panel .gp-actions .btn-sm:not(.btn-primary) {
             background: rgba(255, 255, 255, 0.12);
@@ -1272,7 +1356,7 @@
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 24px rgba(139, 92, 246, 0.22);
+            box-shadow: 0 4px 24px rgba(155, 138, 176, 0.22);
             transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
             display: flex;
             align-items: center;
@@ -1280,7 +1364,7 @@
         }
         .github-toggle-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 36px rgba(139, 92, 246, 0.30);
+            box-shadow: 0 8px 36px rgba(155, 138, 176, 0.30);
         }
         .github-toggle-btn:active {
             transform: scale(0.94);
@@ -1292,7 +1376,7 @@
         }
 
         /* ================================================================
-           13. Toast & 模态
+           14. Toast & 模态
            ================================================================ */
         .toast-container {
             position: fixed;
@@ -1310,7 +1394,7 @@
             font-weight: 600;
             font-size: 13px;
             color: #fff;
-            background: rgba(15, 23, 42, 0.70);
+            background: rgba(42, 36, 56, 0.75);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06);
@@ -1319,14 +1403,14 @@
             max-width: 340px;
         }
         .toast.success {
-            background: rgba(16, 185, 129, 0.75);
+            background: rgba(111, 158, 122, 0.80);
         }
         .toast.info {
-            background: rgba(139, 92, 246, 0.75);
+            background: rgba(155, 138, 176, 0.80);
         }
         .toast.warning {
-            background: rgba(245, 158, 11, 0.75);
-            color: #1e293b;
+            background: rgba(196, 168, 106, 0.80);
+            color: #3a3428;
         }
         @keyframes toastIn {
             from {
@@ -1352,7 +1436,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(15, 23, 42, 0.20);
+            background: rgba(42, 36, 56, 0.20);
             backdrop-filter: blur(8px);
             z-index: 200;
             display: none;
@@ -1419,7 +1503,7 @@
         }
         .btn-ghost-modal {
             background: rgba(255, 255, 255, 0.20);
-            color: #475569;
+            color: #5a4e6a;
             backdrop-filter: blur(4px);
         }
         .btn-ghost-modal:hover {
@@ -1427,21 +1511,21 @@
             transform: translateY(-1px);
         }
         .btn-danger-modal {
-            background: #ef4444;
+            background: #c47a7a;
             color: #fff;
-            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.12);
+            box-shadow: 0 4px 16px rgba(196, 122, 122, 0.12);
         }
         .btn-danger-modal:hover {
-            background: #dc2626;
+            background: #b06a6a;
             transform: translateY(-1px);
-            box-shadow: 0 6px 24px rgba(239, 68, 68, 0.18);
+            box-shadow: 0 6px 24px rgba(196, 122, 122, 0.18);
         }
         .btn-danger-modal:active {
             transform: scale(0.96);
         }
 
         /* ================================================================
-           14. 工具类
+           15. 工具类
            ================================================================ */
         .flex-between {
             display: flex;
@@ -1506,7 +1590,7 @@
         }
         .card-title .title-icon:hover {
             transform: scale(1.2) rotate(-8deg);
-            background: rgba(139, 92, 246, 0.20);
+            background: rgba(155, 138, 176, 0.20);
         }
         .card-title .badge {
             margin-left: auto;
@@ -1518,7 +1602,7 @@
         }
 
         /* ================================================================
-           15. 响应式
+           16. 响应式
            ================================================================ */
         @media (max-width: 1000px) {
             .main-container {
@@ -1636,8 +1720,7 @@
                 gap: 4px;
             }
             .input-group input,
-            .input-group textarea,
-            .input-group select {
+            .input-group textarea {
                 font-size: 11px;
                 padding: 4px 8px;
                 min-width: 50px;
@@ -1653,10 +1736,10 @@
             .task-item .task-text {
                 font-size: 13px;
             }
-            .status-toggle {
-                width: 26px;
-                height: 26px;
-                font-size: 13px;
+            .task-item .task-icon {
+                width: 24px;
+                height: 24px;
+                font-size: 14px;
             }
             .goal-item {
                 padding: 4px 8px;
@@ -1698,6 +1781,10 @@
             .legend-row .legend-dot {
                 width: 10px;
                 height: 10px;
+            }
+            .type-selector .type-btn {
+                font-size: 11px;
+                padding: 3px 7px;
             }
         }
 
@@ -1763,6 +1850,7 @@
                 <div class="sidebar-title">
                     <i class="fas fa-clock" style="color:var(--warning);"></i> 计划中
                     <span class="badge" id="scheduledCount">0</span>
+                    <button class="refresh-btn" onclick="refreshScheduled()" title="刷新计划"><i class="fas fa-sync-alt"></i></button>
                 </div>
                 <div class="scroll-y" id="scheduledList">
                     <div class="empty-state"><div class="icon"><i class="fas fa-inbox"></i></div><p>暂无计划中任务</p></div>
@@ -1859,11 +1947,11 @@
                         </div>
                         <div class="input-group">
                             <input type="text" id="monthlyInput" placeholder="添加内容..." onkeydown="if(event.key==='Enter')addMonthlyTask()" />
-                            <select class="type-select" id="monthlyTypeSelect">
-                                <option value="task">· 任务</option>
-                                <option value="event">○ 事件</option>
-                                <option value="note">— 笔记</option>
-                            </select>
+                            <div class="type-selector" id="monthlyTypeSelector">
+                                <button class="type-btn active" data-type="task" onclick="setMonthlyType('task',this)"><span class="t-icon task-icon"><i class="fas fa-circle"></i></span> 任务</button>
+                                <button class="type-btn" data-type="event" onclick="setMonthlyType('event',this)"><span class="t-icon event-icon"><i class="fas fa-circle"></i></span> 事件</button>
+                                <button class="type-btn" data-type="note" onclick="setMonthlyType('note',this)"><span class="t-icon note-icon"><i class="fas fa-minus"></i></span> 笔记</button>
+                            </div>
                             <button class="btn-sm" onclick="addMonthlyTask()"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
@@ -1925,11 +2013,11 @@
                         </div>
                         <div class="input-group">
                             <input type="text" id="dailyInput" placeholder="添加内容..." onkeydown="if(event.key==='Enter')addDailyTask()" />
-                            <select class="type-select" id="dailyTypeSelect">
-                                <option value="task">· 任务</option>
-                                <option value="event">○ 事件</option>
-                                <option value="note">— 笔记</option>
-                            </select>
+                            <div class="type-selector" id="dailyTypeSelector">
+                                <button class="type-btn active" data-type="task" onclick="setDailyType('task',this)"><span class="t-icon task-icon"><i class="fas fa-circle"></i></span> 任务</button>
+                                <button class="type-btn" data-type="event" onclick="setDailyType('event',this)"><span class="t-icon event-icon"><i class="fas fa-circle"></i></span> 事件</button>
+                                <button class="type-btn" data-type="note" onclick="setDailyType('note',this)"><span class="t-icon note-icon"><i class="fas fa-minus"></i></span> 笔记</button>
+                            </div>
                             <button class="btn-sm" onclick="addDailyTask()"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
@@ -1998,14 +2086,31 @@
             // ================================================================
             //  常量 & 配置
             // ================================================================
-            const STORAGE_KEY = 'bullet_journal_v2';
+            const STORAGE_KEY = 'bullet_journal_v3';
             const GITHUB_SETTINGS_KEY = 'github_settings_bullet_journal';
             const STATUSES = ['todo', 'done', 'migrated', 'scheduled'];
-            const STATUS_SYMBOLS = { todo: '·', done: '✓', migrated: '>', scheduled: '<' };
-            const STATUS_CLASSES = { todo: 'status-todo', done: 'status-done', migrated: 'status-migrated',
-                scheduled: 'status-scheduled' };
-            const TYPE_SYMBOLS = { task: '·', event: '○', note: '—' };
-            const TYPE_CLASSES = { task: 'type-task', event: 'type-event', note: 'type-note' };
+            const STATUS_ICONS = {
+                todo: 'fa-circle',
+                done: 'fa-check-circle',
+                migrated: 'fa-arrow-right',
+                scheduled: 'fa-arrow-left'
+            };
+            const STATUS_CLASSES = {
+                todo: 'status-todo',
+                done: 'status-done',
+                migrated: 'status-migrated',
+                scheduled: 'status-scheduled'
+            };
+            const TYPE_ICONS = {
+                task: 'fa-circle',
+                event: 'fa-circle',
+                note: 'fa-minus'
+            };
+            const TYPE_CLASSES = {
+                task: 'type-task',
+                event: 'type-event',
+                note: 'type-note'
+            };
 
             // ================================================================
             //  状态
@@ -2016,6 +2121,10 @@
             let currentDay = new Date();
             let currentTab = 'yearly';
             let confirmCallback = null;
+
+            // 类型选择器状态
+            let monthlyType = 'task';
+            let dailyType = 'task';
 
             // ================================================================
             //  工具
@@ -2076,6 +2185,37 @@
                 return year + '-W' + String(week).padStart(2, '0');
             }
 
+            function isTask(item) { return item.type === 'task' || !item.type; }
+
+            function getStatusIcon(status) {
+                return STATUS_ICONS[status] || 'fa-circle';
+            }
+
+            function getTypeIcon(type) {
+                return TYPE_ICONS[type] || 'fa-circle';
+            }
+
+            function getIconClass(item) {
+                if (isTask(item)) {
+                    return 'status-toggle ' + (STATUS_CLASSES[item.status] || 'status-todo');
+                }
+                return TYPE_CLASSES[item.type] || 'type-task';
+            }
+
+            function getIconHtml(item) {
+                let icon;
+                if (isTask(item)) {
+                    icon = getStatusIcon(item.status);
+                } else {
+                    icon = getTypeIcon(item.type);
+                }
+                return `<i class="fas ${icon}"></i>`;
+            }
+
+            function canToggleStatus(item) {
+                return isTask(item);
+            }
+
             // ================================================================
             //  Toast
             // ================================================================
@@ -2101,13 +2241,14 @@
                         if (!data.dailyEntries) data.dailyEntries = {};
                         if (!data.weeklyNotes) data.weeklyNotes = {};
                         if (!data.tempItems) data.tempItems = [];
-                        // 兼容旧数据
+                        // 兼容旧数据：确保每个条目有 type
                         Object.keys(data.dailyEntries).forEach(key => {
                             const entry = data.dailyEntries[key];
                             if (entry.tasks) {
                                 entry.tasks.forEach(t => {
                                     if (!t.type) t.type = 'task';
                                     if (t.order === undefined) t.order = 0;
+                                    if (!t.status) t.status = 'todo';
                                 });
                                 entry.tasks.sort((a, b) => (a.order || 0) - (b.order || 0));
                             }
@@ -2117,6 +2258,7 @@
                             items.forEach(t => {
                                 if (!t.type) t.type = 'task';
                                 if (t.order === undefined) t.order = 0;
+                                if (!t.status) t.status = 'todo';
                             });
                             items.sort((a, b) => (a.order || 0) - (b.order || 0));
                         });
@@ -2174,7 +2316,7 @@
                 if (!hasData) { showToast('没有数据需要清空', 'warning'); return; }
                 showConfirm(
                     '清空所有数据',
-                    '确定要 <strong style="color:#ef4444;">清空所有</strong> 数据吗？<br><span style="font-size:12px;color:var(--text-muted);">包括年度目标、月度条目、每日记录、周备注和迁移暂存</span>',
+                    '确定要 <strong style="color:#c47a7a;">清空所有</strong> 数据吗？<br><span style="font-size:12px;color:var(--text-muted);">包括年度目标、月度条目、每日记录、周备注和迁移暂存</span>',
                     function() {
                         data.yearlyGoals = [];
                         data.monthlyItems = {};
@@ -2411,39 +2553,42 @@
                 return getMonthKey(currentMonth.getFullYear(), currentMonth.getMonth());
             }
 
+            function setMonthlyType(type, btn) {
+                monthlyType = type;
+                document.querySelectorAll('#monthlyTypeSelector .type-btn').forEach(b => b.classList.remove('active'));
+                if (btn) btn.classList.add('active');
+            }
+
             function addMonthlyTask() {
                 const input = document.getElementById('monthlyInput');
                 const text = input.value.trim();
-                const type = document.getElementById('monthlyTypeSelect').value || 'task';
                 if (!text) { showToast('请输入内容', 'warning'); return; }
                 const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
                 const order = items.length;
-                items.push({ id: generateId(), text: text, status: 'todo', type: type, order: order });
+                items.push({ id: generateId(), text: text, status: 'todo', type: monthlyType, order: order });
                 saveData();
                 input.value = '';
                 renderMonthly();
                 showToast('✅ 已添加', 'success');
             }
 
-            function toggleMonthlyItemStatus(id) {
-                const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
+            function toggleItemStatus(items, id) {
                 const item = items.find(t => t.id === id);
-                if (!item) return;
+                if (!item || !isTask(item)) return;
                 const idx = STATUSES.indexOf(item.status);
                 item.status = STATUSES[(idx + 1) % STATUSES.length];
                 saveData();
-                renderMonthly();
+                return true;
             }
 
-            function deleteMonthlyItem(id) {
-                const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
-                data.monthlyItems[getCurrentMonthKey()] = items.filter(t => t.id !== id);
+            function deleteItem(items, id, key) {
+                const filtered = items.filter(t => t.id !== id);
+                if (key) { data[key] = filtered; } else { return filtered; }
                 saveData();
-                renderMonthly();
+                return filtered;
             }
 
-            function moveMonthlyItem(id, delta) {
-                const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
+            function moveItem(items, id, delta) {
                 const idx = items.findIndex(t => t.id === id);
                 if (idx === -1) return;
                 const newIdx = idx + delta;
@@ -2451,6 +2596,24 @@
                 [items[idx], items[newIdx]] = [items[newIdx], items[idx]];
                 items.forEach((t, i) => t.order = i);
                 saveData();
+            }
+
+            function toggleMonthlyItemStatus(id) {
+                const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
+                if (toggleItemStatus(items, id)) renderMonthly();
+            }
+
+            function deleteMonthlyItem(id) {
+                const key = getCurrentMonthKey();
+                const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
+                data.monthlyItems[key] = items.filter(t => t.id !== id);
+                saveData();
+                renderMonthly();
+            }
+
+            function moveMonthlyItem(id, delta) {
+                const items = getMonthlyItems(currentMonth.getFullYear(), currentMonth.getMonth());
+                moveItem(items, id, delta);
                 renderMonthly();
             }
 
@@ -2463,18 +2626,25 @@
                     container.innerHTML =
                         `<div class="empty-state"><div class="icon"><i class="fas fa-calendar-check"></i></div><p>本月还没有内容</p></div>`;
                 } else {
-                    container.innerHTML = items.map((t, idx) => `
+                    container.innerHTML = items.map((t, idx) => {
+                        const isTaskItem = isTask(t);
+                        const iconHtml = getIconHtml(t);
+                        const iconClass = getIconClass(t);
+                        const textClass = t.status === 'done' ? 'done' : (t.status === 'migrated' ? 'migrated' :
+                            (t.status === 'scheduled' ? 'scheduled' : ''));
+                        const clickHandler = isTaskItem ? `onclick="toggleMonthlyItemStatus('${t.id}')"` : '';
+                        return `
                             <div class="task-item">
-                                <button class="status-toggle ${STATUS_CLASSES[t.status]}" onclick="toggleMonthlyItemStatus('${t.id}')" title="切换状态">
-                                    ${STATUS_SYMBOLS[t.status]}
+                                <button class="task-icon ${iconClass}" ${clickHandler} title="${isTaskItem ? '切换状态' : ''}">
+                                    ${iconHtml}
                                 </button>
-                                <span class="task-type-icon ${TYPE_CLASSES[t.type] || 'type-task'}">${TYPE_SYMBOLS[t.type] || '·'}</span>
-                                <span class="task-text ${t.status === 'done' ? 'done' : ''} ${t.status === 'migrated' ? 'migrated' : ''} ${t.status === 'scheduled' ? 'scheduled' : ''}">${escapeHtml(t.text)}</span>
+                                <span class="task-text ${textClass}">${escapeHtml(t.text)}</span>
                                 <button class="order-btn" onclick="moveMonthlyItem('${t.id}',-1)" title="上移"><i class="fas fa-chevron-up"></i></button>
                                 <button class="order-btn" onclick="moveMonthlyItem('${t.id}',1)" title="下移"><i class="fas fa-chevron-down"></i></button>
                                 <button class="del-task" onclick="deleteMonthlyItem('${t.id}')" title="删除"><i class="fas fa-times"></i></button>
                             </div>
-                        `).join('');
+                        `;
+                    }).join('');
                 }
 
                 renderCalendar();
@@ -2509,7 +2679,7 @@
                     const dateKey = formatDateKey(year, month, d);
                     const entry = data.dailyEntries[dateKey];
                     const tasks = entry ? entry.tasks : [];
-                    const hasTask = tasks.some(t => t.type === 'task' && t.status !== 'done');
+                    const hasTask = tasks.some(t => isTask(t) && t.status !== 'done');
                     const hasEvent = tasks.some(t => t.type === 'event' && t.status !== 'done');
                     const hasNote = tasks.some(t => t.type === 'note');
                     const allDone = tasks.length > 0 && tasks.every(t => t.status === 'done');
@@ -2523,7 +2693,7 @@
                     else if (hasNote) cellClass += ' has-note';
 
                     html += `
-                            <div class="${cellClass}" data-date="${dateKey}" data-has-content="${tasks.length > 0 ? 'true' : 'false'}">
+                            <div class="${cellClass}" data-date="${dateKey}">
                                 ${d}
                             </div>
                         `;
@@ -2565,19 +2735,27 @@
                     const isToday = dateKey === today;
 
                     html += `
-                            <div class="week-day" style="${isToday ? 'border-color:var(--primary);background:rgba(139,92,246,0.06);' : ''}">
+                            <div class="week-day" style="${isToday ? 'border-color:var(--primary);background:rgba(155,138,176,0.06);' : ''}">
                                 <div class="wd-label">
                                     ${['一','二','三','四','五','六','日'][i]}
                                     <span class="wd-num">${d.getDate()}</span>
                                 </div>
                                 <div class="wd-tasks">
-                                    ${sorted.slice(0, 5).map(t => `
-                                        <div class="wd-task" title="${escapeHtml(t.text)}">
-                                            <span class="wd-icon ${TYPE_CLASSES[t.type] || 'type-task'}">${TYPE_SYMBOLS[t.type] || '·'}</span>
-                                            ${escapeHtml(t.text.substring(0, 18))}${t.text.length > 18 ? '…' : ''}
-                                            ${t.status === 'done' ? '✓' : ''}
-                                        </div>
-                                    `).join('')}
+                                    ${sorted.slice(0, 5).map(t => {
+                                        let icon = getIconHtml(t);
+                                        let cls = '';
+                                        if (isTask(t)) {
+                                            cls = STATUS_CLASSES[t.status] || '';
+                                        } else {
+                                            cls = TYPE_CLASSES[t.type] || '';
+                                        }
+                                        return `
+                                            <div class="wd-task" title="${escapeHtml(t.text)}">
+                                                <span class="wd-icon ${cls}">${icon}</span>
+                                                ${escapeHtml(t.text.substring(0, 16))}${t.text.length > 16 ? '…' : ''}
+                                            </div>
+                                        `;
+                                    }).join('')}
                                     ${sorted.length > 5 ? `<div class="wd-task" style="color:var(--text-muted);font-size:9px;">+${sorted.length - 5} 更多</div>` : ''}
                                     ${sorted.length === 0 ? '<div style="font-size:9px;color:var(--text-muted);opacity:0.2;text-align:center;padding:4px 0;">—</div>' : ''}
                                 </div>
@@ -2613,6 +2791,12 @@
             // ================================================================
             //  日视图
             // ================================================================
+            function setDailyType(type, btn) {
+                dailyType = type;
+                document.querySelectorAll('#dailyTypeSelector .type-btn').forEach(b => b.classList.remove('active'));
+                if (btn) btn.classList.add('active');
+            }
+
             function renderDaily() {
                 const year = currentDay.getFullYear();
                 const month = currentDay.getMonth();
@@ -2634,32 +2818,38 @@
                     container.innerHTML =
                         `<div class="empty-state"><div class="icon"><i class="fas fa-inbox"></i></div><p>今天还没有内容</p></div>`;
                 } else {
-                    container.innerHTML = sorted.map(t => `
+                    container.innerHTML = sorted.map(t => {
+                        const isTaskItem = isTask(t);
+                        const iconHtml = getIconHtml(t);
+                        const iconClass = getIconClass(t);
+                        const textClass = t.status === 'done' ? 'done' : (t.status === 'migrated' ? 'migrated' :
+                            (t.status === 'scheduled' ? 'scheduled' : ''));
+                        const clickHandler = isTaskItem ? `onclick="toggleDailyTaskStatus('${t.id}')"` : '';
+                        return `
                             <div class="task-item">
-                                <button class="status-toggle ${STATUS_CLASSES[t.status]}" onclick="toggleDailyTaskStatus('${t.id}')" title="切换状态">
-                                    ${STATUS_SYMBOLS[t.status]}
+                                <button class="task-icon ${iconClass}" ${clickHandler} title="${isTaskItem ? '切换状态' : ''}">
+                                    ${iconHtml}
                                 </button>
-                                <span class="task-type-icon ${TYPE_CLASSES[t.type] || 'type-task'}">${TYPE_SYMBOLS[t.type] || '·'}</span>
-                                <span class="task-text ${t.status === 'done' ? 'done' : ''} ${t.status === 'migrated' ? 'migrated' : ''} ${t.status === 'scheduled' ? 'scheduled' : ''}">${escapeHtml(t.text)}</span>
+                                <span class="task-text ${textClass}">${escapeHtml(t.text)}</span>
                                 <button class="order-btn" onclick="moveDailyTask('${t.id}',-1)" title="上移"><i class="fas fa-chevron-up"></i></button>
                                 <button class="order-btn" onclick="moveDailyTask('${t.id}',1)" title="下移"><i class="fas fa-chevron-down"></i></button>
                                 <button class="del-task" onclick="deleteDailyTask('${t.id}')" title="删除"><i class="fas fa-times"></i></button>
                             </div>
-                        `).join('');
+                        `;
+                    }).join('');
                 }
             }
 
             function addDailyTask() {
                 const input = document.getElementById('dailyInput');
                 const text = input.value.trim();
-                const type = document.getElementById('dailyTypeSelect').value || 'task';
                 if (!text) { showToast('请输入内容', 'warning'); return; }
                 const year = currentDay.getFullYear();
                 const month = currentDay.getMonth();
                 const day = currentDay.getDate();
                 const entry = getDailyEntry(year, month, day);
                 const order = entry.tasks.length;
-                entry.tasks.push({ id: generateId(), text: text, status: 'todo', type: type, order: order });
+                entry.tasks.push({ id: generateId(), text: text, status: 'todo', type: dailyType, order: order });
                 saveData();
                 input.value = '';
                 renderDaily();
@@ -2671,12 +2861,7 @@
                 const month = currentDay.getMonth();
                 const day = currentDay.getDate();
                 const entry = getDailyEntry(year, month, day);
-                const task = entry.tasks.find(t => t.id === id);
-                if (!task) return;
-                const idx = STATUSES.indexOf(task.status);
-                task.status = STATUSES[(idx + 1) % STATUSES.length];
-                saveData();
-                renderDaily();
+                if (toggleItemStatus(entry.tasks, id)) renderDaily();
             }
 
             function deleteDailyTask(id) {
@@ -2695,13 +2880,7 @@
                 const month = currentDay.getMonth();
                 const day = currentDay.getDate();
                 const entry = getDailyEntry(year, month, day);
-                const idx = entry.tasks.findIndex(t => t.id === id);
-                if (idx === -1) return;
-                const newIdx = idx + delta;
-                if (newIdx < 0 || newIdx >= entry.tasks.length) return;
-                [entry.tasks[idx], entry.tasks[newIdx]] = [entry.tasks[newIdx], entry.tasks[idx]];
-                entry.tasks.forEach((t, i) => t.order = i);
-                saveData();
+                moveItem(entry.tasks, id, delta);
                 renderDaily();
             }
 
@@ -2746,6 +2925,11 @@
             // ================================================================
             //  左侧面板
             // ================================================================
+            function refreshScheduled() {
+                renderScheduled();
+                showToast('🔄 已刷新计划中列表', 'info');
+            }
+
             function renderScheduled() {
                 const container = document.getElementById('scheduledList');
                 const scheduled = [];
@@ -2766,13 +2950,18 @@
                         `<div class="empty-state"><div class="icon"><i class="fas fa-inbox"></i></div><p>暂无计划中任务</p></div>`;
                 } else {
                     scheduled.sort((a, b) => a.date.localeCompare(b.date));
-                    container.innerHTML = scheduled.map(s => `
+                    container.innerHTML = scheduled.map(s => {
+                        const iconHtml = getIconHtml(s.task);
+                        const cls = s.task.type === 'event' ? 'type-event' : (s.task.type === 'note' ?
+                            'type-note' : '');
+                        return `
                             <div class="scheduled-item">
                                 <span class="s-month">${s.date}</span>
+                                <span class="s-icon ${cls}">${iconHtml}</span>
                                 <span class="s-text">${escapeHtml(s.task.text)}</span>
-                                <span style="font-size:10px;color:var(--text-muted);flex-shrink:0;">${TYPE_SYMBOLS[s.task.type] || '·'}</span>
                             </div>
-                        `).join('');
+                        `;
+                    }).join('');
                 }
             }
 
@@ -2846,14 +3035,19 @@
                 if (data.tempItems.length === 0) {
                     container.innerHTML = `<div class="temp-empty">暂无迁移项，使用下方工具提取</div>`;
                 } else {
-                    container.innerHTML = data.tempItems.map(t => `
+                    container.innerHTML = data.tempItems.map(t => {
+                        const iconHtml = getIconHtml(t);
+                        const cls = t.type === 'event' ? 'type-event' : (t.type === 'note' ? 'type-note' :
+                            '');
+                        return `
                             <div class="temp-item">
                                 <span style="font-size:10px;color:var(--text-muted);flex-shrink:0;">${t.targetMonth || '?'}</span>
+                                <span class="t-icon ${cls}">${iconHtml}</span>
                                 <span class="t-text">${escapeHtml(t.text)}</span>
-                                <span style="font-size:10px;color:var(--text-muted);flex-shrink:0;">${TYPE_SYMBOLS[t.type] || '·'}</span>
                                 <button class="t-rm" onclick="removeTempItem('${t.id}')" title="移除"><i class="fas fa-times"></i></button>
                             </div>
-                        `).join('');
+                        `;
+                    }).join('');
                 }
             }
 
@@ -3090,6 +3284,7 @@
             window.toggleMonthlyItemStatus = toggleMonthlyItemStatus;
             window.deleteMonthlyItem = deleteMonthlyItem;
             window.moveMonthlyItem = moveMonthlyItem;
+            window.setMonthlyType = setMonthlyType;
             window.changeMonth = changeMonth;
             window.resetToCurrentMonth = resetToCurrentMonth;
             window.changeWeek = changeWeek;
@@ -3099,6 +3294,7 @@
             window.toggleDailyTaskStatus = toggleDailyTaskStatus;
             window.deleteDailyTask = deleteDailyTask;
             window.moveDailyTask = moveDailyTask;
+            window.setDailyType = setDailyType;
             window.changeDay = changeDay;
             window.jumpToDate = jumpToDate;
             window.saveDailyNote = saveDailyNote;
@@ -3111,6 +3307,7 @@
             window.clearTemp = clearTemp;
             window.closeModal = closeModal;
             window.closeModalIfOverlay = closeModalIfOverlay;
+            window.refreshScheduled = refreshScheduled;
 
             loadData();
             loadGitHubSettings();
@@ -3120,7 +3317,6 @@
             currentWeek = new Date(now);
             currentDay = new Date(now);
 
-            // 默认显示年度
             document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
             document.getElementById('panel-yearly').style.display = 'flex';
             document.getElementById('panel-yearly').style.flexDirection = 'column';
@@ -3134,14 +3330,13 @@
             updateExtractSelects();
             setTimeout(updateTabSlider, 100);
 
-            console.log('📓 子弹日志 · 四维透视 (紫灰版)');
+            console.log('📓 子弹日志 · 四维透视 (薰衣草紫灰版)');
             console.log('  ✅ 年度目标: ' + data.yearlyGoals.length + ' 个');
             console.log('  ✅ 月度条目: ' + Object.keys(data.monthlyItems).length + ' 个月份');
             console.log('  ✅ 每日记录: ' + Object.keys(data.dailyEntries).length + ' 天');
             console.log('  ✅ 暂存项: ' + data.tempItems.length + ' 个');
             console.log('  ⌨️  Esc 关闭面板 | Ctrl+S 保存笔记');
 
-            // 窗口 resize 更新 slider
             window.addEventListener('resize', function() {
                 setTimeout(updateTabSlider, 50);
             });
