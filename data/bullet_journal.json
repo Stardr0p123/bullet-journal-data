@@ -3,7 +3,24 @@
   "monthlyItems": {
     "2026-06": []
   },
-  "dailyEntries": {},
+  "dailyEntries": {
+    "2026-06-23": {
+      "note": "",
+      "tasks": []
+    },
+    "2026-06-22": {
+      "note": "",
+      "tasks": [
+        {
+          "id": "t_1782170455846_58tg",
+          "text": "上传github仓库",
+          "status": "todo",
+          "type": "event",
+          "order": 0
+        }
+      ]
+    }
+  },
   "weeklyNotes": {},
   "tempItems": []
 }
