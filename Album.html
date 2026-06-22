@@ -1580,8 +1580,33 @@
             }
 
             // ================================================================
-            //  GitHub API 操作
+            //  GitHub API 操作 — 使用 TextEncoder/Decoder 确保 UTF-8 正确
             // ================================================================
+            function utf8ToBase64(str) {
+                // 使用 TextEncoder 将字符串转为 UTF-8 字节，再转 base64
+                const encoder = new TextEncoder();
+                const data = encoder.encode(str);
+                // 将 Uint8Array 转为二进制字符串
+                let binary = '';
+                for (let i = 0; i < data.length; i++) {
+                    binary += String.fromCharCode(data[i]);
+                }
+                return btoa(binary);
+            }
+
+            function base64ToUtf8(base64) {
+                // 先解码 base64 为二进制字符串
+                const binary = atob(base64);
+                // 转为 Uint8Array
+                const bytes = new Uint8Array(binary.length);
+                for (let i = 0; i < binary.length; i++) {
+                    bytes[i] = binary.charCodeAt(i);
+                }
+                // 使用 TextDecoder 解码为 UTF-8 字符串
+                const decoder = new TextDecoder('utf-8');
+                return decoder.decode(bytes);
+            }
+
             async function uploadToGit() {
                 const settings = getGitHubSettings();
                 if (!settings.username || !settings.repo || !settings.token) {
@@ -1611,9 +1636,13 @@
                     } catch (e) { if (e.message && e.message.includes('404')) {} else throw e; }
 
                     const contentStr = JSON.stringify(albums, null, 2);
-                    const contentBase64 = btoa(unescape(encodeURIComponent(contentStr)));
-                    const body = { message: '更新专辑数据 ' + new Date().toISOString(), content: contentBase64, sha: sha ||
-                            undefined };
+                    const contentBase64 = utf8ToBase64(contentStr);
+
+                    const body = {
+                        message: '更新专辑数据 ' + new Date().toISOString(),
+                        content: contentBase64,
+                        sha: sha || undefined
+                    };
 
                     const putResp = await fetch(apiUrl, {
                         method: 'PUT',
@@ -1637,7 +1666,7 @@
             }
 
             // ================================================================
-            //  从 GitHub 导入数据 (新增)
+            //  从 GitHub 导入数据 (使用 UTF-8 解码)
             // ================================================================
             async function importFromGit() {
                 const settings = getGitHubSettings();
@@ -1669,8 +1698,8 @@
                     }
 
                     const data = await resp.json();
-                    // 解码 base64 内容
-                    const content = atob(data.content);
+                    // 使用正确的 UTF-8 解码
+                    const content = base64ToUtf8(data.content);
                     const importedAlbums = JSON.parse(content);
 
                     if (!Array.isArray(importedAlbums)) {
@@ -2257,7 +2286,7 @@
             window.openGitHubRepo = openGitHubRepo;
 
             loadData();
-            console.log('📀 专辑记录器 (GitHub 双向同步)');
+            console.log('📀 专辑记录器 (UTF-8 编码修复)');
             console.log('  📊 已加载 ' + albums.length + ' 张专辑');
             console.log('  ⌨️  Ctrl+S 保存详情 | Esc 关闭');
 
