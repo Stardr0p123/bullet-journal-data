@@ -17,15 +17,15 @@
 
     <style>
         /* ================================================================
-           1.  CSS 变量 — 蓝色调
+           1.  CSS 变量
            ================================================================ */
         :root {
-            --primary: #3b82f6;
-            --primary-dark: #1d4ed8;
-            --primary-light: #93c5fd;
-            --primary-soft: rgba(59, 130, 246, 0.10);
-            --primary-glow: rgba(59, 130, 246, 0.25);
-            --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            --primary: #06b6d4;
+            --primary-dark: #0e7490;
+            --primary-light: #67e8f9;
+            --primary-soft: rgba(6, 182, 212, 0.12);
+            --primary-glow: rgba(6, 182, 212, 0.25);
+            --primary-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
 
             --success: #10b981;
             --warning: #f59e0b;
@@ -33,10 +33,10 @@
             --purple: #8b5cf6;
 
             --glass-bg: rgba(255, 255, 255, 0.42);
-            --glass-border: rgba(255, 255, 255, 0.30);
-            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+            --glass-border: rgba(255, 255, 255, 0.35);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
             --glass-blur: 24px;
-            --glass-hover-shadow: 0 16px 52px rgba(59, 130, 246, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.20) inset;
+            --glass-hover-shadow: 0 16px 48px rgba(0, 0, 0, 0.07), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
 
             --text: #0f172a;
             --text-secondary: #475569;
@@ -49,14 +49,13 @@
 
             --transition-smooth: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
             --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            --transition-spring: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 
             --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
 
             --mouse-x: 50%;
             --mouse-y: 50%;
 
-            --icon-bg: rgba(59, 130, 246, 0.08);
+            --icon-bg: rgba(6, 182, 212, 0.10);
             --icon-radius: 10px;
         }
 
@@ -74,11 +73,11 @@
             font-size: 15px;
             min-height: 100vh;
             color: var(--text);
-            background: #e8edf4;
+            background: #dce8ef;
             background:
-                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(59, 130, 246, 0.12) 0%, rgba(99, 102, 241, 0.04) 40%, rgba(15, 23, 42, 0.01) 70%, transparent 100%),
-                radial-gradient(ellipse at calc(100% - var(--mouse-x)) calc(100% - var(--mouse-y)), rgba(139, 92, 246, 0.06) 0%, rgba(59, 130, 246, 0.02) 50%, transparent 80%),
-                #e8edf4;
+                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(6, 182, 212, 0.15) 0%, rgba(56, 189, 248, 0.04) 40%, rgba(15, 23, 42, 0.01) 70%, transparent 100%),
+                radial-gradient(ellipse at calc(100% - var(--mouse-x)) calc(100% - var(--mouse-y)), rgba(59, 130, 246, 0.08) 0%, rgba(6, 182, 212, 0.02) 50%, transparent 80%),
+                #dce8ef;
             background-attachment: fixed;
             transition: background 0.08s ease;
             line-height: 1.6;
@@ -102,7 +101,7 @@
         }
 
         /* ================================================================
-           3.  毛玻璃卡片 — 蓝色光晕
+           3.  毛玻璃卡片
            ================================================================ */
         .glass {
             background: var(--glass-bg);
@@ -120,27 +119,26 @@
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.20) 0%, transparent 70%);
+            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
             pointer-events: none;
             opacity: 0.4;
             transition: opacity var(--transition-smooth);
         }
-        .glass:hover {
-            box-shadow: var(--glass-hover-shadow);
-            border-color: rgba(255, 255, 255, 0.50);
-            transform: translateY(-3px);
-        }
         .glass:hover::before {
             opacity: 0.7;
         }
+        .glass:hover {
+            box-shadow: var(--glass-hover-shadow);
+            border-color: rgba(255, 255, 255, 0.45);
+        }
 
         .glass-glow {
-            border-color: rgba(59, 130, 246, 0.12);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(59, 130, 246, 0.04) inset;
+            border-color: rgba(6, 182, 212, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(6, 182, 212, 0.06) inset;
         }
         .glass-glow:hover {
-            border-color: rgba(59, 130, 246, 0.22);
-            box-shadow: 0 12px 44px rgba(59, 130, 246, 0.06), 0 0 0 1px rgba(59, 130, 246, 0.08) inset;
+            border-color: rgba(6, 182, 212, 0.25);
+            box-shadow: 0 12px 44px rgba(6, 182, 212, 0.06), 0 0 0 1px rgba(6, 182, 212, 0.10) inset;
         }
 
         /* ================================================================
@@ -154,12 +152,9 @@
             background: rgba(255, 255, 255, 0.38);
             backdrop-filter: blur(28px);
             -webkit-backdrop-filter: blur(28px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.30);
             box-shadow: 0 1px 20px rgba(0, 0, 0, 0.02);
-            transition: background var(--transition-smooth), box-shadow var(--transition-smooth);
-        }
-        .app-header:hover {
-            box-shadow: 0 2px 28px rgba(59, 130, 246, 0.02);
+            transition: background var(--transition-smooth);
         }
         .header-inner {
             max-width: 1640px;
@@ -187,12 +182,12 @@
             justify-content: center;
             font-size: 20px;
             color: #fff;
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25);
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.25);
             transition: transform var(--transition-bounce), box-shadow var(--transition-smooth);
         }
         .logo-icon:hover {
             transform: scale(1.15) rotate(-8deg);
-            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.40);
+            box-shadow: 0 8px 32px rgba(6, 182, 212, 0.40);
         }
         .logo-text {
             font-size: 19px;
@@ -234,11 +229,8 @@
         }
         .badge-due:hover {
             background: rgba(245, 158, 11, 0.18);
-            transform: translateY(-2px) scale(1.03);
+            transform: translateY(-1px) scale(1.02);
             box-shadow: 0 4px 16px rgba(245, 158, 11, 0.12);
-        }
-        .badge-due:active {
-            transform: scale(0.95);
         }
         .badge-due.urgent {
             background: rgba(239, 68, 68, 0.12);
@@ -266,8 +258,8 @@
             padding: 6px 16px;
             font-size: 12px;
             border-radius: var(--radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.20);
-            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(4px);
             cursor: pointer;
             transition: var(--transition-smooth);
@@ -279,14 +271,14 @@
             gap: 5px;
         }
         .btn-ghost-sm:hover {
-            background: rgba(255, 255, 255, 0.35);
-            border-color: rgba(59, 130, 246, 0.20);
+            background: rgba(255, 255, 255, 0.40);
+            border-color: rgba(6, 182, 212, 0.20);
             color: var(--text);
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.04);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
         }
         .btn-ghost-sm:active {
-            transform: scale(0.94);
+            transform: scale(0.96);
         }
 
         #importFileInput {
@@ -492,8 +484,7 @@
         .stat-item:hover {
             background: rgba(255, 255, 255, 0.14);
             border-color: rgba(255, 255, 255, 0.10);
-            transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+            transform: translateY(-2px);
         }
         .stat-item .stat-icon {
             display: inline-flex;
@@ -510,7 +501,7 @@
         }
         .stat-item:hover .stat-icon {
             transform: scale(1.25) rotate(-12deg);
-            background: rgba(59, 130, 246, 0.18);
+            background: rgba(6, 182, 212, 0.20);
         }
         .stat-item .num {
             font-size: 26px;
@@ -541,10 +532,10 @@
         }
 
         /* ================================================================
-           7.  标签切换 & 筛选
+           7.  标签切换 & 筛选（无底部滑块）
            ================================================================ */
 
-        /* ---- 标签导航 ---- */
+        /* ---- 标签导航（保留动画） ---- */
         .tab-nav {
             position: relative;
             display: flex;
@@ -564,7 +555,7 @@
             height: 3px;
             background: var(--primary-gradient);
             border-radius: 4px;
-            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
             will-change: transform, width;
             pointer-events: none;
             z-index: 1;
@@ -580,7 +571,7 @@
             font-size: 13px;
             font-weight: 600;
             color: var(--text-secondary);
-            transition: color var(--transition-smooth), background var(--transition-smooth);
+            transition: color var(--transition-smooth);
             white-space: nowrap;
             display: flex;
             align-items: center;
@@ -602,8 +593,6 @@
         }
         .tab-btn:hover:not(.active) {
             color: var(--text);
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateY(-1px);
         }
         .tab-btn:hover:not(.active) .tab-icon {
             color: var(--text-secondary);
@@ -619,7 +608,7 @@
             transition: var(--transition-smooth);
         }
         .tab-btn.active .cnt {
-            background: rgba(59, 130, 246, 0.12);
+            background: rgba(6, 182, 212, 0.12);
             color: var(--primary-dark);
         }
 
@@ -636,22 +625,18 @@
             font-size: 13px;
             font-family: inherit;
             transition: var(--transition-smooth);
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(4px);
             color: var(--text);
         }
         .search-box input::placeholder {
             color: var(--text-muted);
         }
-        .search-box input:hover {
-            background: rgba(255, 255, 255, 0.22);
-            border-color: rgba(255, 255, 255, 0.25);
-        }
         .search-box input:focus {
             outline: none;
             border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.32);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.06), 0 4px 16px rgba(0, 0, 0, 0.02);
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.06), 0 4px 16px rgba(0, 0, 0, 0.02);
             transform: translateY(-1px);
         }
         .search-box .icon {
@@ -664,13 +649,14 @@
             pointer-events: none;
             transition: color var(--transition-smooth);
             z-index: 2;
+            /* 修复：防止被 input 前景遮挡 */
         }
         .search-box input:focus~.icon,
         .search-box input:focus+.icon {
             color: var(--primary);
         }
 
-        /* ---- 筛选区 ---- */
+        /* ---- 筛选区（无滑块，仅标签切换） ---- */
         .filter-section {
             display: flex;
             flex-direction: column;
@@ -683,7 +669,7 @@
             flex-wrap: nowrap;
             align-items: center;
             gap: 3px;
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: var(--radius-full);
             padding: 3px 6px;
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -715,7 +701,7 @@
             border: none;
             background: transparent !important;
             cursor: pointer;
-            transition: color var(--transition-smooth), transform var(--transition-smooth), background var(--transition-smooth);
+            transition: color var(--transition-smooth), transform var(--transition-smooth);
             white-space: nowrap;
             color: var(--text-secondary);
             line-height: 1.4;
@@ -724,15 +710,13 @@
         .filter-chip.active {
             color: var(--primary-dark) !important;
             transform: scale(1.02);
-            background: rgba(59, 130, 246, 0.06) !important;
         }
         .filter-chip:hover:not(.active) {
             color: var(--text);
-            transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.06) !important;
+            transform: translateY(-1px);
         }
         .filter-chip:active {
-            transform: scale(0.92);
+            transform: scale(0.94);
         }
 
         .filter-group-label {
@@ -777,46 +761,28 @@
         }
 
         /* ================================================================
-           8.  算法列表项 — 丰富 hover 动画
+           8.  算法列表项
            ================================================================ */
         .algo-item {
             background: rgba(255, 255, 255, 0.30);
             backdrop-filter: blur(4px);
             border-radius: var(--radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             transition: var(--transition-smooth);
             cursor: pointer;
             overflow: hidden;
             flex-shrink: 0;
-            position: relative;
-        }
-        .algo-item::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.02), transparent 60%);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity var(--transition-smooth);
-        }
-        .algo-item:hover::after {
-            opacity: 1;
         }
         .algo-item:hover {
-            background: rgba(255, 255, 255, 0.55);
-            box-shadow: 0 4px 24px rgba(59, 130, 246, 0.06), 0 2px 8px rgba(0, 0, 0, 0.02);
-            border-color: rgba(59, 130, 246, 0.10);
-            transform: translateX(4px) scale(1.002);
+            background: rgba(255, 255, 255, 0.50);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-color: rgba(255, 255, 255, 0.20);
+            transform: translateX(2px);
         }
         .algo-item.active {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08), 0 4px 20px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.08), 0 4px 20px rgba(0, 0, 0, 0.04);
             background: rgba(255, 255, 255, 0.55);
-        }
-        .algo-item.active:hover {
-            border-color: var(--primary-dark);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12), 0 6px 28px rgba(59, 130, 246, 0.06);
         }
 
         .algo-item-header {
@@ -832,7 +798,7 @@
         }
 
         .algo-item-header .arrow {
-            transition: transform 0.5s var(--transition-bounce);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             color: var(--text-muted);
             font-size: 11px;
             flex-shrink: 0;
@@ -851,7 +817,7 @@
             font-weight: 600;
             flex-shrink: 0;
             line-height: 1.5;
-            background: rgba(59, 130, 246, 0.10);
+            background: rgba(6, 182, 212, 0.10);
             color: var(--primary-dark);
             transition: var(--transition-smooth);
         }
@@ -876,8 +842,8 @@
             color: #be185d;
         }
         .cat-tag.cat-graph {
-            background: rgba(59, 130, 246, 0.12);
-            color: #1d4ed8;
+            background: rgba(6, 182, 212, 0.12);
+            color: #0e7490;
         }
         .cat-tag.cat-misc {
             background: rgba(148, 163, 184, 0.14);
@@ -925,10 +891,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            transition: color var(--transition-smooth);
-        }
-        .algo-item:hover .name .name-text {
-            color: var(--primary-dark);
         }
         .algo-item.expanded .name .name-text {
             overflow: visible;
@@ -1008,8 +970,8 @@
         }
         .algo-item .del-btn:hover {
             color: var(--danger);
-            background: rgba(239, 68, 68, 0.08);
-            transform: scale(1.15) rotate(90deg);
+            background: rgba(239, 68, 68, 0.06);
+            transform: scale(1.1);
         }
         .algo-item .del-btn:active {
             transform: scale(0.85);
@@ -1042,7 +1004,7 @@
             animation: badge-pulse 1.8s infinite;
         }
         .days-badge.soon {
-            background: rgba(59, 130, 246, 0.14);
+            background: rgba(6, 182, 212, 0.14);
             color: var(--primary-dark);
         }
         .days-badge.done {
@@ -1072,7 +1034,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding: 10px 14px 14px;
             background: rgba(255, 255, 255, 0.04);
-            animation: slideDown 0.4s var(--transition-bounce);
+            animation: slideDown 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .algo-item.expanded .review-panel {
             display: block;
@@ -1080,7 +1042,7 @@
         @keyframes slideDown {
             from {
                 opacity: 0;
-                transform: translateY(-12px) scale(0.97);
+                transform: translateY(-10px) scale(0.98);
             }
             to {
                 opacity: 1;
@@ -1107,8 +1069,7 @@
             transition: var(--transition-smooth);
         }
         .review-dots .dot:hover:not(.done) {
-            transform: scale(1.3);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transform: scale(1.25);
         }
         .review-dots .dot.done {
             cursor: default;
@@ -1149,7 +1110,7 @@
         }
 
         /* ================================================================
-           9.  中栏表单 — 蓝色调
+           9.  中栏表单
            ================================================================ */
         .form-group {
             margin-bottom: 3px;
@@ -1163,39 +1124,29 @@
             margin-bottom: 2px;
             letter-spacing: 0.3px;
             text-transform: uppercase;
-            transition: color var(--transition-smooth);
-        }
-        .form-group:hover label {
-            color: var(--primary-dark);
         }
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 6px 10px;
-            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
             border-radius: var(--radius-sm);
             font-size: 12px;
             font-family: inherit;
             transition: var(--transition-smooth);
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.14);
             backdrop-filter: blur(4px);
             color: var(--text);
             resize: vertical;
-        }
-        .form-group input:hover,
-        .form-group select:hover,
-        .form-group textarea:hover {
-            background: rgba(255, 255, 255, 0.20);
-            border-color: rgba(255, 255, 255, 0.20);
         }
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.28);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.04);
+            background: rgba(255, 255, 255, 0.30);
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.04);
             transform: translateY(-1px);
         }
         .form-group textarea {
@@ -1236,7 +1187,7 @@
         }
         .diff-btn.active {
             color: #fff;
-            box-shadow: 0 2px 12px rgba(59, 130, 246, 0.12);
+            box-shadow: 0 2px 12px rgba(6, 182, 212, 0.12);
         }
         .diff-btn[data-diff="easy"].active {
             background: #10b981;
@@ -1246,10 +1197,6 @@
         }
         .diff-btn:hover:not(.active) {
             background: rgba(255, 255, 255, 0.10);
-            transform: translateY(-1px);
-        }
-        .diff-btn:active {
-            transform: scale(0.94);
         }
 
         .btn-primary {
@@ -1268,7 +1215,7 @@
             width: 100%;
             background: var(--primary-gradient);
             color: #fff;
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.18);
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.18);
             flex-shrink: 0;
             position: relative;
             overflow: hidden;
@@ -1287,11 +1234,11 @@
             opacity: 1;
         }
         .btn-primary:hover {
-            transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.25);
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 8px 32px rgba(6, 182, 212, 0.25);
         }
         .btn-primary:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
         }
 
         /* ---- 今日待复习 ---- */
@@ -1316,7 +1263,7 @@
             gap: 12px;
             padding: 7px 12px;
             border-radius: var(--radius-sm);
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.10);
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.04);
             transition: var(--transition-smooth);
@@ -1325,9 +1272,8 @@
         }
         .due-item:hover {
             background: rgba(255, 255, 255, 0.22);
-            transform: translateX(4px) scale(1.002);
-            border-color: rgba(59, 130, 246, 0.08);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+            transform: translateX(3px);
+            border-color: rgba(255, 255, 255, 0.10);
         }
         .due-item .d-dot {
             width: 8px;
@@ -1353,10 +1299,6 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            transition: color var(--transition-smooth);
-        }
-        .due-item:hover .d-name {
-            color: var(--primary-dark);
         }
         .due-item .d-stage {
             font-size: 10px;
@@ -1375,11 +1317,11 @@
             color: #fff;
             flex-shrink: 0;
             font-family: inherit;
-            box-shadow: 0 2px 12px rgba(59, 130, 246, 0.12);
+            box-shadow: 0 2px 12px rgba(6, 182, 212, 0.12);
         }
         .btn-checkin:hover {
-            transform: scale(1.08) translateY(-2px);
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.18);
+            transform: scale(1.05) translateY(-1px);
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.18);
         }
         .btn-checkin:active {
             transform: scale(0.92);
@@ -1433,8 +1375,8 @@
             transition: transform var(--transition-bounce), background var(--transition-smooth);
         }
         .note-header .algo-name .name-icon:hover {
-            transform: scale(1.25) rotate(-10deg);
-            background: rgba(59, 130, 246, 0.18);
+            transform: scale(1.2) rotate(-8deg);
+            background: rgba(6, 182, 212, 0.20);
         }
 
         .note-toolbar {
@@ -1466,11 +1408,11 @@
             background: var(--primary-gradient);
             color: #fff;
             border-color: var(--primary);
-            box-shadow: 0 2px 12px rgba(59, 130, 246, 0.12);
+            box-shadow: 0 2px 12px rgba(6, 182, 212, 0.12);
         }
         .note-toolbar .mode-btn:hover:not(.active) {
             background: rgba(255, 255, 255, 0.12);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
         .note-toolbar .mode-btn:active {
             transform: scale(0.94);
@@ -1496,19 +1438,15 @@
             line-height: 1.8;
             resize: vertical;
             transition: var(--transition-smooth);
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(4px);
             color: var(--text);
-        }
-        .note-body textarea:hover {
-            background: rgba(255, 255, 255, 0.14);
-            border-color: rgba(255, 255, 255, 0.16);
         }
         .note-body textarea:focus {
             outline: none;
             border-color: var(--primary);
             background: rgba(255, 255, 255, 0.20);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.03);
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.03);
             transform: translateY(-1px);
         }
         .note-body .preview {
@@ -1527,17 +1465,6 @@
         }
         .note-body .preview.show {
             display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .note-body .preview h1,
@@ -1656,7 +1583,7 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06);
-            animation: toastIn 0.4s var(--transition-bounce), toastOut 0.35s cubic-bezier(0.22, 1, 0.36, 1) 2.4s forwards;
+            animation: toastIn 0.4s cubic-bezier(0.22, 1, 0.36, 1), toastOut 0.35s cubic-bezier(0.22, 1, 0.36, 1) 2.4s forwards;
             pointer-events: auto;
             max-width: 360px;
         }
@@ -1664,7 +1591,7 @@
             background: rgba(16, 185, 129, 0.75);
         }
         .toast.info {
-            background: rgba(59, 130, 246, 0.75);
+            background: rgba(6, 182, 212, 0.75);
         }
         .toast.warning {
             background: rgba(245, 158, 11, 0.75);
@@ -1722,7 +1649,7 @@
             max-width: 420px;
             width: 90%;
             box-shadow: 0 24px 72px rgba(0, 0, 0, 0.06);
-            animation: modalSlide 0.35s var(--transition-bounce);
+            animation: modalSlide 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
         @keyframes modalSlide {
             from {
@@ -1766,7 +1693,7 @@
         }
         .btn-ghost:hover {
             background: rgba(255, 255, 255, 0.40);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
         .btn-danger {
             background: #ef4444;
@@ -1775,7 +1702,7 @@
         }
         .btn-danger:hover {
             background: #dc2626;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
             box-shadow: 0 6px 24px rgba(239, 68, 68, 0.18);
         }
         .btn-danger:active {
@@ -1970,7 +1897,7 @@
         }
         .icon-badge:hover {
             transform: scale(1.2) rotate(-8deg);
-            background: rgba(59, 130, 246, 0.18);
+            background: rgba(6, 182, 212, 0.20);
         }
         .icon-badge-sm {
             width: 22px;
@@ -2012,7 +1939,7 @@
         }
         .card-title .title-icon:hover {
             transform: scale(1.25) rotate(-10deg);
-            background: rgba(59, 130, 246, 0.18);
+            background: rgba(6, 182, 212, 0.20);
         }
 
         /* ================================================================
@@ -2034,7 +1961,7 @@
         }
 
         .num-pop {
-            animation: numPop 0.4s var(--transition-bounce);
+            animation: numPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         @keyframes numPop {
             0% {
@@ -2125,7 +2052,7 @@
                 <input type="text" id="searchInput" placeholder="搜索算法名称..." oninput="renderList()" />
             </div>
 
-            <!-- 分类 + 难度筛选 -->
+            <!-- 分类 + 难度筛选（无底部滑块） -->
             <div class="filter-section">
                 <div class="filter-row" id="categoryFilterRow">
                     <span class="filter-group-label"><i class="fas fa-tags"></i> 分类</span>
@@ -3080,7 +3007,7 @@
                 container.style.left = x + 'px';
                 container.style.top = y + 'px';
                 document.body.appendChild(container);
-                const colors = ['#3b82f6', '#6366f1', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+                const colors = ['#06b6d4', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
                 for (let i = 0; i < 14; i++) {
                     const p = document.createElement('div');
                     p.className = 'particle';
@@ -3186,9 +3113,11 @@
                             overdue++; }));
                     document.title = overdue > 0 ? `(${overdue}) ⚠️ 复习计划` : '📚 复习计划';
                 }, 30000);
-                console.log('🧠 复习计划 · 蓝色调 + 丰富动效');
-                console.log('  🎨 色调已调整为蓝色系');
-                console.log('  ✨ 所有卡片和按钮均有 hover 动效');
+                console.log('🧠 复习计划 · 修复完成');
+                console.log('  ✅ 完成状态基于 done === total，不再依赖日期');
+                console.log('  ✅ 表达优化：距离下一次复习还有 x 天');
+                console.log('  ✅ 搜索图标 z-index 修复');
+                console.log('  ✅ 笔记标题使用统一样式图标');
                 console.log('  ⌨️  Ctrl+K 搜索 | Ctrl+S 保存笔记 | Esc 关闭');
                 if (algorithms.length === 0) console.log('  💡 点击「示例数据」体验完整功能');
             }
