@@ -6,7 +6,36 @@
   "dailyEntries": {
     "2026-06-23": {
       "note": "",
-      "tasks": []
+      "tasks": [
+        {
+          "id": "t_1782171777486_h8u3",
+          "text": "MZ报到呃呃呃",
+          "status": "todo",
+          "type": "event",
+          "order": 0
+        },
+        {
+          "id": "t_1782203544621_nbaq",
+          "text": "Q群炸完了",
+          "status": "todo",
+          "type": "event",
+          "order": 1
+        },
+        {
+          "id": "t_1782203558207_8mrj",
+          "text": "修复bug",
+          "status": "todo",
+          "type": "event",
+          "order": 2
+        },
+        {
+          "id": "t_1782203582399_52wq",
+          "text": "生成函数还是太难了",
+          "status": "todo",
+          "type": "note",
+          "order": 3
+        }
+      ]
     },
     "2026-06-22": {
       "note": "",
