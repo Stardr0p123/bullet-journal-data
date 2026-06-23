@@ -250,34 +250,16 @@
             z-index: 1;
         }
 
-        .tool-card:not(.disabled):hover {
+        .tool-card:hover {
             background: var(--glass-bg-hover);
             border-color: rgba(255, 255, 255, 0.50);
             box-shadow: var(--glass-hover-shadow);
             transform: translateY(-6px) scale(1.01);
         }
 
-        .tool-card:active:not(.disabled) {
+        .tool-card:active {
             transform: scale(0.96);
             transition-duration: 0.1s;
-        }
-
-        /* 禁用状态（敬请期待） */
-        .tool-card.disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            filter: grayscale(0.2);
-        }
-
-        .tool-card.disabled:hover {
-            transform: translateY(-2px);
-            background: var(--glass-bg-hover);
-            border-color: rgba(255, 255, 255, 0.40);
-            box-shadow: var(--glass-hover-shadow);
-        }
-
-        .tool-card.disabled .icon-wrap {
-            opacity: 0.6;
         }
 
         /* 卡片图标 */
@@ -308,7 +290,7 @@
             pointer-events: none;
         }
 
-        .tool-card:not(.disabled):hover .icon-wrap {
+        .tool-card:hover .icon-wrap {
             transform: scale(1.12) rotate(-6deg);
             box-shadow: 0 12px 40px rgba(6, 182, 212, 0.35);
         }
@@ -322,7 +304,7 @@
             transition: color var(--transition-smooth);
         }
 
-        .tool-card:not(.disabled):hover .name {
+        .tool-card:hover .name {
             color: var(--primary-dark);
         }
 
@@ -335,7 +317,7 @@
             letter-spacing: 0.3px;
         }
 
-        .tool-card:not(.disabled):hover .hint {
+        .tool-card:hover .hint {
             opacity: 0.8;
         }
 
@@ -358,7 +340,7 @@
             background: linear-gradient(135deg, #ef4444 0%, #f59e0b 100%);
         }
         .tool-card:nth-child(6) .icon-wrap {
-            background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+            background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
         }
 
         /* ================================================================
@@ -524,19 +506,19 @@
                 <span class="hint">音乐收藏 · 聆听轨迹</span>
             </a>
 
-            <!-- 5. 子弹笔记 (新增) -->
+            <!-- 5. 子弹笔记 -->
             <a class="tool-card" href="https://stardr0p123.github.io/bullet-journal-data/BUJO.html" target="_blank" rel="noopener">
                 <span class="icon-wrap"><i class="fas fa-bullseye"></i></span>
                 <span class="name">子弹笔记</span>
                 <span class="hint">四维透视 · 高效管理</span>
             </a>
 
-            <!-- 6. 敬请期待 (右下角) -->
-            <div class="tool-card disabled" id="comingSoon">
-                <span class="icon-wrap"><i class="fas fa-hourglass-half"></i></span>
-                <span class="name">敬请期待</span>
-                <span class="hint">更多工具开发中...</span>
-            </div>
+            <!-- 6. 通用记录器 (原"敬请期待") -->
+            <a class="tool-card" href="https://stardr0p123.github.io/bullet-journal-data/General.html" target="_blank" rel="noopener">
+                <span class="icon-wrap"><i class="fas fa-feather-alt"></i></span>
+                <span class="name">通用记录器</span>
+                <span class="hint">灵活字段 · 自定义笔记</span>
+            </a>
 
         </div>
 
@@ -547,11 +529,8 @@
 
     </div>
 
-    <!-- Toast 容器 -->
-    <div class="toast-container" id="toastContainer"></div>
-
     <!-- ================================================================
-         鼠标跟随 + 点击涟漪 + Toast 提示
+         鼠标跟随 + 点击涟漪
          ================================================================ -->
     <script>
         (function() {
@@ -572,7 +551,7 @@
             }, { passive: true });
 
             // ---- 点击涟漪 ----
-            document.querySelectorAll('.tool-card:not(.disabled)').forEach(function(card) {
+            document.querySelectorAll('.tool-card').forEach(function(card) {
                 card.addEventListener('click', function(e) {
                     if (e.button !== 0) return;
                     const rect = card.getBoundingClientRect();
@@ -591,27 +570,6 @@
                         if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
                     }, 700);
                 });
-            });
-
-            // ---- Toast 系统 ----
-            function showToast(msg) {
-                const container = document.getElementById('toastContainer');
-                const t = document.createElement('div');
-                t.className = 'toast';
-                t.textContent = msg;
-                container.appendChild(t);
-                setTimeout(function() {
-                    if (t.parentNode) t.parentNode.removeChild(t);
-                }, 2500);
-            }
-
-            // ---- “敬请期待”点击提示 ----
-            document.getElementById('comingSoon').addEventListener('click', function(e) {
-                showToast('🚧 敬请期待，即将上线！');
-                // 加一点微小的视觉反馈
-                const icon = this.querySelector('.icon-wrap');
-                icon.style.transform = 'scale(0.9)';
-                setTimeout(() => { icon.style.transform = ''; }, 300);
             });
 
         })();
