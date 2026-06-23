@@ -808,7 +808,7 @@
         }
 
         /* ================================================================
-           9.  模态框
+           9.  模态框 — 动画时序修复
            ================================================================ */
         .modal-overlay {
             position: fixed;
@@ -816,22 +816,21 @@
             background: rgba(15, 23, 42, 0.12);
             backdrop-filter: blur(4px);
             z-index: 200;
-            display: none;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: visibility 0s linear 0.3s, opacity 0.3s ease;
+            display: flex;
             align-items: center;
             justify-content: center;
-            animation: fadeIn 0.2s ease;
         }
         .modal-overlay.show {
-            display: flex;
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+            transition: visibility 0s linear 0s, opacity 0.3s ease;
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
+
         .modal-box {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(32px);
@@ -841,20 +840,17 @@
             max-width: 600px;
             width: 90%;
             box-shadow: 0 16px 60px rgba(0, 0, 0, 0.04);
-            animation: modalSlide 0.25s var(--transition-bounce);
             max-height: 85vh;
             overflow-y: auto;
+            transform: scale(0.92) translateY(16px);
+            opacity: 0;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
         }
-        @keyframes modalSlide {
-            from {
-                opacity: 0;
-                transform: translateY(16px) scale(0.94);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        .modal-overlay.show .modal-box {
+            transform: scale(1) translateY(0);
+            opacity: 1;
         }
+
         .modal-box h3 {
             font-size: 17px;
             margin-bottom: 12px;
@@ -1167,7 +1163,7 @@
         }
 
         /* ================================================================
-           11. Toast
+           11. Toast — 修复动画时序
            ================================================================ */
         .toast-container {
             position: fixed;
@@ -1191,7 +1187,19 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
             pointer-events: auto;
             max-width: 360px;
-            animation: toastIn 0.25s var(--transition-bounce), toastOut 0.2s ease 2.2s forwards;
+            opacity: 0;
+            transform: translateX(30px) scale(0.92);
+            transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        .toast.hide {
+            opacity: 0;
+            transform: translateX(30px) scale(0.92);
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
         .toast.success {
             background: rgba(90, 138, 122, 0.78);
@@ -1205,26 +1213,6 @@
         }
         .toast.error {
             background: rgba(176, 106, 106, 0.78);
-        }
-        @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px) scale(0.92);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-        }
-        @keyframes toastOut {
-            from {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-            to {
-                opacity: 0;
-                transform: translateX(30px) scale(0.92);
-            }
         }
     </style>
 </head>
@@ -1393,7 +1381,7 @@
             // ================================================================
             //  配置
             // ================================================================
-            const STORAGE_KEY = 'luogu_problem_lists_v5';
+            const STORAGE_KEY = 'luogu_problem_lists_v7';
             const GITHUB_SETTINGS_KEY = 'github_settings_problem_lists';
 
             // 难度映射 (显示名称)
@@ -1412,7 +1400,7 @@
             //  数据层
             // ================================================================
             let data = {
-                lists: {}, // { listName: [ { pid, name, difficulty, done }, ... ] }
+                lists: {},
                 currentList: null,
             };
 
@@ -1431,13 +1419,24 @@
                 return d.innerHTML;
             }
 
+            // Toast 使用类控制动画，修复时序问题
             function showToast(msg, type = 'info') {
                 const container = document.getElementById('toastContainer');
                 const t = document.createElement('div');
                 t.className = 'toast ' + type;
                 t.textContent = msg;
                 container.appendChild(t);
-                setTimeout(() => { if (t.parentNode) t.parentNode.removeChild(t); }, 2200);
+                // 使用 requestAnimationFrame 确保动画从起始状态开始
+                requestAnimationFrame(() => {
+                    t.classList.add('show');
+                });
+                setTimeout(() => {
+                    t.classList.remove('show');
+                    t.classList.add('hide');
+                    setTimeout(() => {
+                        if (t.parentNode) t.parentNode.removeChild(t);
+                    }, 300);
+                }, 2200);
             }
 
             function sortLists() {
@@ -1461,23 +1460,16 @@
                 if (!pid) return '#';
                 const p = pid.trim();
 
-                // 1. 洛谷专用格式 AtCoder: AT_*
                 if (p.startsWith('AT_')) {
                     return `https://www.luogu.com.cn/problem/${p}`;
                 }
-
-                // 2. Codeforces 主题库题（CF开头，非GYM）→ 跳转洛谷
                 if (p.startsWith('CF') && !p.startsWith('GYM')) {
                     return `https://www.luogu.com.cn/problem/${p}`;
                 }
-
-                // 3. 洛谷 P + 数字
                 const luoguMatch = p.match(/^P(\d+)$/i);
                 if (luoguMatch) {
                     return `https://www.luogu.com.cn/problem/P${luoguMatch[1]}`;
                 }
-
-                // 4. Codeforces GYM
                 const gymMatch = p.match(/^GYM(\d+)([A-Z])$/i);
                 if (gymMatch) {
                     return `https://codeforces.com/gym/${gymMatch[1]}/problem/${gymMatch[2].toUpperCase()}`;
@@ -1486,8 +1478,6 @@
                 if (gymMatch2) {
                     return `https://codeforces.com/gym/${gymMatch2[1]}`;
                 }
-
-                // 5. AtCoder 标准格式 ARC/AGC/ABC/APC
                 const atMatch1 = p.match(/^(ARC|AGC|ABC|APC)(\d+)([A-Z])$/i);
                 if (atMatch1) {
                     const prefix = atMatch1[1].toLowerCase();
@@ -1501,56 +1491,38 @@
                     const num = atMatch2[2];
                     return `https://atcoder.jp/contests/${prefix}${num}`;
                 }
-
-                // 6. POJ
                 const pojMatch = p.match(/^POJ(\d+)$/i);
                 if (pojMatch) {
                     return `http://poj.org/problem?id=${pojMatch[1]}`;
                 }
-
-                // 7. UOJ
                 const uojMatch = p.match(/^UOJ(\d+)$/i);
                 if (uojMatch) {
                     return `https://uoj.ac/problem/${uojMatch[1]}`;
                 }
-
-                // 8. QOJ
                 const qojMatch = p.match(/^QOJ(\d+)$/i);
                 if (qojMatch) {
                     return `https://qoj.ac/problem/${qojMatch[1]}`;
                 }
-
-                // 9. LibreOJ (LOJ)
                 const lojMatch = p.match(/^LOJ(\d+)$/i);
                 if (lojMatch) {
                     return `https://loj.ac/p/${lojMatch[1]}`;
                 }
-
-                // 10. SPOJ
                 const spojMatch = p.match(/^SPOJ(\w+)$/i);
                 if (spojMatch) {
                     return `https://www.spoj.com/problems/${spojMatch[1].toUpperCase()}/`;
                 }
-
-                // 11. HDU
                 const hduMatch = p.match(/^HDU(\d+)$/i);
                 if (hduMatch) {
                     return `https://acm.hdu.edu.cn/showproblem.php?pid=${hduMatch[1]}`;
                 }
-
-                // 12. ZOJ
                 const zojMatch = p.match(/^ZOJ(\d+)$/i);
                 if (zojMatch) {
                     return `https://zoj.pintia.cn/problem-sets/91827364500000000000000000000000/problems/91827364500000000000000000000000${zojMatch[1]}`;
                 }
-
-                // 13. BZOJ
                 const bzojMatch = p.match(/^BZOJ(\d+)$/i);
                 if (bzojMatch) {
                     return `https://www.lydsy.com/JudgeOnline/problem.php?id=${bzojMatch[1]}`;
                 }
-
-                // 14. 牛客
                 if (p.includes('牛客') || p.includes('NC')) {
                     const ncMatch = p.match(/^NC(\d+)$/i);
                     if (ncMatch) {
@@ -1562,12 +1534,9 @@
                     }
                     return `https://ac.nowcoder.com/acm/search?keyword=${encodeURIComponent(p)}`;
                 }
-
-                // 15. 默认：洛谷搜索
                 return `https://www.luogu.com.cn/problem/list?keyword=${encodeURIComponent(p)}`;
             }
 
-            // 获取OJ来源缩写
             function getOJSource(pid) {
                 if (!pid) return '?';
                 const p = pid.trim();
@@ -1818,7 +1787,10 @@
             }
 
             function deleteList(name) {
-                if (!data.lists[name]) return;
+                if (!data.lists[name]) {
+                    showToast('题单不存在', 'warning');
+                    return;
+                }
                 showConfirm('删除题单', '确定要删除题单 <strong>' + escapeHtml(name) +
                     '</strong> 及其所有题目吗？<br><span style="font-size:11px;color:var(--text-muted);">不可恢复</span>', () => {
                     delete data.lists[name];
@@ -1826,7 +1798,7 @@
                     data.currentList = keys.length > 0 ? keys[0] : null;
                     saveData();
                     renderAll();
-                    showToast('已删除题单', 'info');
+                    showToast('已删除题单「' + name + '」', 'info');
                 });
             }
 
@@ -2058,24 +2030,36 @@
             }
 
             // ================================================================
-            //  模态框
+            //  模态框 — 重构确认逻辑
             // ================================================================
             function showConfirm(title, msg, cb) {
                 document.getElementById('confirmTitle').innerHTML = title;
                 document.getElementById('confirmMsg').innerHTML = msg;
-                document.getElementById('confirmModal').classList.add('show');
+                const modal = document.getElementById('confirmModal');
                 confirmCallback = cb;
-                document.getElementById('confirmBtn').onclick = function() {
+                // 移除旧绑定，避免重复触发
+                const btn = document.getElementById('confirmBtn');
+                btn.onclick = function(e) {
+                    e.stopPropagation();
                     closeModal('confirmModal');
                     const fn = confirmCallback;
                     confirmCallback = null;
                     if (fn) fn();
                 };
+                modal.classList.add('show');
             }
 
             function closeModal(id) {
-                document.getElementById(id).classList.remove('show');
-                confirmCallback = null;
+                const modal = document.getElementById(id);
+                if (modal) {
+                    modal.classList.remove('show');
+                }
+                // 只有关闭确认模态框时清除回调
+                if (id === 'confirmModal') {
+                    // 但不要清除，因为可能已经通过确认按钮执行了
+                    // 但如果是通过背景关闭，则清除以防误触
+                    // 这里保留回调，但会在下次 showConfirm 时覆盖
+                }
             }
 
             // ================================================================
@@ -2129,7 +2113,7 @@
             }
 
             // ================================================================
-            //  渲染
+            //  渲染 — 使用事件委托代替内联 onclick
             // ================================================================
             function renderAll() {
                 renderLists();
@@ -2155,33 +2139,61 @@
                     const isActive = name === data.currentList;
                     const count = data.lists[name] ? data.lists[name].length : 0;
                     const isRenaming = renamingList === name;
+                    const safeName = escapeHtml(name);
 
                     if (isRenaming) {
                         return `
-                                <div class="list-item ${isActive ? 'active' : ''}" data-name="${escapeHtml(name)}">
-                                    <input class="li-name-input" type="text" value="${escapeHtml(name)}" 
-                                           onblur="confirmRenameList('${escapeHtml(name)}', this.value)"
-                                           onkeydown="if(event.key==='Enter'){confirmRenameList('${escapeHtml(name)}', this.value);} else if(event.key==='Escape'){renamingList=null;renderLists();}" />
+                                <div class="list-item ${isActive ? 'active' : ''}" data-name="${safeName}" data-action="rename">
+                                    <input class="li-name-input" type="text" value="${safeName}" 
+                                           data-old-name="${safeName}"
+                                           onblur="confirmRenameList(this.dataset.oldName, this.value)"
+                                           onkeydown="if(event.key==='Enter'){confirmRenameList(this.dataset.oldName, this.value);} else if(event.key==='Escape'){renamingList=null;renderLists();}" />
                                     <span class="li-count">${count}</span>
                                     <div class="li-actions">
-                                        <button class="rename-list" onclick="event.stopPropagation();startRenameList('${escapeHtml(name)}')" title="重命名"><i class="fas fa-pen"></i></button>
-                                        <button class="del-list" onclick="event.stopPropagation();deleteList('${escapeHtml(name)}')" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                        <button class="rename-list" data-action="rename" title="重命名"><i class="fas fa-pen"></i></button>
+                                        <button class="del-list" data-action="delete" data-name="${safeName}" title="删除"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </div>
                             `;
                     }
 
                     return `
-                            <div class="list-item ${isActive ? 'active' : ''}" onclick="selectList('${escapeHtml(name)}')">
-                                <span class="li-name">${escapeHtml(name)}</span>
+                            <div class="list-item ${isActive ? 'active' : ''}" data-name="${safeName}" data-action="select">
+                                <span class="li-name">${safeName}</span>
                                 <span class="li-count">${count}</span>
                                 <div class="li-actions">
-                                    <button class="rename-list" onclick="event.stopPropagation();startRenameList('${escapeHtml(name)}')" title="重命名"><i class="fas fa-pen"></i></button>
-                                    <button class="del-list" onclick="event.stopPropagation();deleteList('${escapeHtml(name)}')" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="rename-list" data-action="rename" title="重命名"><i class="fas fa-pen"></i></button>
+                                    <button class="del-list" data-action="delete" data-name="${safeName}" title="删除"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                             </div>
                         `;
                 }).join('');
+
+                // 使用事件委托绑定列表点击事件
+                container.onclick = function(e) {
+                    const target = e.target.closest('button') || e.target.closest('.list-item');
+                    if (!target) return;
+
+                    const item = target.closest('.list-item');
+                    if (!item) return;
+
+                    const action = target.dataset.action || item.dataset.action;
+                    const name = item.dataset.name || target.dataset.name;
+
+                    if (!name) return;
+
+                    switch (action) {
+                        case 'select':
+                            selectList(name);
+                            break;
+                        case 'delete':
+                            deleteList(name);
+                            break;
+                        case 'rename':
+                            startRenameList(name);
+                            break;
+                    }
+                };
             }
 
             function renderProblems() {
@@ -2216,7 +2228,6 @@
                     return;
                 }
 
-                // 构建难度选项HTML
                 const diffOptions = Object.entries(DIFF_NAMES).map(([val, label]) => {
                     return `<option value="${val}">${label}</option>`;
                 }).join('');
@@ -2322,11 +2333,12 @@
             // ================================================================
             loadData();
             loadGitHubSettings();
-            console.log('📚 题单管理 · 多OJ题集 (Git同步+AT_CF跳转洛谷)');
+            console.log('📚 题单管理 · 多OJ题集 (事件委托 + Toast 动画修复)');
             console.log('  📋 已加载 ' + Object.keys(data.lists).length + ' 个题单');
             console.log('  📝 当前题单: ' + (data.currentList || '无'));
             console.log('  🔗 支持 AT_* 及 CF 跳转洛谷');
             console.log('  💾 数据保存到 /data/problem_lists.json');
+            console.log('  🧹 删除按钮使用事件委托，彻底解决访问问题');
 
         })();
     </script>
