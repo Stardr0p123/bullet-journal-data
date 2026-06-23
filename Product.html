@@ -979,7 +979,7 @@
         }
 
         /* ================================================================
-           8.  模态框 — 修复动画延迟（使用 visibility + opacity + transform）
+           8.  模态框 — 修复动画延迟
            ================================================================ */
         .modal-overlay {
             position: fixed;
@@ -1118,7 +1118,7 @@
         }
 
         /* ================================================================
-           9.  Toast — 修复动画延迟（使用 transition + requestAnimationFrame）
+           9.  Toast — 修复动画延迟
            ================================================================ */
         .toast-container {
             position: fixed;
@@ -1387,11 +1387,11 @@
                 </div>
             </div>
             <div class="header-actions">
-                <button class="btn-ghost-sm" onclick="exportData()"><i class="fas fa-download"></i> 导出</button>
+                <button class="btn-ghost-sm" onclick="window.exportData()"><i class="fas fa-download"></i> 导出</button>
                 <button class="btn-ghost-sm" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> 导入</button>
-                <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)" />
+                <input type="file" id="importFile" accept=".json" style="display:none" onchange="window.importData(event)" />
                 <button class="btn-ghost-sm" id="openGitHubBtn"><i class="fab fa-github"></i> Git</button>
-                <button class="btn-ghost-sm danger" onclick="confirmClearAll()"><i class="fas fa-trash-alt"></i> 清空</button>
+                <button class="btn-ghost-sm danger" onclick="window.confirmClearAll()"><i class="fas fa-trash-alt"></i> 清空</button>
             </div>
         </div>
     </header>
@@ -1415,8 +1415,8 @@
                     </div>
                 </div>
                 <div class="add-project-area">
-                    <input type="text" id="projectNameInput" placeholder="新项目名称..." onkeydown="if(event.key==='Enter')addProject()" />
-                    <button class="btn-sm" onclick="addProject()"><i class="fas fa-plus"></i> 添加</button>
+                    <input type="text" id="projectNameInput" placeholder="新项目名称..." onkeydown="if(event.key==='Enter')window.addProject()" />
+                    <button class="btn-sm" onclick="window.addProject()"><i class="fas fa-plus"></i> 添加</button>
                 </div>
             </div>
         </div>
@@ -1436,11 +1436,11 @@
     </div>
 
     <!-- ========================== 模态框：编辑并列任务 ========================== -->
-    <div class="modal-overlay" id="parallelModal" onclick="if(event.target===this)closeModal('parallelModal')">
+    <div class="modal-overlay" id="parallelModal" onclick="if(event.target===this)window.closeModal('parallelModal')">
         <div class="modal-box">
             <h3>
                 <i class="fas fa-edit" style="color:var(--primary);"></i> 编辑任务
-                <button class="modal-close" onclick="closeModal('parallelModal')"><i class="fas fa-times"></i></button>
+                <button class="modal-close" onclick="window.closeModal('parallelModal')"><i class="fas fa-times"></i></button>
             </h3>
             <div class="form-group">
                 <label>任务名称</label>
@@ -1452,19 +1452,19 @@
                 <div class="hint">仅当任务已完成时可编辑</div>
             </div>
             <div class="btn-row">
-                <button class="btn btn-ghost-modal" onclick="closeModal('parallelModal')">取消</button>
+                <button class="btn btn-ghost-modal" onclick="window.closeModal('parallelModal')">取消</button>
                 <button class="btn btn-primary-modal" id="parallelSaveBtn">保存</button>
             </div>
         </div>
     </div>
 
     <!-- ========================== 确认模态框 ========================== -->
-    <div class="modal-overlay" id="confirmModal" onclick="if(event.target===this)closeModal('confirmModal')">
+    <div class="modal-overlay" id="confirmModal" onclick="if(event.target===this)window.closeModal('confirmModal')">
         <div class="modal-box" style="max-width:400px;">
             <h3 id="confirmTitle"><i class="fas fa-exclamation-triangle" style="color:var(--danger);"></i> 确认</h3>
             <div class="msg" id="confirmMsg" style="color:var(--text-secondary);font-size:14px;line-height:1.6;"></div>
             <div class="btn-row">
-                <button class="btn btn-ghost-modal" onclick="closeModal('confirmModal')">取消</button>
+                <button class="btn btn-ghost-modal" onclick="window.closeModal('confirmModal')">取消</button>
                 <button class="btn btn-primary-modal" id="confirmBtn" style="background:#c47a6a;">确认</button>
             </div>
         </div>
@@ -1514,7 +1514,7 @@
             // ================================================================
             //  配置
             // ================================================================
-            const STORAGE_KEY = 'project_chain_tracker_v5';
+            const STORAGE_KEY = 'project_chain_tracker_v7';
             const GITHUB_SETTINGS_KEY = 'github_settings_project_tracker';
 
             // ================================================================
@@ -1529,6 +1529,7 @@
             let editingSeqId = null;
             let editingProjectId = null;
             let githubPanelOpen = false;
+            let pendingConfirmCallback = null; // 确认回调
 
             // ================================================================
             //  工具
@@ -1563,7 +1564,7 @@
                     String(d.getMonth() + 1).padStart(2, '0') + '-' +
                     String(d.getDate()).padStart(2, '0') + ' ' +
                     String(d.getHours()).padStart(2, '0') + ':' +
-                    String(d.getMinutes()).padStart(2, '0);
+                    String(d.getMinutes()).padStart(2, '0');
             }
 
             function formatDuration(seconds) {
@@ -1576,21 +1577,15 @@
                 return s + 's';
             }
 
-            // ================================================================
-            //  Toast — 修复动画延迟
-            // ================================================================
             function showToast(msg, type = 'info') {
                 const container = document.getElementById('toastContainer');
                 const t = document.createElement('div');
                 t.className = 'toast ' + type;
                 t.textContent = msg;
                 container.appendChild(t);
-
-                // 使用 requestAnimationFrame 确保动画从起始状态开始
                 requestAnimationFrame(() => {
                     t.classList.add('show');
                 });
-
                 setTimeout(() => {
                     t.classList.remove('show');
                     t.classList.add('hide');
@@ -1762,13 +1757,6 @@
                     btn.style.display = 'flex'; }
             }
 
-            document.getElementById('openGitHubBtn').addEventListener('click', toggleGitHubPanel);
-            document.getElementById('githubToggleBtn').addEventListener('click', toggleGitHubPanel);
-            document.getElementById('closeGitHubPanelBtn').addEventListener('click', toggleGitHubPanel);
-            document.getElementById('uploadToGitBtn').addEventListener('click', uploadToGit);
-            document.getElementById('importFromGitBtn').addEventListener('click', importFromGit);
-            document.getElementById('linkToGitBtn').addEventListener('click', openGitHubRepo);
-
             // ================================================================
             //  存储
             // ================================================================
@@ -1869,7 +1857,7 @@
                 const project = data.projects.find(p => p.id === id);
                 if (!project) return;
                 showConfirm('删除项目', '确定要删除 <strong>' + escapeHtml(project.name) +
-                    '</strong> 及其所有任务吗？<br><span style="font-size:11px;color:var(--text-muted);">不可恢复</span>', () => {
+                    '</strong> 及其所有任务吗？<br><span style="font-size:11px;color:var(--text-muted);">不可恢复</span>', function() {
                     data.projects = data.projects.filter(p => p.id !== id);
                     if (data.currentProjectId === id) {
                         data.currentProjectId = data.projects.length > 0 ? data.projects[0].id : null;
@@ -1930,7 +1918,7 @@
             }
 
             // ================================================================
-            //  并列任务操作 — 阶段锁定仅影响标记完成
+            //  并列任务操作
             // ================================================================
             function isPreviousSequentialDone(project, seqIdx) {
                 if (seqIdx === 0) return true;
@@ -1973,7 +1961,6 @@
                 const par = seq.parallelTasks.find(p => p.id === parId);
                 if (!par) return;
 
-                // 阶段锁定检查：如果前面阶段未完成，不允许勾选
                 if (!par.completed && !isPreviousSequentialDone(project, seqIdx)) {
                     showToast('⚠️ 请先完成前面的阶段', 'warning');
                     return;
@@ -1996,7 +1983,7 @@
 
                 updateSequentialCompletion(seq);
                 saveData();
-                renderAll(); // 同时刷新项目列表和详情
+                renderAll();
             }
 
             function updateSequentialCompletion(seq) {
@@ -2068,27 +2055,29 @@
             }
 
             // ================================================================
-            //  模态框 — 修复确认按钮回调被覆盖的问题
+            //  模态框 — 彻底修复确认按钮
             // ================================================================
             function showConfirm(title, msg, cb) {
                 document.getElementById('confirmTitle').innerHTML = title;
                 document.getElementById('confirmMsg').innerHTML = msg;
                 const modal = document.getElementById('confirmModal');
-                // 将回调保存到局部变量
-                const callback = cb;
-                // 绑定确认按钮事件
+                // 保存回调
+                pendingConfirmCallback = cb;
+                // 绑定确认按钮
                 const confirmBtn = document.getElementById('confirmBtn');
-                // 移除旧监听，避免重复绑定
                 confirmBtn.onclick = function(e) {
                     e.stopPropagation();
-                    // 先关闭模态框
+                    // 先保存回调副本，因为 closeModal 可能会修改 pendingConfirmCallback
+                    const callback = pendingConfirmCallback;
+                    // 关闭模态框
                     closeModal('confirmModal');
                     // 执行回调
                     if (typeof callback === 'function') {
                         callback();
                     }
+                    // 清除回调，防止重复执行
+                    pendingConfirmCallback = null;
                 };
-                // 显示模态框
                 modal.classList.add('show');
             }
 
@@ -2097,7 +2086,12 @@
                 if (modal) {
                     modal.classList.remove('show');
                 }
-                // 不再清除任何回调，因为我们使用局部变量
+                // 如果关闭的是确认模态框，且没有通过确认按钮执行，则清除回调
+                if (id === 'confirmModal') {
+                    if (pendingConfirmCallback) {
+                        pendingConfirmCallback = null;
+                    }
+                }
             }
 
             // ================================================================
@@ -2134,12 +2128,12 @@
                     const percent = totalParallel > 0 ? Math.round(doneParallel / totalParallel * 100) : 0;
 
                     return `
-                            <div class="project-item ${isActive ? 'active' : ''}" onclick="selectProject('${p.id}')">
+                            <div class="project-item ${isActive ? 'active' : ''}" onclick="window.selectProject('${p.id}')">
                                 <div class="pi-top">
                                     <span class="pi-name" title="${escapeHtml(p.name)}">${escapeHtml(p.name)}</span>
                                     <span class="pi-progress">${doneParallel}/${totalParallel}</span>
                                     <div class="pi-actions">
-                                        <button class="del-project" onclick="event.stopPropagation();deleteProject('${p.id}')" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                        <button class="del-project" onclick="event.stopPropagation();window.deleteProject('${p.id}')" title="删除"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </div>
                                 <div class="pi-bar">
@@ -2212,7 +2206,7 @@
                                 return `
                                         <div class="parallel-item ${isParDone ? 'completed' : ''}">
                                             <div class="p-dot ${isParDone ? 'done' : ''} ${isLocked ? 'locked' : ''}" 
-                                                 onclick="${isLocked ? '' : `toggleParallelTask('${seq.id}','${par.id}')`}"
+                                                 onclick="${isLocked ? '' : `window.toggleParallelTask('${seq.id}','${par.id}')`}"
                                                  title="${isLocked ? '请先完成前面的阶段' : (isParDone ? '取消完成' : '标记完成')}">
                                             </div>
                                             <div class="p-info">
@@ -2221,33 +2215,32 @@
                                                     <span class="p-time"><i class="far fa-clock"></i> <span class="time-value">${timeDisplay}</span></span>
                                                     ${par.completedAt ? `<span class="p-time"><i class="far fa-check-circle"></i> ${formatDate(par.completedAt)}</span>` : ''}
                                                     ${noteDisplay ? `
-                                                        <span class="p-note" onclick="openEditParallel('${seq.id}','${par.id}')" title="点击编辑心得">
+                                                        <span class="p-note" onclick="window.openEditParallel('${seq.id}','${par.id}')" title="点击编辑心得">
                                                             <i class="fas fa-quote-right"></i> ${escapeHtml(noteDisplay)}
                                                         </span>
                                                     ` : ''}
                                                 </div>
                                             </div>
                                             <div class="p-actions">
-                                                <button class="edit-parallel" onclick="openEditParallel('${seq.id}','${par.id}')" title="编辑"><i class="fas fa-pen"></i></button>
-                                                <button class="del-parallel" onclick="deleteParallelTask('${seq.id}','${par.id}')" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                                <button class="edit-parallel" onclick="window.openEditParallel('${seq.id}','${par.id}')" title="编辑"><i class="fas fa-pen"></i></button>
+                                                <button class="del-parallel" onclick="window.deleteParallelTask('${seq.id}','${par.id}')" title="删除"><i class="fas fa-trash-alt"></i></button>
                                             </div>
                                         </div>
                                     `;
                             }).join('');
                         }
 
-                        // 锁定阶段仅加透明样式，不影响交互
                         const lockClass = isLocked ? 'locked' : '';
 
                         return `
                                 <div class="seq-task ${isCompleted ? 'completed' : ''} ${lockClass}">
-                                    <div class="seq-header" onclick="toggleSequentialTask('${seq.id}')">
+                                    <div class="seq-header" onclick="window.toggleSequentialTask('${seq.id}')">
                                         <span class="seq-arrow ${isExpanded ? 'expanded' : ''}"><i class="fas fa-chevron-right"></i></span>
                                         <span class="seq-status ${isCompleted ? 'done' : ''}"></span>
                                         <span class="seq-name ${isCompleted ? 'done-text' : ''}">${escapeHtml(seq.name)}</span>
                                         <span class="seq-progress">${parDone}/${parCount}</span>
                                         <div class="seq-actions">
-                                            <button class="del-seq" onclick="event.stopPropagation();deleteSequentialTask('${seq.id}')" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                            <button class="del-seq" onclick="event.stopPropagation();window.deleteSequentialTask('${seq.id}')" title="删除"><i class="fas fa-trash-alt"></i></button>
                                         </div>
                                     </div>
                                     <div class="parallel-container ${isExpanded ? 'open' : ''}">
@@ -2255,8 +2248,8 @@
                                             ${parHtml}
                                         </div>
                                         <div class="add-parallel-area">
-                                            <input type="text" id="parallelInput_${seq.id}" placeholder="添加子任务..." onkeydown="if(event.key==='Enter')addParallelTask('${seq.id}')" />
-                                            <button class="btn-sm small" onclick="addParallelTask('${seq.id}')"><i class="fas fa-plus"></i> 添加</button>
+                                            <input type="text" id="parallelInput_${seq.id}" placeholder="添加子任务..." onkeydown="if(event.key==='Enter')window.addParallelTask('${seq.id}')" />
+                                            <button class="btn-sm small" onclick="window.addParallelTask('${seq.id}')"><i class="fas fa-plus"></i> 添加</button>
                                         </div>
                                     </div>
                                 </div>
@@ -2277,7 +2270,7 @@
                                 </div>
                             </div>
                             <div class="dh-actions">
-                                <button class="btn-sm ghost" onclick="deleteProject('${project.id}')" style="color:var(--danger);border-color:rgba(196,122,106,0.15);">
+                                <button class="btn-sm ghost" onclick="window.deleteProject('${project.id}')" style="color:var(--danger);border-color:rgba(196,122,106,0.15);">
                                     <i class="fas fa-trash-alt"></i> 删除项目
                                 </button>
                             </div>
@@ -2286,8 +2279,8 @@
                             ${seqHtml}
                         </div>
                         <div class="add-seq-area">
-                            <input type="text" id="seqNameInput" placeholder="添加阶段..." onkeydown="if(event.key==='Enter')addSequentialTask()" />
-                            <button class="btn-sm" onclick="addSequentialTask()"><i class="fas fa-plus"></i> 添加</button>
+                            <input type="text" id="seqNameInput" placeholder="添加阶段..." onkeydown="if(event.key==='Enter')window.addSequentialTask()" />
+                            <button class="btn-sm" onclick="window.addSequentialTask()"><i class="fas fa-plus"></i> 添加</button>
                         </div>
                     `;
             }
@@ -2340,7 +2333,7 @@
 
             function confirmClearAll() {
                 if (data.projects.length === 0) { showToast('没有数据可清空', 'warning'); return; }
-                showConfirm('清空所有数据', '确定要 <strong style="color:#c47a6a;">清空所有</strong> 项目数据吗？<br><span style="font-size:11px;color:var(--text-muted);">建议先导出备份</span>', () => {
+                showConfirm('清空所有数据', '确定要 <strong style="color:#c47a6a;">清空所有</strong> 项目数据吗？<br><span style="font-size:11px;color:var(--text-muted);">建议先导出备份</span>', function() {
                     data.projects = [];
                     data.currentProjectId = null;
                     expandedSeqs = {};
@@ -2381,6 +2374,16 @@
             });
 
             // ================================================================
+            //  绑定 GitHub 和浮动按钮事件
+            // ================================================================
+            document.getElementById('openGitHubBtn').addEventListener('click', toggleGitHubPanel);
+            document.getElementById('githubToggleBtn').addEventListener('click', toggleGitHubPanel);
+            document.getElementById('closeGitHubPanelBtn').addEventListener('click', toggleGitHubPanel);
+            document.getElementById('uploadToGitBtn').addEventListener('click', uploadToGit);
+            document.getElementById('importFromGitBtn').addEventListener('click', importFromGit);
+            document.getElementById('linkToGitBtn').addEventListener('click', openGitHubRepo);
+
+            // ================================================================
             //  全局暴露
             // ================================================================
             window.addProject = addProject;
@@ -2407,7 +2410,7 @@
             loadData();
             loadGitHubSettings();
 
-            console.log('📊 项目进度 · 链式追踪 (修复删除确认)');
+            console.log('📊 项目进度 · 链式追踪 (最终修复版)');
             console.log('  📋 已加载 ' + data.projects.length + ' 个项目');
             console.log('  🔗 阶段锁定仅影响勾选，其他操作不受限');
             console.log('  💾 数据保存到 /data/project_tracker.json');
