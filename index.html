@@ -105,7 +105,7 @@
         .container {
             position: relative;
             z-index: 1;
-            max-width: 900px;
+            max-width: 1100px;
             width: 100%;
             padding: 20px 0;
         }
@@ -170,25 +170,25 @@
         }
 
         /* ================================================================
-           5.  卡片网格 — 2行 x 3列
+           5.  卡片网格 — 2行 x 4列
            ================================================================ */
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
             }
             .main-title h1 {
-                font-size: 36px;
+                font-size: 38px;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 540px) {
             .grid {
                 grid-template-columns: 1fr;
                 gap: 14px;
@@ -222,7 +222,7 @@
             color: var(--text);
             position: relative;
             overflow: hidden;
-            min-height: 180px;
+            min-height: 170px;
             text-align: center;
             user-select: none;
         }
@@ -267,15 +267,15 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 72px;
-            height: 72px;
-            border-radius: 18px;
+            width: 68px;
+            height: 68px;
+            border-radius: 16px;
             background: var(--primary-gradient);
             color: #fff;
-            font-size: 32px;
-            box-shadow: 0 8px 28px rgba(6, 182, 212, 0.22);
+            font-size: 30px;
+            box-shadow: 0 6px 24px rgba(6, 182, 212, 0.22);
             transition: all var(--transition-bounce);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             flex-shrink: 0;
             position: relative;
             overflow: hidden;
@@ -292,12 +292,12 @@
 
         .tool-card:hover .icon-wrap {
             transform: scale(1.12) rotate(-6deg);
-            box-shadow: 0 12px 40px rgba(6, 182, 212, 0.35);
+            box-shadow: 0 10px 36px rgba(6, 182, 212, 0.35);
         }
 
         /* 卡片名称 */
         .tool-card .name {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             color: var(--text);
             letter-spacing: -0.2px;
@@ -342,6 +342,12 @@
         .tool-card:nth-child(6) .icon-wrap {
             background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
         }
+        .tool-card:nth-child(7) .icon-wrap {
+            background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+        }
+        .tool-card:nth-child(8) .icon-wrap {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
 
         /* ================================================================
            8.  页脚
@@ -372,22 +378,28 @@
         }
 
         .tool-card:nth-child(1) {
-            animation-delay: 0.05s;
+            animation-delay: 0.04s;
         }
         .tool-card:nth-child(2) {
-            animation-delay: 0.10s;
+            animation-delay: 0.08s;
         }
         .tool-card:nth-child(3) {
-            animation-delay: 0.15s;
+            animation-delay: 0.12s;
         }
         .tool-card:nth-child(4) {
-            animation-delay: 0.20s;
+            animation-delay: 0.16s;
         }
         .tool-card:nth-child(5) {
-            animation-delay: 0.25s;
+            animation-delay: 0.20s;
         }
         .tool-card:nth-child(6) {
-            animation-delay: 0.30s;
+            animation-delay: 0.24s;
+        }
+        .tool-card:nth-child(7) {
+            animation-delay: 0.28s;
+        }
+        .tool-card:nth-child(8) {
+            animation-delay: 0.32s;
         }
 
         @keyframes cardIn {
@@ -417,51 +429,6 @@
                 opacity: 0;
             }
         }
-
-        /* Toast 消息 */
-        .toast-container {
-            position: fixed;
-            top: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            pointer-events: none;
-        }
-        .toast {
-            padding: 12px 28px;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            font-size: 14px;
-            color: #fff;
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08);
-            animation: toastIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), toastOut 0.35s cubic-bezier(0.22, 1, 0.36, 1) 2.2s forwards;
-            pointer-events: auto;
-            text-align: center;
-            white-space: nowrap;
-        }
-        @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px) scale(0.92);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        @keyframes toastOut {
-            from {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(-20px) scale(0.92);
-            }
-        }
     </style>
 </head>
 <body>
@@ -475,7 +442,7 @@
             <span class="sub">— 轻量 · 优雅 · 高效 —</span>
         </div>
 
-        <!-- 卡片网格 2行 x 3列 -->
+        <!-- 卡片网格 2行 x 4列 -->
         <div class="grid">
 
             <!-- 1. 复习计划 -->
@@ -513,11 +480,25 @@
                 <span class="hint">四维透视 · 高效管理</span>
             </a>
 
-            <!-- 6. 通用记录器 (原"敬请期待") -->
+            <!-- 6. 通用记录器 -->
             <a class="tool-card" href="https://stardr0p123.github.io/bullet-journal-data/General.html" target="_blank" rel="noopener">
                 <span class="icon-wrap"><i class="fas fa-feather-alt"></i></span>
                 <span class="name">通用记录器</span>
                 <span class="hint">灵活字段 · 自定义笔记</span>
+            </a>
+
+            <!-- 7. 项目进度 (新增) -->
+            <a class="tool-card" href="https://stardr0p123.github.io/bullet-journal-data/Product.html" target="_blank" rel="noopener">
+                <span class="icon-wrap"><i class="fas fa-project-diagram"></i></span>
+                <span class="name">项目进度</span>
+                <span class="hint">链式追踪 · 阶段管理</span>
+            </a>
+
+            <!-- 8. 题单管理 (新增) -->
+            <a class="tool-card" href="https://stardr0p123.github.io/bullet-journal-data/Problemset.html" target="_blank" rel="noopener">
+                <span class="icon-wrap"><i class="fas fa-layer-group"></i></span>
+                <span class="name">题单管理</span>
+                <span class="hint">多OJ题集 · 批量导入</span>
             </a>
 
         </div>
