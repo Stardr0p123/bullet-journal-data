@@ -731,30 +731,29 @@
         }
 
         /* ================================================================
-           9.  模态框
+           9.  模态框 — 修复动画延迟（visibility + opacity + transform）
            ================================================================ */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(15, 23, 42, 0.15);
+            background: rgba(15, 23, 42, 0.12);
             backdrop-filter: blur(4px);
             z-index: 200;
-            display: none;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: visibility 0s linear 0.25s, opacity 0.25s ease;
+            display: flex;
             align-items: center;
             justify-content: center;
-            animation: fadeIn 0.2s ease;
         }
         .modal-overlay.show {
-            display: flex;
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+            transition: visibility 0s linear 0s, opacity 0.25s ease;
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
+
         .modal-box {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(32px);
@@ -766,18 +765,15 @@
             max-height: 85vh;
             overflow-y: auto;
             box-shadow: 0 16px 60px rgba(0, 0, 0, 0.06);
-            animation: modalSlide 0.25s var(--transition-bounce);
+            transform: scale(0.92) translateY(16px);
+            opacity: 0;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
         }
-        @keyframes modalSlide {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.94);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        .modal-overlay.show .modal-box {
+            transform: scale(1) translateY(0);
+            opacity: 1;
         }
+
         .modal-box h3 {
             font-size: 17px;
             margin-bottom: 12px;
@@ -944,7 +940,7 @@
         }
 
         /* ================================================================
-           10. Toast
+           10. Toast — 修复动画延迟（transition + requestAnimationFrame）
            ================================================================ */
         .toast-container {
             position: fixed;
@@ -968,7 +964,19 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
             pointer-events: auto;
             max-width: 360px;
-            animation: toastIn 0.25s var(--transition-bounce), toastOut 0.2s ease 2.2s forwards;
+            opacity: 0;
+            transform: translateX(30px) scale(0.92);
+            transition: opacity 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        .toast.hide {
+            opacity: 0;
+            transform: translateX(30px) scale(0.92);
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
         .toast.success {
             background: rgba(16, 185, 129, 0.78);
@@ -979,26 +987,6 @@
         .toast.warning {
             background: rgba(245, 158, 11, 0.78);
             color: #1a2e1a;
-        }
-        @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px) scale(0.92);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-        }
-        @keyframes toastOut {
-            from {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-            to {
-                opacity: 0;
-                transform: translateX(30px) scale(0.92);
-            }
         }
 
         /* ================================================================
@@ -1292,10 +1280,10 @@
                 </div>
             </div>
             <div class="header-actions">
-                <button class="btn-sm" onclick="openNotebookManager()"><i class="fas fa-book"></i> 管理</button>
-                <button class="btn-sm" onclick="exportData()"><i class="fas fa-download"></i> 导出</button>
+                <button class="btn-sm" onclick="window.openNotebookManager()"><i class="fas fa-book"></i> 管理</button>
+                <button class="btn-sm" onclick="window.exportData()"><i class="fas fa-download"></i> 导出</button>
                 <button class="btn-sm" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> 导入</button>
-                <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)" />
+                <input type="file" id="importFile" accept=".json" style="display:none" onchange="window.importData(event)" />
                 <button class="btn-sm" id="openGitHubBtn"><i class="fab fa-github"></i> Git</button>
             </div>
         </div>
@@ -1312,7 +1300,7 @@
                 <div class="section-title">
                     <i class="fas fa-filter"></i> 筛选
                     <span class="badge" id="filterResultCount">0</span>
-                    <span class="action-link" onclick="resetFilters()">重置</span>
+                    <span class="action-link" onclick="window.resetFilters()">重置</span>
                 </div>
                 <div id="filterContainer">
                     <div class="empty-state" style="padding:8px 0;">
@@ -1329,14 +1317,14 @@
                     <div class="edit-panel" id="editPanel">
                         <div class="ep-header">
                             <span class="ep-title" id="editPanelTitle">编辑 <span class="ep-sub" id="editPanelSub"></span></span>
-                            <button class="btn-sm" onclick="closeEditPanel()"><i class="fas fa-times"></i> 关闭</button>
+                            <button class="btn-sm" onclick="window.closeEditPanel()"><i class="fas fa-times"></i> 关闭</button>
                         </div>
                         <div class="ep-body" id="editPanelBody">
                             <div class="ep-empty"><i class="fas fa-hand-point-left" style="margin-right:8px;"></i> 选择一条记录开始编辑</div>
                         </div>
                         <div class="ep-actions">
                             <button class="btn-sm btn-primary-sm" id="saveRecordBtn"><i class="fas fa-save"></i> 保存</button>
-                            <button class="btn-sm" id="cancelEditBtn" onclick="closeEditPanel()">取消</button>
+                            <button class="btn-sm" id="cancelEditBtn" onclick="window.closeEditPanel()">取消</button>
                         </div>
                     </div>
                 </div>
@@ -1358,24 +1346,24 @@
                 </div>
                 <div class="list-actions">
                     <button class="btn-sm btn-primary-sm" id="addRecordBtn"><i class="fas fa-plus"></i> 添加记录</button>
-                    <button class="btn-sm" id="manageFieldsBtn" onclick="openFieldManager()"><i class="fas fa-cog"></i> 管理字段</button>
+                    <button class="btn-sm" id="manageFieldsBtn" onclick="window.openFieldManager()"><i class="fas fa-cog"></i> 管理字段</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- ===== 模态框：笔记本管理 ===== -->
-    <div class="modal-overlay" id="notebookModal" onclick="if(event.target===this)closeModal('notebookModal')">
+    <div class="modal-overlay" id="notebookModal" onclick="if(event.target===this)window.closeModal('notebookModal')">
         <div class="modal-box">
             <h3>
                 <i class="fas fa-book"></i> 笔记本管理
-                <button class="modal-close" onclick="closeModal('notebookModal')"><i class="fas fa-times"></i></button>
+                <button class="modal-close" onclick="window.closeModal('notebookModal')"><i class="fas fa-times"></i></button>
             </h3>
             <div class="form-group">
                 <label>笔记本名称</label>
                 <div style="display:flex; gap:8px;">
                     <input type="text" id="notebookNameInput" placeholder="如: 电影记录" />
-                    <button class="btn-sm btn-primary-sm" onclick="createNotebook()"><i class="fas fa-plus"></i> 创建</button>
+                    <button class="btn-sm btn-primary-sm" onclick="window.createNotebook()"><i class="fas fa-plus"></i> 创建</button>
                 </div>
             </div>
             <div style="margin-top:8px;">
@@ -1383,18 +1371,18 @@
                 <div id="notebookList" style="display:flex; flex-direction:column; gap:4px; margin-top:4px;"></div>
             </div>
             <div class="btn-row" style="margin-top:12px;">
-                <button class="btn btn-ghost" onclick="closeModal('notebookModal')">关闭</button>
+                <button class="btn btn-ghost" onclick="window.closeModal('notebookModal')">关闭</button>
             </div>
         </div>
     </div>
 
     <!-- ===== 模态框：字段管理 ===== -->
-    <div class="modal-overlay" id="fieldModal" onclick="if(event.target===this)closeModal('fieldModal')">
+    <div class="modal-overlay" id="fieldModal" onclick="if(event.target===this)window.closeModal('fieldModal')">
         <div class="modal-box">
             <h3>
                 <i class="fas fa-cog"></i> 管理字段
                 <span id="fieldNotebookName" style="font-size:13px; font-weight:400; color:var(--text-muted); margin-left:8px;"></span>
-                <button class="modal-close" onclick="closeModal('fieldModal')"><i class="fas fa-times"></i></button>
+                <button class="modal-close" onclick="window.closeModal('fieldModal')"><i class="fas fa-times"></i></button>
             </h3>
             <div class="form-group" style="display:flex; gap:8px; flex-wrap:wrap; align-items:flex-end;">
                 <div style="flex:2; min-width:120px;">
@@ -1411,7 +1399,7 @@
                         <option value="multi">多选</option>
                     </select>
                 </div>
-                <button class="btn-sm btn-primary-sm" onclick="addField()" style="margin-bottom:0;"><i class="fas fa-plus"></i> 添加</button>
+                <button class="btn-sm btn-primary-sm" onclick="window.addField()" style="margin-bottom:0;"><i class="fas fa-plus"></i> 添加</button>
             </div>
             <div class="form-group" id="fieldOptionsGroup" style="display:none;">
                 <label>选项 (用逗号分隔)</label>
@@ -1423,7 +1411,7 @@
                 <div class="field-list" id="fieldList"></div>
             </div>
             <div class="btn-row">
-                <button class="btn btn-ghost" onclick="closeModal('fieldModal')">关闭</button>
+                <button class="btn btn-ghost" onclick="window.closeModal('fieldModal')">关闭</button>
             </div>
         </div>
     </div>
@@ -1501,13 +1489,24 @@
                 return d.innerHTML;
             }
 
+            // ===== Toast — 修复动画延迟 =====
             function showToast(msg, type = 'info') {
                 const container = document.getElementById('toastContainer');
                 const t = document.createElement('div');
                 t.className = 'toast ' + type;
                 t.textContent = msg;
                 container.appendChild(t);
-                setTimeout(() => { if (t.parentNode) t.remove(); }, 2200);
+                // 使用 requestAnimationFrame 确保动画从起始状态开始
+                requestAnimationFrame(() => {
+                    t.classList.add('show');
+                });
+                setTimeout(() => {
+                    t.classList.remove('show');
+                    t.classList.add('hide');
+                    setTimeout(() => {
+                        if (t.parentNode) t.parentNode.removeChild(t);
+                    }, 300);
+                }, 2200);
             }
 
             // ================================================================
@@ -1556,7 +1555,6 @@
                 root.style.setProperty('--primary-soft', scheme.primarySoft);
                 root.style.setProperty('--primary-glow', scheme.primaryGlow);
                 root.style.setProperty('--primary-gradient', scheme.primaryGradient);
-                // 同步更新 body 背景中的颜色
                 document.body.style.transition = 'background 0.5s ease';
             }
 
@@ -1626,7 +1624,6 @@
                     data.currentNotebookId = keys.length > 0 ? keys[0] : null;
                 }
 
-                // 应用颜色
                 if (data.currentNotebookId) {
                     applyNotebookColor(data.currentNotebookId);
                 }
@@ -2380,7 +2377,6 @@
                 if (keys.length === 0) html = '<option value="">— 没有笔记本 —</option>';
                 container.innerHTML = html;
 
-                // 更新颜色点
                 if (colorDot && data.currentNotebookId) {
                     const color = getNotebookColor(data.currentNotebookId);
                     colorDot.style.background = color;
@@ -2417,7 +2413,7 @@
                                     </span>
                                 </div>
                                 <div style="display:flex; gap:4px;">
-                                    ${!isCurrent ? `<button class="btn-sm" style="font-size:11px;padding:2px 10px;" onclick="window.switchNotebook('${id}');closeModal('notebookModal');">切换</button>` : ''}
+                                    ${!isCurrent ? `<button class="btn-sm" style="font-size:11px;padding:2px 10px;" onclick="window.switchNotebook('${id}');window.closeModal('notebookModal');">切换</button>` : ''}
                                     <button class="btn-sm btn-danger-sm" style="font-size:11px;padding:2px 10px;" onclick="window.deleteNotebook('${id}')">删除</button>
                                 </div>
                             </div>
@@ -2432,8 +2428,14 @@
                 renderFieldList();
             }
 
+            // ================================================================
+            //  模态框 — 使用 visibility + opacity + transform，无延迟
+            // ================================================================
             function closeModal(id) {
-                document.getElementById(id).classList.remove('show');
+                const modal = document.getElementById(id);
+                if (modal) {
+                    modal.classList.remove('show');
+                }
             }
 
             // ================================================================
@@ -2564,6 +2566,7 @@
             window.closeEditPanel = closeEditPanel;
             window.saveCurrentEdit = saveCurrentEdit;
             window.toggleGitHubPanel = toggleGitHubPanel;
+            window.showToast = showToast;
 
             // ================================================================
             //  启动
@@ -2571,7 +2574,7 @@
             loadData();
             loadGitHubSettings();
 
-            console.log('📒 通用记录器 · 子弹笔记版 (颜色+Git)');
+            console.log('📒 通用记录器 · 子弹笔记版 (动画修复)');
             console.log('  📊 已加载 ' + Object.keys(data.notebooks).length + ' 个笔记本');
             console.log('  🎨 点击笔记本管理中的色块自定义颜色');
             console.log('  ⌨️  Ctrl+S 保存当前编辑 | Esc 关闭面板');
