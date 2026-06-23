@@ -1,0 +1,2335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>题单管理 · 多OJ题集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ================================================================
+           1.  CSS 变量 — 低饱和深蓝 · 克制沉稳
+           ================================================================ */
+        :root {
+            --primary: #4a6a8a;
+            --primary-dark: #3a5a7a;
+            --primary-light: #6a8aaa;
+            --primary-soft: rgba(74, 106, 138, 0.10);
+            --primary-glow: rgba(74, 106, 138, 0.20);
+            --primary-gradient: linear-gradient(135deg, #4a6a8a 0%, #3a5a7a 50%, #2a4a6a 100%);
+
+            --success: #5a8a7a;
+            --warning: #b8a06a;
+            --danger: #b06a6a;
+
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-bg-hover: rgba(255, 255, 255, 0.60);
+            --glass-border: rgba(255, 255, 255, 0.30);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(74, 106, 138, 0.06) inset;
+            --glass-hover-shadow: 0 16px 48px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(74, 106, 138, 0.10) inset;
+            --glass-blur: 22px;
+
+            --text: #1a2a3a;
+            --text-secondary: #4a5a6a;
+            --text-muted: #8a9aaa;
+
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+
+            --transition-smooth: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+            --icon-bg: rgba(74, 106, 138, 0.10);
+            --icon-radius: 10px;
+
+            --bg-start: #e8ecf0;
+            --bg-end: #dce0e8;
+        }
+
+        /* ================================================================
+           2.  全局重置 & 背景
+           ================================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 15px;
+            min-height: 100vh;
+            color: var(--text);
+            background: var(--bg-start);
+            background:
+                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(74, 106, 138, 0.06) 0%, rgba(106, 138, 170, 0.02) 40%, rgba(15, 23, 42, 0.01) 70%, transparent 100%),
+                radial-gradient(ellipse at calc(100% - var(--mouse-x)) calc(100% - var(--mouse-y)), rgba(58, 90, 122, 0.03) 0%, rgba(74, 106, 138, 0.01) 50%, transparent 80%),
+                var(--bg-start);
+            background-attachment: fixed;
+            transition: background 0.08s ease;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at calc(100% - var(--mouse-x)) calc(100% - var(--mouse-y)), rgba(255, 255, 255, 0.03) 0%, transparent 40%);
+            transition: background 0.08s ease;
+            opacity: 0.7;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(74, 106, 138, 0.20);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(74, 106, 138, 0.35);
+        }
+
+        /* ================================================================
+           3.  毛玻璃通用
+           ================================================================ */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            box-shadow: var(--glass-shadow);
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.20) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0.4;
+            transition: opacity var(--transition-smooth);
+            z-index: 0;
+        }
+        .glass:hover::before {
+            opacity: 0.7;
+        }
+        .glass:hover {
+            background: var(--glass-bg-hover);
+            border-color: rgba(74, 106, 138, 0.08);
+            box-shadow: var(--glass-hover-shadow);
+            transform: translateY(-2px);
+        }
+        .glass>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ================================================================
+           4.  顶部导航
+           ================================================================ */
+        .app-header {
+            flex-shrink: 0;
+            padding: 0 28px;
+            background: rgba(255, 255, 255, 0.40);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.30);
+            box-shadow: 0 1px 20px rgba(0, 0, 0, 0.02);
+            transition: all var(--transition-smooth);
+            width: 100%;
+        }
+        .app-header:hover {
+            border-color: rgba(74, 106, 138, 0.06);
+        }
+        .header-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+            gap: 16px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #fff;
+            box-shadow: 0 2px 16px rgba(74, 106, 138, 0.20);
+            transition: transform var(--transition-bounce), box-shadow var(--transition-smooth);
+        }
+        .logo-icon:hover {
+            transform: scale(1.10) rotate(-6deg);
+            box-shadow: 0 6px 28px rgba(74, 106, 138, 0.30);
+        }
+        .logo-text {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.3px;
+        }
+        .logo-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: 4px;
+            letter-spacing: 0.2px;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-ghost-sm {
+            padding: 5px 14px;
+            font-size: 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            color: var(--text-secondary);
+            font-weight: 500;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn-ghost-sm:hover {
+            background: rgba(255, 255, 255, 0.38);
+            border-color: rgba(74, 106, 138, 0.15);
+            color: var(--text);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+        }
+        .btn-ghost-sm:active {
+            transform: scale(0.94);
+        }
+
+        /* ================================================================
+           5.  主容器 — 两栏布局
+           ================================================================ */
+        .main-container {
+            max-width: 1440px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 18px 28px 20px;
+            flex: 1;
+            display: flex;
+            gap: 20px;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .col-left {
+            flex: 0 0 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 0;
+            max-height: 100%;
+            overflow: hidden;
+        }
+        .col-left .glass {
+            flex: 1;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .col-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            max-height: 100%;
+            overflow: hidden;
+        }
+        .col-right .glass {
+            flex: 1;
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                overflow: auto;
+                height: auto;
+            }
+            .main-container {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+                padding: 14px 16px 18px;
+                gap: 14px;
+            }
+            .col-left {
+                flex: none;
+                width: 100%;
+                max-height: 320px;
+                min-height: 200px;
+            }
+            .col-right {
+                min-height: 300px;
+                max-height: 480px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .app-header {
+                padding: 0 14px;
+            }
+            .header-inner {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 6px 0;
+                gap: 8px;
+            }
+            .logo-area {
+                justify-content: center;
+                width: 100%;
+            }
+            .header-actions {
+                justify-content: center;
+                width: 100%;
+            }
+            .main-container {
+                padding: 10px 12px 14px;
+                gap: 10px;
+            }
+            .col-left {
+                max-height: 260px;
+                min-height: 160px;
+            }
+            .col-right {
+                min-height: 260px;
+                max-height: 400px;
+            }
+        }
+
+        /* ================================================================
+           6.  通用组件
+           ================================================================ */
+        .section-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            margin-bottom: 10px;
+        }
+        .section-title .badge {
+            font-size: 10px;
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            padding: 0 8px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+        }
+        .section-title .action-link {
+            margin-left: auto;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--primary-dark);
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity var(--transition-smooth);
+        }
+        .section-title .action-link:hover {
+            opacity: 0.7;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .input-group input {
+            flex: 1;
+            padding: 6px 12px;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            transition: var(--transition-smooth);
+            outline: none;
+            min-width: 60px;
+        }
+        .input-group input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 0 0 4px var(--primary-soft);
+        }
+        .input-group input::placeholder {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        .input-group select {
+            padding: 6px 12px;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            transition: var(--transition-smooth);
+            outline: none;
+            min-width: 80px;
+        }
+        .input-group select:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 0 0 4px var(--primary-soft);
+        }
+
+        .btn-sm {
+            padding: 6px 16px;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: var(--primary-gradient);
+            color: #fff;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            font-family: inherit;
+            box-shadow: 0 2px 12px var(--primary-glow);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn-sm:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px var(--primary-glow);
+        }
+        .btn-sm:active {
+            transform: scale(0.94);
+        }
+        .btn-sm.ghost {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-secondary);
+            box-shadow: none;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .btn-sm.ghost:hover {
+            background: rgba(255, 255, 255, 0.22);
+            box-shadow: none;
+        }
+        .btn-sm.danger {
+            background: rgba(176, 106, 106, 0.10);
+            color: #8a5a5a;
+            box-shadow: none;
+            border: 1px solid rgba(176, 106, 106, 0.08);
+        }
+        .btn-sm.danger:hover {
+            background: rgba(176, 106, 106, 0.18);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 20px 10px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        .empty-state .icon {
+            font-size: 28px;
+            opacity: 0.25;
+            margin-bottom: 4px;
+        }
+
+        /* ================================================================
+           7.  左侧：题单列表
+           ================================================================ */
+        .list-container {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-height: 40px;
+        }
+        .list-container::-webkit-scrollbar {
+            width: 3px;
+        }
+        .list-container::-webkit-scrollbar-thumb {
+            background: rgba(74, 106, 138, 0.15);
+            border-radius: 3px;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            gap: 4px;
+        }
+        .list-item:hover {
+            background: rgba(255, 255, 255, 0.20);
+            transform: translateX(2px);
+        }
+        .list-item.active {
+            border-color: var(--primary);
+            background: var(--primary-soft);
+            box-shadow: 0 0 0 2px var(--primary-soft);
+        }
+        .list-item .li-name {
+            flex: 1;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text);
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .list-item .li-name-input {
+            flex: 1;
+            padding: 2px 6px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1.5px solid var(--primary);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.20);
+            color: var(--text);
+            outline: none;
+            min-width: 60px;
+            font-family: inherit;
+        }
+        .list-item .li-count {
+            font-size: 12px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 0 8px;
+            border-radius: var(--radius-full);
+        }
+        .list-item .li-actions {
+            display: flex;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+        .list-item .li-actions button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 12px;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: all var(--transition-smooth);
+            opacity: 0.2;
+        }
+        .list-item:hover .li-actions button {
+            opacity: 0.6;
+        }
+        .list-item .li-actions button:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .list-item .li-actions .rename-list:hover {
+            color: var(--primary-dark);
+        }
+        .list-item .li-actions .del-list:hover {
+            color: var(--danger);
+        }
+
+        /* ================================================================
+           8.  右侧：题目列表
+           ================================================================ */
+        .problem-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .problem-header .ph-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .problem-header .ph-name .ph-sub {
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-left: 6px;
+        }
+        .problem-header .ph-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .problem-list {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-height: 40px;
+        }
+        .problem-list::-webkit-scrollbar {
+            width: 3px;
+        }
+        .problem-list::-webkit-scrollbar-thumb {
+            background: rgba(74, 106, 138, 0.15);
+            border-radius: 3px;
+        }
+
+        .problem-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all var(--transition-smooth);
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .problem-item:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+        .problem-item .pi-pid {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--primary-dark);
+            cursor: pointer;
+            text-decoration: none;
+            transition: color var(--transition-smooth);
+            flex-shrink: 0;
+            font-family: var(--font-mono);
+            min-width: 52px;
+        }
+        .problem-item .pi-pid:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        .problem-item .pi-name {
+            flex: 1;
+            font-size: 14px;
+            color: var(--text);
+            min-width: 60px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .problem-item .pi-diff {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: var(--radius-full);
+            flex-shrink: 0;
+            min-width: 48px;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            border: none;
+            font-family: inherit;
+            background: rgba(148, 163, 184, 0.08);
+            color: var(--text-muted);
+            border: 1px solid rgba(148, 163, 184, 0.06);
+        }
+        .problem-item .pi-diff:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+        }
+        .problem-item .pi-diff select {
+            background: transparent;
+            border: none;
+            color: inherit;
+            font-weight: 600;
+            font-size: 12px;
+            font-family: inherit;
+            outline: none;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+        .problem-item .pi-diff select option {
+            background: rgba(255, 255, 255, 0.90);
+            color: var(--text);
+        }
+        /* 难度颜色 */
+        .problem-item .pi-diff.diff-0 {
+            background: rgba(148, 163, 184, 0.08);
+            color: var(--text-muted);
+            border-color: rgba(148, 163, 184, 0.06);
+        }
+        .problem-item .pi-diff.diff-1 {
+            background: rgba(239, 68, 68, 0.12);
+            color: #b91c1c;
+            border-color: rgba(239, 68, 68, 0.08);
+        }
+        .problem-item .pi-diff.diff-2 {
+            background: rgba(249, 115, 22, 0.12);
+            color: #c2410c;
+            border-color: rgba(249, 115, 22, 0.08);
+        }
+        .problem-item .pi-diff.diff-3 {
+            background: rgba(234, 179, 8, 0.12);
+            color: #a16207;
+            border-color: rgba(234, 179, 8, 0.08);
+        }
+        .problem-item .pi-diff.diff-4 {
+            background: rgba(34, 197, 94, 0.12);
+            color: #166534;
+            border-color: rgba(34, 197, 94, 0.08);
+        }
+        .problem-item .pi-diff.diff-5 {
+            background: rgba(59, 130, 246, 0.12);
+            color: #1e40af;
+            border-color: rgba(59, 130, 246, 0.08);
+        }
+        .problem-item .pi-diff.diff-6 {
+            background: rgba(139, 92, 246, 0.12);
+            color: #5b21b6;
+            border-color: rgba(139, 92, 246, 0.08);
+        }
+        .problem-item .pi-diff.diff-7 {
+            background: rgba(31, 41, 55, 0.10);
+            color: #1f2937;
+            border-color: rgba(31, 41, 55, 0.06);
+        }
+
+        .problem-item .pi-status {
+            font-size: 13px;
+            cursor: pointer;
+            padding: 2px 10px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            transition: all var(--transition-bounce);
+            flex-shrink: 0;
+            border: none;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .problem-item .pi-status:hover {
+            transform: scale(1.05);
+        }
+        .problem-item .pi-status:active {
+            transform: scale(0.88);
+        }
+        .problem-item .pi-status.done {
+            background: rgba(90, 138, 122, 0.12);
+            color: #3a6a5a;
+        }
+        .problem-item .pi-status.undo {
+            background: rgba(148, 163, 184, 0.10);
+            color: var(--text-muted);
+        }
+        .problem-item .pi-actions {
+            display: flex;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+        .problem-item .pi-actions button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 12px;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: all var(--transition-smooth);
+            opacity: 0.15;
+        }
+        .problem-item:hover .pi-actions button {
+            opacity: 0.5;
+        }
+        .problem-item .pi-actions button:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .problem-item .pi-actions .del-problem:hover {
+            color: var(--danger);
+        }
+
+        /* ================================================================
+           9.  模态框
+           ================================================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.12);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease;
+        }
+        .modal-overlay.show {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .modal-box {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.04);
+            animation: modalSlide 0.25s var(--transition-bounce);
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.94);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .modal-box h3 {
+            font-size: 17px;
+            margin-bottom: 12px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-box .modal-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0 4px;
+            transition: color var(--transition-smooth);
+        }
+        .modal-box .modal-close:hover {
+            color: var(--text);
+        }
+        .modal-box .form-group {
+            margin-bottom: 10px;
+        }
+        .modal-box .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 2px;
+        }
+        .modal-box .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            font-family: inherit;
+            outline: none;
+            transition: border-color var(--transition-smooth), background var(--transition-smooth);
+            resize: vertical;
+            min-height: 120px;
+            max-height: 300px;
+        }
+        .modal-box .form-group textarea:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.16);
+        }
+        .modal-box .form-group .hint {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .modal-box .preview-area {
+            max-height: 180px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            font-family: var(--font-mono);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .modal-box .preview-area .preview-item {
+            padding: 2px 0;
+            display: flex;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .modal-box .preview-area .preview-item .p-pid {
+            font-weight: 600;
+            color: var(--primary-dark);
+            min-width: 80px;
+        }
+        .modal-box .preview-area .preview-item .p-name {
+            color: var(--text);
+        }
+        .modal-box .preview-stats {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .modal-box .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .modal-box .btn-row .btn {
+            flex: 1;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all var(--transition-smooth);
+        }
+        .btn-ghost-modal {
+            background: rgba(255, 255, 255, 0.20);
+            color: #4a5a6a;
+        }
+        .btn-ghost-modal:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-1px);
+        }
+        .btn-primary-modal {
+            background: var(--primary-gradient);
+            color: #fff;
+        }
+        .btn-primary-modal:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px var(--primary-glow);
+        }
+
+        /* ================================================================
+           10. GitHub 面板
+           ================================================================ */
+        .github-panel {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 300;
+            background: rgba(255, 255, 255, 0.60);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.30);
+            border-radius: 24px;
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.04);
+            padding: 22px 26px 26px;
+            max-width: 400px;
+            width: calc(100% - 48px);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+            transform: translateY(calc(100% + 24px));
+            opacity: 0;
+            pointer-events: none;
+        }
+        .github-panel.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .github-panel .gp-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .github-panel .gp-title .close-gp {
+            margin-left: auto;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 20px;
+            padding: 0 6px;
+            border-radius: 50%;
+            transition: background var(--transition-smooth), color var(--transition-smooth);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .github-panel .gp-title .close-gp:hover {
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--text);
+        }
+        .github-panel .form-group {
+            margin-bottom: 12px;
+        }
+        .github-panel .form-group label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .github-panel .form-group input {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 14px;
+            border: 1.5px solid rgba(255, 255, 255, 0.20);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            outline: none;
+            transition: border-color var(--transition-smooth), box-shadow var(--transition-smooth), transform var(--transition-smooth);
+            font-family: inherit;
+        }
+        .github-panel .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-soft);
+            background: rgba(255, 255, 255, 0.28);
+            transform: translateY(-1px);
+        }
+        .github-panel .gp-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        .github-panel .gp-actions .btn-sm {
+            flex: 1;
+            justify-content: center;
+            min-width: 80px;
+            border-radius: 40px;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+        .github-panel .gp-actions .btn-sm:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 28px var(--primary-glow);
+        }
+        .github-panel .gp-actions .btn-sm:active {
+            transform: scale(0.95);
+        }
+        .github-panel .gp-actions .btn-primary {
+            background: var(--primary-gradient);
+            color: #fff;
+            box-shadow: 0 4px 18px var(--primary-glow);
+        }
+        .github-panel .gp-actions .btn-primary:hover {
+            box-shadow: 0 8px 32px var(--primary-glow);
+        }
+        .github-panel .gp-actions .btn-sm:not(.btn-primary) {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-secondary);
+        }
+        .github-panel .gp-actions .btn-sm:not(.btn-primary):hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.22);
+            color: var(--text);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04);
+        }
+        .github-panel .gp-hint {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            font-size: 12px;
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1.5;
+        }
+        .github-panel .gp-hint code {
+            background: rgba(0, 0, 0, 0.04);
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        .github-toggle-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 299;
+            background: var(--primary-gradient);
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 24px var(--primary-glow);
+            transition: all var(--transition-smooth), background var(--transition-smooth), box-shadow var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .github-toggle-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 36px var(--primary-glow);
+        }
+        .github-toggle-btn:active {
+            transform: scale(0.94);
+        }
+        .github-panel.open~.github-toggle-btn {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.9);
+        }
+
+        /* ================================================================
+           11. Toast
+           ================================================================ */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            pointer-events: none;
+        }
+        .toast {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 13px;
+            color: #fff;
+            background: rgba(26, 42, 58, 0.72);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+            pointer-events: auto;
+            max-width: 360px;
+            animation: toastIn 0.25s var(--transition-bounce), toastOut 0.2s ease 2.2s forwards;
+        }
+        .toast.success {
+            background: rgba(90, 138, 122, 0.78);
+        }
+        .toast.info {
+            background: rgba(74, 106, 138, 0.78);
+        }
+        .toast.warning {
+            background: rgba(184, 160, 106, 0.78);
+            color: #2a2a1a;
+        }
+        .toast.error {
+            background: rgba(176, 106, 106, 0.78);
+        }
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px) scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+        @keyframes toastOut {
+            from {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(30px) scale(0.92);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================== 顶部导航 ========================== -->
+    <header class="app-header">
+        <div class="header-inner">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-layer-group"></i></div>
+                <div>
+                    <span class="logo-text">题单管理</span>
+                    <span class="logo-sub">· 多OJ题集</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-ghost-sm" onclick="exportData()"><i class="fas fa-download"></i> 导出</button>
+                <button class="btn-ghost-sm" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> 导入</button>
+                <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)" />
+                <button class="btn-ghost-sm" id="openGitHubBtn"><i class="fab fa-github"></i> Git</button>
+                <button class="btn-ghost-sm" onclick="confirmClearAll()" style="color:#8a5a5a;border-color:rgba(176,106,106,0.12);">
+                    <i class="fas fa-trash-alt"></i> 清空
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================== 主容器 ========================== -->
+    <div class="main-container">
+
+        <!-- ===== 左栏：题单列表 ===== -->
+        <div class="col-left">
+            <div class="glass">
+                <div class="section-title">
+                    <i class="fas fa-list-ul"></i> 题单列表
+                    <span class="badge" id="listCount">0</span>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="listNameInput" placeholder="新题单名称..." onkeydown="if(event.key==='Enter')addList()" />
+                    <button class="btn-sm" onclick="addList()"><i class="fas fa-plus"></i> 添加</button>
+                </div>
+                <div class="list-container" id="listContainer">
+                    <div class="empty-state">
+                        <div class="icon"><i class="fas fa-inbox"></i></div>
+                        <p>还没有题单，创建一个吧</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 右栏：题目列表 ===== -->
+        <div class="col-right">
+            <div class="glass">
+                <div class="problem-header">
+                    <span class="ph-name" id="currentListName">选择题单 <span class="ph-sub">查看题目</span></span>
+                    <div class="ph-actions">
+                        <button class="btn-sm ghost" onclick="openBatchImport()" style="border-color:var(--primary);">
+                            <i class="fas fa-file-import"></i> 批量导入
+                        </button>
+                        <button class="btn-sm ghost" id="deleteListBtn" style="color:#8a5a5a;border-color:rgba(176,106,106,0.12);display:none;" onclick="deleteCurrentList()">
+                            <i class="fas fa-trash-alt"></i> 删除题单
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group" id="addProblemGroup">
+                    <input type="text" id="problemPidInput" placeholder="题号 (如 P1001, CF1234A, AT_abc221_h)" />
+                    <input type="text" id="problemNameInput" placeholder="题目名称" />
+                    <select id="problemDiffSelect">
+                        <option value="0">暂无评定</option>
+                        <option value="1">入门</option>
+                        <option value="2">普及-</option>
+                        <option value="3">普及/提高-</option>
+                        <option value="4">普及+/提高</option>
+                        <option value="5">提高+/省选-</option>
+                        <option value="6">省选/NOI-</option>
+                        <option value="7">NOI/NOI+/CTSC</option>
+                    </select>
+                    <button class="btn-sm" onclick="addProblem()"><i class="fas fa-plus"></i> 添加</button>
+                </div>
+                <div class="problem-list" id="problemList">
+                    <div class="empty-state">
+                        <div class="icon"><i class="fas fa-hand-point-left"></i></div>
+                        <p>选择题单查看题目</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========================== 模态框：批量导入 ========================== -->
+    <div class="modal-overlay" id="batchModal" onclick="if(event.target===this)closeModal('batchModal')">
+        <div class="modal-box">
+            <h3>
+                <i class="fas fa-file-import" style="color:var(--primary);"></i> 批量导入题目
+                <button class="modal-close" onclick="closeModal('batchModal')"><i class="fas fa-times"></i></button>
+            </h3>
+            <div class="form-group">
+                <label>粘贴题单数据</label>
+                <textarea id="batchInput" placeholder="每行一个题目，题号和名称用 Tab 或空格分隔&#10;例如：&#10;P1001	A+B Problem&#10;P1048	采药&#10;CF1364D	Ehab's Last Corollary"></textarea>
+                <div class="hint">支持从 Excel 直接复制两列粘贴，自动识别题号与题目名</div>
+            </div>
+            <div class="preview-stats" id="batchStats">已解析 0 条，点击下方「解析预览」查看</div>
+            <div class="preview-area" id="batchPreview"></div>
+            <div class="btn-row">
+                <button class="btn btn-ghost-modal" onclick="closeModal('batchModal')">取消</button>
+                <button class="btn btn-ghost-modal" onclick="parseBatch()"><i class="fas fa-eye"></i> 解析预览</button>
+                <button class="btn btn-primary-modal" id="batchImportBtn" onclick="confirmBatchImport()"><i class="fas fa-check"></i> 确认导入</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================== 确认模态框 ========================== -->
+    <div class="modal-overlay" id="confirmModal" onclick="if(event.target===this)closeModal('confirmModal')">
+        <div class="modal-box" style="max-width:400px;">
+            <h3 id="confirmTitle"><i class="fas fa-exclamation-triangle" style="color:#b06a6a;"></i> 确认</h3>
+            <div class="msg" id="confirmMsg" style="color:var(--text-secondary);font-size:14px;line-height:1.6;"></div>
+            <div class="btn-row">
+                <button class="btn btn-ghost-modal" onclick="closeModal('confirmModal')">取消</button>
+                <button class="btn btn-primary-modal" id="confirmBtn" style="background:#b06a6a;">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================== GitHub 面板 ========================== -->
+    <div class="github-panel" id="githubPanel">
+        <div class="gp-title">
+            <i class="fab fa-github"></i> GitHub 同步
+            <span class="close-gp" id="closeGitHubPanelBtn"><i class="fas fa-times"></i></span>
+        </div>
+        <div class="form-group">
+            <label>用户名</label>
+            <input type="text" id="githubUsername" placeholder="你的 GitHub 用户名" />
+        </div>
+        <div class="form-group">
+            <label>仓库名</label>
+            <input type="text" id="githubRepo" placeholder="仓库名 (如: my-notes)" />
+        </div>
+        <div class="form-group">
+            <label>令牌 (Personal Access Token)</label>
+            <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxx" />
+        </div>
+        <div class="gp-actions">
+            <button class="btn-sm btn-primary" id="uploadToGitBtn"><i class="fas fa-upload"></i> 上传至git</button>
+            <button class="btn-sm btn-primary" id="importFromGitBtn"><i class="fas fa-download"></i> 从Git导入</button>
+            <button class="btn-sm" id="linkToGitBtn"><i class="fas fa-link"></i> 链接至github</button>
+        </div>
+        <div class="gp-hint">
+            <i class="fas fa-info-circle"></i> 令牌需具有 repo 权限。数据保存到 <code>/data/problem_lists.json</code>
+        </div>
+    </div>
+
+    <!-- ===== 浮动按钮 ===== -->
+    <button class="github-toggle-btn" id="githubToggleBtn">
+        <i class="fab fa-github"></i> 同步到GitHub
+    </button>
+
+    <!-- ========================== Toast ========================== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ========================== JavaScript ========================== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ================================================================
+            //  配置
+            // ================================================================
+            const STORAGE_KEY = 'luogu_problem_lists_v5';
+            const GITHUB_SETTINGS_KEY = 'github_settings_problem_lists';
+
+            // 难度映射 (显示名称)
+            const DIFF_NAMES = {
+                0: '暂无评定',
+                1: '入门',
+                2: '普及-',
+                3: '普及/提高-',
+                4: '普及+/提高',
+                5: '提高+/省选-',
+                6: '省选/NOI-',
+                7: 'NOI/NOI+/CTSC',
+            };
+
+            // ================================================================
+            //  数据层
+            // ================================================================
+            let data = {
+                lists: {}, // { listName: [ { pid, name, difficulty, done }, ... ] }
+                currentList: null,
+            };
+
+            let confirmCallback = null;
+            let batchParsedData = [];
+            let renamingList = null;
+            let githubPanelOpen = false;
+
+            // ================================================================
+            //  工具
+            // ================================================================
+            function escapeHtml(str) {
+                if (!str) return '';
+                const d = document.createElement('div');
+                d.textContent = str;
+                return d.innerHTML;
+            }
+
+            function showToast(msg, type = 'info') {
+                const container = document.getElementById('toastContainer');
+                const t = document.createElement('div');
+                t.className = 'toast ' + type;
+                t.textContent = msg;
+                container.appendChild(t);
+                setTimeout(() => { if (t.parentNode) t.parentNode.removeChild(t); }, 2200);
+            }
+
+            function sortLists() {
+                return Object.keys(data.lists).sort((a, b) => a.localeCompare(b));
+            }
+
+            function getCurrentListName() {
+                return data.currentList || null;
+            }
+
+            function getCurrentProblems() {
+                const name = getCurrentListName();
+                if (!name || !data.lists[name]) return [];
+                return data.lists[name] || [];
+            }
+
+            // ================================================================
+            //  链接生成 — 多OJ匹配引擎
+            // ================================================================
+            function getProblemUrl(pid) {
+                if (!pid) return '#';
+                const p = pid.trim();
+
+                // 1. 洛谷专用格式 AtCoder: AT_*
+                if (p.startsWith('AT_')) {
+                    return `https://www.luogu.com.cn/problem/${p}`;
+                }
+
+                // 2. Codeforces 主题库题（CF开头，非GYM）→ 跳转洛谷
+                if (p.startsWith('CF') && !p.startsWith('GYM')) {
+                    return `https://www.luogu.com.cn/problem/${p}`;
+                }
+
+                // 3. 洛谷 P + 数字
+                const luoguMatch = p.match(/^P(\d+)$/i);
+                if (luoguMatch) {
+                    return `https://www.luogu.com.cn/problem/P${luoguMatch[1]}`;
+                }
+
+                // 4. Codeforces GYM
+                const gymMatch = p.match(/^GYM(\d+)([A-Z])$/i);
+                if (gymMatch) {
+                    return `https://codeforces.com/gym/${gymMatch[1]}/problem/${gymMatch[2].toUpperCase()}`;
+                }
+                const gymMatch2 = p.match(/^GYM(\d+)$/i);
+                if (gymMatch2) {
+                    return `https://codeforces.com/gym/${gymMatch2[1]}`;
+                }
+
+                // 5. AtCoder 标准格式 ARC/AGC/ABC/APC
+                const atMatch1 = p.match(/^(ARC|AGC|ABC|APC)(\d+)([A-Z])$/i);
+                if (atMatch1) {
+                    const prefix = atMatch1[1].toLowerCase();
+                    const num = atMatch1[2];
+                    const letter = atMatch1[3].toLowerCase();
+                    return `https://atcoder.jp/contests/${prefix}${num}/tasks/${prefix}${num}_${letter}`;
+                }
+                const atMatch2 = p.match(/^(ARC|AGC|ABC|APC)(\d+)$/i);
+                if (atMatch2) {
+                    const prefix = atMatch2[1].toLowerCase();
+                    const num = atMatch2[2];
+                    return `https://atcoder.jp/contests/${prefix}${num}`;
+                }
+
+                // 6. POJ
+                const pojMatch = p.match(/^POJ(\d+)$/i);
+                if (pojMatch) {
+                    return `http://poj.org/problem?id=${pojMatch[1]}`;
+                }
+
+                // 7. UOJ
+                const uojMatch = p.match(/^UOJ(\d+)$/i);
+                if (uojMatch) {
+                    return `https://uoj.ac/problem/${uojMatch[1]}`;
+                }
+
+                // 8. QOJ
+                const qojMatch = p.match(/^QOJ(\d+)$/i);
+                if (qojMatch) {
+                    return `https://qoj.ac/problem/${qojMatch[1]}`;
+                }
+
+                // 9. LibreOJ (LOJ)
+                const lojMatch = p.match(/^LOJ(\d+)$/i);
+                if (lojMatch) {
+                    return `https://loj.ac/p/${lojMatch[1]}`;
+                }
+
+                // 10. SPOJ
+                const spojMatch = p.match(/^SPOJ(\w+)$/i);
+                if (spojMatch) {
+                    return `https://www.spoj.com/problems/${spojMatch[1].toUpperCase()}/`;
+                }
+
+                // 11. HDU
+                const hduMatch = p.match(/^HDU(\d+)$/i);
+                if (hduMatch) {
+                    return `https://acm.hdu.edu.cn/showproblem.php?pid=${hduMatch[1]}`;
+                }
+
+                // 12. ZOJ
+                const zojMatch = p.match(/^ZOJ(\d+)$/i);
+                if (zojMatch) {
+                    return `https://zoj.pintia.cn/problem-sets/91827364500000000000000000000000/problems/91827364500000000000000000000000${zojMatch[1]}`;
+                }
+
+                // 13. BZOJ
+                const bzojMatch = p.match(/^BZOJ(\d+)$/i);
+                if (bzojMatch) {
+                    return `https://www.lydsy.com/JudgeOnline/problem.php?id=${bzojMatch[1]}`;
+                }
+
+                // 14. 牛客
+                if (p.includes('牛客') || p.includes('NC')) {
+                    const ncMatch = p.match(/^NC(\d+)$/i);
+                    if (ncMatch) {
+                        return `https://ac.nowcoder.com/acm/problem/${ncMatch[1]}`;
+                    }
+                    const ncContest = p.match(/^牛客(\d+)([A-Z])$/i);
+                    if (ncContest) {
+                        return `https://ac.nowcoder.com/acm/contest/${ncContest[1]}/problem/${ncContest[2].toUpperCase()}`;
+                    }
+                    return `https://ac.nowcoder.com/acm/search?keyword=${encodeURIComponent(p)}`;
+                }
+
+                // 15. 默认：洛谷搜索
+                return `https://www.luogu.com.cn/problem/list?keyword=${encodeURIComponent(p)}`;
+            }
+
+            // 获取OJ来源缩写
+            function getOJSource(pid) {
+                if (!pid) return '?';
+                const p = pid.trim();
+                if (p.startsWith('AT_')) return '洛谷(AT)';
+                if (/^P\d+$/i.test(p)) return '洛谷';
+                if (p.startsWith('CF') && !p.startsWith('GYM')) return '洛谷(CF)';
+                if (p.startsWith('GYM')) return 'GYM';
+                if (/^(ARC|AGC|ABC|APC)/i.test(p)) return 'AtCoder';
+                if (/^POJ/i.test(p)) return 'POJ';
+                if (/^UOJ/i.test(p)) return 'UOJ';
+                if (/^QOJ/i.test(p)) return 'QOJ';
+                if (/^LOJ/i.test(p)) return 'LOJ';
+                if (/^SPOJ/i.test(p)) return 'SPOJ';
+                if (/^HDU/i.test(p)) return 'HDU';
+                if (/^ZOJ/i.test(p)) return 'ZOJ';
+                if (/^BZOJ/i.test(p)) return 'BZOJ';
+                if (/^NC/i.test(p) || p.includes('牛客')) return '牛客';
+                return '?';
+            }
+
+            // ================================================================
+            //  GitHub 同步
+            // ================================================================
+            function loadGitHubSettings() {
+                try {
+                    const raw = localStorage.getItem(GITHUB_SETTINGS_KEY);
+                    if (raw) {
+                        const settings = JSON.parse(raw);
+                        document.getElementById('githubUsername').value = settings.username || '';
+                        document.getElementById('githubRepo').value = settings.repo || '';
+                        document.getElementById('githubToken').value = settings.token || '';
+                    }
+                } catch (e) { /* ignore */ }
+            }
+
+            function saveGitHubSettings() {
+                const settings = {
+                    username: document.getElementById('githubUsername').value.trim(),
+                    repo: document.getElementById('githubRepo').value.trim(),
+                    token: document.getElementById('githubToken').value.trim()
+                };
+                try {
+                    localStorage.setItem(GITHUB_SETTINGS_KEY, JSON.stringify(settings));
+                } catch (e) { /* ignore */ }
+            }
+
+            function getGitHubSettings() {
+                return {
+                    username: document.getElementById('githubUsername').value.trim(),
+                    repo: document.getElementById('githubRepo').value.trim(),
+                    token: document.getElementById('githubToken').value.trim()
+                };
+            }
+
+            function utf8ToBase64(str) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(str);
+                let binary = '';
+                for (let i = 0; i < data.length; i++) binary += String.fromCharCode(data[i]);
+                return btoa(binary);
+            }
+
+            function base64ToUtf8(base64) {
+                const binary = atob(base64);
+                const bytes = new Uint8Array(binary.length);
+                for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+                return new TextDecoder('utf-8').decode(bytes);
+            }
+
+            function getFullData() {
+                return {
+                    lists: data.lists,
+                    currentList: data.currentList,
+                };
+            }
+
+            function loadFullData(imported) {
+                if (imported.lists) data.lists = imported.lists;
+                if (imported.currentList) data.currentList = imported.currentList;
+                if (!data.currentList || !data.lists[data.currentList]) {
+                    const keys = Object.keys(data.lists);
+                    data.currentList = keys.length > 0 ? keys[0] : null;
+                }
+                saveData();
+                renderAll();
+                showToast('✅ 数据已加载', 'success');
+            }
+
+            async function uploadToGit() {
+                const settings = getGitHubSettings();
+                if (!settings.username || !settings.repo || !settings.token) {
+                    showToast('请填写完整的 GitHub 信息', 'warning');
+                    return;
+                }
+                saveGitHubSettings();
+                if (!confirm('确定上传到 ' + settings.username + '/' + settings.repo + ' 的 /data/problem_lists.json 吗？'))
+                return;
+
+                const apiUrl =
+                    `https://api.github.com/repos/${settings.username}/${settings.repo}/contents/data/problem_lists.json`;
+                const fullData = getFullData();
+                const contentBase64 = utf8ToBase64(JSON.stringify(fullData, null, 2));
+
+                try {
+                    let sha = null;
+                    try {
+                        const getResp = await fetch(apiUrl, {
+                            headers: { 'Authorization': `token ${settings.token}`, 'Accept': 'application/vnd.github.v3+json' }
+                        });
+                        if (getResp.ok) { const d = await getResp.json();
+                            sha = d.sha; } else if (getResp.status !== 404) { throw new Error('获取文件信息失败'); }
+                    } catch (e) { if (e.message && e.message.includes('404')) {} else throw e; }
+
+                    const putResp = await fetch(apiUrl, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${settings.token}`,
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ message: '更新题单数据 ' + new Date().toISOString(), content: contentBase64,
+                            sha: sha || undefined })
+                    });
+                    if (!putResp.ok) { const err = await putResp.json(); throw new Error(err.message || '上传失败'); }
+                    showToast('✅ 数据已上传至 GitHub!', 'success');
+                } catch (error) {
+                    console.error(error);
+                    showToast('❌ 上传失败: ' + error.message, 'error');
+                }
+            }
+
+            async function importFromGit() {
+                const settings = getGitHubSettings();
+                if (!settings.username || !settings.repo || !settings.token) {
+                    showToast('请填写完整的 GitHub 信息', 'warning');
+                    return;
+                }
+                saveGitHubSettings();
+                if (!confirm('从 ' + settings.username + '/' + settings.repo +
+                        ' 导入数据？\n将替换当前所有本地数据！')) return;
+
+                const apiUrl =
+                    `https://api.github.com/repos/${settings.username}/${settings.repo}/contents/data/problem_lists.json`;
+                try {
+                    const resp = await fetch(apiUrl, {
+                        headers: { 'Authorization': `token ${settings.token}`, 'Accept': 'application/vnd.github.v3+json' }
+                    });
+                    if (!resp.ok) {
+                        if (resp.status === 404) throw new Error('远程文件不存在，请先上传');
+                        throw new Error('获取失败');
+                    }
+                    const respData = await resp.json();
+                    const imported = JSON.parse(base64ToUtf8(respData.content));
+                    if (!imported.lists || typeof imported.lists !== 'object') {
+                        throw new Error('数据格式错误');
+                    }
+                    loadFullData(imported);
+                    showToast('✅ 从 GitHub 导入成功!', 'success');
+                } catch (error) {
+                    console.error(error);
+                    showToast('❌ 导入失败: ' + error.message, 'error');
+                }
+            }
+
+            function openGitHubRepo() {
+                const settings = getGitHubSettings();
+                if (!settings.username || !settings.repo) { showToast('请先填写用户名和仓库名', 'warning'); return; }
+                saveGitHubSettings();
+                window.open(`https://github.com/${settings.username}/${settings.repo}`, '_blank');
+                showToast('正在打开仓库...', 'info');
+            }
+
+            function toggleGitHubPanel() {
+                githubPanelOpen = !githubPanelOpen;
+                const panel = document.getElementById('githubPanel');
+                const btn = document.getElementById('githubToggleBtn');
+                if (githubPanelOpen) { panel.classList.add('open');
+                    btn.style.display = 'none'; } else { panel.classList.remove('open');
+                    btn.style.display = 'flex'; }
+            }
+
+            document.getElementById('openGitHubBtn').addEventListener('click', toggleGitHubPanel);
+            document.getElementById('githubToggleBtn').addEventListener('click', toggleGitHubPanel);
+            document.getElementById('closeGitHubPanelBtn').addEventListener('click', toggleGitHubPanel);
+            document.getElementById('uploadToGitBtn').addEventListener('click', uploadToGit);
+            document.getElementById('importFromGitBtn').addEventListener('click', importFromGit);
+            document.getElementById('linkToGitBtn').addEventListener('click', openGitHubRepo);
+
+            // ================================================================
+            //  存储
+            // ================================================================
+            function loadData() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (raw) {
+                        const parsed = JSON.parse(raw);
+                        if (parsed.lists) data.lists = parsed.lists;
+                        if (parsed.currentList) data.currentList = parsed.currentList;
+                    }
+                } catch (e) { /* ignore */ }
+
+                if (Object.keys(data.lists).length === 0) {
+                    data.lists = {
+                        '示例题单': [
+                            { pid: 'P1001', name: 'A+B Problem', difficulty: 0, done: false },
+                            { pid: 'P1048', name: '采药', difficulty: 0, done: false },
+                            { pid: 'CF1364D', name: "Ehab's Last Corollary", difficulty: 0, done: false },
+                            { pid: 'ARC160E', name: 'Make Biconnected', difficulty: 0, done: false },
+                            { pid: 'POJ3734', name: 'Blocks', difficulty: 0, done: false },
+                            { pid: 'AT_abc221_h', name: 'Count Bracket', difficulty: 0, done: false },
+                        ]
+                    };
+                    data.currentList = '示例题单';
+                    saveData();
+                }
+
+                if (!data.currentList || !data.lists[data.currentList]) {
+                    const keys = Object.keys(data.lists);
+                    data.currentList = keys.length > 0 ? keys[0] : null;
+                }
+
+                renderAll();
+            }
+
+            function saveData() {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                        lists: data.lists,
+                        currentList: data.currentList,
+                    }));
+                } catch (e) { /* ignore */ }
+            }
+
+            // ================================================================
+            //  题单操作
+            // ================================================================
+            function addList() {
+                const input = document.getElementById('listNameInput');
+                const name = input.value.trim();
+                if (!name) { showToast('请输入题单名称', 'warning'); return; }
+                if (data.lists[name]) { showToast('题单已存在', 'warning'); return; }
+                data.lists[name] = [];
+                data.currentList = name;
+                input.value = '';
+                saveData();
+                renderAll();
+                showToast('✅ 已创建题单「' + name + '」', 'success');
+            }
+
+            function deleteList(name) {
+                if (!data.lists[name]) return;
+                showConfirm('删除题单', '确定要删除题单 <strong>' + escapeHtml(name) +
+                    '</strong> 及其所有题目吗？<br><span style="font-size:11px;color:var(--text-muted);">不可恢复</span>', () => {
+                    delete data.lists[name];
+                    const keys = Object.keys(data.lists);
+                    data.currentList = keys.length > 0 ? keys[0] : null;
+                    saveData();
+                    renderAll();
+                    showToast('已删除题单', 'info');
+                });
+            }
+
+            function selectList(name) {
+                if (name === data.currentList) return;
+                data.currentList = name;
+                renamingList = null;
+                saveData();
+                renderAll();
+            }
+
+            function deleteCurrentList() {
+                const name = getCurrentListName();
+                if (!name) return;
+                deleteList(name);
+            }
+
+            // ================================================================
+            //  重命名题单
+            // ================================================================
+            function startRenameList(name) {
+                renamingList = name;
+                renderLists();
+                setTimeout(() => {
+                    const input = document.querySelector(`.list-item[data-name="${escapeHtml(name)}"] .li-name-input`);
+                    if (input) {
+                        input.focus();
+                        input.select();
+                    }
+                }, 50);
+            }
+
+            function confirmRenameList(oldName, newName) {
+                if (!newName || newName.trim() === '') { showToast('名称不能为空', 'warning'); return; }
+                newName = newName.trim();
+                if (newName === oldName) {
+                    renamingList = null;
+                    renderLists();
+                    return;
+                }
+                if (data.lists[newName]) { showToast('题单名称已存在', 'warning'); return; }
+
+                data.lists[newName] = data.lists[oldName];
+                delete data.lists[oldName];
+                if (data.currentList === oldName) {
+                    data.currentList = newName;
+                }
+                renamingList = null;
+                saveData();
+                renderAll();
+                showToast('✅ 已重命名为「' + newName + '」', 'success');
+            }
+
+            // ================================================================
+            //  题目操作
+            // ================================================================
+            function addProblem() {
+                const listName = getCurrentListName();
+                if (!listName) { showToast('请先选择题单', 'warning'); return; }
+
+                const pidInput = document.getElementById('problemPidInput');
+                const nameInput = document.getElementById('problemNameInput');
+                const diffSelect = document.getElementById('problemDiffSelect');
+
+                const pid = pidInput.value.trim().toUpperCase();
+                const name = nameInput.value.trim();
+                const difficulty = parseInt(diffSelect.value);
+
+                if (!pid) { showToast('请输入题号', 'warning'); return; }
+                if (!name) { showToast('请输入题目名称', 'warning'); return; }
+
+                const problems = data.lists[listName];
+                if (problems.some(p => p.pid === pid)) {
+                    showToast('题目已存在于该题单中', 'warning');
+                    return;
+                }
+
+                problems.push({ pid, name, difficulty, done: false });
+                saveData();
+                renderAll();
+                pidInput.value = '';
+                nameInput.value = '';
+                showToast('✅ 已添加「' + pid + '」 - ' + name, 'success');
+
+                setTimeout(() => {
+                    const list = document.getElementById('problemList');
+                    if (list) list.scrollTop = list.scrollHeight;
+                }, 100);
+            }
+
+            function deleteProblem(pid) {
+                const listName = getCurrentListName();
+                if (!listName) return;
+                const problems = data.lists[listName];
+                const idx = problems.findIndex(p => p.pid === pid);
+                if (idx === -1) return;
+                problems.splice(idx, 1);
+                saveData();
+                renderAll();
+                showToast('已删除题目', 'info');
+            }
+
+            function toggleProblemStatus(pid) {
+                const listName = getCurrentListName();
+                if (!listName) return;
+                const problems = data.lists[listName];
+                const problem = problems.find(p => p.pid === pid);
+                if (!problem) return;
+                problem.done = !problem.done;
+                saveData();
+                renderAll();
+                if (problem.done) {
+                    showToast('🎉 已标记通过', 'success');
+                } else {
+                    showToast('↩️ 已取消通过', 'info');
+                }
+            }
+
+            function changeProblemDifficulty(pid, newDiff) {
+                const listName = getCurrentListName();
+                if (!listName) return;
+                const problems = data.lists[listName];
+                const problem = problems.find(p => p.pid === pid);
+                if (!problem) return;
+                problem.difficulty = parseInt(newDiff);
+                saveData();
+                renderAll();
+            }
+
+            function openProblemLink(pid) {
+                const url = getProblemUrl(pid);
+                if (url && url !== '#') {
+                    window.open(url, '_blank');
+                } else {
+                    showToast('⚠️ 无法生成链接', 'warning');
+                }
+            }
+
+            // ================================================================
+            //  批量导入
+            // ================================================================
+            function openBatchImport() {
+                const listName = getCurrentListName();
+                if (!listName) { showToast('请先选择题单', 'warning'); return; }
+                document.getElementById('batchInput').value = '';
+                document.getElementById('batchPreview').innerHTML = '';
+                document.getElementById('batchStats').textContent = '已解析 0 条，点击下方「解析预览」查看';
+                batchParsedData = [];
+                document.getElementById('batchModal').classList.add('show');
+                setTimeout(() => document.getElementById('batchInput').focus(), 200);
+            }
+
+            function parseBatch() {
+                const text = document.getElementById('batchInput').value;
+                const lines = text.split('\n').filter(line => line.trim() !== '');
+                const result = [];
+
+                for (const line of lines) {
+                    let parts = line.split('\t');
+                    if (parts.length === 2) {
+                        result.push({ pid: parts[0].trim().toUpperCase(), name: parts[1].trim() });
+                        continue;
+                    }
+                    const match = line.match(/^(\S+)\s+(.+)$/);
+                    if (match) {
+                        result.push({ pid: match[1].trim().toUpperCase(), name: match[2].trim() });
+                        continue;
+                    }
+                    if (parts.length === 1 && parts[0].trim()) {
+                        result.push({ pid: parts[0].trim().toUpperCase(), name: '' });
+                    }
+                }
+
+                batchParsedData = result;
+                document.getElementById('batchStats').textContent = `已解析 ${result.length} 条题目`;
+
+                const preview = document.getElementById('batchPreview');
+                if (result.length === 0) {
+                    preview.innerHTML = '<div style="color:var(--text-muted);font-size:13px;padding:12px 0;">没有解析到有效数据</div>';
+                    return;
+                }
+
+                preview.innerHTML = result.map((item) => `
+                        <div class="preview-item">
+                            <span class="p-pid">${escapeHtml(item.pid)}</span>
+                            <span class="p-name">${escapeHtml(item.name || '未知题目')}</span>
+                            <span style="font-size:11px;color:var(--text-muted);flex-shrink:0;">${escapeHtml(getOJSource(item.pid))}</span>
+                        </div>
+                    `).join('');
+            }
+
+            function confirmBatchImport() {
+                if (batchParsedData.length === 0) {
+                    showToast('请先粘贴数据并解析', 'warning');
+                    return;
+                }
+
+                const listName = getCurrentListName();
+                if (!listName) { showToast('请先选择题单', 'warning'); return; }
+
+                const problems = data.lists[listName];
+                let added = 0;
+                let skipped = 0;
+
+                for (const item of batchParsedData) {
+                    if (!item.pid) { skipped++; continue; }
+                    if (problems.some(p => p.pid === item.pid)) {
+                        skipped++;
+                        continue;
+                    }
+                    problems.push({
+                        pid: item.pid,
+                        name: item.name || '未知题目',
+                        difficulty: 0,
+                        done: false,
+                    });
+                    added++;
+                }
+
+                saveData();
+                renderAll();
+                closeModal('batchModal');
+                showToast(`✅ 成功导入 ${added} 道题目${skipped > 0 ? `，${skipped} 条跳过（重复或无题号）` : ''}`, 'success');
+
+                setTimeout(() => {
+                    const list = document.getElementById('problemList');
+                    if (list) list.scrollTop = list.scrollHeight;
+                }, 150);
+            }
+
+            // ================================================================
+            //  模态框
+            // ================================================================
+            function showConfirm(title, msg, cb) {
+                document.getElementById('confirmTitle').innerHTML = title;
+                document.getElementById('confirmMsg').innerHTML = msg;
+                document.getElementById('confirmModal').classList.add('show');
+                confirmCallback = cb;
+                document.getElementById('confirmBtn').onclick = function() {
+                    closeModal('confirmModal');
+                    const fn = confirmCallback;
+                    confirmCallback = null;
+                    if (fn) fn();
+                };
+            }
+
+            function closeModal(id) {
+                document.getElementById(id).classList.remove('show');
+                confirmCallback = null;
+            }
+
+            // ================================================================
+            //  导出 / 导入 / 清空
+            // ================================================================
+            function exportData() {
+                const json = JSON.stringify(data, null, 2);
+                const blob = new Blob([json], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = '题单_' + new Date().toISOString().slice(0, 10) + '.json';
+                a.click();
+                URL.revokeObjectURL(url);
+                showToast('导出成功！', 'success');
+            }
+
+            function importData(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    try {
+                        const imported = JSON.parse(ev.target.result);
+                        if (!imported.lists || typeof imported.lists !== 'object') throw new Error('格式错误');
+                        if (!confirm('将替换当前所有数据，是否继续？')) return;
+                        data.lists = imported.lists;
+                        data.currentList = imported.currentList || (Object.keys(data.lists).length > 0 ? Object.keys(
+                            data.lists)[0] : null);
+                        saveData();
+                        renderAll();
+                        showToast('成功导入！', 'success');
+                    } catch (err) {
+                        showToast('导入失败：' + err.message, 'warning');
+                    }
+                };
+                reader.readAsText(file);
+                e.target.value = '';
+            }
+
+            function confirmClearAll() {
+                const count = Object.keys(data.lists).length;
+                if (count === 0) { showToast('没有数据可清空', 'warning'); return; }
+                showConfirm('清空所有数据', '确定要 <strong style="color:#b06a6a;">清空所有</strong> 题单数据吗？<br><span style="font-size:11px;color:var(--text-muted);">建议先导出备份</span>', () => {
+                    data.lists = {};
+                    data.currentList = null;
+                    saveData();
+                    renderAll();
+                    showToast('已清空所有数据', 'info');
+                });
+            }
+
+            // ================================================================
+            //  渲染
+            // ================================================================
+            function renderAll() {
+                renderLists();
+                renderProblems();
+                document.getElementById('listCount').textContent = Object.keys(data.lists).length;
+            }
+
+            function renderLists() {
+                const container = document.getElementById('listContainer');
+                const keys = sortLists();
+
+                if (keys.length === 0) {
+                    container.innerHTML = `
+                            <div class="empty-state">
+                                <div class="icon"><i class="fas fa-inbox"></i></div>
+                                <p>还没有题单，创建一个吧</p>
+                            </div>
+                        `;
+                    return;
+                }
+
+                container.innerHTML = keys.map(name => {
+                    const isActive = name === data.currentList;
+                    const count = data.lists[name] ? data.lists[name].length : 0;
+                    const isRenaming = renamingList === name;
+
+                    if (isRenaming) {
+                        return `
+                                <div class="list-item ${isActive ? 'active' : ''}" data-name="${escapeHtml(name)}">
+                                    <input class="li-name-input" type="text" value="${escapeHtml(name)}" 
+                                           onblur="confirmRenameList('${escapeHtml(name)}', this.value)"
+                                           onkeydown="if(event.key==='Enter'){confirmRenameList('${escapeHtml(name)}', this.value);} else if(event.key==='Escape'){renamingList=null;renderLists();}" />
+                                    <span class="li-count">${count}</span>
+                                    <div class="li-actions">
+                                        <button class="rename-list" onclick="event.stopPropagation();startRenameList('${escapeHtml(name)}')" title="重命名"><i class="fas fa-pen"></i></button>
+                                        <button class="del-list" onclick="event.stopPropagation();deleteList('${escapeHtml(name)}')" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                            `;
+                    }
+
+                    return `
+                            <div class="list-item ${isActive ? 'active' : ''}" onclick="selectList('${escapeHtml(name)}')">
+                                <span class="li-name">${escapeHtml(name)}</span>
+                                <span class="li-count">${count}</span>
+                                <div class="li-actions">
+                                    <button class="rename-list" onclick="event.stopPropagation();startRenameList('${escapeHtml(name)}')" title="重命名"><i class="fas fa-pen"></i></button>
+                                    <button class="del-list" onclick="event.stopPropagation();deleteList('${escapeHtml(name)}')" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </div>
+                        `;
+                }).join('');
+            }
+
+            function renderProblems() {
+                const container = document.getElementById('problemList');
+                const listName = getCurrentListName();
+                const nameEl = document.getElementById('currentListName');
+                const deleteBtn = document.getElementById('deleteListBtn');
+
+                if (!listName || !data.lists[listName]) {
+                    nameEl.innerHTML = `选择题单 <span class="ph-sub">查看题目</span>`;
+                    container.innerHTML = `
+                            <div class="empty-state">
+                                <div class="icon"><i class="fas fa-hand-point-left"></i></div>
+                                <p>选择题单查看题目</p>
+                            </div>
+                        `;
+                    deleteBtn.style.display = 'none';
+                    return;
+                }
+
+                const problems = data.lists[listName];
+                nameEl.innerHTML = `${escapeHtml(listName)} <span class="ph-sub">· ${problems.length} 题</span>`;
+                deleteBtn.style.display = 'flex';
+
+                if (problems.length === 0) {
+                    container.innerHTML = `
+                            <div class="empty-state">
+                                <div class="icon"><i class="fas fa-plus-circle"></i></div>
+                                <p>还没有题目，添加一个吧</p>
+                            </div>
+                        `;
+                    return;
+                }
+
+                // 构建难度选项HTML
+                const diffOptions = Object.entries(DIFF_NAMES).map(([val, label]) => {
+                    return `<option value="${val}">${label}</option>`;
+                }).join('');
+
+                container.innerHTML = problems.map(p => {
+                    const diffLabel = DIFF_NAMES[p.difficulty] || '暂无评定';
+                    const diffClass = `diff-${p.difficulty}`;
+                    const statusLabel = p.done ? '已通过' : '未通过';
+                    const statusClass = p.done ? 'done' : 'undo';
+                    const statusIcon = p.done ? '<i class="fas fa-check-circle"></i>' :
+                        '<i class="fas fa-circle"></i>';
+                    const ojSource = getOJSource(p.pid);
+
+                    return `
+                            <div class="problem-item">
+                                <span class="pi-pid" onclick="openProblemLink('${escapeHtml(p.pid)}')" title="点击跳转题目 (${escapeHtml(ojSource)})">${escapeHtml(p.pid)}</span>
+                                <span class="pi-name">${escapeHtml(p.name || '未知题目')}</span>
+                                <div class="pi-diff ${diffClass}" title="点击修改难度">
+                                    <select onchange="changeProblemDifficulty('${escapeHtml(p.pid)}', this.value)" style="background:transparent;border:none;color:inherit;font-weight:600;font-size:12px;font-family:inherit;outline:none;cursor:pointer;padding:0 4px;width:100%;">
+                                        ${diffOptions.replace(/value="\d+"/g, (m) => {
+                                            const val = parseInt(m.match(/\d+/)[0]);
+                                            return val === p.difficulty ? m + ' selected' : m;
+                                        })}
+                                    </select>
+                                </div>
+                                <button class="pi-status ${statusClass}" onclick="toggleProblemStatus('${escapeHtml(p.pid)}')" title="点击切换状态">
+                                    ${statusIcon} ${statusLabel}
+                                </button>
+                                <div class="pi-actions">
+                                    <button class="del-problem" onclick="deleteProblem('${escapeHtml(p.pid)}')" title="删除"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </div>
+                        `;
+                }).join('');
+            }
+
+            // ================================================================
+            //  背景鼠标跟随
+            // ================================================================
+            const body = document.body;
+            document.addEventListener('mousemove', function(e) {
+                const x = e.clientX / window.innerWidth * 100;
+                const y = e.clientY / window.innerHeight * 100;
+                body.style.setProperty('--mouse-x', x + '%');
+                body.style.setProperty('--mouse-y', y + '%');
+            });
+
+            // ================================================================
+            //  键盘快捷键
+            // ================================================================
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (document.getElementById('batchModal').classList.contains('show')) closeModal('batchModal');
+                    if (document.getElementById('confirmModal').classList.contains('show')) closeModal('confirmModal');
+                    if (githubPanelOpen) toggleGitHubPanel();
+                    if (renamingList) {
+                        renamingList = null;
+                        renderLists();
+                    }
+                }
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    const active = document.activeElement;
+                    if (active && active.id === 'problemPidInput') {
+                        e.preventDefault();
+                        document.getElementById('problemNameInput').focus();
+                    } else if (active && active.id === 'problemNameInput') {
+                        e.preventDefault();
+                        addProblem();
+                    }
+                    if (active && active.id === 'listNameInput') {
+                        e.preventDefault();
+                        addList();
+                    }
+                }
+            });
+
+            // ================================================================
+            //  全局暴露
+            // ================================================================
+            window.addList = addList;
+            window.deleteList = deleteList;
+            window.selectList = selectList;
+            window.deleteCurrentList = deleteCurrentList;
+            window.startRenameList = startRenameList;
+            window.confirmRenameList = confirmRenameList;
+            window.addProblem = addProblem;
+            window.deleteProblem = deleteProblem;
+            window.toggleProblemStatus = toggleProblemStatus;
+            window.changeProblemDifficulty = changeProblemDifficulty;
+            window.openProblemLink = openProblemLink;
+            window.openBatchImport = openBatchImport;
+            window.parseBatch = parseBatch;
+            window.confirmBatchImport = confirmBatchImport;
+            window.closeModal = closeModal;
+            window.exportData = exportData;
+            window.importData = importData;
+            window.confirmClearAll = confirmClearAll;
+            window.toggleGitHubPanel = toggleGitHubPanel;
+            window.renamingList = renamingList;
+
+            // ================================================================
+            //  启动
+            // ================================================================
+            loadData();
+            loadGitHubSettings();
+            console.log('📚 题单管理 · 多OJ题集 (Git同步+AT_CF跳转洛谷)');
+            console.log('  📋 已加载 ' + Object.keys(data.lists).length + ' 个题单');
+            console.log('  📝 当前题单: ' + (data.currentList || '无'));
+            console.log('  🔗 支持 AT_* 及 CF 跳转洛谷');
+            console.log('  💾 数据保存到 /data/problem_lists.json');
+
+        })();
+    </script>
+
+</body>
+</html>
