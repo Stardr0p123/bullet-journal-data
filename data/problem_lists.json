@@ -1,0 +1,187 @@
+{
+  "lists": {
+    "筛法&生成函数": [
+      {
+        "pid": "P7603",
+        "name": "[THUPC2021] 鬼街",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1364D",
+        "name": "Ehab's Last Corollary",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1103C",
+        "name": "Johnny Solving",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P5811",
+        "name": "[IOI2019] 景点划分",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "ARC160E",
+        "name": "Make Biconnected",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1396E",
+        "name": "Distance Matching",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "GYM102331F",
+        "name": "Fast Spanning Tree",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "GYM102452I",
+        "name": "Incoming Asteroids",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "GYM104065B",
+        "name": "Call Me Call Me",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "牛客11258C",
+        "name": "Fuzzy Gragh",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P5325",
+        "name": "【模板】Min_25 筛",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P1587",
+        "name": "[NOI2016] 循环之美",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P2000",
+        "name": "拯救世界",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P4389",
+        "name": "付公主的背包",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P3784",
+        "name": "[SDOI2017] 遗忘的集合",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P3824",
+        "name": "[NOI2017] 泳池",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P7592",
+        "name": "数树（2021 CoE-II E）",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P5401",
+        "name": "[CTS2019] 珍珠",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF622F",
+        "name": "The Sum of the k-th Powers",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF995F",
+        "name": "Cowmpany Cowmpensation",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P8290",
+        "name": "[省选联考 2022] 填树",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "ARC118F",
+        "name": "Growth Rate",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P5469",
+        "name": "[NOI2019] 机器人",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "ARC113F",
+        "name": "Social Distance",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P6620",
+        "name": "[省选联考 2020 A 卷] 组合数问题",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P6667",
+        "name": "[清华集训2016] 如何优雅地求和",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "POJ3734",
+        "name": "Blocks",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "QOJ8721",
+        "name": "括号序列",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P10008",
+        "name": "[集训队互测 2022] Range Minimum Element",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "UOJ352",
+        "name": "新年的五维几何",
+        "difficulty": 0,
+        "done": false
+      }
+    ]
+  },
+  "currentList": "筛法&生成函数"
+}
