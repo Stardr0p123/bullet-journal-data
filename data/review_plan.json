@@ -22,7 +22,8 @@
           "daysAfter": 2,
           "key": "d2",
           "date": "2026-06-23",
-          "done": false
+          "done": true,
+          "checkedAt": "2026-06-23T02:33:55.720Z"
         },
         {
           "label": "第3次",
