@@ -979,7 +979,7 @@
         }
 
         /* ================================================================
-           8.  模态框
+           8.  模态框 — 修复动画延迟（使用 visibility + opacity + transform）
            ================================================================ */
         .modal-overlay {
             position: fixed;
@@ -987,22 +987,21 @@
             background: rgba(15, 23, 42, 0.12);
             backdrop-filter: blur(4px);
             z-index: 200;
-            display: none;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: visibility 0s linear 0.25s, opacity 0.25s ease;
+            display: flex;
             align-items: center;
             justify-content: center;
-            animation: fadeIn 0.2s ease;
         }
         .modal-overlay.show {
-            display: flex;
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+            transition: visibility 0s linear 0s, opacity 0.25s ease;
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
+
         .modal-box {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(32px);
@@ -1014,18 +1013,15 @@
             max-height: 80vh;
             overflow-y: auto;
             box-shadow: 0 16px 60px rgba(0, 0, 0, 0.04);
-            animation: modalSlide 0.25s var(--transition-bounce);
+            transform: scale(0.92) translateY(16px);
+            opacity: 0;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
         }
-        @keyframes modalSlide {
-            from {
-                opacity: 0;
-                transform: translateY(16px) scale(0.94);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        .modal-overlay.show .modal-box {
+            transform: scale(1) translateY(0);
+            opacity: 1;
         }
+
         .modal-box h3 {
             font-size: 17px;
             margin-bottom: 12px;
@@ -1122,7 +1118,7 @@
         }
 
         /* ================================================================
-           9.  Toast
+           9.  Toast — 修复动画延迟（使用 transition + requestAnimationFrame）
            ================================================================ */
         .toast-container {
             position: fixed;
@@ -1146,7 +1142,19 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
             pointer-events: auto;
             max-width: 360px;
-            animation: toastIn 0.25s var(--transition-bounce), toastOut 0.2s ease 2.2s forwards;
+            opacity: 0;
+            transform: translateX(30px) scale(0.92);
+            transition: opacity 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        .toast.hide {
+            opacity: 0;
+            transform: translateX(30px) scale(0.92);
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
         .toast.success {
             background: rgba(122, 173, 138, 0.78);
@@ -1157,26 +1165,6 @@
         .toast.warning {
             background: rgba(212, 168, 106, 0.78);
             color: #2a2218;
-        }
-        @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px) scale(0.92);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-        }
-        @keyframes toastOut {
-            from {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-            to {
-                opacity: 0;
-                transform: translateX(30px) scale(0.92);
-            }
         }
 
         /* ================================================================
@@ -1589,13 +1577,28 @@
                 return s + 's';
             }
 
+            // ================================================================
+            //  Toast — 修复动画延迟
+            // ================================================================
             function showToast(msg, type = 'info') {
                 const container = document.getElementById('toastContainer');
                 const t = document.createElement('div');
                 t.className = 'toast ' + type;
                 t.textContent = msg;
                 container.appendChild(t);
-                setTimeout(() => { if (t.parentNode) t.parentNode.removeChild(t); }, 2200);
+
+                // 使用 requestAnimationFrame 确保动画从起始状态开始
+                requestAnimationFrame(() => {
+                    t.classList.add('show');
+                });
+
+                setTimeout(() => {
+                    t.classList.remove('show');
+                    t.classList.add('hide');
+                    setTimeout(() => {
+                        if (t.parentNode) t.parentNode.removeChild(t);
+                    }, 300);
+                }, 2200);
             }
 
             // ================================================================
@@ -2016,6 +2019,7 @@
 
                 document.getElementById('parallelEditName').value = par.name;
                 document.getElementById('parallelEditNote').value = par.note || '';
+                // 使用类控制显示，而非直接操作 display，确保动画触发
                 document.getElementById('parallelModal').classList.add('show');
 
                 document.getElementById('parallelSaveBtn').onclick = function() {
@@ -2071,22 +2075,29 @@
             function showConfirm(title, msg, cb) {
                 document.getElementById('confirmTitle').innerHTML = title;
                 document.getElementById('confirmMsg').innerHTML = msg;
-                document.getElementById('confirmModal').classList.add('show');
+                const modal = document.getElementById('confirmModal');
+                // 先设置回调再显示，确保动画与数据同步
                 confirmCallback = cb;
                 // 清除旧绑定，确保只触发一次
                 const confirmBtn = document.getElementById('confirmBtn');
-                // 移除所有监听，用新函数替代
                 confirmBtn.onclick = function() {
                     closeModal('confirmModal');
                     const fn = confirmCallback;
                     confirmCallback = null;
                     if (fn) fn();
                 };
+                modal.classList.add('show');
             }
 
             function closeModal(id) {
-                document.getElementById(id).classList.remove('show');
-                // 注意：这里不要清除 confirmCallback，由调用方清除
+                const modal = document.getElementById(id);
+                if (modal) {
+                    modal.classList.remove('show');
+                }
+                // 如果关闭的是确认模态框，清除回调防止误触
+                if (id === 'confirmModal') {
+                    confirmCallback = null;
+                }
             }
 
             // ================================================================
@@ -2395,7 +2406,7 @@
             loadData();
             loadGitHubSettings();
 
-            console.log('📊 项目进度 · 链式追踪 (完全重构)');
+            console.log('📊 项目进度 · 链式追踪 (动画延迟修复)');
             console.log('  📋 已加载 ' + data.projects.length + ' 个项目');
             console.log('  🔗 阶段锁定仅影响勾选，其他操作不受限');
             console.log('  💾 数据保存到 /data/project_tracker.json');
