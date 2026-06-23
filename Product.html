@@ -1528,7 +1528,6 @@
             let editingParallelId = null;
             let editingSeqId = null;
             let editingProjectId = null;
-            let confirmCallback = null;
             let githubPanelOpen = false;
 
             // ================================================================
@@ -1564,7 +1563,7 @@
                     String(d.getMonth() + 1).padStart(2, '0') + '-' +
                     String(d.getDate()).padStart(2, '0') + ' ' +
                     String(d.getHours()).padStart(2, '0') + ':' +
-                    String(d.getMinutes()).padStart(2, '0');
+                    String(d.getMinutes()).padStart(2, '0);
             }
 
             function formatDuration(seconds) {
@@ -2019,7 +2018,6 @@
 
                 document.getElementById('parallelEditName').value = par.name;
                 document.getElementById('parallelEditNote').value = par.note || '';
-                // 使用类控制显示，而非直接操作 display，确保动画触发
                 document.getElementById('parallelModal').classList.add('show');
 
                 document.getElementById('parallelSaveBtn').onclick = function() {
@@ -2070,22 +2068,27 @@
             }
 
             // ================================================================
-            //  模态框 — 修复确认按钮
+            //  模态框 — 修复确认按钮回调被覆盖的问题
             // ================================================================
             function showConfirm(title, msg, cb) {
                 document.getElementById('confirmTitle').innerHTML = title;
                 document.getElementById('confirmMsg').innerHTML = msg;
                 const modal = document.getElementById('confirmModal');
-                // 先设置回调再显示，确保动画与数据同步
-                confirmCallback = cb;
-                // 清除旧绑定，确保只触发一次
+                // 将回调保存到局部变量
+                const callback = cb;
+                // 绑定确认按钮事件
                 const confirmBtn = document.getElementById('confirmBtn');
-                confirmBtn.onclick = function() {
+                // 移除旧监听，避免重复绑定
+                confirmBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    // 先关闭模态框
                     closeModal('confirmModal');
-                    const fn = confirmCallback;
-                    confirmCallback = null;
-                    if (fn) fn();
+                    // 执行回调
+                    if (typeof callback === 'function') {
+                        callback();
+                    }
                 };
+                // 显示模态框
                 modal.classList.add('show');
             }
 
@@ -2094,10 +2097,7 @@
                 if (modal) {
                     modal.classList.remove('show');
                 }
-                // 如果关闭的是确认模态框，清除回调防止误触
-                if (id === 'confirmModal') {
-                    confirmCallback = null;
-                }
+                // 不再清除任何回调，因为我们使用局部变量
             }
 
             // ================================================================
@@ -2394,6 +2394,7 @@
             window.openEditParallel = openEditParallel;
             window.deleteParallelTask = deleteParallelTask;
             window.saveParallelEdit = saveParallelEdit;
+            window.showConfirm = showConfirm;
             window.closeModal = closeModal;
             window.exportData = exportData;
             window.importData = importData;
@@ -2406,7 +2407,7 @@
             loadData();
             loadGitHubSettings();
 
-            console.log('📊 项目进度 · 链式追踪 (动画延迟修复)');
+            console.log('📊 项目进度 · 链式追踪 (修复删除确认)');
             console.log('  📋 已加载 ' + data.projects.length + ' 个项目');
             console.log('  🔗 阶段锁定仅影响勾选，其他操作不受限');
             console.log('  💾 数据保存到 /data/project_tracker.json');
