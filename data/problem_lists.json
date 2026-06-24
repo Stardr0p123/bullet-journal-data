@@ -181,7 +181,117 @@
         "difficulty": 0,
         "done": false
       }
+    ],
+    "DP（困难）": [
+      {
+        "pid": "AT_AGC023_F",
+        "name": "[AGC023F] 01 on Tree",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1870E",
+        "name": "Another MEX Problem",
+        "difficulty": 5,
+        "done": true
+      },
+      {
+        "pid": "CF1768F",
+        "name": "Wonderful Jump",
+        "difficulty": 7,
+        "done": false
+      },
+      {
+        "pid": "CF1693F",
+        "name": "I Might Be Wrong",
+        "difficulty": 7,
+        "done": false
+      },
+      {
+        "pid": "AT_JOISC2017_C",
+        "name": "手持ち花火 (Sparklers)",
+        "difficulty": 7,
+        "done": false
+      },
+      {
+        "pid": "P4765",
+        "name": "[CERC2014] The Imp",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1810G",
+        "name": "The Maximum Prefix",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC122_E",
+        "name": "[ARC122E] Increasing LCMs",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "P4099",
+        "name": "[HEOI2013] SAO",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1842H",
+        "name": "Tenzing and Random Real Numbers",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1842G",
+        "name": "Tenzing and Random Operations",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1842F",
+        "name": "Tenzing and Tree",
+        "difficulty": 6,
+        "done": true
+      },
+      {
+        "pid": "CF1743E",
+        "name": "FTL",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1699E",
+        "name": "Three Days Grace",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1854C",
+        "name": "Expected Destruction",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1778F",
+        "name": "Maximizing Root",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "UOJ748【UNR#6】",
+        "name": "机器人表演",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "QOJ5568",
+        "name": "Cyclic Shifts",
+        "difficulty": 0,
+        "done": false
+      }
     ]
   },
-  "currentList": "筛法&生成函数"
+  "currentList": "DP（困难）"
 }
