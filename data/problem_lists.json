@@ -229,7 +229,7 @@
         "pid": "AT_ARC122_E",
         "name": "[ARC122E] Increasing LCMs",
         "difficulty": 6,
-        "done": false
+        "done": true
       },
       {
         "pid": "P4099",
@@ -292,7 +292,291 @@
         "done": false
       }
     ],
-    "题单": [
+    "思维题单-Easy": [
+      {
+        "pid": "CF1730B",
+        "name": "Meeting on the Line",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1772D",
+        "name": "Absolute Sorting",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1809C",
+        "name": "Sum on Subarrays",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1841C",
+        "name": "Ranom Numbers",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1845C",
+        "name": "Strong Password",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1846E2",
+        "name": "Rudolf and Snowflakes",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1860C",
+        "name": "Game on Permutation",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1861C",
+        "name": "Queries for the Array",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1915F",
+        "name": "Greetings",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1934C",
+        "name": "Find a Mine",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1702E",
+        "name": "Split Into Two Sets",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1760F",
+        "name": "Quests",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1777C",
+        "name": "Quiz Master",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1783C",
+        "name": "Yet Another Tournament",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1792C",
+        "name": "Min Max Sort",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1795C",
+        "name": "Tea Tasting",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1811E",
+        "name": "Living Sequence",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1822D",
+        "name": "Super-Permutation",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1833D",
+        "name": "Flipper",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1856C",
+        "name": "To Become Max",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1763C",
+        "name": "Another Array Restoration",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1737C",
+        "name": "Ela and Crickets",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1749C",
+        "name": "Number Game",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1775C",
+        "name": "Interesting Sequence",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1788C",
+        "name": "Matching Numbers",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1806C",
+        "name": "Sequence Master",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1814C",
+        "name": "Search in Parallel",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1834C",
+        "name": "Game with Reversing",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1840D",
+        "name": "Wooden Toy Festival",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1857E",
+        "name": "Power of Points",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1886C",
+        "name": "Decreasing String",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1896C",
+        "name": "Matching Arrays",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1928C",
+        "name": "Physical Education Lesson",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1933D",
+        "name": "Turtle Tenacity: Continual Mods",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1946C",
+        "name": "Tree Cutting",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1748C",
+        "name": "Zero-Sum Prefixes",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1761C",
+        "name": "Set Construction",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1764C",
+        "name": "Doremy's IQ",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1770C",
+        "name": "Koxia and Number Theory",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1790E",
+        "name": "Vlad and a Pair of Numbers",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1800E1",
+        "name": "Unforgivable Curse (easy)",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1810D",
+        "name": "Climbing the Tree",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1823C",
+        "name": "Strongly Composite",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1842C",
+        "name": "Tenzing and Balls",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1875C",
+        "name": "Jellyfish and Green Apple",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1907D",
+        "name": "Jumping Through Segments",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1893A",
+        "name": "Anonymous Informant",
+        "difficulty": 4,
+        "done": false
+      }
+    ],
+    "思维题单-Medium": [
       {
         "pid": "CF1370D",
         "name": "Odd-Even Subsequence",
@@ -534,66 +818,66 @@
         "done": false
       },
       {
-        "pid": "P10180",
-        "name": "树上游戏",
+        "pid": "P1450",
+        "name": "硬币购物",
         "difficulty": 5,
-        "done": false
+        "done": true
       },
       {
-        "pid": "P8865",
-        "name": "种花",
+        "pid": "P1613",
+        "name": "跑路",
         "difficulty": 4,
         "done": false
       },
       {
-        "pid": "P8866",
-        "name": "喵了个喵",
-        "difficulty": 6,
-        "done": false
-      },
-      {
-        "pid": "P7915",
-        "name": "回文",
+        "pid": "P1941",
+        "name": "飞扬的小鸟",
         "difficulty": 4,
         "done": false
       },
       {
-        "pid": "P7962",
-        "name": "方差",
+        "pid": "P2501",
+        "name": "数字序列",
         "difficulty": 6,
         "done": false
       },
       {
-        "pid": "P7077",
-        "name": "函数调用",
+        "pid": "P3147",
+        "name": "262144",
         "difficulty": 5,
         "done": false
       },
       {
-        "pid": "P5665",
-        "name": "划分",
-        "difficulty": 6,
-        "done": false
-      },
-      {
-        "pid": "P9753",
-        "name": "消消乐",
+        "pid": "P4158",
+        "name": "粉刷匠",
         "difficulty": 5,
         "done": false
       },
       {
-        "pid": "P8818",
-        "name": "策略游戏",
+        "pid": "P5664",
+        "name": "Emiya 家今天的饭",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "P6187",
+        "name": "最小环",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "P7913",
+        "name": "廊桥分配",
         "difficulty": 4,
         "done": false
       },
       {
-        "pid": "P8292",
-        "name": "卡牌",
-        "difficulty": 6,
+        "pid": "P7961",
+        "name": "数列",
+        "difficulty": 5,
         "done": false
       }
     ]
   },
-  "currentList": "题单"
+  "currentList": "思维题单-Easy"
 }
