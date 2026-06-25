@@ -265,7 +265,7 @@
         "pid": "CF1699E",
         "name": "Three Days Grace",
         "difficulty": 6,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF1854C",
@@ -297,31 +297,31 @@
         "pid": "CF1730B",
         "name": "Meeting on the Line",
         "difficulty": 3,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF1772D",
         "name": "Absolute Sorting",
         "difficulty": 4,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF1809C",
         "name": "Sum on Subarrays",
         "difficulty": 3,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF1841C",
         "name": "Ranom Numbers",
         "difficulty": 4,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF1845C",
         "name": "Strong Password",
         "difficulty": 3,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF1846E2",
@@ -574,9 +574,67 @@
         "name": "Anonymous Informant",
         "difficulty": 4,
         "done": false
-      }
-    ],
-    "思维题单-Medium": [
+      },
+      {
+        "pid": "CF1870D",
+        "name": "Prefix Purchase",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1875D",
+        "name": "Jellyfish and Mex",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1882D",
+        "name": "Tree XOR",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1922E",
+        "name": "Increasing Subsequences",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1956C",
+        "name": "Nene's Magical Matrix",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1968E",
+        "name": "Cells Arrangement",
+        "difficulty": 3,
+        "done": false
+      },
+      {
+        "pid": "CF1970C3",
+        "name": "Game on Tree (Hard)",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC149_C",
+        "name": "Avoid Prime Sum",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC154_C",
+        "name": "Roller",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC158_C",
+        "name": "All Pair Digit Sums",
+        "difficulty": 4,
+        "done": false
+      },
       {
         "pid": "CF1370D",
         "name": "Odd-Even Subsequence",
@@ -602,27 +660,9 @@
         "done": false
       },
       {
-        "pid": "CF1364D",
-        "name": "Ehab's Last Corollary",
-        "difficulty": 5,
-        "done": false
-      },
-      {
         "pid": "CF1260D",
         "name": "A Game with Traps",
         "difficulty": 4,
-        "done": false
-      },
-      {
-        "pid": "CF1288D",
-        "name": "Minimax Problem",
-        "difficulty": 5,
-        "done": false
-      },
-      {
-        "pid": "CF1407D",
-        "name": "Discrete Centrifugal Jumps",
-        "difficulty": 5,
         "done": false
       },
       {
@@ -716,12 +756,6 @@
         "done": false
       },
       {
-        "pid": "AT_ABC199_F",
-        "name": "Graph Smoothing",
-        "difficulty": 5,
-        "done": false
-      },
-      {
         "pid": "AT_ABC216_F",
         "name": "Max Sum Counting",
         "difficulty": 4,
@@ -752,12 +786,6 @@
         "done": false
       },
       {
-        "pid": "AT_ABC262_F",
-        "name": "I hate Matrix Construction",
-        "difficulty": 5,
-        "done": false
-      },
-      {
         "pid": "AT_ABC270_F",
         "name": "Transportation",
         "difficulty": 4,
@@ -770,27 +798,323 @@
         "done": false
       },
       {
-        "pid": "AT_ABC289_F",
-        "name": "Teleporter Takahashi",
-        "difficulty": 5,
-        "done": false
-      },
-      {
         "pid": "AT_ABC296_F",
         "name": "Simultaneous Swap",
         "difficulty": 4,
         "done": false
       },
       {
-        "pid": "AT_ABC303_F",
-        "name": "Damage over Time",
+        "pid": "AT_ABC308_F",
+        "name": "Vouchers",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "P1613",
+        "name": "跑路",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "P1941",
+        "name": "飞扬的小鸟",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "P7913",
+        "name": "廊桥分配",
+        "difficulty": 4,
+        "done": false
+      }
+    ],
+    "思维题单-Hard": [
+      {
+        "pid": "CF1325E",
+        "name": "Ehab's REAL Number Theory Problem",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1394B",
+        "name": "Boboniu Walks on a Graph",
         "difficulty": 5,
         "done": false
       },
       {
-        "pid": "AT_ABC308_F",
-        "name": "Vouchers",
+        "pid": "CF1428E",
+        "name": "Carrots for Rabbits",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1473E",
+        "name": "Minimum Path",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1537E2",
+        "name": "Erase and Extend (Hard Version)",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1556E",
+        "name": "Equilibrium",
+        "difficulty": 5,
+        "done": true
+      },
+      {
+        "pid": "CF1603C",
+        "name": "Extreme Extension",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1638E",
+        "name": "Colorful Operations",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1658E",
+        "name": "Gojou and Grid Game",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1712E1",
+        "name": "LCM Sum (easy version)",
         "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1720D2",
+        "name": "Xor-Subsequence (hard version)",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1738D",
+        "name": "Permutation Addict",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1753C",
+        "name": "Wish I Knew How to Sort",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1763F",
+        "name": "Edge Queries",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1774E",
+        "name": "Two Chess Pieces",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1783F",
+        "name": "Double Sort II",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1789E",
+        "name": "Serval and Music Game",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1814D",
+        "name": "Balancing Weapons",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1826E",
+        "name": "Walk the Runway",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1838E",
+        "name": "Count Supersequences",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1842D",
+        "name": "Tenzing and His Animal Friends",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1848E",
+        "name": "Vika and Segments",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1856D",
+        "name": "More Wrong",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1860E",
+        "name": "Fast Travel Text Game",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1863F",
+        "name": "Divide, XOR, and Conquer",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "CF1886D",
+        "name": "Monocarp and the Set",
+        "difficulty": 4,
+        "done": false
+      },
+      {
+        "pid": "CF1896D",
+        "name": "Ones and Twos",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1919D",
+        "name": "01 Tree",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1943C",
+        "name": "Tree Compass",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "AT_ABC221_G",
+        "name": "Jumping sequence",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "AT_ABC228_G",
+        "name": "Digits on Grid",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "AT_ABC256_G",
+        "name": "Black and White Stones",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "AT_ABC283_G",
+        "name": "Partial Xor Enumeration",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC111_C",
+        "name": "Too Heavy",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC131_D",
+        "name": "AtArcher",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC137_C",
+        "name": "Distinct Numbers",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC171_C",
+        "name": "Swap on Tree",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC173_D",
+        "name": "Bracket Walk",
+        "difficulty": 6,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC175_D",
+        "name": "LIS on Tree 2",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1582F2",
+        "name": "Korney Korneevich and XOR (hard version)",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1799D1",
+        "name": "Hot Start Up (easy version)",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1364D",
+        "name": "Ehab's Last Corollary",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1288D",
+        "name": "Minimax Problem",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "CF1407D",
+        "name": "Discrete Centrifugal Jumps",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "AT_ABC199_F",
+        "name": "Graph Smoothing",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "AT_ABC262_F",
+        "name": "I hate Matrix Construction",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "AT_ABC289_F",
+        "name": "Teleporter Takahashi",
+        "difficulty": 5,
+        "done": false
+      },
+      {
+        "pid": "AT_ABC303_F",
+        "name": "Damage over Time",
+        "difficulty": 5,
         "done": false
       },
       {
@@ -821,18 +1145,6 @@
         "pid": "P1450",
         "name": "硬币购物",
         "difficulty": 5,
-        "done": true
-      },
-      {
-        "pid": "P1613",
-        "name": "跑路",
-        "difficulty": 4,
-        "done": false
-      },
-      {
-        "pid": "P1941",
-        "name": "飞扬的小鸟",
-        "difficulty": 4,
         "done": false
       },
       {
@@ -866,18 +1178,358 @@
         "done": false
       },
       {
-        "pid": "P7913",
-        "name": "廊桥分配",
-        "difficulty": 4,
-        "done": false
-      },
-      {
         "pid": "P7961",
         "name": "数列",
         "difficulty": 5,
         "done": false
       }
+    ],
+    "叶子川题单": [
+      {
+        "pid": "ARC163D",
+        "name": "Sum of SCC",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC082_C",
+        "name": "ConvexScore",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "ARC160D",
+        "name": "Mahjong",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "AGC056B",
+        "name": "Range Argmax",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "ARC165E",
+        "name": "Random Isolation",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "AT_CF17_FINAL_G",
+        "name": "Mancala",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "ARC154E",
+        "name": "Reverse and Inversion",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P7324",
+        "name": "[WC2021] 表达式求值",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "QOJ7303",
+        "name": "City United",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P9258",
+        "name": "[PA 2022] Drybling Bajtessiego",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "AT_TOKIOMARINE2020_E",
+        "name": "O(rand)",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "AT_DWACON6TH_PRELIMS_E",
+        "name": "Span Covering",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "P3349",
+        "name": "[ZJOI2016] 小星星",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1285F",
+        "name": "Classical?",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF917D",
+        "name": "Stranger Trees",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "QOJ2568",
+        "name": "Mountains",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC111_F",
+        "name": "Do you like query problems?",
+        "difficulty": 0,
+        "done": false
+      }
+    ],
+    "码量题单-Easy": [
+      {
+        "pid": "CF1399D",
+        "name": "Binary String To Subsequences",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1490E",
+        "name": "Accidental Victory",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1506D",
+        "name": "Epic Transformation",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1537C",
+        "name": "Challenging Cliffs",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1547C",
+        "name": "Pair Programming",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1560D",
+        "name": "Make a Power of Two",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1579E2",
+        "name": "Array Optimization by Deque",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1593E",
+        "name": "Gardener and Tree",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1617C",
+        "name": "Paprika and Permutation",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1624C",
+        "name": "Division by Two and Permutation",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1650C",
+        "name": "Weight of the System of Nested Segments",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1674D",
+        "name": "A-B-C Sort",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1676F",
+        "name": "Longest Strike",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1684C",
+        "name": "Column Swapping",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1702D",
+        "name": "Not a Cheap String",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1703E",
+        "name": "Mirror Grid",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1714D",
+        "name": "Color with Occurrences",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1729C",
+        "name": "Jumping on Tiles",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1735C",
+        "name": "Phase Shift",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1742F",
+        "name": "Smaller",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1743C",
+        "name": "Save the Magazines",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1753A1",
+        "name": "Make Nonzero Sum (easy)",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1760D",
+        "name": "Challenging Valleys",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1766C",
+        "name": "Hamiltonian Wall",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1777B",
+        "name": "Emordnilap",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1790C",
+        "name": "Premutation",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1791D",
+        "name": "Distinct Split",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1793C",
+        "name": "Dora and Search",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1810C",
+        "name": "Make It Permutation",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1831B",
+        "name": "Array merging",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1844C",
+        "name": "Particles",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1851D",
+        "name": "Prefix Permutation Sums",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1857B",
+        "name": "Maximum Rounding",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1873E",
+        "name": "Building an Aquarium",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1883D",
+        "name": "In Love",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1915E",
+        "name": "Romantic Glasses",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1927D",
+        "name": "Find the Different Ones!",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1928B",
+        "name": "Equalize",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1941B",
+        "name": "Rudolf and 121",
+        "difficulty": 0,
+        "done": false
+      },
+      {
+        "pid": "CF1955C",
+        "name": "Inhabitant of the Deep Sea",
+        "difficulty": 0,
+        "done": false
+      }
     ]
   },
-  "currentList": "思维题单-Easy"
+  "currentList": "码量题单-Easy"
 }
