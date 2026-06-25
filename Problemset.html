@@ -639,7 +639,7 @@
             flex-wrap: wrap;
         }
         .problem-toolbar .toolbar-right {
-            display: none; /* 默认隐藏，多选模式下显示 */
+            display: none;
             align-items: center;
             gap: 6px;
             flex-wrap: wrap;
@@ -649,7 +649,7 @@
             display: flex;
         }
         .problem-toolbar .select-all-label {
-            display: none; /* 默认隐藏，多选模式下显示 */
+            display: none;
             align-items: center;
             gap: 4px;
             font-size: 13px;
@@ -661,10 +661,6 @@
             display: flex;
         }
         .problem-toolbar .select-all-label input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: var(--primary);
-            cursor: pointer;
             margin: 0;
         }
         .problem-toolbar .selected-count {
@@ -694,12 +690,79 @@
             background: rgba(255, 255, 255, 0.22);
             box-shadow: 0 0 0 4px var(--primary-soft);
         }
+        .problem-toolbar .batch-diff-select {
+            padding: 4px 10px;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            outline: none;
+            transition: var(--transition-smooth);
+            min-width: 100px;
+        }
+        .problem-toolbar .batch-diff-select:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 0 0 4px var(--primary-soft);
+        }
 
-        /* ---- 多选切换按钮特殊样式 ---- */
         #toggleMultiSelectBtn.active {
             background: rgba(176, 106, 106, 0.10);
             color: #8a5a5a;
             border-color: rgba(176, 106, 106, 0.15);
+        }
+
+        /* ================================================================
+           8.1  自定义复选框 — 统一样式
+           ================================================================ */
+        .custom-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--text-muted);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.10);
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            position: relative;
+            flex-shrink: 0;
+            margin: 0;
+        }
+        .custom-checkbox:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            background: rgba(74, 106, 138, 0.05);
+        }
+        .custom-checkbox:checked {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        .custom-checkbox:checked::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 13px;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .custom-checkbox:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* 默认隐藏，多选模式下显示 */
+        .problem-item .custom-checkbox {
+            display: none;
+        }
+        .problem-list.multi-select-active .problem-item .custom-checkbox {
+            display: flex;
         }
 
         .problem-list {
@@ -732,49 +795,6 @@
         }
         .problem-item:hover {
             background: rgba(255, 255, 255, 0.14);
-        }
-
-        /* ================================================================
-           8.1  自定义多选框 — 更美观
-           ================================================================ */
-        .problem-item .pi-checkbox {
-            appearance: none;
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--text-muted);
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.10);
-            cursor: pointer;
-            transition: all var(--transition-smooth);
-            position: relative;
-            flex-shrink: 0;
-            margin: 0 4px 0 0;
-            display: none; /* 默认隐藏，多选模式下显示 */
-        }
-        .problem-item .pi-checkbox:hover {
-            border-color: var(--primary);
-            transform: scale(1.05);
-            background: rgba(74, 106, 138, 0.05);
-        }
-        .problem-item .pi-checkbox:checked {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
-        .problem-item .pi-checkbox:checked::after {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            font-size: 13px;
-            color: #fff;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .problem-item .pi-checkbox:focus-visible {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
         }
 
         .problem-item .pi-pid {
@@ -1410,12 +1430,28 @@
                             <i class="fas fa-check-square"></i> 多选
                         </button>
                         <label class="select-all-label">
-                            <input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll()" />
+                            <input type="checkbox" class="custom-checkbox" id="selectAllCheckbox" onchange="toggleSelectAll()" />
                             <span>全选</span>
                         </label>
                         <span class="selected-count" id="selectedCount">已选 0 题</span>
                     </div>
                     <div class="toolbar-right">
+                        <button class="btn-sm ghost" onclick="openSelectedProblems()" title="在新标签页打开所有选中题目">
+                            <i class="fas fa-external-link-alt"></i> 批量打开
+                        </button>
+                        <select class="batch-diff-select" id="batchDiffSelect">
+                            <option value="0">暂无评定</option>
+                            <option value="1">入门</option>
+                            <option value="2">普及-</option>
+                            <option value="3">普及/提高-</option>
+                            <option value="4">普及+/提高</option>
+                            <option value="5">提高+/省选-</option>
+                            <option value="6">省选/NOI-</option>
+                            <option value="7">NOI/NOI+/CTSC</option>
+                        </select>
+                        <button class="btn-sm" onclick="batchSetDifficulty()" title="为选中题目统一设置难度">
+                            <i class="fas fa-tag"></i> 应用难度
+                        </button>
                         <button class="btn-sm success" onclick="exportSelected()" title="导出选中题目为Excel格式（题号+制表符+题目名）">
                             <i class="fas fa-file-excel"></i> 导出Excel
                         </button>
@@ -1564,7 +1600,7 @@
 
             // ---- 多选状态 ----
             let selectedProblems = new Set();
-            let multiSelectMode = false; // 是否处于多选模式
+            let multiSelectMode = false;
 
             // ================================================================
             //  工具
@@ -1636,15 +1672,17 @@
                         allCheckbox.indeterminate = false;
                     }
                 }
-                // 更新工具栏按钮状态
                 const hasSelected = count > 0 && multiSelectMode;
                 const exportBtn = document.querySelector('.toolbar-right .btn-sm.success');
                 const deleteBtn = document.querySelector('.toolbar-right .btn-sm.danger');
                 const moveBtn = document.querySelector('.toolbar-right .btn-sm:last-child');
+                const openBtn = document.querySelector('.toolbar-right .btn-sm.ghost');
+                const applyBtn = document.querySelector('.toolbar-right .btn-sm:not(.ghost):not(.success):not(.danger)');
                 if (exportBtn) exportBtn.disabled = !hasSelected;
                 if (deleteBtn) deleteBtn.disabled = !hasSelected;
                 if (moveBtn) moveBtn.disabled = !hasSelected;
-                // 更新移动下拉菜单
+                if (openBtn) openBtn.disabled = !hasSelected;
+                if (applyBtn) applyBtn.disabled = !hasSelected;
                 updateMoveTargets();
             }
 
@@ -1690,34 +1728,35 @@
                 multiSelectMode = !multiSelectMode;
                 const toolbar = document.getElementById('problemToolbar');
                 const btn = document.getElementById('toggleMultiSelectBtn');
+                const problemList = document.getElementById('problemList');
 
                 if (multiSelectMode) {
                     toolbar.classList.add('multi-select-active');
+                    problemList.classList.add('multi-select-active');
                     btn.innerHTML = '<i class="fas fa-times"></i> 取消多选';
                     btn.classList.add('danger');
                     btn.classList.remove('ghost');
-                    // 进入多选时清空之前的选择
                     clearSelected();
                 } else {
                     toolbar.classList.remove('multi-select-active');
+                    problemList.classList.remove('multi-select-active');
                     btn.innerHTML = '<i class="fas fa-check-square"></i> 多选';
                     btn.classList.remove('danger');
                     btn.classList.add('ghost');
                     clearSelected();
                 }
-                // 重新渲染题目列表以显示/隐藏复选框
                 renderProblems();
-                // 更新UI状态（按钮禁用等）
                 updateSelectedUI();
             }
 
-            // 强制退出多选模式（切换题单时调用）
             function disableMultiSelect() {
                 if (multiSelectMode) {
                     multiSelectMode = false;
                     const toolbar = document.getElementById('problemToolbar');
                     const btn = document.getElementById('toggleMultiSelectBtn');
+                    const problemList = document.getElementById('problemList');
                     if (toolbar) toolbar.classList.remove('multi-select-active');
+                    if (problemList) problemList.classList.remove('multi-select-active');
                     if (btn) {
                         btn.innerHTML = '<i class="fas fa-check-square"></i> 多选';
                         btn.classList.remove('danger');
@@ -1730,7 +1769,7 @@
             }
 
             // ================================================================
-            //  链接生成 — 多OJ匹配引擎 (保持不变)
+            //  链接生成 — 多OJ匹配引擎
             // ================================================================
             function getProblemUrl(pid) {
                 if (!pid) return '#';
@@ -2059,7 +2098,7 @@
                 if (name === data.currentList) return;
                 data.currentList = name;
                 renamingList = null;
-                disableMultiSelect(); // 切换题单时退出多选
+                disableMultiSelect();
                 clearSelected();
                 saveData();
                 renderAll();
@@ -2110,7 +2149,7 @@
             }
 
             // ================================================================
-            //  题目操作
+            //  题目操作 (单题)
             // ================================================================
             function addProblem() {
                 const listName = getCurrentListName();
@@ -2199,24 +2238,20 @@
             //  ★ 多选操作函数
             // ================================================================
 
-            // 切换单个题目的选中状态
             function toggleSelectProblem(pid) {
-                if (!multiSelectMode) return; // 非多选模式忽略
+                if (!multiSelectMode) return;
                 if (selectedProblems.has(pid)) {
                     selectedProblems.delete(pid);
                 } else {
                     selectedProblems.add(pid);
                 }
                 updateSelectedUI();
-                renderProblems(); // 刷新复选框状态
+                renderProblems();
             }
 
-            // 全选 / 取消全选
             function toggleSelectAll() {
                 if (!multiSelectMode) {
-                    // 如果不在多选模式，自动进入
                     toggleMultiSelect();
-                    // 然后全选
                     setTimeout(() => {
                         const allCheckbox = document.getElementById('selectAllCheckbox');
                         if (allCheckbox) allCheckbox.checked = true;
@@ -2242,7 +2277,56 @@
                 renderProblems();
             }
 
-            // 导出选中为 Excel 格式 (TSV: 题号\t题目名称)
+            // ---- 批量打开 (修复：使用setTimeout逐个打开) ----
+            function openSelectedProblems() {
+                if (!multiSelectMode) {
+                    showToast('请先点击「多选」按钮进入多选模式', 'warning');
+                    return;
+                }
+                const problems = getCurrentProblems();
+                const selected = problems.filter(p => selectedProblems.has(p.pid));
+                if (selected.length === 0) {
+                    showToast('请先选中要打开的题目', 'warning');
+                    return;
+                }
+                let opened = 0;
+                // 使用setTimeout逐个打开，避免浏览器拦截
+                for (let i = 0; i < selected.length; i++) {
+                    const p = selected[i];
+                    const url = getProblemUrl(p.pid);
+                    if (url && url !== '#') {
+                        setTimeout(() => {
+                            window.open(url, '_blank');
+                        }, i * 20); // 每个间隔20ms
+                        opened++;
+                    }
+                }
+                showToast('正在打开 ' + opened + ' 个题目页面...', 'success');
+            }
+
+            // ---- 批量设置难度 ----
+            function batchSetDifficulty() {
+                if (!multiSelectMode) {
+                    showToast('请先点击「多选」按钮进入多选模式', 'warning');
+                    return;
+                }
+                const problems = getCurrentProblems();
+                const selected = problems.filter(p => selectedProblems.has(p.pid));
+                if (selected.length === 0) {
+                    showToast('请先选中要设置难度的题目', 'warning');
+                    return;
+                }
+                const diffSelect = document.getElementById('batchDiffSelect');
+                const newDiff = parseInt(diffSelect.value);
+                for (const p of selected) {
+                    p.difficulty = newDiff;
+                }
+                saveData();
+                renderAll();
+                showToast('✅ 已为 ' + selected.length + ' 道题目设置难度: ' + DIFF_NAMES[newDiff], 'success');
+            }
+
+            // ---- 导出选中 ----
             function exportSelected() {
                 if (!multiSelectMode) {
                     showToast('请先点击「多选」按钮进入多选模式', 'warning');
@@ -2254,7 +2338,6 @@
                     showToast('请先选中要导出的题目', 'warning');
                     return;
                 }
-
                 const lines = selected.map(p => p.pid + '\t' + p.name);
                 const content = lines.join('\n');
                 const blob = new Blob(['\uFEFF' + content], { type: 'text/tab-separated-values;charset=utf-8' });
@@ -2268,7 +2351,7 @@
                 showToast('✅ 已导出 ' + selected.length + ' 道题目 (TSV格式)', 'success');
             }
 
-            // 删除选中的题目
+            // ---- 删除选中 ----
             function deleteSelected() {
                 if (!multiSelectMode) {
                     showToast('请先点击「多选」按钮进入多选模式', 'warning');
@@ -2280,10 +2363,8 @@
                     showToast('请先选中要删除的题目', 'warning');
                     return;
                 }
-
                 const names = selected.map(p => p.pid + ' ' + p.name).join('、');
                 const preview = names.length > 80 ? names.slice(0, 80) + '…' : names;
-
                 showConfirm(
                     '批量删除题目',
                     '确定要删除选中的 <strong>' + selected.length + '</strong> 道题目吗？<br>' +
@@ -2303,7 +2384,7 @@
                 );
             }
 
-            // 移动到目标题单
+            // ---- 移动选中 ----
             function moveSelected() {
                 if (!multiSelectMode) {
                     showToast('请先点击「多选」按钮进入多选模式', 'warning');
@@ -2315,7 +2396,6 @@
                     showToast('请先选中要移动的题目', 'warning');
                     return;
                 }
-
                 const targetSelect = document.getElementById('moveTargetList');
                 const targetName = targetSelect.value;
                 if (!targetName) {
@@ -2330,10 +2410,8 @@
                     showToast('目标题单不存在', 'warning');
                     return;
                 }
-
                 const names = selected.map(p => p.pid + ' ' + p.name).join('、');
                 const preview = names.length > 80 ? names.slice(0, 80) + '…' : names;
-
                 showConfirm(
                     '批量移动到题单',
                     '将选中的 <strong>' + selected.length + '</strong> 道题目移动到「' + escapeHtml(targetName) + '」？<br>' +
@@ -2377,7 +2455,6 @@
                 const text = document.getElementById('batchInput').value;
                 const lines = text.split('\n').filter(line => line.trim() !== '');
                 const result = [];
-
                 for (const line of lines) {
                     let parts = line.split('\t');
                     if (parts.length === 2) {
@@ -2393,17 +2470,14 @@
                         result.push({ pid: parts[0].trim().toUpperCase(), name: '' });
                     }
                 }
-
                 batchParsedData = result;
                 document.getElementById('batchStats').textContent = `已解析 ${result.length} 条题目`;
-
                 const preview = document.getElementById('batchPreview');
                 if (result.length === 0) {
                     preview.innerHTML =
                     '<div style="color:var(--text-muted);font-size:13px;padding:12px 0;">没有解析到有效数据</div>';
                     return;
                 }
-
                 preview.innerHTML = result.map((item) => `
                         <div class="preview-item">
                             <span class="p-pid">${escapeHtml(item.pid)}</span>
@@ -2418,20 +2492,14 @@
                     showToast('请先粘贴数据并解析', 'warning');
                     return;
                 }
-
                 const listName = getCurrentListName();
                 if (!listName) { showToast('请先选择题单', 'warning'); return; }
-
                 const problems = data.lists[listName];
-                let added = 0;
-                let skipped = 0;
-
+                let added = 0,
+                    skipped = 0;
                 for (const item of batchParsedData) {
                     if (!item.pid) { skipped++; continue; }
-                    if (problems.some(p => p.pid === item.pid)) {
-                        skipped++;
-                        continue;
-                    }
+                    if (problems.some(p => p.pid === item.pid)) { skipped++; continue; }
                     problems.push({
                         pid: item.pid,
                         name: item.name || '未知题目',
@@ -2440,18 +2508,12 @@
                     });
                     added++;
                 }
-
                 disableMultiSelect();
                 clearSelected();
                 saveData();
                 renderAll();
                 closeModal('batchModal');
-                showToast(`✅ 成功导入 ${added} 道题目${skipped > 0 ? `，${skipped} 条跳过（重复或无题号）` : ''}`, 'success');
-
-                setTimeout(() => {
-                    const list = document.getElementById('problemList');
-                    if (list) list.scrollTop = list.scrollHeight;
-                }, 150);
+                showToast(`✅ 成功导入 ${added} 道题目${skipped > 0 ? `，${skipped} 条跳过` : ''}`, 'success');
             }
 
             // ================================================================
@@ -2541,18 +2603,11 @@
                 renderLists();
                 renderProblems();
                 document.getElementById('listCount').textContent = Object.keys(data.lists).length;
-                // 确保工具栏在正确状态
                 const toolbar = document.getElementById('problemToolbar');
                 if (toolbar) {
                     const hasList = getCurrentListName() && data.lists[getCurrentListName()];
                     toolbar.style.display = hasList ? 'flex' : 'none';
-                    if (!multiSelectMode) {
-                        toolbar.classList.remove('multi-select-active');
-                    } else {
-                        toolbar.classList.add('multi-select-active');
-                    }
                 }
-                // 更新按钮文字
                 const btn = document.getElementById('toggleMultiSelectBtn');
                 if (btn) {
                     if (multiSelectMode) {
@@ -2565,13 +2620,21 @@
                         btn.classList.add('ghost');
                     }
                 }
+                // 同步 problemList 的 multi-select-active 类
+                const problemList = document.getElementById('problemList');
+                if (problemList) {
+                    if (multiSelectMode) {
+                        problemList.classList.add('multi-select-active');
+                    } else {
+                        problemList.classList.remove('multi-select-active');
+                    }
+                }
                 updateSelectedUI();
             }
 
             function renderLists() {
                 const container = document.getElementById('listContainer');
                 const keys = sortLists();
-
                 if (keys.length === 0) {
                     container.innerHTML = `
                             <div class="empty-state">
@@ -2581,13 +2644,11 @@
                         `;
                     return;
                 }
-
                 container.innerHTML = keys.map(name => {
                     const isActive = name === data.currentList;
                     const count = data.lists[name] ? data.lists[name].length : 0;
                     const isRenaming = renamingList === name;
                     const safeName = escapeHtml(name);
-
                     if (isRenaming) {
                         return `
                                 <div class="list-item ${isActive ? 'active' : ''}" data-name="${safeName}" data-action="rename">
@@ -2603,7 +2664,6 @@
                                 </div>
                             `;
                     }
-
                     return `
                             <div class="list-item ${isActive ? 'active' : ''}" data-name="${safeName}" data-action="select">
                                 <span class="li-name">${safeName}</span>
@@ -2676,9 +2736,6 @@
                     return `<option value="${val}">${label}</option>`;
                 }).join('');
 
-                // 根据多选模式决定复选框显示
-                const checkboxDisplay = multiSelectMode ? 'flex' : 'none';
-
                 container.innerHTML = problems.map(p => {
                     const diffClass = `diff-${p.difficulty}`;
                     const statusLabel = p.done ? '已通过' : '未通过';
@@ -2688,7 +2745,6 @@
                     const ojSource = getOJSource(p.pid);
                     const isChecked = selectedProblems.has(p.pid);
 
-                    // 构建 diff 选项
                     let diffOpts = '';
                     for (const [val, label] of Object.entries(DIFF_NAMES)) {
                         const selected = parseInt(val) === p.difficulty ? 'selected' : '';
@@ -2697,8 +2753,7 @@
 
                     return `
                             <div class="problem-item">
-                                <input type="checkbox" class="pi-checkbox" 
-                                       style="display:${checkboxDisplay};"
+                                <input type="checkbox" class="custom-checkbox" 
                                        data-pid="${escapeHtml(p.pid)}" 
                                        ${isChecked ? 'checked' : ''}
                                        onchange="toggleSelectProblem('${escapeHtml(p.pid)}')" />
@@ -2747,7 +2802,7 @@
                         renderLists();
                     }
                     if (multiSelectMode) {
-                        toggleMultiSelect(); // ESC 退出多选
+                        toggleMultiSelect();
                     }
                 }
                 if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
@@ -2764,7 +2819,6 @@
                         addList();
                     }
                 }
-                // Ctrl+A 全选
                 if ((e.ctrlKey || e.metaKey) && e.key === 'a') {
                     const active = document.activeElement;
                     if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.tagName ===
@@ -2774,10 +2828,8 @@
                     const listName = getCurrentListName();
                     if (listName && data.lists[listName] && data.lists[listName].length > 0) {
                         e.preventDefault();
-                        // 如果不在多选模式，进入多选模式并全选
                         if (!multiSelectMode) {
                             toggleMultiSelect();
-                            // 全选
                             setTimeout(() => {
                                 const allCheckbox = document.getElementById('selectAllCheckbox');
                                 if (allCheckbox) {
@@ -2828,6 +2880,8 @@
             window.exportSelected = exportSelected;
             window.deleteSelected = deleteSelected;
             window.moveSelected = moveSelected;
+            window.openSelectedProblems = openSelectedProblems;
+            window.batchSetDifficulty = batchSetDifficulty;
             window.selectedProblems = selectedProblems;
 
             // ================================================================
@@ -2835,10 +2889,12 @@
             // ================================================================
             loadData();
             loadGitHubSettings();
-            console.log('📚 题单管理 · 多OJ题集 (美观多选 + 模式切换)');
+            console.log('📚 题单管理 · 多OJ题集 (批量打开修复 + 全选样式统一)');
             console.log('  📋 已加载 ' + Object.keys(data.lists).length + ' 个题单');
             console.log('  📝 当前题单: ' + (data.currentList || '无'));
             console.log('  ✨ 点击「多选」进入批量操作模式');
+            console.log('  🔗 批量打开使用间隔定时器，避免浏览器拦截');
+            console.log('  ✅ 全选框样式与题目复选框完全一致');
             console.log('  ⌨️  Ctrl+A 快速进入多选并全选');
 
         })();
