@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <title>题单管理 · 多OJ题集</title>
-    <!-- 层叠方块图标 (黑色) -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'%3E%3Cpath fill='%23000000' d='M296.5 69.2C311.4 62.3 328.6 62.3 343.5 69.2L562.1 170.2C570.6 174.1 576 182.6 576 192C576 201.4 570.6 209.9 562.1 213.8L343.5 314.8C328.6 321.7 311.4 321.7 296.5 314.8L77.9 213.8C69.4 209.8 64 201.3 64 192C64 182.7 69.4 174.1 77.9 170.2L296.5 69.2zM112.1 282.4L276.4 358.3C304.1 371.1 336 371.1 363.7 358.3L528 282.4L562.1 298.2C570.6 302.1 576 310.6 576 320C576 329.4 570.6 337.9 562.1 341.8L343.5 442.8C328.6 449.7 311.4 449.7 296.5 442.8L77.9 341.8C69.4 337.8 64 329.3 64 320C64 310.7 69.4 302.1 77.9 298.2L112 282.4zM77.9 426.2L112 410.4L276.3 486.3C304 499.1 335.9 499.1 363.6 486.3L527.9 410.4L562 426.2C570.5 430.1 575.9 438.6 575.9 448C575.9 457.4 570.5 465.9 562 469.8L343.4 570.8C328.5 577.7 311.3 577.7 296.4 570.8L77.9 469.8C69.4 465.8 64 457.3 64 448C64 438.7 69.4 430.1 77.9 426.2z'/%3E%3C/svg%3E" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
@@ -47,8 +46,6 @@
 
             --mouse-x: 50%;
             --mouse-y: 50%;
-            --icon-bg: rgba(74, 106, 138, 0.10);
-            --icon-radius: 10px;
 
             --bg-start: #e8ecf0;
             --bg-end: #dce0e8;
@@ -374,18 +371,6 @@
             border-radius: var(--radius-full);
             font-weight: 600;
         }
-        .section-title .action-link {
-            margin-left: auto;
-            font-size: 11px;
-            font-weight: 500;
-            color: var(--primary-dark);
-            cursor: pointer;
-            text-decoration: none;
-            transition: opacity var(--transition-smooth);
-        }
-        .section-title .action-link:hover {
-            opacity: 0.7;
-        }
 
         .input-group {
             display: flex;
@@ -479,6 +464,19 @@
         }
         .btn-sm.danger:hover {
             background: rgba(176, 106, 106, 0.18);
+        }
+        .btn-sm.success {
+            background: rgba(90, 138, 122, 0.12);
+            color: #3a6a5a;
+            box-shadow: none;
+            border: 1px solid rgba(90, 138, 122, 0.08);
+        }
+        .btn-sm.success:hover {
+            background: rgba(90, 138, 122, 0.22);
+        }
+        .btn-sm:disabled {
+            opacity: 0.4;
+            pointer-events: none;
         }
 
         .empty-state {
@@ -602,7 +600,7 @@
             justify-content: space-between;
             align-items: center;
             flex-shrink: 0;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             flex-wrap: wrap;
             gap: 8px;
         }
@@ -620,6 +618,88 @@
         .problem-header .ph-actions {
             display: flex;
             gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        /* ---- 工具栏 (多选操作) ---- */
+        .problem-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            padding: 6px 0 8px 0;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 8px;
+        }
+        .problem-toolbar .toolbar-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .problem-toolbar .toolbar-right {
+            display: none; /* 默认隐藏，多选模式下显示 */
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+        .problem-toolbar.multi-select-active .toolbar-right {
+            display: flex;
+        }
+        .problem-toolbar .select-all-label {
+            display: none; /* 默认隐藏，多选模式下显示 */
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            user-select: none;
+        }
+        .problem-toolbar.multi-select-active .select-all-label {
+            display: flex;
+        }
+        .problem-toolbar .select-all-label input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            margin: 0;
+        }
+        .problem-toolbar .selected-count {
+            font-size: 12px;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.06);
+            padding: 0 10px;
+            border-radius: var(--radius-full);
+            line-height: 24px;
+        }
+        .problem-toolbar .move-select {
+            padding: 4px 10px;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            outline: none;
+            transition: var(--transition-smooth);
+            min-width: 100px;
+            max-width: 160px;
+        }
+        .problem-toolbar .move-select:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 0 0 4px var(--primary-soft);
+        }
+
+        /* ---- 多选切换按钮特殊样式 ---- */
+        #toggleMultiSelectBtn.active {
+            background: rgba(176, 106, 106, 0.10);
+            color: #8a5a5a;
+            border-color: rgba(176, 106, 106, 0.15);
         }
 
         .problem-list {
@@ -653,6 +733,50 @@
         .problem-item:hover {
             background: rgba(255, 255, 255, 0.14);
         }
+
+        /* ================================================================
+           8.1  自定义多选框 — 更美观
+           ================================================================ */
+        .problem-item .pi-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--text-muted);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.10);
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            position: relative;
+            flex-shrink: 0;
+            margin: 0 4px 0 0;
+            display: none; /* 默认隐藏，多选模式下显示 */
+        }
+        .problem-item .pi-checkbox:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            background: rgba(74, 106, 138, 0.05);
+        }
+        .problem-item .pi-checkbox:checked {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        .problem-item .pi-checkbox:checked::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 13px;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .problem-item .pi-checkbox:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
         .problem-item .pi-pid {
             font-weight: 700;
             font-size: 14px;
@@ -712,7 +836,6 @@
             background: rgba(255, 255, 255, 0.90);
             color: var(--text);
         }
-        /* 难度颜色 */
         .problem-item .pi-diff.diff-0 {
             background: rgba(148, 163, 184, 0.08);
             color: var(--text-muted);
@@ -810,7 +933,7 @@
         }
 
         /* ================================================================
-           9.  模态框 — 动画时序修复
+           9.  模态框
            ================================================================ */
         .modal-overlay {
             position: fixed;
@@ -1165,7 +1288,7 @@
         }
 
         /* ================================================================
-           11. Toast — 修复动画时序
+           11. Toast
            ================================================================ */
         .toast-container {
             position: fixed;
@@ -1279,6 +1402,35 @@
                         </button>
                     </div>
                 </div>
+
+                <!-- ===== 多选操作工具栏 ===== -->
+                <div class="problem-toolbar" id="problemToolbar" style="display:none;">
+                    <div class="toolbar-left">
+                        <button class="btn-sm ghost" id="toggleMultiSelectBtn" onclick="toggleMultiSelect()">
+                            <i class="fas fa-check-square"></i> 多选
+                        </button>
+                        <label class="select-all-label">
+                            <input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll()" />
+                            <span>全选</span>
+                        </label>
+                        <span class="selected-count" id="selectedCount">已选 0 题</span>
+                    </div>
+                    <div class="toolbar-right">
+                        <button class="btn-sm success" onclick="exportSelected()" title="导出选中题目为Excel格式（题号+制表符+题目名）">
+                            <i class="fas fa-file-excel"></i> 导出Excel
+                        </button>
+                        <button class="btn-sm danger" onclick="deleteSelected()" title="删除选中的题目">
+                            <i class="fas fa-trash-alt"></i> 删除选中
+                        </button>
+                        <select class="move-select" id="moveTargetList" title="选择目标题单">
+                            <option value="">移动到...</option>
+                        </select>
+                        <button class="btn-sm" onclick="moveSelected()" title="将选中题目移动到目标题单">
+                            <i class="fas fa-arrow-right"></i> 移动
+                        </button>
+                    </div>
+                </div>
+
                 <div class="input-group" id="addProblemGroup">
                     <input type="text" id="problemPidInput" placeholder="题号 (如 P1001, CF1234A, AT_abc221_h)" />
                     <input type="text" id="problemNameInput" placeholder="题目名称" />
@@ -1386,7 +1538,6 @@
             const STORAGE_KEY = 'luogu_problem_lists_v7';
             const GITHUB_SETTINGS_KEY = 'github_settings_problem_lists';
 
-            // 难度映射 (显示名称)
             const DIFF_NAMES = {
                 0: '暂无评定',
                 1: '入门',
@@ -1411,6 +1562,10 @@
             let renamingList = null;
             let githubPanelOpen = false;
 
+            // ---- 多选状态 ----
+            let selectedProblems = new Set();
+            let multiSelectMode = false; // 是否处于多选模式
+
             // ================================================================
             //  工具
             // ================================================================
@@ -1421,14 +1576,12 @@
                 return d.innerHTML;
             }
 
-            // Toast 使用类控制动画，修复时序问题
             function showToast(msg, type = 'info') {
                 const container = document.getElementById('toastContainer');
                 const t = document.createElement('div');
                 t.className = 'toast ' + type;
                 t.textContent = msg;
                 container.appendChild(t);
-                // 使用 requestAnimationFrame 确保动画从起始状态开始
                 requestAnimationFrame(() => {
                     t.classList.add('show');
                 });
@@ -1455,31 +1608,141 @@
                 return data.lists[name] || [];
             }
 
+            // ---- 清空选中 ----
+            function clearSelected() {
+                selectedProblems.clear();
+                updateSelectedUI();
+            }
+
+            // ---- 更新选中UI ----
+            function updateSelectedUI() {
+                const count = selectedProblems.size;
+                const el = document.getElementById('selectedCount');
+                if (el) el.textContent = '已选 ' + count + ' 题';
+                const allCheckbox = document.getElementById('selectAllCheckbox');
+                if (allCheckbox) {
+                    const total = getCurrentProblems().length;
+                    if (total === 0) {
+                        allCheckbox.checked = false;
+                        allCheckbox.indeterminate = false;
+                    } else if (count === total) {
+                        allCheckbox.checked = true;
+                        allCheckbox.indeterminate = false;
+                    } else if (count > 0) {
+                        allCheckbox.checked = false;
+                        allCheckbox.indeterminate = true;
+                    } else {
+                        allCheckbox.checked = false;
+                        allCheckbox.indeterminate = false;
+                    }
+                }
+                // 更新工具栏按钮状态
+                const hasSelected = count > 0 && multiSelectMode;
+                const exportBtn = document.querySelector('.toolbar-right .btn-sm.success');
+                const deleteBtn = document.querySelector('.toolbar-right .btn-sm.danger');
+                const moveBtn = document.querySelector('.toolbar-right .btn-sm:last-child');
+                if (exportBtn) exportBtn.disabled = !hasSelected;
+                if (deleteBtn) deleteBtn.disabled = !hasSelected;
+                if (moveBtn) moveBtn.disabled = !hasSelected;
+                // 更新移动下拉菜单
+                updateMoveTargets();
+            }
+
+            // ---- 更新移动目标下拉菜单 ----
+            function updateMoveTargets() {
+                const sel = document.getElementById('moveTargetList');
+                if (!sel) return;
+                const current = getCurrentListName();
+                const allLists = sortLists();
+                const hasOther = allLists.some(name => name !== current);
+                const hasSelected = selectedProblems.size > 0 && multiSelectMode;
+
+                sel.innerHTML = '';
+                const defaultOpt = document.createElement('option');
+                defaultOpt.value = '';
+                defaultOpt.textContent = hasOther ? '移动到...' : '无其他题单';
+                sel.appendChild(defaultOpt);
+
+                if (hasOther) {
+                    for (const name of allLists) {
+                        if (name === current) continue;
+                        const opt = document.createElement('option');
+                        opt.value = name;
+                        opt.textContent = name + ' (' + (data.lists[name] ? data.lists[name].length : 0) + '题)';
+                        sel.appendChild(opt);
+                    }
+                }
+                sel.disabled = !hasOther || !hasSelected;
+                if (!hasSelected) {
+                    const opt = document.createElement('option');
+                    opt.value = '';
+                    opt.textContent = '请先选中题目';
+                    sel.innerHTML = '';
+                    sel.appendChild(opt);
+                    sel.disabled = true;
+                }
+            }
+
             // ================================================================
-            //  链接生成 — 多OJ匹配引擎
+            //  多选模式切换
+            // ================================================================
+            function toggleMultiSelect() {
+                multiSelectMode = !multiSelectMode;
+                const toolbar = document.getElementById('problemToolbar');
+                const btn = document.getElementById('toggleMultiSelectBtn');
+
+                if (multiSelectMode) {
+                    toolbar.classList.add('multi-select-active');
+                    btn.innerHTML = '<i class="fas fa-times"></i> 取消多选';
+                    btn.classList.add('danger');
+                    btn.classList.remove('ghost');
+                    // 进入多选时清空之前的选择
+                    clearSelected();
+                } else {
+                    toolbar.classList.remove('multi-select-active');
+                    btn.innerHTML = '<i class="fas fa-check-square"></i> 多选';
+                    btn.classList.remove('danger');
+                    btn.classList.add('ghost');
+                    clearSelected();
+                }
+                // 重新渲染题目列表以显示/隐藏复选框
+                renderProblems();
+                // 更新UI状态（按钮禁用等）
+                updateSelectedUI();
+            }
+
+            // 强制退出多选模式（切换题单时调用）
+            function disableMultiSelect() {
+                if (multiSelectMode) {
+                    multiSelectMode = false;
+                    const toolbar = document.getElementById('problemToolbar');
+                    const btn = document.getElementById('toggleMultiSelectBtn');
+                    if (toolbar) toolbar.classList.remove('multi-select-active');
+                    if (btn) {
+                        btn.innerHTML = '<i class="fas fa-check-square"></i> 多选';
+                        btn.classList.remove('danger');
+                        btn.classList.add('ghost');
+                    }
+                    clearSelected();
+                    renderProblems();
+                    updateSelectedUI();
+                }
+            }
+
+            // ================================================================
+            //  链接生成 — 多OJ匹配引擎 (保持不变)
             // ================================================================
             function getProblemUrl(pid) {
                 if (!pid) return '#';
                 const p = pid.trim();
-
-                if (p.startsWith('AT_')) {
-                    return `https://www.luogu.com.cn/problem/${p}`;
-                }
-                if (p.startsWith('CF') && !p.startsWith('GYM')) {
-                    return `https://www.luogu.com.cn/problem/${p}`;
-                }
+                if (p.startsWith('AT_')) return `https://www.luogu.com.cn/problem/${p}`;
+                if (p.startsWith('CF') && !p.startsWith('GYM')) return `https://www.luogu.com.cn/problem/${p}`;
                 const luoguMatch = p.match(/^P(\d+)$/i);
-                if (luoguMatch) {
-                    return `https://www.luogu.com.cn/problem/P${luoguMatch[1]}`;
-                }
+                if (luoguMatch) return `https://www.luogu.com.cn/problem/P${luoguMatch[1]}`;
                 const gymMatch = p.match(/^GYM(\d+)([A-Z])$/i);
-                if (gymMatch) {
-                    return `https://codeforces.com/gym/${gymMatch[1]}/problem/${gymMatch[2].toUpperCase()}`;
-                }
+                if (gymMatch) return `https://codeforces.com/gym/${gymMatch[1]}/problem/${gymMatch[2].toUpperCase()}`;
                 const gymMatch2 = p.match(/^GYM(\d+)$/i);
-                if (gymMatch2) {
-                    return `https://codeforces.com/gym/${gymMatch2[1]}`;
-                }
+                if (gymMatch2) return `https://codeforces.com/gym/${gymMatch2[1]}`;
                 const atMatch1 = p.match(/^(ARC|AGC|ABC|APC)(\d+)([A-Z])$/i);
                 if (atMatch1) {
                     const prefix = atMatch1[1].toLowerCase();
@@ -1494,46 +1757,26 @@
                     return `https://atcoder.jp/contests/${prefix}${num}`;
                 }
                 const pojMatch = p.match(/^POJ(\d+)$/i);
-                if (pojMatch) {
-                    return `http://poj.org/problem?id=${pojMatch[1]}`;
-                }
+                if (pojMatch) return `http://poj.org/problem?id=${pojMatch[1]}`;
                 const uojMatch = p.match(/^UOJ(\d+)$/i);
-                if (uojMatch) {
-                    return `https://uoj.ac/problem/${uojMatch[1]}`;
-                }
+                if (uojMatch) return `https://uoj.ac/problem/${uojMatch[1]}`;
                 const qojMatch = p.match(/^QOJ(\d+)$/i);
-                if (qojMatch) {
-                    return `https://qoj.ac/problem/${qojMatch[1]}`;
-                }
+                if (qojMatch) return `https://qoj.ac/problem/${qojMatch[1]}`;
                 const lojMatch = p.match(/^LOJ(\d+)$/i);
-                if (lojMatch) {
-                    return `https://loj.ac/p/${lojMatch[1]}`;
-                }
+                if (lojMatch) return `https://loj.ac/p/${lojMatch[1]}`;
                 const spojMatch = p.match(/^SPOJ(\w+)$/i);
-                if (spojMatch) {
-                    return `https://www.spoj.com/problems/${spojMatch[1].toUpperCase()}/`;
-                }
+                if (spojMatch) return `https://www.spoj.com/problems/${spojMatch[1].toUpperCase()}/`;
                 const hduMatch = p.match(/^HDU(\d+)$/i);
-                if (hduMatch) {
-                    return `https://acm.hdu.edu.cn/showproblem.php?pid=${hduMatch[1]}`;
-                }
+                if (hduMatch) return `https://acm.hdu.edu.cn/showproblem.php?pid=${hduMatch[1]}`;
                 const zojMatch = p.match(/^ZOJ(\d+)$/i);
-                if (zojMatch) {
-                    return `https://zoj.pintia.cn/problem-sets/91827364500000000000000000000000/problems/91827364500000000000000000000000${zojMatch[1]}`;
-                }
+                if (zojMatch) return `https://zoj.pintia.cn/problem-sets/91827364500000000000000000000000/problems/91827364500000000000000000000000${zojMatch[1]}`;
                 const bzojMatch = p.match(/^BZOJ(\d+)$/i);
-                if (bzojMatch) {
-                    return `https://www.lydsy.com/JudgeOnline/problem.php?id=${bzojMatch[1]}`;
-                }
+                if (bzojMatch) return `https://www.lydsy.com/JudgeOnline/problem.php?id=${bzojMatch[1]}`;
                 if (p.includes('牛客') || p.includes('NC')) {
                     const ncMatch = p.match(/^NC(\d+)$/i);
-                    if (ncMatch) {
-                        return `https://ac.nowcoder.com/acm/problem/${ncMatch[1]}`;
-                    }
+                    if (ncMatch) return `https://ac.nowcoder.com/acm/problem/${ncMatch[1]}`;
                     const ncContest = p.match(/^牛客(\d+)([A-Z])$/i);
-                    if (ncContest) {
-                        return `https://ac.nowcoder.com/acm/contest/${ncContest[1]}/problem/${ncContest[2].toUpperCase()}`;
-                    }
+                    if (ncContest) return `https://ac.nowcoder.com/acm/contest/${ncContest[1]}/problem/${ncContest[2].toUpperCase()}`;
                     return `https://ac.nowcoder.com/acm/search?keyword=${encodeURIComponent(p)}`;
                 }
                 return `https://www.luogu.com.cn/problem/list?keyword=${encodeURIComponent(p)}`;
@@ -1560,7 +1803,7 @@
             }
 
             // ================================================================
-            //  GitHub 同步
+            //  GitHub 同步 (保持不变)
             // ================================================================
             function loadGitHubSettings() {
                 try {
@@ -1622,6 +1865,8 @@
                     const keys = Object.keys(data.lists);
                     data.currentList = keys.length > 0 ? keys[0] : null;
                 }
+                disableMultiSelect();
+                clearSelected();
                 saveData();
                 renderAll();
                 showToast('✅ 数据已加载', 'success');
@@ -1635,7 +1880,7 @@
                 }
                 saveGitHubSettings();
                 if (!confirm('确定上传到 ' + settings.username + '/' + settings.repo + ' 的 /data/problem_lists.json 吗？'))
-                return;
+                    return;
 
                 const apiUrl =
                     `https://api.github.com/repos/${settings.username}/${settings.repo}/contents/data/problem_lists.json`;
@@ -1760,6 +2005,8 @@
                     data.currentList = keys.length > 0 ? keys[0] : null;
                 }
 
+                disableMultiSelect();
+                clearSelected();
                 renderAll();
             }
 
@@ -1783,6 +2030,8 @@
                 data.lists[name] = [];
                 data.currentList = name;
                 input.value = '';
+                disableMultiSelect();
+                clearSelected();
                 saveData();
                 renderAll();
                 showToast('✅ 已创建题单「' + name + '」', 'success');
@@ -1798,6 +2047,8 @@
                     delete data.lists[name];
                     const keys = Object.keys(data.lists);
                     data.currentList = keys.length > 0 ? keys[0] : null;
+                    disableMultiSelect();
+                    clearSelected();
                     saveData();
                     renderAll();
                     showToast('已删除题单「' + name + '」', 'info');
@@ -1808,6 +2059,8 @@
                 if (name === data.currentList) return;
                 data.currentList = name;
                 renamingList = null;
+                disableMultiSelect(); // 切换题单时退出多选
+                clearSelected();
                 saveData();
                 renderAll();
             }
@@ -1849,6 +2102,8 @@
                     data.currentList = newName;
                 }
                 renamingList = null;
+                disableMultiSelect();
+                clearSelected();
                 saveData();
                 renderAll();
                 showToast('✅ 已重命名为「' + newName + '」', 'success');
@@ -1898,6 +2153,7 @@
                 const idx = problems.findIndex(p => p.pid === pid);
                 if (idx === -1) return;
                 problems.splice(idx, 1);
+                selectedProblems.delete(pid);
                 saveData();
                 renderAll();
                 showToast('已删除题目', 'info');
@@ -1940,6 +2196,170 @@
             }
 
             // ================================================================
+            //  ★ 多选操作函数
+            // ================================================================
+
+            // 切换单个题目的选中状态
+            function toggleSelectProblem(pid) {
+                if (!multiSelectMode) return; // 非多选模式忽略
+                if (selectedProblems.has(pid)) {
+                    selectedProblems.delete(pid);
+                } else {
+                    selectedProblems.add(pid);
+                }
+                updateSelectedUI();
+                renderProblems(); // 刷新复选框状态
+            }
+
+            // 全选 / 取消全选
+            function toggleSelectAll() {
+                if (!multiSelectMode) {
+                    // 如果不在多选模式，自动进入
+                    toggleMultiSelect();
+                    // 然后全选
+                    setTimeout(() => {
+                        const allCheckbox = document.getElementById('selectAllCheckbox');
+                        if (allCheckbox) allCheckbox.checked = true;
+                        _doSelectAll(true);
+                    }, 50);
+                    return;
+                }
+                const allCheckbox = document.getElementById('selectAllCheckbox');
+                if (!allCheckbox) return;
+                _doSelectAll(allCheckbox.checked);
+            }
+
+            function _doSelectAll(select) {
+                const problems = getCurrentProblems();
+                if (select) {
+                    for (const p of problems) {
+                        selectedProblems.add(p.pid);
+                    }
+                } else {
+                    selectedProblems.clear();
+                }
+                updateSelectedUI();
+                renderProblems();
+            }
+
+            // 导出选中为 Excel 格式 (TSV: 题号\t题目名称)
+            function exportSelected() {
+                if (!multiSelectMode) {
+                    showToast('请先点击「多选」按钮进入多选模式', 'warning');
+                    return;
+                }
+                const problems = getCurrentProblems();
+                const selected = problems.filter(p => selectedProblems.has(p.pid));
+                if (selected.length === 0) {
+                    showToast('请先选中要导出的题目', 'warning');
+                    return;
+                }
+
+                const lines = selected.map(p => p.pid + '\t' + p.name);
+                const content = lines.join('\n');
+                const blob = new Blob(['\uFEFF' + content], { type: 'text/tab-separated-values;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                const listName = getCurrentListName() || '题单';
+                a.download = listName + '_导出_' + new Date().toISOString().slice(0, 10) + '.tsv';
+                a.click();
+                URL.revokeObjectURL(url);
+                showToast('✅ 已导出 ' + selected.length + ' 道题目 (TSV格式)', 'success');
+            }
+
+            // 删除选中的题目
+            function deleteSelected() {
+                if (!multiSelectMode) {
+                    showToast('请先点击「多选」按钮进入多选模式', 'warning');
+                    return;
+                }
+                const problems = getCurrentProblems();
+                const selected = problems.filter(p => selectedProblems.has(p.pid));
+                if (selected.length === 0) {
+                    showToast('请先选中要删除的题目', 'warning');
+                    return;
+                }
+
+                const names = selected.map(p => p.pid + ' ' + p.name).join('、');
+                const preview = names.length > 80 ? names.slice(0, 80) + '…' : names;
+
+                showConfirm(
+                    '批量删除题目',
+                    '确定要删除选中的 <strong>' + selected.length + '</strong> 道题目吗？<br>' +
+                    '<span style="font-size:12px;color:var(--text-muted);">' + escapeHtml(preview) + '</span>',
+                    () => {
+                        const listName = getCurrentListName();
+                        if (!listName) return;
+                        const allProblems = data.lists[listName];
+                        const toDelete = new Set(selectedProblems);
+                        const remaining = allProblems.filter(p => !toDelete.has(p.pid));
+                        data.lists[listName] = remaining;
+                        clearSelected();
+                        saveData();
+                        renderAll();
+                        showToast('🗑️ 已删除 ' + selected.length + ' 道题目', 'info');
+                    }
+                );
+            }
+
+            // 移动到目标题单
+            function moveSelected() {
+                if (!multiSelectMode) {
+                    showToast('请先点击「多选」按钮进入多选模式', 'warning');
+                    return;
+                }
+                const problems = getCurrentProblems();
+                const selected = problems.filter(p => selectedProblems.has(p.pid));
+                if (selected.length === 0) {
+                    showToast('请先选中要移动的题目', 'warning');
+                    return;
+                }
+
+                const targetSelect = document.getElementById('moveTargetList');
+                const targetName = targetSelect.value;
+                if (!targetName) {
+                    showToast('请选择目标题单', 'warning');
+                    return;
+                }
+                if (targetName === getCurrentListName()) {
+                    showToast('不能移动到同一个题单', 'warning');
+                    return;
+                }
+                if (!data.lists[targetName]) {
+                    showToast('目标题单不存在', 'warning');
+                    return;
+                }
+
+                const names = selected.map(p => p.pid + ' ' + p.name).join('、');
+                const preview = names.length > 80 ? names.slice(0, 80) + '…' : names;
+
+                showConfirm(
+                    '批量移动到题单',
+                    '将选中的 <strong>' + selected.length + '</strong> 道题目移动到「' + escapeHtml(targetName) + '」？<br>' +
+                    '<span style="font-size:12px;color:var(--text-muted);">' + escapeHtml(preview) + '</span>',
+                    () => {
+                        const listName = getCurrentListName();
+                        if (!listName) return;
+                        const allProblems = data.lists[listName];
+                        const toMove = new Set(selectedProblems);
+                        const remaining = allProblems.filter(p => !toMove.has(p.pid));
+                        data.lists[listName] = remaining;
+                        const targetProblems = data.lists[targetName];
+                        for (const p of selected) {
+                            if (!targetProblems.some(t => t.pid === p.pid)) {
+                                targetProblems.push({ ...p });
+                            }
+                        }
+                        clearSelected();
+                        saveData();
+                        renderAll();
+                        showToast('📦 已移动 ' + selected.length + ' 道题目到「' + targetName + '」', 'success');
+                    }
+                );
+            }
+
+            // ================================================================
             //  批量导入
             // ================================================================
             function openBatchImport() {
@@ -1979,7 +2399,8 @@
 
                 const preview = document.getElementById('batchPreview');
                 if (result.length === 0) {
-                    preview.innerHTML = '<div style="color:var(--text-muted);font-size:13px;padding:12px 0;">没有解析到有效数据</div>';
+                    preview.innerHTML =
+                    '<div style="color:var(--text-muted);font-size:13px;padding:12px 0;">没有解析到有效数据</div>';
                     return;
                 }
 
@@ -2020,6 +2441,8 @@
                     added++;
                 }
 
+                disableMultiSelect();
+                clearSelected();
                 saveData();
                 renderAll();
                 closeModal('batchModal');
@@ -2032,14 +2455,13 @@
             }
 
             // ================================================================
-            //  模态框 — 重构确认逻辑
+            //  模态框
             // ================================================================
             function showConfirm(title, msg, cb) {
                 document.getElementById('confirmTitle').innerHTML = title;
                 document.getElementById('confirmMsg').innerHTML = msg;
                 const modal = document.getElementById('confirmModal');
                 confirmCallback = cb;
-                // 移除旧绑定，避免重复触发
                 const btn = document.getElementById('confirmBtn');
                 btn.onclick = function(e) {
                     e.stopPropagation();
@@ -2055,12 +2477,6 @@
                 const modal = document.getElementById(id);
                 if (modal) {
                     modal.classList.remove('show');
-                }
-                // 只有关闭确认模态框时清除回调
-                if (id === 'confirmModal') {
-                    // 但不要清除，因为可能已经通过确认按钮执行了
-                    // 但如果是通过背景关闭，则清除以防误触
-                    // 这里保留回调，但会在下次 showConfirm 时覆盖
                 }
             }
 
@@ -2091,6 +2507,8 @@
                         data.lists = imported.lists;
                         data.currentList = imported.currentList || (Object.keys(data.lists).length > 0 ? Object.keys(
                             data.lists)[0] : null);
+                        disableMultiSelect();
+                        clearSelected();
                         saveData();
                         renderAll();
                         showToast('成功导入！', 'success');
@@ -2108,6 +2526,8 @@
                 showConfirm('清空所有数据', '确定要 <strong style="color:#b06a6a;">清空所有</strong> 题单数据吗？<br><span style="font-size:11px;color:var(--text-muted);">建议先导出备份</span>', () => {
                     data.lists = {};
                     data.currentList = null;
+                    disableMultiSelect();
+                    clearSelected();
                     saveData();
                     renderAll();
                     showToast('已清空所有数据', 'info');
@@ -2115,12 +2535,37 @@
             }
 
             // ================================================================
-            //  渲染 — 使用事件委托代替内联 onclick
+            //  渲染
             // ================================================================
             function renderAll() {
                 renderLists();
                 renderProblems();
                 document.getElementById('listCount').textContent = Object.keys(data.lists).length;
+                // 确保工具栏在正确状态
+                const toolbar = document.getElementById('problemToolbar');
+                if (toolbar) {
+                    const hasList = getCurrentListName() && data.lists[getCurrentListName()];
+                    toolbar.style.display = hasList ? 'flex' : 'none';
+                    if (!multiSelectMode) {
+                        toolbar.classList.remove('multi-select-active');
+                    } else {
+                        toolbar.classList.add('multi-select-active');
+                    }
+                }
+                // 更新按钮文字
+                const btn = document.getElementById('toggleMultiSelectBtn');
+                if (btn) {
+                    if (multiSelectMode) {
+                        btn.innerHTML = '<i class="fas fa-times"></i> 取消多选';
+                        btn.classList.add('danger');
+                        btn.classList.remove('ghost');
+                    } else {
+                        btn.innerHTML = '<i class="fas fa-check-square"></i> 多选';
+                        btn.classList.remove('danger');
+                        btn.classList.add('ghost');
+                    }
+                }
+                updateSelectedUI();
             }
 
             function renderLists() {
@@ -2171,19 +2616,14 @@
                         `;
                 }).join('');
 
-                // 使用事件委托绑定列表点击事件
                 container.onclick = function(e) {
                     const target = e.target.closest('button') || e.target.closest('.list-item');
                     if (!target) return;
-
                     const item = target.closest('.list-item');
                     if (!item) return;
-
                     const action = target.dataset.action || item.dataset.action;
                     const name = item.dataset.name || target.dataset.name;
-
                     if (!name) return;
-
                     switch (action) {
                         case 'select':
                             selectList(name);
@@ -2227,32 +2667,46 @@
                                 <p>还没有题目，添加一个吧</p>
                             </div>
                         `;
+                    updateSelectedUI();
+                    updateMoveTargets();
                     return;
                 }
 
-                const diffOptions = Object.entries(DIFF_NAMES).map(([val, label]) => {
+                const diffOptionsHtml = Object.entries(DIFF_NAMES).map(([val, label]) => {
                     return `<option value="${val}">${label}</option>`;
                 }).join('');
 
+                // 根据多选模式决定复选框显示
+                const checkboxDisplay = multiSelectMode ? 'flex' : 'none';
+
                 container.innerHTML = problems.map(p => {
-                    const diffLabel = DIFF_NAMES[p.difficulty] || '暂无评定';
                     const diffClass = `diff-${p.difficulty}`;
                     const statusLabel = p.done ? '已通过' : '未通过';
                     const statusClass = p.done ? 'done' : 'undo';
                     const statusIcon = p.done ? '<i class="fas fa-check-circle"></i>' :
                         '<i class="fas fa-circle"></i>';
                     const ojSource = getOJSource(p.pid);
+                    const isChecked = selectedProblems.has(p.pid);
+
+                    // 构建 diff 选项
+                    let diffOpts = '';
+                    for (const [val, label] of Object.entries(DIFF_NAMES)) {
+                        const selected = parseInt(val) === p.difficulty ? 'selected' : '';
+                        diffOpts += `<option value="${val}" ${selected}>${label}</option>`;
+                    }
 
                     return `
                             <div class="problem-item">
+                                <input type="checkbox" class="pi-checkbox" 
+                                       style="display:${checkboxDisplay};"
+                                       data-pid="${escapeHtml(p.pid)}" 
+                                       ${isChecked ? 'checked' : ''}
+                                       onchange="toggleSelectProblem('${escapeHtml(p.pid)}')" />
                                 <span class="pi-pid" onclick="openProblemLink('${escapeHtml(p.pid)}')" title="点击跳转题目 (${escapeHtml(ojSource)})">${escapeHtml(p.pid)}</span>
                                 <span class="pi-name">${escapeHtml(p.name || '未知题目')}</span>
                                 <div class="pi-diff ${diffClass}" title="点击修改难度">
                                     <select onchange="changeProblemDifficulty('${escapeHtml(p.pid)}', this.value)" style="background:transparent;border:none;color:inherit;font-weight:600;font-size:12px;font-family:inherit;outline:none;cursor:pointer;padding:0 4px;width:100%;">
-                                        ${diffOptions.replace(/value="\d+"/g, (m) => {
-                                            const val = parseInt(m.match(/\d+/)[0]);
-                                            return val === p.difficulty ? m + ' selected' : m;
-                                        })}
+                                        ${diffOpts}
                                     </select>
                                 </div>
                                 <button class="pi-status ${statusClass}" onclick="toggleProblemStatus('${escapeHtml(p.pid)}')" title="点击切换状态">
@@ -2264,6 +2718,9 @@
                             </div>
                         `;
                 }).join('');
+
+                updateSelectedUI();
+                updateMoveTargets();
             }
 
             // ================================================================
@@ -2289,6 +2746,9 @@
                         renamingList = null;
                         renderLists();
                     }
+                    if (multiSelectMode) {
+                        toggleMultiSelect(); // ESC 退出多选
+                    }
                 }
                 if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
                     const active = document.activeElement;
@@ -2302,6 +2762,37 @@
                     if (active && active.id === 'listNameInput') {
                         e.preventDefault();
                         addList();
+                    }
+                }
+                // Ctrl+A 全选
+                if ((e.ctrlKey || e.metaKey) && e.key === 'a') {
+                    const active = document.activeElement;
+                    if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.tagName ===
+                            'SELECT')) {
+                        return;
+                    }
+                    const listName = getCurrentListName();
+                    if (listName && data.lists[listName] && data.lists[listName].length > 0) {
+                        e.preventDefault();
+                        // 如果不在多选模式，进入多选模式并全选
+                        if (!multiSelectMode) {
+                            toggleMultiSelect();
+                            // 全选
+                            setTimeout(() => {
+                                const allCheckbox = document.getElementById('selectAllCheckbox');
+                                if (allCheckbox) {
+                                    allCheckbox.checked = true;
+                                    _doSelectAll(true);
+                                }
+                            }, 50);
+                        } else {
+                            const allCheckbox = document.getElementById('selectAllCheckbox');
+                            if (allCheckbox) {
+                                const isAllSelected = selectedProblems.size === data.lists[listName].length;
+                                allCheckbox.checked = !isAllSelected;
+                                _doSelectAll(!isAllSelected);
+                            }
+                        }
                     }
                 }
             });
@@ -2330,17 +2821,25 @@
             window.toggleGitHubPanel = toggleGitHubPanel;
             window.renamingList = renamingList;
 
+            // 多选相关
+            window.toggleMultiSelect = toggleMultiSelect;
+            window.toggleSelectProblem = toggleSelectProblem;
+            window.toggleSelectAll = toggleSelectAll;
+            window.exportSelected = exportSelected;
+            window.deleteSelected = deleteSelected;
+            window.moveSelected = moveSelected;
+            window.selectedProblems = selectedProblems;
+
             // ================================================================
             //  启动
             // ================================================================
             loadData();
             loadGitHubSettings();
-            console.log('📚 题单管理 · 多OJ题集 (事件委托 + Toast 动画修复)');
+            console.log('📚 题单管理 · 多OJ题集 (美观多选 + 模式切换)');
             console.log('  📋 已加载 ' + Object.keys(data.lists).length + ' 个题单');
             console.log('  📝 当前题单: ' + (data.currentList || '无'));
-            console.log('  🔗 支持 AT_* 及 CF 跳转洛谷');
-            console.log('  💾 数据保存到 /data/problem_lists.json');
-            console.log('  🧹 删除按钮使用事件委托，彻底解决访问问题');
+            console.log('  ✨ 点击「多选」进入批量操作模式');
+            console.log('  ⌨️  Ctrl+A 快速进入多选并全选');
 
         })();
     </script>
