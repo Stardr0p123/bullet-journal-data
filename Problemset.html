@@ -682,8 +682,7 @@
             color: var(--text);
             outline: none;
             transition: var(--transition-smooth);
-            min-width: 100px;
-            max-width: 160px;
+            width: 120px;
         }
         .problem-toolbar .move-select:focus {
             border-color: var(--primary);
@@ -1459,7 +1458,7 @@
                             <i class="fas fa-trash-alt"></i> 删除选中
                         </button>
                         <select class="move-select" id="moveTargetList" title="选择目标题单">
-                            <option value="">移动到...</option>
+                            <option value="">移动</option>
                         </select>
                         <button class="btn-sm" onclick="moveSelected()" title="将选中题目移动到目标题单">
                             <i class="fas fa-arrow-right"></i> 移动
