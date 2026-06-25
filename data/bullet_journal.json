@@ -1,5 +1,16 @@
 {
-  "yearlyGoals": [],
+  "yearlyGoals": [
+    {
+      "id": "t_1782347190815_yhwv",
+      "text": "NOIP 1",
+      "completed": false
+    },
+    {
+      "id": "t_1782358123275_z5u8",
+      "text": "whk rk50-",
+      "completed": false
+    }
+  ],
   "monthlyItems": {
     "2026-06": [
       {
@@ -49,6 +60,13 @@
           "status": "todo",
           "type": "event",
           "order": 4
+        },
+        {
+          "id": "t_1782262062714_0myx",
+          "text": "郁郁",
+          "status": "todo",
+          "type": "event",
+          "order": 5
         }
       ]
     },
@@ -63,6 +81,69 @@
           "order": 0
         }
       ]
+    },
+    "2026-06-24": {
+      "note": "",
+      "tasks": [
+        {
+          "id": "t_1782293119613_peh3",
+          "text": "然后发现DP也做不出来",
+          "status": "todo",
+          "type": "note",
+          "order": 0
+        },
+        {
+          "id": "t_1782293210149_vv9c",
+          "text": "但是可以做黄题嘿嘿嘿",
+          "status": "todo",
+          "type": "note",
+          "order": 1
+        },
+        {
+          "id": "t_1782293276099_zfgv",
+          "text": "再度挑战赵颖小炒，这次能否挑战成功",
+          "status": "todo",
+          "type": "event",
+          "order": 2
+        },
+        {
+          "id": "t_1782303011739_ao8i",
+          "text": "获得题单*3",
+          "status": "todo",
+          "type": "event",
+          "order": 3
+        }
+      ]
+    },
+    "2026-06-25": {
+      "note": "",
+      "tasks": [
+        {
+          "id": "t_1782358080714_an78",
+          "text": "DPDPDP",
+          "status": "scheduled",
+          "type": "task",
+          "order": 0
+        },
+        {
+          "id": "t_1782392281565_s4jq",
+          "text": "DSDSDS",
+          "status": "scheduled",
+          "type": "task",
+          "order": 1
+        },
+        {
+          "id": "t_1782396469094_3ish",
+          "text": "可以切一些绿了耶",
+          "status": "todo",
+          "type": "note",
+          "order": 2
+        }
+      ]
+    },
+    "2026-06-21": {
+      "note": "",
+      "tasks": []
     }
   },
   "weeklyNotes": {},
