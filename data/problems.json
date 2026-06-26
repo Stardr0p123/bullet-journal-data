@@ -1,6 +1,311 @@
 {
   "questions": [
     {
+      "id": 1782477998176,
+      "pid": "CF1915F",
+      "name": "Greetings",
+      "diff": "黄题",
+      "subDiff": "上位",
+      "think": 7,
+      "code": 8,
+      "quality": 9,
+      "feel": 1,
+      "date": "2026-06-26",
+      "status": "A",
+      "tags": [
+        "树状数组"
+      ]
+    },
+    {
+      "id": 1782474061229,
+      "pid": "CF1861C",
+      "name": "Queries for the Array",
+      "diff": "绿题",
+      "subDiff": "中位",
+      "think": 7,
+      "code": 6,
+      "quality": 9,
+      "feel": 8,
+      "date": "2026-06-26",
+      "status": "A",
+      "tags": [
+        "堆",
+        "Ad-hoc"
+      ]
+    },
+    {
+      "id": 1782462039034,
+      "pid": "P15251",
+      "name": "[NOSOI R1] Free Pairs",
+      "diff": "紫题",
+      "subDiff": "下位",
+      "think": 8,
+      "code": 6,
+      "quality": 8,
+      "feel": 8,
+      "date": "2026-06-26",
+      "status": "A",
+      "tags": [
+        "数学",
+        "DS"
+      ]
+    },
+    {
+      "id": 1782462005723,
+      "pid": "P15250",
+      "name": "[NOSOI R1] Terrorists",
+      "diff": "绿题",
+      "subDiff": "中位",
+      "think": 6,
+      "code": 6,
+      "quality": 8,
+      "feel": 8,
+      "date": "2026-06-26",
+      "status": "A",
+      "tags": [
+        "DP",
+        "图论",
+        "DS"
+      ]
+    },
+    {
+      "id": 1782393096267,
+      "pid": "CF1860C",
+      "name": "Game on Permutation",
+      "diff": "黄题",
+      "subDiff": "中位",
+      "think": 4,
+      "code": 5,
+      "quality": 9,
+      "feel": 8,
+      "date": "2026-06-25",
+      "status": "A",
+      "tags": [
+        "DS",
+        "DP"
+      ]
+    },
+    {
+      "id": 1782387809477,
+      "pid": "CF1846E2",
+      "name": "Rudolf and Snowflakes (hard version)",
+      "diff": "绿题",
+      "subDiff": "中位",
+      "think": 6,
+      "code": 5,
+      "quality": 8,
+      "feel": 7,
+      "date": "2026-06-25",
+      "status": "F",
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "id": 1782378201065,
+      "pid": "CF1846E1",
+      "name": "Rudolf and Snowflakes (simple version)",
+      "diff": "黄题",
+      "subDiff": "下位",
+      "think": 3,
+      "code": 4,
+      "quality": 7,
+      "feel": 7,
+      "date": "2026-06-25",
+      "status": "A",
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "id": 1782377699515,
+      "pid": "AT_arc163_d",
+      "name": "[ARC163D] Sum of SCC",
+      "diff": "紫题",
+      "subDiff": "中位",
+      "think": 9,
+      "code": 4,
+      "quality": 9,
+      "feel": 5,
+      "date": "2026-06-25",
+      "status": "C",
+      "tags": [
+        "DP",
+        "数学"
+      ]
+    },
+    {
+      "id": 1782357562729,
+      "pid": "CF1845C",
+      "name": "Strong Password",
+      "diff": "黄题",
+      "subDiff": "中位",
+      "think": 6,
+      "code": 5,
+      "quality": 9,
+      "feel": 7,
+      "date": "2026-06-25",
+      "status": "A",
+      "tags": [
+        "DP"
+      ]
+    },
+    {
+      "id": 1782355725369,
+      "pid": "CF1841C",
+      "name": "Ranom Numbers",
+      "diff": "绿题",
+      "subDiff": "中位",
+      "think": 7,
+      "code": 4,
+      "quality": 9,
+      "feel": 6,
+      "date": "2026-06-25",
+      "status": "C",
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "id": 1782351168283,
+      "pid": "CF1809C",
+      "name": "Sum on Subarrays",
+      "diff": "黄题",
+      "subDiff": "上位",
+      "think": 6,
+      "code": 4,
+      "quality": 8,
+      "feel": 5,
+      "date": "2026-06-25",
+      "status": "A",
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "id": 1782348190708,
+      "pid": "CF1772D",
+      "name": "Absolute Sorting",
+      "diff": "绿题",
+      "subDiff": "下位",
+      "think": 6,
+      "code": 4,
+      "quality": 9,
+      "feel": 7,
+      "date": "2026-06-25",
+      "status": "A",
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "id": 1782309303133,
+      "pid": "CF1730B",
+      "name": "Meeting on the Line",
+      "diff": "黄题",
+      "subDiff": "上位",
+      "think": 5,
+      "code": 6,
+      "quality": 6,
+      "feel": 2,
+      "date": "2026-06-24",
+      "status": "A",
+      "tags": []
+    },
+    {
+      "id": 1782302510011,
+      "pid": "CF1699E",
+      "name": "Three Days Grace",
+      "diff": "紫题",
+      "subDiff": "中位",
+      "think": 8,
+      "code": 6,
+      "quality": 9,
+      "feel": 8,
+      "date": "2026-06-24",
+      "status": "C",
+      "tags": [
+        "数学",
+        "DP"
+      ]
+    },
+    {
+      "id": 1782294545462,
+      "pid": "ARC122E",
+      "name": "Increasing LCMs",
+      "diff": "紫题",
+      "subDiff": "中位",
+      "think": 8,
+      "code": 6,
+      "quality": 9,
+      "feel": 7,
+      "date": "2026-06-24",
+      "status": "C",
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "id": 1782292903640,
+      "pid": "CF1870E",
+      "name": "Another MEX Problem",
+      "diff": "蓝题",
+      "subDiff": "上位",
+      "think": 8,
+      "code": 7,
+      "quality": 9,
+      "feel": 6,
+      "date": "2026-06-24",
+      "status": "C",
+      "tags": [
+        "DP"
+      ]
+    },
+    {
+      "id": 1782292866402,
+      "pid": "P3859",
+      "name": "[TJOI2008] 小偷",
+      "diff": "黄题",
+      "subDiff": "上位",
+      "think": 6,
+      "code": 6,
+      "quality": 9,
+      "feel": 7,
+      "date": "2026-06-24",
+      "status": "F",
+      "tags": [
+        "DP"
+      ]
+    },
+    {
+      "id": 1782292829150,
+      "pid": "B3624",
+      "name": "猫粮规划",
+      "diff": "黄题",
+      "subDiff": "下位",
+      "think": 4,
+      "code": 4,
+      "quality": 9,
+      "feel": 9,
+      "date": "2026-06-24",
+      "status": "A",
+      "tags": []
+    },
+    {
+      "id": 1782292803276,
+      "pid": "P2946",
+      "name": "[USACO09MAR] Cow Frisbee Team S",
+      "diff": "黄题",
+      "subDiff": "下位",
+      "think": 3,
+      "code": 4,
+      "quality": 9,
+      "feel": 9,
+      "date": "2026-06-24",
+      "status": "A",
+      "tags": []
+    },
+    {
       "id": 1782120124251,
       "pid": "CF1228E",
       "name": "Another Filling the Grid",
@@ -1135,6 +1440,11 @@
       "id": "1782120139635_ieri",
       "category": "通用",
       "text": "++和--不要写反了"
+    },
+    {
+      "id": "1782432942418_eh52",
+      "category": "通用",
+      "text": "模数一定要看对"
     }
   ]
 }
