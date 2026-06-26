@@ -1183,7 +1183,7 @@
         "pid": "ARC163D",
         "name": "Sum of SCC",
         "difficulty": 6,
-        "done": false
+        "done": true
       },
       {
         "pid": "AT_ARC082_C",
@@ -1728,241 +1728,241 @@
       {
         "pid": "CF1831D",
         "name": "The BOSS Can Count Pairs",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF1654E",
         "name": "Arithmetic Progression",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF1806E",
         "name": "Tree Master",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF1039D",
         "name": "You Are Given a Tree",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       },
       {
         "pid": "CF342E",
         "name": "Xenia and Tree",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       },
       {
         "pid": "CF348C",
         "name": "Subset Sums",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       },
       {
         "pid": "CF506D",
         "name": "Mr. Kitayuta's Colorful Graph",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF1718C",
         "name": "Tonya and Burenka-179",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF1954E",
         "name": "Chain Reaction",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF551E",
         "name": "GukiZ and GukiZiana",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       },
       {
         "pid": "CF444C",
         "name": "DZY Loves Colors",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF1638E",
         "name": "Colorful Operations",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       },
       {
         "pid": "CF1891D",
         "name": "Suspicious logarithms",
-        "difficulty": 0,
+        "difficulty": 4,
         "done": false
       },
       {
         "pid": "CF2009G2",
         "name": "Yunli's Subarray Queries (hard)",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF1557D",
         "name": "Ezzat and Grid",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF1691D",
         "name": "Max GEQ Sum",
-        "difficulty": 0,
+        "difficulty": 4,
         "done": false
       },
       {
         "pid": "CF1404C",
         "name": "Fixed Point Removal",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF1093E",
         "name": "Intersection of Permutations",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       },
       {
         "pid": "CF840D",
         "name": "Destiny",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       },
       {
         "pid": "CF1422F",
         "name": "Boring Queries",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       },
       {
         "pid": "CF797E",
         "name": "Array Queries",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF1580C",
         "name": "Train Maintenance",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "CF103D",
         "name": "Time to Raid Cowavans",
-        "difficulty": 0,
+        "difficulty": 4,
         "done": false
       },
       {
         "pid": "CF13E",
         "name": "Holes",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       },
       {
         "pid": "CF983E",
         "name": "NN country",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       },
       {
         "pid": "AT_ABC335_F",
         "name": "Hop Sugoroku",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "AT_ABC353_G",
         "name": "Merchant Takahashi",
-        "difficulty": 0,
+        "difficulty": 4,
         "done": false
       },
       {
         "pid": "AT_ABC343_F",
         "name": "Second Largest Query",
-        "difficulty": 0,
+        "difficulty": 4,
         "done": false
       },
       {
         "pid": "AT_ABC329_F",
         "name": "Colored Ball",
-        "difficulty": 0,
+        "difficulty": 4,
         "done": false
       },
       {
         "pid": "AT_ABC332_F",
         "name": "Random Update Query",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "AT_ABC346_G",
         "name": "Alone",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "AT_ABC327_F",
         "name": "Apples",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "AT_ABC328_F",
         "name": "Good Set Query",
-        "difficulty": 0,
+        "difficulty": 4,
         "done": false
       },
       {
         "pid": "AT_ABC311_G",
         "name": "One More Grid Task",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "AT_ABC308_G",
         "name": "Minimum Xor Pair Query",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "AT_ABC287_G",
         "name": "Card Game",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "AT_ABC324_G",
         "name": "Generate Arrays",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       },
       {
         "pid": "AT_ABC356_F",
         "name": "Distance Component Size",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "AT_ABC375_G",
         "name": "Road Blocked",
-        "difficulty": 0,
+        "difficulty": 5,
         "done": false
       },
       {
         "pid": "AT_ARC146_D",
         "name": ">= K",
-        "difficulty": 0,
+        "difficulty": 6,
         "done": false
       }
     ],
@@ -2265,7 +2265,7 @@
         "pid": "AT_ARC163_D",
         "name": "Sum of SCC",
         "difficulty": 6,
-        "done": false
+        "done": true
       }
     ],
     "转化题单-Hard": [
@@ -2643,5 +2643,5 @@
       }
     ]
   },
-  "currentList": "转化题单-Medium"
+  "currentList": "数据结构-Medium"
 }
