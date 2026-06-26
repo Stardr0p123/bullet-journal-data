@@ -414,6 +414,7 @@
             flex: 1;
         }
 
+        /* 原 tag-group / tag-btn 样式保留（但已不再使用） */
         .tag-group {
             display: flex;
             flex-wrap: wrap;
@@ -1348,7 +1349,7 @@
         }
 
         /* ================================================================
-               GitHub 面板 - 紧凑版 (padding、间距、字体全面缩小)
+               GitHub 面板 - 紧凑版
                ================================================================ */
         .github-panel {
             position: fixed;
@@ -1464,7 +1465,6 @@
             gap: 4px;
             font-family: var(--font-sans);
         }
-        /* 上浮效果 */
         .github-panel .gp-actions .btn-sm:hover {
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 6px 20px rgba(6, 182, 212, 0.16);
@@ -1516,7 +1516,6 @@
             font-family: var(--font-sans);
         }
 
-        /* ===== 浮动按钮 - 紧凑版 ===== */
         .github-toggle-btn {
             position: fixed;
             bottom: 20px;
@@ -1719,10 +1718,6 @@
             .q-left {
                 gap: 5px;
             }
-            .tag-btn {
-                font-size: 0.65rem;
-                padding: 3px 10px;
-            }
             .question-item:hover .q-status {
                 transform: translateX(-80px);
             }
@@ -1754,7 +1749,6 @@
             .dashboard-header .redo-btn-wrap {
                 margin-left: 0;
             }
-            /* 移动端 GitHub 面板更紧凑 */
             .github-panel {
                 bottom: 10px;
                 right: 10px;
@@ -1860,16 +1854,14 @@
                             <div class="form-group"><label><i class="fas fa-calendar"></i>日期</label><input type="date" id="recordDate"></div>
                             <div class="form-group"><label><i class="fas fa-tag"></i>状态</label><select id="statusSelect"><option value="A">独立完成</option><option value="B">独立口胡</option><option value="C">看了题解</option><option value="F">AI辅助</option><option value="E">待重做</option></select></div>
                         </div>
+                        <!-- 算法分类：从多选标签改为单行文本输入 -->
                         <div style="margin-bottom: 8px;">
                             <label style="font-weight:600; color:var(--text-secondary); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.3px; display:flex; align-items:center; gap:6px; margin-bottom:4px;">
-                                <i class="fas fa-tags" style="color:var(--primary-dark);"></i>算法分类 (多选)
+                                <i class="fas fa-tags" style="color:var(--primary-dark);"></i>算法分类 (用逗号分隔)
                             </label>
-                            <div class="tag-group" id="tagGroup">
-                                <span class="tag-btn" data-tag="字符串">字符串</span>
-                                <span class="tag-btn" data-tag="DP">DP</span>
-                                <span class="tag-btn" data-tag="DS">DS</span>
-                                <span class="tag-btn" data-tag="图论">图论</span>
-                                <span class="tag-btn" data-tag="数学">数学</span>
+                            <input type="text" id="algoInput" placeholder="例如: DP,图论,字符串" style="width:100%; padding:8px 15px; background:var(--input-bg); border:1.5px solid var(--input-border); border-radius:var(--radius-sm); font-size:0.85rem; outline:none; color:var(--text); transition:all 0.3s; font-family:var(--font-sans); backdrop-filter:blur(6px);" />
+                            <div style="font-size:0.7rem; color:var(--text-muted); margin-top:4px; padding-left:4px;">
+                                <i class="fas fa-info-circle"></i> 多个标签用英文逗号分隔
                             </div>
                         </div>
                     </div>
@@ -1972,14 +1964,7 @@
                             <option value="E">待重做</option>
                         </select>
                         <input type="date" id="dateFilterInput" title="按日期筛选">
-                        <select id="algoFilter">
-                            <option value="all">全部算法</option>
-                            <option value="字符串">字符串</option>
-                            <option value="DP">DP</option>
-                            <option value="DS">DS</option>
-                            <option value="图论">图论</option>
-                            <option value="数学">数学</option>
-                        </select>
+                        <!-- 已移除算法筛选下拉框 -->
                         <button id="resetFilterBtn" class="btn" title="重置筛选"><i class="fas fa-undo-alt"></i></button>
                     </div>
                     <div id="questionList" class="question-list"></div>
@@ -2001,7 +1986,7 @@
 
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- ===== GitHub 面板 (紧凑版) ===== -->
+    <!-- ===== GitHub 面板 ===== -->
     <div class="github-panel" id="githubPanel">
         <div class="gp-title">
             <i class="fab fa-github"></i> GitHub 同步
@@ -2029,7 +2014,7 @@
         </div>
     </div>
 
-    <!-- ===== 浮动按钮 (紧凑版) ===== -->
+    <!-- ===== 浮动按钮 ===== -->
     <button class="github-toggle-btn" id="githubToggleBtn">
         <i class="fab fa-github"></i> 同步到GitHub
     </button>
@@ -2084,7 +2069,6 @@
             const heatColors = ['#f0f9ff', '#e0f2fe', '#bae6fd', '#7dd3fc', '#38bdf8', '#0ea5e9', '#0284c7', '#0369a1',
                 '#0c4a6e'
             ];
-            const ALGO_TAGS = ['字符串', 'DP', 'DS', '图论', '数学'];
 
             // ============================================================
             //  错误数据
@@ -2384,10 +2368,7 @@
                 else if (st === 'unfinished') temp = temp.filter(q => q.status === 'E');
                 else if (st !== 'all') temp = temp.filter(q => q.status === st);
                 if ($('dateFilterInput').value) temp = temp.filter(q => q.date === $('dateFilterInput').value);
-                const algo = $('algoFilter').value;
-                if (algo !== 'all') {
-                    temp = temp.filter(q => q.tags && q.tags.includes(algo));
-                }
+                // 已移除算法筛选
                 return temp;
             }
 
@@ -2502,30 +2483,13 @@
             }
 
             // ============================================================
-            //  题目操作
+            //  题目操作 - 使用新的 algoInput 文本输入
             // ============================================================
-            const tagBtns = document.querySelectorAll('.tag-btn');
-            let selectedTags = [];
-
-            function updateTagButtons() {
-                tagBtns.forEach(btn => {
-                    const tag = btn.dataset.tag;
-                    if (selectedTags.includes(tag)) btn.classList.add('active');
-                    else btn.classList.remove('active');
-                });
-            }
-
-            tagBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const tag = this.dataset.tag;
-                    const idx = selectedTags.indexOf(tag);
-                    if (idx > -1) selectedTags.splice(idx, 1);
-                    else selectedTags.push(tag);
-                    updateTagButtons();
-                });
-            });
 
             function getFormData() {
+                const raw = $('algoInput').value.trim();
+                // 按逗号分割，去除首尾空格，过滤空字符串
+                const tags = raw ? raw.split(',').map(s => s.trim()).filter(s => s !== '') : [];
                 return {
                     pid: $('pid').value.trim(),
                     name: $('name').value.trim(),
@@ -2537,7 +2501,7 @@
                     feel: +$('feel').value,
                     date: $('recordDate').value || fmtDate(new Date()),
                     status: $('statusSelect').value,
-                    tags: [...selectedTags]
+                    tags: tags
                 };
             }
 
@@ -2552,8 +2516,8 @@
                 $('feel').value = data.feel || 5;
                 $('recordDate').value = data.date || fmtDate(new Date());
                 $('statusSelect').value = data.status || 'A';
-                selectedTags = Array.isArray(data.tags) ? [...data.tags] : [];
-                updateTagButtons();
+                // 将 tags 数组用逗号连接填入输入框
+                $('algoInput').value = (data.tags && Array.isArray(data.tags)) ? data.tags.join(',') : '';
             }
 
             function resetForm() {
@@ -2674,16 +2638,15 @@
             });
 
             // ============================================================
-            //  筛选
+            //  筛选 - 已移除算法筛选
             // ============================================================
             $('resetFilterBtn').addEventListener('click', () => {
                 $('searchInput').value = '';
                 $('statusFilter').value = 'all';
                 $('dateFilterInput').value = '';
-                $('algoFilter').value = 'all';
                 renderAll();
             });
-            ['searchInput', 'statusFilter', 'dateFilterInput', 'algoFilter'].forEach(id => $(id).addEventListener(id ===
+            ['searchInput', 'statusFilter', 'dateFilterInput'].forEach(id => $(id).addEventListener(id ===
                 'searchInput' ? 'input' : 'change', renderAll));
 
             // ============================================================
@@ -2973,9 +2936,9 @@
                 }
             });
 
-            console.log('📀 琉璃 · 统一题集 (GitHub 同步已集成)');
+            console.log('📀 琉璃 · 统一题集 (算法标签已改为文本输入，已去除算法筛选)');
             console.log('  📊 已加载 ' + questions.length + ' 个题目，' + errors.length + ' 条错误');
-            console.log('  ⌨️  点击右上角 "GitHub同步" 配置');
+            console.log('  ⌨️  算法标签现为逗号分隔文本输入');
         })();
     </script>
 </body>
