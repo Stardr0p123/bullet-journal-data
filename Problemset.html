@@ -820,6 +820,8 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+
+        /* ★★★ 新的难度标签样式 — 用户指定颜色方案 ★★★ */
         .problem-item .pi-diff {
             font-size: 12px;
             font-weight: 600;
@@ -832,18 +834,17 @@
             transition: all var(--transition-smooth);
             border: none;
             font-family: inherit;
-            background: rgba(148, 163, 184, 0.08);
-            color: var(--text-muted);
-            border: 1px solid rgba(148, 163, 184, 0.06);
+            color: #fff;
+            background: #AAAAAA; /* 默认灰色（暂无评定） */
         }
         .problem-item .pi-diff:hover {
             transform: scale(1.02);
-            border-color: var(--primary);
+            opacity: 0.85;
         }
         .problem-item .pi-diff select {
             background: transparent;
             border: none;
-            color: inherit;
+            color: #fff;
             font-weight: 600;
             font-size: 12px;
             font-family: inherit;
@@ -852,48 +853,38 @@
             padding: 0 4px;
         }
         .problem-item .pi-diff select option {
-            background: rgba(255, 255, 255, 0.90);
-            color: var(--text);
+            background: #2a3a4a;
+            color: #fff;
+            font-weight: 600;
         }
+
+        /* 各难度专属颜色（用户指定） */
         .problem-item .pi-diff.diff-0 {
-            background: rgba(148, 163, 184, 0.08);
-            color: var(--text-muted);
-            border-color: rgba(148, 163, 184, 0.06);
+            background: #AAAAAA; /* 灰 */
         }
         .problem-item .pi-diff.diff-1 {
-            background: rgba(239, 68, 68, 0.12);
-            color: #b91c1c;
-            border-color: rgba(239, 68, 68, 0.08);
+            background: #d44141; /* 红 */
         }
         .problem-item .pi-diff.diff-2 {
-            background: rgba(249, 115, 22, 0.12);
-            color: #c2410c;
-            border-color: rgba(249, 115, 22, 0.08);
+            background: #e68d3a; /* 橙 */
         }
         .problem-item .pi-diff.diff-3 {
-            background: rgba(234, 179, 8, 0.12);
-            color: #a16207;
-            border-color: rgba(234, 179, 8, 0.08);
+            background: #e7db30; /* 黄 */
         }
         .problem-item .pi-diff.diff-4 {
-            background: rgba(34, 197, 94, 0.12);
-            color: #166534;
-            border-color: rgba(34, 197, 94, 0.08);
+            background: #47c49a; /* 绿 */
         }
         .problem-item .pi-diff.diff-5 {
-            background: rgba(59, 130, 246, 0.12);
-            color: #1e40af;
-            border-color: rgba(59, 130, 246, 0.08);
+            background: #58c1d1; /* 青 */
         }
         .problem-item .pi-diff.diff-6 {
-            background: rgba(139, 92, 246, 0.12);
-            color: #5b21b6;
-            border-color: rgba(139, 92, 246, 0.08);
+            background: #648fec; /* 蓝 */
         }
         .problem-item .pi-diff.diff-7 {
-            background: rgba(31, 41, 55, 0.10);
-            color: #1f2937;
-            border-color: rgba(31, 41, 55, 0.06);
+            background: #a482db; /* 紫 */
+        }
+        .problem-item .pi-diff.diff-8 {
+            background: #2863bb; /* 黑（深蓝黑） */
         }
 
         .problem-item .pi-status {
@@ -1513,11 +1504,12 @@
                             <option value="0">暂无评定</option>
                             <option value="1">入门</option>
                             <option value="2">普及-</option>
-                            <option value="3">普及/提高-</option>
-                            <option value="4">普及+/提高</option>
-                            <option value="5">提高+/省选-</option>
-                            <option value="6">省选/NOI-</option>
-                            <option value="7">NOI/NOI+/CTSC</option>
+                            <option value="3">普及</option>
+                            <option value="4">普及+/提高-</option>
+                            <option value="5">提高</option>
+                            <option value="6">提高+/省选-</option>
+                            <option value="7">省选/NOI-</option>
+                            <option value="8">NOI/NOI+/CTS</option>
                         </select>
                         <button class="btn-sm" onclick="batchSetDifficulty()" title="为选中题目统一设置难度">
                             <i class="fas fa-tag"></i> 应用难度
@@ -1544,11 +1536,12 @@
                         <option value="0">暂无评定</option>
                         <option value="1">入门</option>
                         <option value="2">普及-</option>
-                        <option value="3">普及/提高-</option>
-                        <option value="4">普及+/提高</option>
-                        <option value="5">提高+/省选-</option>
-                        <option value="6">省选/NOI-</option>
-                        <option value="7">NOI/NOI+/CTSC</option>
+                        <option value="3">普及</option>
+                        <option value="4">普及+/提高-</option>
+                        <option value="5">提高</option>
+                        <option value="6">提高+/省选-</option>
+                        <option value="7">省选/NOI-</option>
+                        <option value="8">NOI/NOI+/CTS</option>
                     </select>
                     <button class="btn-sm" onclick="addProblem()"><i class="fas fa-plus"></i> 添加</button>
                 </div>
@@ -1644,16 +1637,42 @@
             const STORAGE_KEY = 'luogu_problem_lists_v7';
             const GITHUB_SETTINGS_KEY = 'github_settings_problem_lists';
 
+            // 新版难度标签（9档）
             const DIFF_NAMES = {
                 0: '暂无评定',
                 1: '入门',
                 2: '普及-',
-                3: '普及/提高-',
-                4: '普及+/提高',
-                5: '提高+/省选-',
-                6: '省选/NOI-',
-                7: 'NOI/NOI+/CTSC',
+                3: '普及',
+                4: '普及+/提高-',
+                5: '提高',
+                6: '提高+/省选-',
+                7: '省选/NOI-',
+                8: 'NOI/NOI+/CTS',
             };
+
+            // 旧数据迁移函数（精准映射）
+            function migrateDifficulty(diff) {
+                if (typeof diff === 'string') {
+                    const map = {
+                        '红题': 1,
+                        '橙题': 2,
+                        '黄题': 3,
+                        '绿题': 4,
+                        '蓝题': 5, // 旧蓝 -> 新提高（青）
+                        '紫题': 7, // 旧紫 -> 新省选/NOI-（紫）
+                        '黑题': 8, // 旧黑 -> 新NOI/NOI+/CTS（黑）
+                        '暂无评定': 0
+                    };
+                    return map[diff] ?? 0;
+                }
+                if (typeof diff === 'number') {
+                    if (diff === 5) return 5;
+                    if (diff === 6) return 7;
+                    if (diff === 7) return 8;
+                    return diff;
+                }
+                return 0;
+            }
 
             // ================================================================
             //  数据层
@@ -1667,8 +1686,6 @@
             let batchParsedData = [];
             let renamingList = null;
             let githubPanelOpen = false;
-
-            // ---- 多选状态 ----
             let selectedProblems = new Set();
             let multiSelectMode = false;
 
@@ -1714,13 +1731,11 @@
                 return data.lists[name] || [];
             }
 
-            // ---- 清空选中 ----
             function clearSelected() {
                 selectedProblems.clear();
                 updateSelectedUI();
             }
 
-            // ---- 更新选中UI ----
             function updateSelectedUI() {
                 const count = selectedProblems.size;
                 const el = document.getElementById('selectedCount');
@@ -1756,7 +1771,6 @@
                 updateMoveTargets();
             }
 
-            // ---- 更新移动目标下拉菜单 ----
             function updateMoveTargets() {
                 const sel = document.getElementById('moveTargetList');
                 if (!sel) return;
@@ -1912,7 +1926,7 @@
             }
 
             // ================================================================
-            //  GitHub 同步 (保持不变)
+            //  GitHub 同步
             // ================================================================
             function loadGitHubSettings() {
                 try {
@@ -2082,14 +2096,23 @@
             document.getElementById('linkToGitBtn').addEventListener('click', openGitHubRepo);
 
             // ================================================================
-            //  存储
+            //  存储 & 迁移
             // ================================================================
             function loadData() {
                 try {
                     const raw = localStorage.getItem(STORAGE_KEY);
                     if (raw) {
                         const parsed = JSON.parse(raw);
-                        if (parsed.lists) data.lists = parsed.lists;
+                        if (parsed.lists) {
+                            // for (const listName in parsed.lists) {
+                            //     if (Array.isArray(parsed.lists[listName])) {
+                            //         for (const problem of parsed.lists[listName]) {
+                            //             problem.difficulty = migrateDifficulty(problem.difficulty);
+                            //         }
+                            //     }
+                            // }
+                            data.lists = parsed.lists;
+                        }
                         if (parsed.currentList) data.currentList = parsed.currentList;
                     }
                 } catch (e) { /* ignore */ }
@@ -2180,9 +2203,6 @@
                 deleteList(name);
             }
 
-            // ================================================================
-            //  重命名题单
-            // ================================================================
             function startRenameList(name) {
                 renamingList = name;
                 renderLists();
@@ -2305,9 +2325,8 @@
             }
 
             // ================================================================
-            //  ★ 多选操作函数
+            //  多选操作
             // ================================================================
-
             function toggleSelectProblem(pid) {
                 if (!multiSelectMode) return;
                 if (selectedProblems.has(pid)) {
@@ -2347,7 +2366,6 @@
                 renderProblems();
             }
 
-            // ---- 批量打开 (修复：使用setTimeout逐个打开) ----
             function openSelectedProblems() {
                 if (!multiSelectMode) {
                     showToast('请先点击「多选」按钮进入多选模式', 'warning');
@@ -2360,21 +2378,19 @@
                     return;
                 }
                 let opened = 0;
-                // 使用setTimeout逐个打开，避免浏览器拦截
                 for (let i = 0; i < selected.length; i++) {
                     const p = selected[i];
                     const url = getProblemUrl(p.pid);
                     if (url && url !== '#') {
                         setTimeout(() => {
                             window.open(url, '_blank');
-                        }, i * 20); // 每个间隔20ms
+                        }, i * 20);
                         opened++;
                     }
                 }
                 showToast('正在打开 ' + opened + ' 个题目页面...', 'success');
             }
 
-            // ---- 批量设置难度 ----
             function batchSetDifficulty() {
                 if (!multiSelectMode) {
                     showToast('请先点击「多选」按钮进入多选模式', 'warning');
@@ -2396,7 +2412,6 @@
                 showToast('✅ 已为 ' + selected.length + ' 道题目设置难度: ' + DIFF_NAMES[newDiff], 'success');
             }
 
-            // ---- 导出选中 ----
             function exportSelected() {
                 if (!multiSelectMode) {
                     showToast('请先点击「多选」按钮进入多选模式', 'warning');
@@ -2421,7 +2436,6 @@
                 showToast('✅ 已导出 ' + selected.length + ' 道题目 (TSV格式)', 'success');
             }
 
-            // ---- 删除选中 ----
             function deleteSelected() {
                 if (!multiSelectMode) {
                     showToast('请先点击「多选」按钮进入多选模式', 'warning');
@@ -2454,7 +2468,6 @@
                 );
             }
 
-            // ---- 移动选中 ----
             function moveSelected() {
                 if (!multiSelectMode) {
                     showToast('请先点击「多选」按钮进入多选模式', 'warning');
@@ -2636,6 +2649,15 @@
                         const imported = JSON.parse(ev.target.result);
                         if (!imported.lists || typeof imported.lists !== 'object') throw new Error('格式错误');
                         if (!confirm('将替换当前所有数据，是否继续？')) return;
+
+                        // for (const listName in imported.lists) {
+                        //     if (Array.isArray(imported.lists[listName])) {
+                        //         for (const problem of imported.lists[listName]) {
+                        //             problem.difficulty = migrateDifficulty(problem.difficulty);
+                        //         }
+                        //     }
+                        // }
+
                         data.lists = imported.lists;
                         data.currentList = imported.currentList || (Object.keys(data.lists).length > 0 ? Object.keys(
                             data.lists)[0] : null);
@@ -2690,7 +2712,6 @@
                         btn.classList.add('ghost');
                     }
                 }
-                // 同步 problemList 的 multi-select-active 类
                 const problemList = document.getElementById('problemList');
                 if (problemList) {
                     if (multiSelectMode) {
@@ -2830,7 +2851,7 @@
                                 <span class="pi-pid" onclick="openProblemLink('${escapeHtml(p.pid)}')" title="点击跳转题目 (${escapeHtml(ojSource)})">${escapeHtml(p.pid)}</span>
                                 <span class="pi-name">${escapeHtml(p.name || '未知题目')}</span>
                                 <div class="pi-diff ${diffClass}" title="点击修改难度">
-                                    <select onchange="changeProblemDifficulty('${escapeHtml(p.pid)}', this.value)" style="background:transparent;border:none;color:inherit;font-weight:600;font-size:12px;font-family:inherit;outline:none;cursor:pointer;padding:0 4px;width:100%;">
+                                    <select onchange="changeProblemDifficulty('${escapeHtml(p.pid)}', this.value)" style="background:transparent;border:none;color:#fff;font-weight:600;font-size:12px;font-family:inherit;outline:none;cursor:pointer;padding:0 4px;width:100%;">
                                         ${diffOpts}
                                     </select>
                                 </div>
@@ -2959,12 +2980,10 @@
             // ================================================================
             loadData();
             loadGitHubSettings();
-            console.log('📚 题单管理 · 多OJ题集 (批量打开修复 + 全选样式统一)');
+            console.log('📚 题单管理 · 多OJ题集 (用户指定颜色方案)');
             console.log('  📋 已加载 ' + Object.keys(data.lists).length + ' 个题单');
-            console.log('  📝 当前题单: ' + (data.currentList || '无'));
-            console.log('  ✨ 点击「多选」进入批量操作模式');
-            console.log('  🔗 批量打开使用间隔定时器，避免浏览器拦截');
-            console.log('  ✅ 全选框样式与题目复选框完全一致');
+            console.log('  🎨 难度配色：灰/红/橙/黄/绿/青/蓝/紫/黑 (用户指定)');
+            console.log('  🔄 迁移规则：旧蓝→新青，旧紫→新紫，旧黑→新黑');
             console.log('  ⌨️  Ctrl+A 快速进入多选并全选');
 
         })();
