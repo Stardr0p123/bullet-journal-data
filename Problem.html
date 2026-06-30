@@ -414,13 +414,6 @@
             flex: 1;
         }
 
-        /* 原 tag-group / tag-btn 样式保留（但已不再使用） */
-        .tag-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 10px;
-        }
         .tag-btn {
             padding: 4px 14px;
             border-radius: 40px;
@@ -553,20 +546,21 @@
             text-decoration: underline;
         }
 
+        /* ★★★ 更新：9档难度配色（用户指定）★★★ */
         .diff-dots {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             margin: 8px 0 10px;
             flex-wrap: wrap;
         }
         .diff-dot {
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             border-radius: 10px;
             color: #fff;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.85rem;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
             display: inline-flex;
             align-items: center;
@@ -1155,7 +1149,7 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            color: white;
+            color: #fff;
             font-size: 0.9rem;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -1815,6 +1809,8 @@
             <div class="header-actions">
                 <button class="btn-ghost-sm" id="exportBtn"><i class="fas fa-download"></i>导出</button>
                 <button class="btn-ghost-sm" id="importBtn"><i class="fas fa-upload"></i>导入</button>
+                <!-- ★★★ 新增：以旧数据导入 ★★★ -->
+                <button class="btn-ghost-sm" id="migrateImportBtn" style="border-color:#f59e0b;color:#b45309;"><i class="fas fa-history"></i>以旧数据导入</button>
                 <button class="btn-ghost-sm" id="openGitHubBtn"><i class="fab fa-github"></i>GitHub同步</button>
                 <button class="btn-ghost-sm" data-url="https://uoj.ac/"><i class="fas fa-globe"></i>UOJ</button>
                 <button class="btn-ghost-sm" data-url="https://vjudge.net/"><i class="fas fa-code-branch"></i>Vjudge</button>
@@ -1839,7 +1835,19 @@
                         <div class="form-group"><label><i class="fas fa-hashtag"></i>题号</label><input type="text" id="pid" placeholder="P1001"></div>
                         <div class="form-group"><label><i class="fas fa-heading"></i>题目名称</label><input type="text" id="name" placeholder="名称"></div>
                         <div class="double-col">
-                            <div class="form-group"><label><i class="fas fa-chart-line"></i>难度</label><select id="diff"><option value="红题">红题</option><option value="橙题">橙题</option><option value="黄题">黄题</option><option value="绿题">绿题</option><option value="蓝题">蓝题</option><option value="紫题">紫题</option><option value="黑题">黑题</option></select></div>
+                            <div class="form-group"><label><i class="fas fa-chart-line"></i>难度</label>
+                                <select id="diff">
+                                    <option value="暂无评定">暂无评定</option>
+                                    <option value="入门">入门</option>
+                                    <option value="普及-">普及-</option>
+                                    <option value="普及">普及</option>
+                                    <option value="普及+/提高-">普及+/提高-</option>
+                                    <option value="提高">提高</option>
+                                    <option value="提高+/省选-">提高+/省选-</option>
+                                    <option value="省选/NOI-">省选/NOI-</option>
+                                    <option value="NOI/NOI+/CTS">NOI/NOI+/CTS</option>
+                                </select>
+                            </div>
                             <div class="form-group"><label><i class="fas fa-layer-group"></i>细分</label><select id="subDiff"><option value="下位">下位</option><option value="中位" selected>中位</option><option value="上位">上位</option></select></div>
                         </div>
                         <div class="double-col">
@@ -1854,7 +1862,7 @@
                             <div class="form-group"><label><i class="fas fa-calendar"></i>日期</label><input type="date" id="recordDate"></div>
                             <div class="form-group"><label><i class="fas fa-tag"></i>状态</label><select id="statusSelect"><option value="A">独立完成</option><option value="B">独立口胡</option><option value="C">看了题解</option><option value="F">AI辅助</option><option value="E">待重做</option></select></div>
                         </div>
-                        <!-- 算法分类：从多选标签改为单行文本输入 -->
+                        <!-- 算法分类：文本输入，逗号分隔 -->
                         <div style="margin-bottom: 8px;">
                             <label style="font-weight:600; color:var(--text-secondary); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.3px; display:flex; align-items:center; gap:6px; margin-bottom:4px;">
                                 <i class="fas fa-tags" style="color:var(--primary-dark);"></i>算法分类 (用逗号分隔)
@@ -1964,7 +1972,6 @@
                             <option value="E">待重做</option>
                         </select>
                         <input type="date" id="dateFilterInput" title="按日期筛选">
-                        <!-- 已移除算法筛选下拉框 -->
                         <button id="resetFilterBtn" class="btn" title="重置筛选"><i class="fas fa-undo-alt"></i></button>
                     </div>
                     <div id="questionList" class="question-list"></div>
@@ -2062,9 +2069,32 @@
 
             const sMap = { A: '独立完成', B: '独立口胡', C: '看了题解', E: '待重做', F: 'AI辅助', D: '未知' };
             const sClass = { A: 'status-A', B: 'status-B', C: 'status-C', E: 'status-E', F: 'status-F', D: 'status-D' };
-            const diffColors = { '红题': '#e06c6c', '橙题': '#e09a5e', '黄题': '#d4b45a', '绿题': '#6fad6f', '蓝题': '#0ea5e9',
-                '紫题': '#7c3aed', '黑题': '#6b6b6b' };
-            const diffOrder = { '红题': 1, '橙题': 2, '黄题': 3, '绿题': 4, '蓝题': 5, '紫题': 6, '黑题': 7 };
+
+            // ★★★ 9档难度配色（用户指定）★★★
+            const diffColors = {
+                '暂无评定': '#AAAAAA',
+                '入门': '#FF1111',
+                '普及-': '#FFA122',
+                '普及': '#E8E800',
+                '普及+/提高-': '#11DD88',
+                '提高': '#55BBCC',
+                '提高+/省选-': '#4499FF',
+                '省选/NOI-': '#AA55DD',
+                'NOI/NOI+/CTS': '#002255'
+            };
+            const diffOrder = {
+                '暂无评定': 0,
+                '入门': 1,
+                '普及-': 2,
+                '普及': 3,
+                '普及+/提高-': 4,
+                '提高': 5,
+                '提高+/省选-': 6,
+                '省选/NOI-': 7,
+                'NOI/NOI+/CTS': 8
+            };
+            const diffList = ['暂无评定', '入门', '普及-', '普及', '普及+/提高-', '提高', '提高+/省选-', '省选/NOI-', 'NOI/NOI+/CTS'];
+
             const subDiffOrder = { '下位': 1, '中位': 2, '上位': 3 };
             const heatColors = ['#f0f9ff', '#e0f2fe', '#bae6fd', '#7dd3fc', '#38bdf8', '#0ea5e9', '#0284c7', '#0369a1',
                 '#0c4a6e'
@@ -2322,6 +2352,37 @@
             document.getElementById('linkToGitBtn').addEventListener('click', openGitHubRepo);
 
             // ============================================================
+            //  ★★★ 旧数据迁移函数 ★★★
+            // ============================================================
+            function migrateOldDiff(diff) {
+                if (!diff) return '暂无评定';
+                const map = {
+                    '红题': '入门',
+                    '橙题': '普及-',
+                    '黄题': '普及',
+                    '绿题': '普及+/提高-',
+                    '蓝题': '提高', // 旧蓝题 → 新青题（提高）
+                    '紫题': '省选/NOI-', // 旧紫题 → 新紫题（省选/NOI-）
+                    '黑题': 'NOI/NOI+/CTS', // 旧黑题 → 新黑题（NOI/NOI+/CTS）
+                };
+                return map[diff] || diff;
+            }
+
+            function migrateOldData(data) {
+                if (!data || !data.questions) return data;
+                data.questions = data.questions.map(q => {
+                    if (q.diff) q.diff = migrateOldDiff(q.diff);
+                    if (!q.tags) q.tags = [];
+                    if (!q.subDiff) q.subDiff = '中位';
+                    if (!q.status) q.status = 'D';
+                    if (!q.date) q.date = fmtDate(new Date());
+                    if (q.feel === undefined) q.feel = 5;
+                    return q;
+                });
+                return data;
+            }
+
+            // ============================================================
             //  原有数据加载与渲染
             // ============================================================
             function loadQuestions() {
@@ -2338,15 +2399,15 @@
                 }
                 if (!questions.length) {
                     questions = [
-                        { id: Date.now() - 100000, pid: 'P1048', name: '采药', diff: '绿题', subDiff: '下位',
+                        { id: Date.now() - 100000, pid: 'P1048', name: '采药', diff: '普及+/提高-', subDiff: '下位',
                             think: 5, code: 4, quality: 7, feel: 6, date: '2025-04-10', status: 'A', tags: [
                                 'DP'
                             ] },
-                        { id: Date.now() - 200000, pid: 'P1616', name: '疯狂的采药', diff: '绿题', subDiff: '上位',
+                        { id: Date.now() - 200000, pid: 'P1616', name: '疯狂的采药', diff: '普及+/提高-', subDiff: '上位',
                             think: 6, code: 5, quality: 8, feel: 7, date: '2025-04-12', status: 'B', tags: [
                                 'DP'
                             ] },
-                        { id: Date.now() - 300000, pid: 'CF1462E1', name: 'Close Tuples', diff: '蓝题',
+                        { id: Date.now() - 300000, pid: 'CF1462E1', name: 'Close Tuples', diff: '提高',
                             subDiff: '下位', think: 7, code: 6, quality: 9, feel: 8, date: '2025-04-15',
                             status: 'C', tags: ['数学'] },
                     ];
@@ -2368,7 +2429,6 @@
                 else if (st === 'unfinished') temp = temp.filter(q => q.status === 'E');
                 else if (st !== 'all') temp = temp.filter(q => q.status === st);
                 if ($('dateFilterInput').value) temp = temp.filter(q => q.date === $('dateFilterInput').value);
-                // 已移除算法筛选
                 return temp;
             }
 
@@ -2386,19 +2446,24 @@
             function renderStats() {
                 const f = getFilteredQuestions(),
                     c = f.length;
-                const diffM = { '红题': 0, '橙题': 0, '黄题': 0, '绿题': 0, '蓝题': 0, '紫题': 0, '黑题': 0 };
+                const diffM = {};
+                diffList.forEach(d => diffM[d] = 0);
                 let tT = 0,
                     tC = 0,
                     tQ = 0,
                     tF = 0;
-                f.forEach(q => { diffM[q.diff]++;
+                f.forEach(q => {
+                    const d = q.diff || '暂无评定';
+                    if (diffM[d] !== undefined) diffM[d]++;
+                    else diffM['暂无评定']++;
                     tT += q.think;
                     tC += q.code;
                     tQ += q.quality;
-                    tF += q.feel || 5; });
-                const order = ['红题', '橙题', '黄题', '绿题', '蓝题', '紫题', '黑题'];
+                    tF += q.feel || 5;
+                });
+                const order = diffList;
                 $('difficultyStats').innerHTML = order.map(d =>
-                    `<span class="diff-dot" style="background:${diffColors[d]}" title="${d}: ${diffM[d]}">${diffM[d]}</span>`
+                    `<span class="diff-dot" style="background:${diffColors[d] || '#AAAAAA'}" title="${d}: ${diffM[d]||0}">${diffM[d]||0}</span>`
                 ).join('');
                 const avg = v => c ? (v / c).toFixed(1) : '0.0';
                 $('avgMetrics').innerHTML =
@@ -2488,7 +2553,6 @@
 
             function getFormData() {
                 const raw = $('algoInput').value.trim();
-                // 按逗号分割，去除首尾空格，过滤空字符串
                 const tags = raw ? raw.split(',').map(s => s.trim()).filter(s => s !== '') : [];
                 return {
                     pid: $('pid').value.trim(),
@@ -2508,7 +2572,7 @@
             function setFormData(data) {
                 $('pid').value = data.pid || '';
                 $('name').value = data.name || '';
-                $('diff').value = data.diff || '红题';
+                $('diff').value = data.diff || '暂无评定';
                 $('subDiff').value = data.subDiff || '中位';
                 $('think').value = data.think || 5;
                 $('code').value = data.code || 5;
@@ -2516,7 +2580,6 @@
                 $('feel').value = data.feel || 5;
                 $('recordDate').value = data.date || fmtDate(new Date());
                 $('statusSelect').value = data.status || 'A';
-                // 将 tags 数组用逗号连接填入输入框
                 $('algoInput').value = (data.tags && Array.isArray(data.tags)) ? data.tags.join(',') : '';
             }
 
@@ -2524,7 +2587,7 @@
                 setFormData({
                     pid: '',
                     name: '',
-                    diff: '红题',
+                    diff: '暂无评定',
                     subDiff: '中位',
                     think: 5,
                     code: 5,
@@ -2638,7 +2701,7 @@
             });
 
             // ============================================================
-            //  筛选 - 已移除算法筛选
+            //  筛选
             // ============================================================
             $('resetFilterBtn').addEventListener('click', () => {
                 $('searchInput').value = '';
@@ -2874,11 +2937,12 @@
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
-                a.download = `琉璃题集_${fmtDate(new Date())}.json`;
+                a.download = `做题记录_${fmtDate(new Date())}.json`;
                 a.click();
                 showToast('导出成功', 'success');
             });
 
+            // 普通导入（不迁移）
             $('importBtn').addEventListener('click', () => {
                 const input = document.createElement('input');
                 input.type = 'file';
@@ -2914,6 +2978,50 @@
                 input.click();
             });
 
+            // ★★★ 以旧数据导入（含迁移）★★★
+            $('migrateImportBtn').addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.json';
+                input.onchange = e => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = re => {
+                        try {
+                            let data = JSON.parse(re.target.result);
+                            if (!data.questions) {
+                                showToast('未找到题目数据，请选择正确的旧版导出文件', 'warning');
+                                return;
+                            }
+                            // 执行迁移
+                            data = migrateOldData(data);
+                            if (data.questions) {
+                                questions = data.questions.map(q => ({ ...q, subDiff: q.subDiff ||
+                                        '中位', status: q.status || 'D', date: q.date || fmtDate(
+                                        new Date()),
+                                        feel: q.feel !== undefined ? q.feel : 5,
+                                        tags: Array.isArray(q.tags) ? q.tags : []
+                                    }));
+                                persistQuestions();
+                            }
+                            if (data.errors && Array.isArray(data.errors)) {
+                                errors = data.errors;
+                                saveErrors();
+                                renderErrorAll();
+                                rebuildErrorQueue();
+                            }
+                            renderAll();
+                            showToast('✅ 旧数据导入并迁移成功！', 'success');
+                        } catch {
+                            showToast('解析失败，请确认文件格式正确', 'warning');
+                        }
+                    };
+                    reader.readAsText(file);
+                };
+                input.click();
+            });
+
             // ============================================================
             //  启动
             // ============================================================
@@ -2936,9 +3044,10 @@
                 }
             });
 
-            console.log('📀 琉璃 · 统一题集 (算法标签已改为文本输入，已去除算法筛选)');
+            console.log('📀 做题记录 (9档难度体系，含暂无评定)');
             console.log('  📊 已加载 ' + questions.length + ' 个题目，' + errors.length + ' 条错误');
-            console.log('  ⌨️  算法标签现为逗号分隔文本输入');
+            console.log('  🎨 配色：' + diffList.join(' · '));
+            console.log('  📥 点击「以旧数据导入」可迁移旧版数据');
         })();
     </script>
 </body>
