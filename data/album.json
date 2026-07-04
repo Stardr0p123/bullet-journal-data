@@ -1,5 +1,92 @@
 [
   {
+    "id": "a_1782526816423_54scc",
+    "name": "Stargaze",
+    "artist": "JuggerNoteRecords",
+    "genre": "Hard",
+    "hardness": 8,
+    "trackCount": 15,
+    "qualityScore": 5,
+    "overview": "",
+    "tracks": [
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      },
+      {
+        "name": "",
+        "review": "",
+        "artist": ""
+      }
+    ]
+  },
+  {
     "id": "a_1782467182045_pybyb",
     "name": "Stargaze+",
     "artist": "JuggerNoteRecords",
@@ -7,7 +94,7 @@
     "hardness": 8,
     "trackCount": 15,
     "qualityScore": 5,
-    "overview": "比较清新明朗的 hard 专辑，但是感觉结构有点模板。",
+    "overview": "比较清新明朗的 hard 专辑，但是感觉结构有点模板。每首就不评价了，质量还是比较高的。",
     "tracks": [
       {
         "name": "",
