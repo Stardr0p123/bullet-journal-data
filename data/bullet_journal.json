@@ -16,7 +16,7 @@
       {
         "id": "t_1782218883616_hdjk",
         "text": "摆脱区",
-        "status": "scheduled",
+        "status": "done",
         "type": "task",
         "order": 0
       }
@@ -142,6 +142,68 @@
       ]
     },
     "2026-06-21": {
+      "note": "",
+      "tasks": []
+    },
+    "2026-06-26": {
+      "note": "",
+      "tasks": [
+        {
+          "id": "t_1782444144083_dte3",
+          "text": "模拟赛",
+          "status": "todo",
+          "type": "event",
+          "order": 0
+        },
+        {
+          "id": "t_1782464683919_z4uu",
+          "text": "庆祝我切出紫题",
+          "status": "todo",
+          "type": "event",
+          "order": 1
+        }
+      ]
+    },
+    "2026-06-30": {
+      "note": "",
+      "tasks": [
+        {
+          "id": "t_1782819400202_86jb",
+          "text": "MP3差点坏掉",
+          "status": "todo",
+          "type": "event",
+          "order": 0
+        }
+      ]
+    },
+    "2026-07-01": {
+      "note": "",
+      "tasks": [
+        {
+          "id": "t_1782893894962_matr",
+          "text": "去医务室",
+          "status": "todo",
+          "type": "task",
+          "order": 0
+        },
+        {
+          "id": "t_1782893902705_u1xa",
+          "text": "模拟赛rk3",
+          "status": "todo",
+          "type": "event",
+          "order": 1
+        }
+      ]
+    },
+    "2026-06-29": {
+      "note": "",
+      "tasks": []
+    },
+    "2026-06-28": {
+      "note": "",
+      "tasks": []
+    },
+    "2026-06-27": {
       "note": "",
       "tasks": []
     }
