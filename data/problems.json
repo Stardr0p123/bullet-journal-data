@@ -1,6 +1,214 @@
 {
   "questions": [
     {
+      "id": 1783136541682,
+      "pid": "CF1082G",
+      "name": "Petya and Graph",
+      "diff": "省选/NOI-",
+      "subDiff": "中位",
+      "think": 6,
+      "code": 6,
+      "quality": 9,
+      "feel": 8,
+      "date": "2026-07-04",
+      "status": "A",
+      "tags": [
+        "网络流"
+      ]
+    },
+    {
+      "id": 1783136147523,
+      "pid": "CF1473F",
+      "name": "Strange Set",
+      "diff": "省选/NOI-",
+      "subDiff": "下位",
+      "think": 7,
+      "code": 6,
+      "quality": 9,
+      "feel": 8,
+      "date": "2026-07-04",
+      "status": "A",
+      "tags": [
+        "网络流",
+        "最小割",
+        "剪枝"
+      ]
+    },
+    {
+      "id": 1783133157474,
+      "pid": "CF724E",
+      "name": "Goods transportation",
+      "diff": "省选/NOI-",
+      "subDiff": "上位",
+      "think": 9,
+      "code": 3,
+      "quality": 9,
+      "feel": 6,
+      "date": "2026-07-04",
+      "status": "C",
+      "tags": [
+        "DP",
+        "贪心",
+        "网络流"
+      ]
+    },
+    {
+      "id": 1783130993020,
+      "pid": "CF1139E",
+      "name": "Maximize Mex",
+      "diff": "省选/NOI-",
+      "subDiff": "下位",
+      "think": 6,
+      "code": 7,
+      "quality": 8,
+      "feel": 8,
+      "date": "2026-07-04",
+      "status": "F",
+      "tags": [
+        "二分图匹配",
+        "Ad-hoc",
+        "图论建模"
+      ]
+    },
+    {
+      "id": 1783127118143,
+      "pid": "CF1783F",
+      "name": "Double Sort II",
+      "diff": "省选/NOI-",
+      "subDiff": "下位",
+      "think": 7,
+      "code": 6,
+      "quality": 8,
+      "feel": 7,
+      "date": "2026-07-04",
+      "status": "C",
+      "tags": [
+        "网络流",
+        "二分图匹配",
+        "Ad-hoc",
+        "Tricky"
+      ]
+    },
+    {
+      "id": 1783123731073,
+      "pid": "CF1034B",
+      "name": "Little C Loves 3 II",
+      "diff": "提高+/省选-",
+      "subDiff": "下位",
+      "think": 6,
+      "code": 4,
+      "quality": 7,
+      "feel": 5,
+      "date": "2026-07-04",
+      "status": "A",
+      "tags": [
+        "构造",
+        "分类讨论",
+        "数学"
+      ]
+    },
+    {
+      "id": 1782995663613,
+      "pid": "P1433",
+      "name": "吃奶酪",
+      "diff": "普及+/提高-",
+      "subDiff": "下位",
+      "think": 6,
+      "code": 5,
+      "quality": 9,
+      "feel": 8,
+      "date": "2026-07-02",
+      "status": "A",
+      "tags": [
+        "状压DP"
+      ]
+    },
+    {
+      "id": 1782993866932,
+      "pid": "CF1806E",
+      "name": "Tree Master",
+      "diff": "提高",
+      "subDiff": "上位",
+      "think": 7,
+      "code": 7,
+      "quality": 9,
+      "feel": 4,
+      "date": "2026-07-02",
+      "status": "F",
+      "tags": [
+        "根号分治",
+        "Ad-hoc"
+      ]
+    },
+    {
+      "id": 1782960168457,
+      "pid": "CF1107F",
+      "name": "Vasya and Endless Credits",
+      "diff": "省选/NOI-",
+      "subDiff": "下位",
+      "think": 7,
+      "code": 5,
+      "quality": 8,
+      "feel": 8,
+      "date": "2026-07-02",
+      "status": "C",
+      "tags": [
+        "DP",
+        "贪心"
+      ]
+    },
+    {
+      "id": 1782955970505,
+      "pid": "CF1765A",
+      "name": "Access Levels",
+      "diff": "省选/NOI-",
+      "subDiff": "中位",
+      "think": 7,
+      "code": 8,
+      "quality": 8,
+      "feel": 5,
+      "date": "2026-07-02",
+      "status": "C",
+      "tags": [
+        "网络流",
+        "二分图匹配",
+        "拓扑排序"
+      ]
+    },
+    {
+      "id": 1782952619547,
+      "pid": "AT_ARC083_C",
+      "name": "Bichrome Tree",
+      "diff": "提高",
+      "subDiff": "中位",
+      "think": 7,
+      "code": 5,
+      "quality": 9,
+      "feel": 8,
+      "date": "2026-07-02",
+      "status": "C",
+      "tags": [
+        "树形DP"
+      ]
+    },
+    {
+      "id": 1782910012360,
+      "pid": "CF1270G",
+      "name": "Subset with Zero Sum",
+      "diff": "提高+/省选-",
+      "subDiff": "上位",
+      "think": 9,
+      "code": 4,
+      "quality": 9,
+      "feel": 6,
+      "date": "2026-07-01",
+      "status": "C",
+      "tags": [
+        "图论建模",
+        "Ad-hoc"
+      ]
+    },
+    {
       "id": 1782820653770,
       "pid": "CF786C",
       "name": "Till I Collapse",
@@ -1777,6 +1985,36 @@
       "id": "1782802725913_832z",
       "category": "通用",
       "text": "数组开够了吗，尤其是根号级别"
+    },
+    {
+      "id": "1782890656913_i6te",
+      "category": "通用",
+      "text": "位移用1ll了吗"
+    },
+    {
+      "id": "1782890681483_6ark",
+      "category": "通用",
+      "text": "其实TLE不一定是复杂度错了，还可以是爆了ll"
+    },
+    {
+      "id": "1782890715963_f3sf",
+      "category": "通用",
+      "text": "清空清够了吗，n和m有没有用反"
+    },
+    {
+      "id": "1782890734145_y4qd",
+      "category": "通用",
+      "text": "__builtin_popcountll"
+    },
+    {
+      "id": "1783154973456_k1ew",
+      "category": "通用",
+      "text": "开快读"
+    },
+    {
+      "id": "1783154994591_a1mk",
+      "category": "通用",
+      "text": "不要加一些神秘的小优化啊"
     }
   ]
 }
