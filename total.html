@@ -6,7 +6,6 @@
     <title>工具箱 · 底部导航</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'%3E%3Cpath fill='%23000000' d='M102.8 57.3C108.2 51.9 116.6 51.1 123 55.3L241.9 134.5C250.8 140.4 256.1 150.4 256.1 161.1L256.1 210.7L346.9 301.5C380.2 286.5 420.8 292.6 448.1 320L574.2 446.1C592.9 464.8 592.9 495.2 574.2 514L514.1 574.1C495.4 592.8 465 592.8 446.2 574.1L320.1 448C292.7 420.6 286.6 380.1 301.6 346.8L210.8 256L161.2 256C150.5 256 140.5 250.7 134.6 241.8L55.4 122.9C51.2 116.6 52 108.1 57.4 102.7L102.8 57.3zM247.8 360.8C241.5 397.7 250.1 436.7 274 468L179.1 563C151 591.1 105.4 591.1 77.3 563C49.2 534.9 49.2 489.3 77.3 461.2L212.7 325.7L247.9 360.8zM416.1 64C436.2 64 455.5 67.7 473.2 74.5C483.2 78.3 485 91 477.5 98.6L420.8 155.3C417.8 158.3 416.1 162.4 416.1 166.6L416.1 208C416.1 216.8 423.3 224 432.1 224L473.5 224C477.7 224 481.8 222.3 484.8 219.3L541.5 162.6C549.1 155.1 561.8 156.9 565.6 166.9C572.4 184.6 576.1 203.9 576.1 224C576.1 267.2 558.9 306.3 531.1 335.1L482 286C448.9 253 403.5 240.3 360.9 247.6L304.1 190.8L304.1 161.1L303.9 156.1C303.1 143.7 299.5 131.8 293.4 121.2C322.8 86.2 366.8 64 416.1 63.9z'/%3E%3C/svg%3E" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- 删除了 mouse.min.js 和 $.shuicheMouse 的引用，改用原生粒子 -->
     <style>
         /* ================================================================
            1.  CSS 变量
@@ -446,27 +445,33 @@
             transform: rotate(60deg);
         }
 
-        .ripple {
-            position: absolute;
+        /* ================================================================
+           5.  全局涟漪样式
+           ================================================================ */
+        .global-ripple {
+            position: fixed;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.50) 0%, rgba(6, 182, 212, 0.08) 50%, transparent 70%);
-            transform: scale(0);
-            animation: rippleBurst 0.50s cubic-bezier(0.22, 1, 0.36, 1) forwards;
             pointer-events: none;
-            z-index: 5;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.50) 0%, rgba(6, 182, 212, 0.15) 50%, transparent 70%);
+            transform: scale(0);
+            animation: globalRippleAnim 0.6s ease-out forwards;
             will-change: transform, opacity;
+            z-index: 9998;
         }
-        @keyframes rippleBurst {
+        @keyframes globalRippleAnim {
             0% {
                 transform: scale(0);
                 opacity: 1;
             }
             100% {
-                transform: scale(3.5);
+                transform: scale(4);
                 opacity: 0;
             }
         }
 
+        /* ================================================================
+           6.  响应式
+           ================================================================ */
         @media (max-width: 820px) {
             :root {
                 --icon-size: 36px;
@@ -800,7 +805,6 @@
                     if (e.button !== 0) return;
                     const id = li.dataset.toolId;
                     switchTool(id);
-                    createRipple(e, li);
                 });
 
                 li.addEventListener('touchend', (e) => {
@@ -828,25 +832,6 @@
             }
 
             updateCount();
-        }
-
-        // ----- 涟漪 -----
-        function createRipple(e, el) {
-            const rect = el.getBoundingClientRect();
-            const x = (e.clientX || e.touches?.[0]?.clientX || rect.left + rect.width / 2) - rect.left;
-            const y = (e.clientY || e.touches?.[0]?.clientY || rect.top + rect.height / 2) - rect.top;
-            const ripple = document.createElement('span');
-            ripple.className = 'ripple';
-            const size = Math.min(rect.width, rect.height) * 0.6;
-            ripple.style.width = size + 'px';
-            ripple.style.height = size + 'px';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
-            ripple.style.marginLeft = -(size / 2) + 'px';
-            ripple.style.marginTop = -(size / 2) + 'px';
-            el.style.position = 'relative';
-            el.appendChild(ripple);
-            setTimeout(() => { if (ripple.parentNode) ripple.remove(); }, 550);
         }
 
         // ----- 更新计数 -----
@@ -902,13 +887,8 @@
                     // ★ 同源时，监听 iframe 内部的 mousemove
                     const doc = win.document;
                     if (doc) {
-                        // 先移除旧监听防止重复绑定（用新函数替换）
-                        // 这里简单处理：每次加载重新绑定，但之前绑定的会保留，可能导致多个监听。
-                        // 为了简洁，我们使用一个标志或存储监听器引用，但这里我们采用每次替换的方式。
-                        // 更好的做法：在 frame 加载前移除旧的监听，但为了简化，我们使用一次性监听并缓存。
-                        // 方法：在 window 上挂载一个监听器引用
+                        // 移除旧的监听器（避免重复绑定）
                         if (window._iframeMouseListener) {
-                            // 移除旧的监听，但需要同一个函数引用，所以我们存储
                             try {
                                 const oldDoc = window._iframeDoc;
                                 if (oldDoc) {
@@ -1038,7 +1018,36 @@
         });
 
         // ================================================================
-        //  鼠标旋涡粒子效果 (原生)
+        //  全局涟漪 (性能优化版)
+        // ================================================================
+        const MAX_RIPPLES = 20;
+        const ripples = [];
+
+        function createGlobalRipple(e) {
+            const x = e.clientX;
+            const y = e.clientY;
+            const size = 80;
+            const el = document.createElement('div');
+            el.className = 'global-ripple';
+            el.style.left = (x - size / 2) + 'px';
+            el.style.top = (y - size / 2) + 'px';
+            el.style.width = size + 'px';
+            el.style.height = size + 'px';
+            document.body.appendChild(el);
+            ripples.push(el);
+            if (ripples.length > MAX_RIPPLES) {
+                const old = ripples.shift();
+                if (old.parentNode) old.parentNode.removeChild(old);
+            }
+            el.addEventListener('animationend', function() {
+                if (el.parentNode) el.parentNode.removeChild(el);
+                const idx = ripples.indexOf(el);
+                if (idx !== -1) ripples.splice(idx, 1);
+            });
+        }
+
+        // ================================================================
+        //  鼠标旋涡粒子效果 — 纯色拉长 (无透明度变化)
         // ================================================================
         (function() {
             // 1. 创建画布并置顶
@@ -1065,16 +1074,19 @@
             window.addEventListener('resize', resize);
             resize();
 
-            // 2. 参数配置 (按用户要求)
+            // 2. 参数配置
             const PARTICLE_COUNT = 30;
-            const MIN_RADIUS = 30;
-            const MAX_RADIUS = 60;
-            const MIN_SPEED = 0.015;
-            const MAX_SPEED = 0.06;
+            const MIN_RADIUS = 10;
+            const MAX_RADIUS = 40;
+            const MIN_SPEED = 0.01;
+            const MAX_SPEED = 0.04;
             const BASE_EASING = 0.01;
-            const SPEED_EASING_FACTOR = 50;
+            const SPEED_EASING_FACTOR = 80;
+            const HISTORY_LENGTH = 3;          // 3 个历史点 (可改为4)
+            const LINE_WIDTH = 2;            // 线宽 = 点半径
+            const DOT_RADIUS = 1;
 
-            let currentToolColors = ['#06b6d4', '#a78bfa']; // 默认
+            let currentToolColors = ['#06b6d4', '#a78bfa'];
 
             let mouseX = width / 2;
             let mouseY = height / 2;
@@ -1091,17 +1103,24 @@
                     const color = currentToolColors[Math.floor(Math.random() * currentToolColors.length)];
                     const easing = BASE_EASING + speed * speed * SPEED_EASING_FACTOR;
 
-                    const targetX = mouseX + Math.cos(angle) * radius;
-                    const targetY = mouseY + Math.sin(angle) * radius;
+                    const startX = mouseX + Math.cos(angle) * radius;
+                    const startY = mouseY + Math.sin(angle) * radius;
+
+                    // 历史数组（初始填满当前位置）
+                    const history = [];
+                    for (let h = 0; h < HISTORY_LENGTH; h++) {
+                        history.push({ x: startX, y: startY });
+                    }
 
                     particles.push({
                         radius: radius,
                         speed: speed,
                         angle: angle,
                         color: color,
-                        x: targetX,
-                        y: targetY,
+                        x: startX,
+                        y: startY,
                         easing: easing,
+                        history: history,
                     });
                 }
             }
@@ -1126,44 +1145,50 @@
                 } else {
                     currentToolColors = ['#06b6d4', '#a78bfa'];
                 }
-                // 更新每个粒子的颜色 (随机分配)
                 particles.forEach(p => {
                     p.color = currentToolColors[Math.floor(Math.random() * currentToolColors.length)];
                 });
             };
 
-            // 7. 动画循环
+            // 7. 动画循环 (纯色拉长，无透明度变化)
             function animate() {
                 ctx.clearRect(0, 0, width, height);
-                const particleSize = 2;
 
                 particles.forEach(p => {
+                    // ① 更新角度和位置
                     p.angle += p.speed;
                     const targetX = mouseX + Math.cos(p.angle) * p.radius;
                     const targetY = mouseY + Math.sin(p.angle) * p.radius;
                     p.x += (targetX - p.x) * p.easing;
                     p.y += (targetY - p.y) * p.easing;
 
-                    ctx.shadowColor = p.color;
-                    ctx.shadowBlur = 10;
-                    ctx.globalAlpha = 0.9;
+                    // ② 更新历史队列
+                    p.history.push({ x: p.x, y: p.y });
+                    if (p.history.length > HISTORY_LENGTH) {
+                        p.history.shift();
+                    }
+
+                    // ③ 绘制拉长线（纯色，无透明度变化）
+                    const hist = p.history;
+                    if (hist.length >= 2) {
+                        // 绘制一条连续折线连接所有历史点
+                        ctx.strokeStyle = p.color;
+                        ctx.lineWidth = LINE_WIDTH;
+                        ctx.beginPath();
+                        ctx.moveTo(hist[0].x, hist[0].y);
+                        for (let i = 1; i < hist.length; i++) {
+                            ctx.lineTo(hist[i].x, hist[i].y);
+                        }
+                        ctx.stroke();
+                    }
+
+                    // ④ 在头部画圆点（当前帧位置）
+                    const head = hist[hist.length - 1];
                     ctx.beginPath();
-                    ctx.arc(p.x, p.y, particleSize, 0, Math.PI * 2);
+                    ctx.arc(head.x, head.y, DOT_RADIUS, 0, Math.PI * 2);
                     ctx.fillStyle = p.color;
                     ctx.fill();
                 });
-
-                ctx.shadowBlur = 0;
-                ctx.globalAlpha = 1;
-
-                // 中心光晕
-                const grad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 30);
-                grad.addColorStop(0, 'rgba(6, 182, 212, 0.15)');
-                grad.addColorStop(1, 'rgba(6, 182, 212, 0)');
-                ctx.fillStyle = grad;
-                ctx.beginPath();
-                ctx.arc(mouseX, mouseY, 30, 0, Math.PI * 2);
-                ctx.fill();
 
                 requestAnimationFrame(animate);
             }
@@ -1171,7 +1196,7 @@
 
             window.addEventListener('resize', resize);
 
-            console.log('🌀 小粒子旋涡已启动 (半径30~60，尺寸2，缓动随速度变化)');
+            console.log('🌀 纯色拉长粒子 (历史长度 ' + HISTORY_LENGTH + ', 线宽 ' + LINE_WIDTH + ')');
         })();
 
         // ================================================================
@@ -1201,6 +1226,7 @@
                 if (isExpanded && !navBar.contains(e.target)) {
                     closeNav();
                 }
+                createGlobalRipple(e);
             });
 
             document.addEventListener('keydown', (e) => {
@@ -1261,4 +1287,3 @@
     </script>
 </body>
 </html>
-//2112342664356568
