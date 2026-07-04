@@ -1345,19 +1345,13 @@
         "pid": "CF1654E",
         "name": "Arithmetic Progression",
         "difficulty": 5,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF1806E",
         "name": "Tree Master",
         "difficulty": 5,
-        "done": false
-      },
-      {
-        "pid": "CF1039D",
-        "name": "You Are Given a Tree",
-        "difficulty": 7,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF342E",
@@ -3003,13 +2997,13 @@
         "pid": "CF1175E",
         "name": "Minimal Segment Cover",
         "difficulty": 5,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF1553F",
         "name": "Pairwise Modulo",
         "difficulty": 5,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF1625D",
@@ -3057,15 +3051,115 @@
         "pid": "CF786C",
         "name": "Till I Collapse",
         "difficulty": 5,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF817F",
         "name": "MEX Queries",
         "difficulty": 5,
+        "done": true
+      }
+    ],
+    "7.2": [
+      {
+        "pid": "CF1107F",
+        "name": "Vasya and Endless Credits",
+        "difficulty": 7,
+        "done": true
+      },
+      {
+        "pid": "CF1270G",
+        "name": "Subset with Zero Sum",
+        "difficulty": 6,
+        "done": true
+      },
+      {
+        "pid": "CF1404D",
+        "name": "Game of Pairs",
+        "difficulty": 7,
+        "done": false
+      },
+      {
+        "pid": "CF1765A",
+        "name": "Access Levels",
+        "difficulty": 7,
+        "done": true
+      },
+      {
+        "pid": "AT_ARC165_D",
+        "name": "Substring Comparison",
+        "difficulty": 7,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC083_C",
+        "name": "Bichrome Tree",
+        "difficulty": 5,
+        "done": true
+      },
+      {
+        "pid": "AT_ARC119_D",
+        "name": "Grid Repainting 3",
+        "difficulty": 7,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC090_C",
+        "name": "Avoiding Collison",
+        "difficulty": 5,
+        "done": false
+      }
+    ],
+    "7.3": [
+      {
+        "pid": "CF1034B",
+        "name": "Little C Loves 3 II",
+        "difficulty": 6,
+        "done": true
+      },
+      {
+        "pid": "CF1082G",
+        "name": "Petya and Graph",
+        "difficulty": 7,
+        "done": true
+      },
+      {
+        "pid": "CF1139E",
+        "name": "Maximize Mex",
+        "difficulty": 7,
+        "done": true
+      },
+      {
+        "pid": "CF1473F",
+        "name": "Strange Set",
+        "difficulty": 7,
+        "done": true
+      },
+      {
+        "pid": "CF1783F",
+        "name": "Double Sort II",
+        "difficulty": 7,
+        "done": true
+      },
+      {
+        "pid": "CF724E",
+        "name": "Goods transportation",
+        "difficulty": 7,
+        "done": true
+      },
+      {
+        "pid": "CF739E",
+        "name": "Gosha is hunting",
+        "difficulty": 7,
+        "done": false
+      },
+      {
+        "pid": "AT_ARC106_E",
+        "name": "Medal",
+        "difficulty": 7,
         "done": false
       }
     ]
   },
-  "currentList": "6.30"
+  "currentList": "7.3"
 }
