@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>工具箱 · 底部导航</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'%3E%3Cpath fill='%23000000' d='M102.8 57.3C108.2 51.9 116.6 51.1 123 55.3L241.9 134.5C250.8 140.4 256.1 150.4 256.1 161.1L256.1 210.7L346.9 301.5C380.2 286.5 420.8 292.6 448.1 320L574.2 446.1C592.9 464.8 592.9 495.2 574.2 514L514.1 574.1C495.4 592.8 465 592.8 446.2 574.1L320.1 448C292.7 420.6 286.6 380.1 301.6 346.8L210.8 256L161.2 256C150.5 256 140.5 250.7 134.6 241.8L55.4 122.9C51.2 116.6 52 108.1 57.4 102.7L102.8 57.3zM247.8 360.8C241.5 397.7 250.1 436.7 274 468L179.1 563C151 591.1 105.4 591.1 77.3 563C49.2 534.9 49.2 489.3 77.3 461.2L212.7 325.7L247.9 360.8zM416.1 64C436.2 64 455.5 67.7 473.2 74.5C483.2 78.3 485 91 477.5 98.6L420.8 155.3C417.8 158.3 416.1 162.4 416.1 166.6L416.1 208C416.1 216.8 423.3 224 432.1 224L473.5 224C477.7 224 481.8 222.3 484.8 219.3L541.5 162.6C549.1 155.1 561.8 156.9 565.6 166.9C572.4 184.6 576.1 203.9 576.1 224C576.1 267.2 558.9 306.3 531.1 335.1L482 286C448.9 253 403.5 240.3 360.9 247.6L304.1 190.8L304.1 161.1L303.9 156.1C303.1 143.7 299.5 131.8 293.4 121.2C322.8 86.2 366.8 64 416.1 63.9z'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ================================================================
+           1.  CSS 变量 & 全局重置
+           ================================================================ */
+        :root {
+            --primary: #06b6d4;
+            --primary-dark: #0e7490;
+            --primary-light: #67e8f9;
+
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-bg-hover: rgba(255, 255, 255, 0.70);
+            --glass-border: rgba(255, 255, 255, 0.20);
+            --glass-shadow: 0 8px 40px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+            --glass-blur: 24px;
+
+            --text: #0f172a;
+            --text-muted: #94a3b8;
+
+            --radius: 18px;
+            --radius-sm: 12px;
+
+            --icon-size: 40px;
+            --icon-gap: 6px;
+            --nav-padding-collapsed: 2px;
+            --nav-padding-expanded: 8px 16px;
+
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif;
+
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none !important; /* 隐藏默认光标 */
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            color: var(--text);
+            background: #dce8ef;
+            background:
+                radial-gradient(ellipse at var(--mouse-x) var(--mouse-y), rgba(6, 182, 212, 0.10) 0%, rgba(56, 189, 248, 0.03) 45%, rgba(15, 23, 42, 0.01) 70%, transparent 100%),
+                #dce8ef;
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+            contain: layout style paint;
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px;
+            height: 3px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.20);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(148, 163, 184, 0.40);
+        }
+
+        /* ================================================================
+           2.  主内容区
+           ================================================================ */
+        .main-content {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            overflow: hidden;
+            contain: layout style paint;
+            will-change: transform;
+        }
+
+        .main-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background: transparent;
+            position: relative;
+            z-index: 0;
+            will-change: transform;
+            contain: layout style paint;
+        }
+
+        .iframe-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            color: var(--text-muted);
+            font-size: 13px;
+            z-index: 2;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            contain: layout style;
+        }
+        .iframe-placeholder .spinner {
+            width: 28px;
+            height: 28px;
+            border: 2.5px solid rgba(6, 182, 212, 0.08);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin-bottom: 10px;
+            will-change: transform;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .iframe-placeholder .load-text {
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            opacity: 0.4;
+        }
+        .iframe-placeholder .load-text i {
+            margin-right: 8px;
+            color: var(--primary);
+            opacity: 0.6;
+        }
+        .iframe-placeholder.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* ================================================================
+           3.  底部导航栏
+           ================================================================ */
+        .nav-bar {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            padding: var(--nav-padding-collapsed);
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.30);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            transition: padding 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                border-radius 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                background 0.32s ease,
+                box-shadow 0.32s ease,
+                justify-content 0.32s ease;
+            will-change: transform, padding;
+            contain: layout style;
+            white-space: nowrap;
+        }
+
+        .nav-bar.expanded {
+            padding: var(--nav-padding-expanded);
+            border-radius: var(--radius);
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-color: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            justify-content: flex-start;
+        }
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            contain: layout style;
+            transition: gap 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .nav-bar.expanded .nav-list {
+            gap: var(--icon-gap);
+        }
+
+        .nav-toggle {
+            flex: 0 0 auto;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.25s ease, border-color 0.25s ease;
+            will-change: transform;
+            user-select: none;
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0;
+        }
+        .nav-toggle:hover {
+            background: var(--glass-bg-hover);
+            transform: scale(1.06);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border-color: rgba(255, 255, 255, 0.20);
+        }
+        .nav-toggle:active {
+            transform: scale(0.90);
+        }
+        .nav-toggle .toggle-icon {
+            display: inline-block;
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+            line-height: 1;
+        }
+        .nav-bar.expanded .nav-toggle .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .nav-item {
+            flex: 0 0 0;
+            width: 0;
+            min-width: 0;
+            max-width: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--icon-size);
+            border-radius: var(--radius-sm);
+            background: transparent;
+            cursor: pointer;
+            transition: width 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                margin 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.20s ease,
+                transform 0.30s cubic-bezier(0.34, 1.56, 0.64, 1),
+                background 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                border-width 0.25s ease;
+            will-change: transform, width, margin, opacity;
+            user-select: none;
+            contain: layout style;
+            transform-origin: center center;
+            transform: scale(0);
+            overflow: visible;
+            padding: 0;
+        }
+
+        .nav-item.expanded {
+            flex: 0 0 var(--icon-size);
+            width: var(--icon-size);
+            max-width: var(--icon-size);
+            margin: 0 4px;
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            overflow: visible;
+            padding: 0;
+        }
+
+        .nav-item.expanded:hover {
+            background: var(--glass-bg-hover);
+            transform: translateY(-4px) scale(1.08);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+            z-index: 3;
+        }
+        .nav-item.expanded:active {
+            transform: scale(0.90) !important;
+            transition-duration: 0.08s;
+        }
+
+        .nav-item.expanded.active {
+            background: rgba(255, 255, 255, 0.45);
+            border-color: rgba(6, 182, 212, 0.20);
+            box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.08), 0 4px 16px rgba(6, 182, 212, 0.04);
+        }
+
+        .nav-item .item-icon-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            font-size: 17px;
+            color: #fff;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform;
+            background: var(--item-grad, linear-gradient(135deg, #94a3b8, #64748b));
+            transform: scale(0.85);
+        }
+        .nav-item.expanded .item-icon-wrap {
+            transform: scale(1);
+        }
+        .nav-item.expanded:hover .item-icon-wrap {
+            transform: scale(1.06);
+        }
+
+        .nav-item .tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%) scale(0.92);
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 4px 14px;
+            border-radius: 8px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.25s ease, transform 0.30s cubic-bezier(0.34, 1.56, 0.64, 1);
+            letter-spacing: 0.2px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            z-index: 10;
+        }
+        .nav-item .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: rgba(15, 23, 42, 0.82);
+        }
+        .nav-item.expanded:hover .tooltip {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .nav-item .active-dot {
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+            transition: transform 0.40s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.30);
+        }
+        .nav-item.expanded.active .active-dot {
+            transform: translateX(-50%) scale(1);
+        }
+
+        .nav-meta {
+            flex: 0 0 0;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+            opacity: 0;
+            width: 0;
+            margin: 0;
+            padding: 0;
+            border: none;
+            overflow: hidden;
+            transition: opacity 0.25s ease 0.05s, width 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                margin 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                padding 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                border 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                flex 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+            user-select: none;
+            white-space: nowrap;
+        }
+        .nav-bar.expanded .nav-meta {
+            opacity: 0.6;
+            width: auto;
+            margin-left: 8px;
+            padding-left: 12px;
+            border-left: 1px solid rgba(255, 255, 255, 0.10);
+            overflow: visible;
+            flex: 0 0 auto;
+        }
+        .nav-meta .count {
+            font-weight: 500;
+            font-variant-numeric: tabular-nums;
+        }
+        .nav-meta .reload-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 13px;
+            padding: 2px 4px;
+            border-radius: 6px;
+            transition: background 0.2s ease, color 0.2s ease, transform 0.40s cubic-bezier(0.34, 1.56, 0.64, 1);
+            line-height: 1;
+        }
+        .nav-meta .reload-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text);
+            transform: rotate(60deg);
+        }
+
+        /* ================================================================
+           4.  涟漪效果 (保留)
+           ================================================================ */
+        .global-ripple {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.50) 0%, rgba(6, 182, 212, 0.15) 50%, transparent 70%);
+            transform: scale(0);
+            animation: globalRippleAnim 0.6s ease-out forwards;
+            will-change: transform, opacity;
+            z-index: 9998;
+        }
+        @keyframes globalRippleAnim {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* ================================================================
+           5.  自定义光标样式 (使用 left/top 定位)
+           ================================================================ */
+        #custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 28px;
+            height: 28px;
+            pointer-events: none;
+            z-index: 99999;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            will-change: left, top;
+        }
+        #custom-cursor svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke-width: 2.2;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            transition: stroke 0.3s ease;
+        }
+        /* 流动动画 */
+        #custom-cursor.pop svg {
+            animation: cursorPop 0.25s ease-out forwards;
+        }
+        @keyframes cursorPop {
+            0% {
+                transform: scale(0.7) rotate(-12deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* ================================================================
+           6.  响应式
+           ================================================================ */
+        @media (max-width: 820px) {
+            :root {
+                --icon-size: 36px;
+                --icon-gap: 4px;
+                --nav-padding-collapsed: 2px;
+            }
+            .nav-bar {
+                bottom: 18px;
+            }
+            .nav-bar.expanded {
+                padding: 6px 12px;
+                border-radius: 16px;
+            }
+            .nav-toggle {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+            .nav-item .item-icon-wrap {
+                font-size: 15px;
+            }
+            .nav-item .tooltip {
+                font-size: 11px;
+                padding: 3px 12px;
+                bottom: calc(100% + 10px);
+            }
+            .nav-meta {
+                font-size: 11px;
+            }
+            .nav-meta .reload-btn {
+                font-size: 12px;
+            }
+            .nav-item.expanded {
+                margin: 0 3px;
+            }
+            #custom-cursor {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        @media (max-width: 540px) {
+            :root {
+                --icon-size: 32px;
+                --icon-gap: 3px;
+                --nav-padding-collapsed: 2px;
+            }
+            .nav-bar {
+                bottom: 14px;
+                padding: 2px 4px;
+            }
+            .nav-bar.expanded {
+                padding: 4px 10px;
+                border-radius: 14px;
+            }
+            .nav-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+            .nav-item .item-icon-wrap {
+                font-size: 13px;
+                border-radius: 8px;
+            }
+            .nav-item .tooltip {
+                font-size: 10px;
+                padding: 2px 10px;
+                bottom: calc(100% + 8px);
+            }
+            .nav-meta .count {
+                display: none;
+            }
+            .nav-meta .reload-btn {
+                font-size: 11px;
+            }
+            .nav-item.expanded {
+                margin: 0 2px;
+            }
+            .nav-item .active-dot {
+                width: 4px;
+                height: 4px;
+                top: -1px;
+            }
+            #custom-cursor {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            :root {
+                --icon-size: 28px;
+                --nav-padding-collapsed: 1.5px;
+            }
+            .nav-bar {
+                bottom: 12px;
+                padding: 1.5px 3px;
+                border-radius: 24px;
+            }
+            .nav-bar.expanded {
+                padding: 3px 8px;
+                border-radius: 12px;
+            }
+            .nav-toggle {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+                border-radius: 8px;
+            }
+            .nav-item .item-icon-wrap {
+                font-size: 11px;
+                border-radius: 6px;
+            }
+            .nav-item.expanded {
+                margin: 0 1.5px;
+            }
+            .nav-item .tooltip {
+                font-size: 9px;
+                padding: 2px 8px;
+                bottom: calc(100% + 6px);
+            }
+            .nav-meta .reload-btn {
+                font-size: 10px;
+            }
+            #custom-cursor {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            .nav-bar {
+                backdrop-filter: blur(var(--glass-blur)) saturate(1.2);
+                -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.2);
+            }
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    全屏内容区
+    ============================================================ -->
+    <main class="main-content" id="mainContent">
+        <div class="iframe-placeholder" id="placeholder">
+            <div class="spinner"></div>
+            <span class="load-text"><i class="fas fa-folder-open"></i> 加载工具…</span>
+        </div>
+        <iframe id="toolFrame" name="toolFrame" title="工具页面" src=""
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+        loading="lazy"></iframe>
+    </main>
+
+    <!-- ============================================================
+    底部导航栏
+    ============================================================ -->
+    <nav class="nav-bar" id="navBar" role="navigation" aria-label="工具导航">
+        <ul class="nav-list" id="navList">
+            <li class="nav-toggle" id="navToggle" role="button" aria-label="切换导航" tabindex="0">
+                <span class="toggle-icon"><i class="fas fa-bars"></i></span>
+            </li>
+            <!-- 12 个工具由 JS 动态生成 -->
+        </ul>
+        <div class="nav-meta" id="navMeta">
+            <span class="count" id="navCount">1 / 12</span>
+            <button class="reload-btn" id="reloadBtn" aria-label="刷新当前工具" title="刷新当前工具">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    自定义光标 (使用 left/top 精确定位)
+    ============================================================ -->
+    <div id="custom-cursor" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <!-- 默认三角形: 直角在左上角 (2,2) 处，尖端对准鼠标 -->
+            <path id="cursor-path" d="M2,2 L22,2 L2,22 Z" stroke="#06b6d4" />
+        </svg>
+    </div>
+
+    <!-- ============================================================
+    核心脚本
+    ============================================================ -->
+    <script>
+        // ================================================================
+        //  工具数据 (12个)
+        // ================================================================
+        const TOOLS = [{
+            id: 'tool-1',
+            name: '项目进度',
+            icon: 'fa-project-diagram',
+            hint: '链式追踪 · 阶段管理',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/Product.html',
+            gradient: 'linear-gradient(135deg, #d4a04a 0%, #b8883a 100%)'
+        }, {
+            id: 'tool-2',
+            name: '记账清单',
+            icon: 'fa-coins',
+            hint: '收支追踪 · 账单管理',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/Cost.html',
+            gradient: 'linear-gradient(135deg, #f59e0b 0%, #f97316 100%)'
+        }, {
+            id: 'tool-3',
+            name: '专辑记录',
+            icon: 'fa-compact-disc',
+            hint: '音乐收藏 · 聆听轨迹',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/Album.html',
+            gradient: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)'
+        }, {
+            id: 'tool-4',
+            name: '出题灵感',
+            icon: 'fa-lightbulb',
+            hint: '题目构思 · 笔记沉淀',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/State.html',
+            gradient: 'linear-gradient(135deg, #10b981 0%, #06b6d4 100%)'
+        }, {
+            id: 'tool-5',
+            name: '约定记录',
+            icon: 'fa-handshake',
+            hint: '约定借还 · 智能管理',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/Promise.html',
+            gradient: 'linear-gradient(135deg, #10b981 0%, #06b6d4 100%)'
+        }, {
+            id: 'tool-6',
+            name: '复习计划',
+            icon: 'fa-brain',
+            hint: '算法追踪 · 间隔复习',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/Review.html',
+            gradient: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)'
+        }, {
+            id: 'tool-7',
+            name: '做题记录',
+            icon: 'fa-list-check',
+            hint: '题集管理 · 状态追踪',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/Problem.html',
+            gradient: 'linear-gradient(135deg, #06b6d4 0%, #67e8f9 100%)'
+        }, {
+            id: 'tool-8',
+            name: '题单管理',
+            icon: 'fa-layer-group',
+            hint: '多OJ题集 · 批量导入',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/Problemset.html',
+            gradient: 'linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%)'
+        }, {
+            id: 'tool-9',
+            name: '资源包',
+            icon: 'fa-box-open',
+            hint: '音色预设 · 链接合集',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/Resource.html',
+            gradient: 'linear-gradient(135deg, #1e3a5f 0%, #2d5a7a 100%)'
+        }, {
+            id: 'tool-10',
+            name: '子弹笔记',
+            icon: 'fa-bullseye',
+            hint: '四维透视 · 高效管理',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/BUJO.html',
+            gradient: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)'
+        }, {
+            id: 'tool-11',
+            name: '影音娱乐',
+            icon: 'fa-film',
+            hint: '影视书籍 · 收藏评分',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/Entertain.html',
+            gradient: 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)'
+        }, {
+            id: 'tool-12',
+            name: '通用记录器',
+            icon: 'fa-feather-alt',
+            hint: '灵活字段 · 自定义笔记',
+            url: 'https://stardr0p123.github.io/bullet-journal-data/General.html',
+            gradient: 'linear-gradient(135deg, #94a3b8 0%, #64748b 100%)'
+        }];
+
+        // ================================================================
+        //  核心逻辑
+        // ================================================================
+        const frame = document.getElementById('toolFrame');
+        const placeholder = document.getElementById('placeholder');
+        const navBar = document.getElementById('navBar');
+        const navList = document.getElementById('navList');
+        const navToggle = document.getElementById('navToggle');
+        const navMeta = document.getElementById('navMeta');
+        const navCount = document.getElementById('navCount');
+        const reloadBtn = document.getElementById('reloadBtn');
+
+        let currentId = null;
+        let isFirstLoad = true;
+        let isExpanded = false;
+        let loadTimeout = null;
+        let navItems = [];
+
+        // 提取工具颜色的辅助函数
+        function extractToolColors(gradient) {
+            const hexMatch = gradient.match(/#[0-9a-f]{6}/gi);
+            if (hexMatch && hexMatch.length >= 2) {
+                return [hexMatch[0], hexMatch[1]];
+            }
+            return ['#06b6d4', '#a78bfa'];
+        }
+
+        // ----- 渲染导航 -----
+        function renderNav() {
+            const existing = navList.querySelectorAll('.nav-item');
+            existing.forEach(el => el.remove());
+
+            const fragment = document.createDocumentFragment();
+            TOOLS.forEach((tool, index) => {
+                const li = document.createElement('li');
+                li.className = 'nav-item';
+                li.dataset.toolId = tool.id;
+                li.dataset.index = index;
+                li.setAttribute('role', 'tab');
+                li.setAttribute('aria-selected', 'false');
+
+                const iconWrap = document.createElement('span');
+                iconWrap.className = 'item-icon-wrap';
+                iconWrap.style.setProperty('--item-grad', tool.gradient);
+                iconWrap.innerHTML = `<i class="fas ${tool.icon}"></i>`;
+
+                const tip = document.createElement('span');
+                tip.className = 'tooltip';
+                tip.textContent = tool.name;
+
+                const dot = document.createElement('span');
+                dot.className = 'active-dot';
+
+                li.appendChild(iconWrap);
+                li.appendChild(tip);
+                li.appendChild(dot);
+
+                li.addEventListener('click', (e) => {
+                    if (e.button !== 0) return;
+                    const id = li.dataset.toolId;
+                    switchTool(id);
+                });
+
+                li.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    const id = li.dataset.toolId;
+                    switchTool(id);
+                }, { passive: false });
+
+                fragment.appendChild(li);
+            });
+
+            const toggleEl = navList.querySelector('.nav-toggle');
+            if (toggleEl) {
+                navList.insertBefore(fragment, toggleEl.nextSibling);
+            } else {
+                navList.appendChild(fragment);
+            }
+
+            navItems = navList.querySelectorAll('.nav-item');
+
+            if (navItems.length) {
+                const first = navItems[0];
+                first.classList.add('active');
+                first.setAttribute('aria-selected', 'true');
+            }
+
+            updateCount();
+        }
+
+        // ----- 更新计数 -----
+        function updateCount() {
+            const idx = currentId ? TOOLS.findIndex(t => t.id === currentId) + 1 : 1;
+            navCount.textContent = `${idx} / ${TOOLS.length}`;
+        }
+
+        // ----- 切换工具 -----
+        function switchTool(toolId) {
+            const tool = TOOLS.find(t => t.id === toolId);
+            if (!tool) return;
+
+            if (currentId === toolId && !isFirstLoad) {
+                reloadCurrent();
+                return;
+            }
+
+            currentId = toolId;
+            isFirstLoad = false;
+
+            navItems.forEach(item => {
+                const isActive = item.dataset.toolId === toolId;
+                item.classList.toggle('active', isActive);
+                item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+
+            updateCount();
+
+            // ★ 更新光标颜色
+            const colors = extractToolColors(tool.gradient);
+            updateCursorColor(colors[0]);
+
+            placeholder.classList.remove('hidden');
+            clearTimeout(loadTimeout);
+
+            loadTimeout = setTimeout(() => {
+                frame.src = tool.url;
+            }, 50);
+        }
+
+        // ----- iframe 加载完成 -----
+        function onIframeLoad() {
+            placeholder.classList.add('hidden');
+            clearTimeout(loadTimeout);
+            try {
+                const win = frame.contentWindow;
+                if (win) {
+                    win.postMessage({ type: 'NAV_LOADED', toolId: currentId, timestamp: Date.now() }, '*');
+                }
+            } catch (_) { /* 跨域忽略 */ }
+        }
+
+        // ----- 子页面消息 -----
+        function handleMessage(event) {
+            const data = event.data;
+            if (!data || typeof data !== 'object') return;
+            if (data.type === 'NAV_SWITCH' && data.toolId) {
+                const target = TOOLS.find(t => t.id === data.toolId);
+                if (target) switchTool(target.id);
+            }
+            if (data.type === 'NAV_LOG') {
+                console.log('[子页面]', data.message);
+            }
+        }
+
+        // ----- 展开/收起导航 -----
+        function toggleNav() {
+            isExpanded = !isExpanded;
+            navBar.classList.toggle('expanded', isExpanded);
+
+            const items = navList.querySelectorAll('.nav-item');
+            const total = items.length;
+            const mid = Math.floor(total / 2);
+
+            items.forEach((item, idx) => {
+                if (isExpanded) {
+                    const dist = Math.abs(idx - mid);
+                    const delay = dist * 10;
+                    item.style.transitionDelay = delay + 'ms';
+                    requestAnimationFrame(() => {
+                        item.classList.add('expanded');
+                    });
+                } else {
+                    item.style.transitionDelay = '0ms';
+                    item.classList.remove('expanded');
+                }
+            });
+
+            navToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+
+            if (!isExpanded) {
+                navMeta.style.opacity = '0';
+                navMeta.style.width = '0';
+                navMeta.style.marginLeft = '0';
+                navMeta.style.paddingLeft = '0';
+                navMeta.style.borderLeft = 'none';
+                navMeta.style.overflow = 'hidden';
+            }
+        }
+
+        function openNav() { if (!isExpanded) toggleNav(); }
+        function closeNav() { if (isExpanded) toggleNav(); }
+
+        // ----- 刷新当前工具 -----
+        function reloadCurrent() {
+            if (!frame.src) return;
+            placeholder.classList.remove('hidden');
+            const src = frame.src;
+            frame.src = '';
+            clearTimeout(loadTimeout);
+            loadTimeout = setTimeout(() => {
+                frame.src = src;
+            }, 30);
+            setTimeout(() => {
+                placeholder.classList.add('hidden');
+            }, 3000);
+        }
+
+        // ================================================================
+        //  自定义光标管理 (left/top 定位)
+        // ================================================================
+        const cursorEl = document.getElementById('custom-cursor');
+        const cursorPath = document.getElementById('cursor-path');
+        let currentColor = '#06b6d4';
+        let currentType = 'default';
+        let isVisible = false;
+
+        // 更新光标颜色
+        function updateCursorColor(color) {
+            currentColor = color;
+            cursorPath.setAttribute('stroke', color);
+        }
+
+        // 更新光标形状
+        function setCursorType(type) {
+            if (type === currentType && isVisible) return;
+            currentType = type;
+            let d = '';
+            switch (type) {
+                case 'text':
+                    // 竖线：从 (12,2) 到 (12,22) 的粗线，但为了视觉平衡，让线宽稍粗
+                    d = 'M12,2 L12,22';
+                    break;
+                case 'link':
+                    // 菱形
+                    d = 'M12,2 L22,12 L12,22 L2,12 Z';
+                    break;
+                default:
+                    // 三角形
+                    d = 'M2,2 L22,2 L2,22 Z';
+                    break;
+            }
+            cursorPath.setAttribute('d', d);
+            // 触发流动动画
+            cursorEl.classList.remove('pop');
+            void cursorEl.offsetWidth; // 强制回流
+            cursorEl.classList.add('pop');
+        }
+
+        // 根据悬停元素判断类型
+        function getTargetType(element) {
+            if (!element) return 'default';
+            let el = element;
+            while (el && el !== document.body) {
+                const tag = el.tagName.toLowerCase();
+                if (tag === 'a' || tag === 'button' ||
+                    el.hasAttribute('role') && el.getAttribute('role') === 'button' ||
+                    el.hasAttribute('onclick') ||
+                    el.closest('a, button')) {
+                    return 'link';
+                }
+                if (tag === 'input' || tag === 'select' || tag === 'textarea') {
+                    return 'text';
+                }
+                el = el.parentElement;
+            }
+            const hasText = element.textContent && element.textContent.trim().length > 0;
+            if (hasText) {
+                return 'text';
+            }
+            return 'default';
+        }
+
+        // 鼠标移动处理 —— 使用 left/top 精确跟随
+        function onMouseMove(e) {
+            const x = e.clientX;
+            const y = e.clientY;
+            // 光标元素左上角在鼠标位置，但 SVG 内的三角形直角顶点在 (2,2)，
+            // 所以我们将元素左上角定位在鼠标坐标的 (x-2, y-2) 处，使直角顶点对准鼠标
+            cursorEl.style.left = (x - 2) + 'px';
+            cursorEl.style.top = (y - 2) + 'px';
+
+            if (!isVisible) {
+                isVisible = true;
+                cursorEl.style.opacity = '1';
+            }
+
+            // 检测悬停元素
+            const el = document.elementFromPoint(x, y);
+            const type = getTargetType(el);
+            setCursorType(type);
+
+            // 更新背景径向渐变
+            updateBg(x, y);
+        }
+
+        // 背景径向渐变更新 (节流)
+        let rafIdBg = null;
+        let lastBgX = -1,
+            lastBgY = -1;
+        let bgPending = false;
+
+        function updateBg(x, y) {
+            if (x === lastBgX && y === lastBgY) return;
+            lastBgX = x;
+            lastBgY = y;
+            if (!bgPending) {
+                bgPending = true;
+                rafIdBg = requestAnimationFrame(() => {
+                    const xPct = (lastBgX / window.innerWidth * 100);
+                    const yPct = (lastBgY / window.innerHeight * 100);
+                    document.body.style.setProperty('--mouse-x', xPct + '%');
+                    document.body.style.setProperty('--mouse-y', yPct + '%');
+                    bgPending = false;
+                    rafIdBg = null;
+                });
+            }
+        }
+
+        // 鼠标离开窗口时隐藏光标，进入时显示
+        document.addEventListener('mouseleave', () => {
+            cursorEl.style.opacity = '0';
+            isVisible = false;
+        });
+        document.addEventListener('mouseenter', () => {
+            // 不立即显示，等鼠标移动
+        });
+
+        // 全局事件监听
+        document.addEventListener('mousemove', onMouseMove, { passive: true });
+
+        // 窗口大小变化无需额外处理
+
+        // ================================================================
+        //  涟漪效果
+        // ================================================================
+        const MAX_RIPPLES = 20;
+        const ripples = [];
+
+        function createGlobalRipple(e) {
+            const x = e.clientX;
+            const y = e.clientY;
+            const size = 80;
+            const el = document.createElement('div');
+            el.className = 'global-ripple';
+            el.style.left = (x - size / 2) + 'px';
+            el.style.top = (y - size / 2) + 'px';
+            el.style.width = size + 'px';
+            el.style.height = size + 'px';
+            document.body.appendChild(el);
+            ripples.push(el);
+            if (ripples.length > MAX_RIPPLES) {
+                const old = ripples.shift();
+                if (old.parentNode) old.parentNode.removeChild(old);
+            }
+            el.addEventListener('animationend', function() {
+                if (el.parentNode) el.parentNode.removeChild(el);
+                const idx = ripples.indexOf(el);
+                if (idx !== -1) ripples.splice(idx, 1);
+            });
+        }
+
+        document.addEventListener('click', createGlobalRipple);
+
+        // ================================================================
+        //  初始化
+        // ================================================================
+        function init() {
+            renderNav();
+
+            frame.addEventListener('load', onIframeLoad);
+            window.addEventListener('message', handleMessage);
+
+            navToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleNav();
+            });
+
+            navToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleNav();
+                }
+            });
+
+            reloadBtn.addEventListener('click', reloadCurrent);
+
+            document.addEventListener('click', (e) => {
+                if (isExpanded && !navBar.contains(e.target)) {
+                    closeNav();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isExpanded) closeNav();
+                if ((e.key === 'r' || e.key === 'R') && (e.ctrlKey || e.metaKey)) {
+                    e.preventDefault();
+                    reloadCurrent();
+                }
+            });
+
+            const first = TOOLS[0];
+            if (first) {
+                const colors = extractToolColors(first.gradient);
+                updateCursorColor(colors[0]);
+                switchTool(first.id);
+            }
+
+            setTimeout(() => {
+                placeholder.classList.add('hidden');
+            }, 5000);
+
+            navBar.classList.remove('expanded');
+            isExpanded = false;
+            navToggle.setAttribute('aria-expanded', 'false');
+
+            navItems.forEach(item => {
+                item.classList.remove('expanded');
+                item.style.transitionDelay = '0ms';
+            });
+
+            navMeta.style.opacity = '0';
+            navMeta.style.width = '0';
+            navMeta.style.marginLeft = '0';
+            navMeta.style.paddingLeft = '0';
+            navMeta.style.borderLeft = 'none';
+            navMeta.style.overflow = 'hidden';
+
+            console.log('✅ 底部导航工具箱已启动 · 自定义光标精确跟随');
+        }
+
+        if (document.readyState === 'complete') {
+            init();
+        } else {
+            window.addEventListener('load', init);
+        }
+
+        window.__toolNav = {
+            switchTool,
+            getTools: () => TOOLS,
+            getCurrent: () => currentId,
+            reload: reloadCurrent,
+            toggleNav,
+            openNav,
+            closeNav,
+            isExpanded: () => isExpanded
+        };
+        window.updateCursorColor = updateCursorColor;
+    </script>
+</body>
+</html>
