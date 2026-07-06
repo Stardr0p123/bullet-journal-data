@@ -1047,7 +1047,7 @@
         }
 
         // ================================================================
-        //  鼠标旋涡粒子效果 — 纯色拉长 (无透明度变化)
+        //  鼠标旋涡粒子效果 — 轻量化 (10粒子 · 圆线端 · 透明度渐变)
         // ================================================================
         (function() {
             // 1. 创建画布并置顶
@@ -1074,17 +1074,21 @@
             window.addEventListener('resize', resize);
             resize();
 
-            // 2. 参数配置
-            const PARTICLE_COUNT = 30;
+            // 2. 轻量化参数
+            const PARTICLE_COUNT = 10; // ★ 从 30 减至 10
             const MIN_RADIUS = 10;
-            const MAX_RADIUS = 40;
-            const MIN_SPEED = 0.01;
-            const MAX_SPEED = 0.04;
-            const BASE_EASING = 0.01;
-            const SPEED_EASING_FACTOR = 80;
-            const HISTORY_LENGTH = 3;          // 3 个历史点 (可改为4)
-            const LINE_WIDTH = 2;            // 线宽 = 点半径
-            const DOT_RADIUS = 1;
+            const MAX_RADIUS = 25;
+            const MIN_SPEED = 0.012;
+            const MAX_SPEED = 0.035;
+            const BASE_EASING = 0.012;
+            const SPEED_EASING_FACTOR = 70;
+            const HISTORY_LENGTH = 5; // ★ 从 3 增至 5 (4~5 取 5)
+            const LINE_WIDTH = 2.2;
+            const DOT_RADIUS = 1.1;
+
+            // ★ 透明度渐变参数：从尾部到头部
+            const ALPHA_START = 0.15; // 尾部透明度
+            const ALPHA_END = 1.0; // 头部透明度
 
             let currentToolColors = ['#06b6d4', '#a78bfa'];
 
@@ -1106,39 +1110,36 @@
                     const startX = mouseX + Math.cos(angle) * radius;
                     const startY = mouseY + Math.sin(angle) * radius;
 
-                    // 历史数组（初始填满当前位置）
                     const history = [];
                     for (let h = 0; h < HISTORY_LENGTH; h++) {
                         history.push({ x: startX, y: startY });
                     }
 
                     particles.push({
-                        radius: radius,
-                        speed: speed,
-                        angle: angle,
-                        color: color,
+                        radius,
+                        speed,
+                        angle,
+                        color,
                         x: startX,
                         y: startY,
-                        easing: easing,
-                        history: history,
+                        easing,
+                        history,
                     });
                 }
             }
             initParticles();
 
-            // 4. 鼠标追踪 (父页面)
+            // 4. 鼠标追踪
             document.addEventListener('mousemove', (e) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
             });
 
-            // 5. 供外部调用的更新鼠标位置 (用于 iframe 内)
             window.updateMouseFromIframe = function(clientX, clientY) {
                 mouseX = clientX;
                 mouseY = clientY;
             };
 
-            // 6. 颜色更新函数 (暴露给外部)
             window.updateParticleColors = function(colors) {
                 if (colors && colors.length >= 2) {
                     currentToolColors = colors;
@@ -1150,53 +1151,88 @@
                 });
             };
 
-            // 7. 动画循环 (纯色拉长，无透明度变化)
+            // 5. 页面可见性 — 减少不必要的重绘
+            let animId = null;
+            let isPageVisible = true;
+
+            document.addEventListener('visibilitychange', function() {
+                isPageVisible = !document.hidden;
+                if (isPageVisible && !animId) {
+                    animate();
+                }
+            });
+
+            // 6. 动画循环 (透明度渐变 + 圆线端)
             function animate() {
+                if (!isPageVisible) {
+                    animId = null;
+                    return;
+                }
+
                 ctx.clearRect(0, 0, width, height);
 
+                // ★ 设置圆线端
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+
                 particles.forEach(p => {
-                    // ① 更新角度和位置
+                    // 更新角度和位置
                     p.angle += p.speed;
                     const targetX = mouseX + Math.cos(p.angle) * p.radius;
                     const targetY = mouseY + Math.sin(p.angle) * p.radius;
                     p.x += (targetX - p.x) * p.easing;
                     p.y += (targetY - p.y) * p.easing;
 
-                    // ② 更新历史队列
+                    // 更新历史队列
                     p.history.push({ x: p.x, y: p.y });
                     if (p.history.length > HISTORY_LENGTH) {
                         p.history.shift();
                     }
 
-                    // ③ 绘制拉长线（纯色，无透明度变化）
                     const hist = p.history;
-                    if (hist.length >= 2) {
-                        // 绘制一条连续折线连接所有历史点
+                    const len = hist.length;
+
+                    if (len < 2) return;
+
+                    // ★ 透明度渐变：分段绘制，从尾部到头部透明度递增
+                    // 共有 len-1 条线段
+                    for (let i = 0; i < len - 1; i++) {
+                        const t = i / (len - 2); // 0 ~ 1, 从尾部到头部
+                        const alpha = ALPHA_START + (ALPHA_END - ALPHA_START) * t;
+                        // 限制范围
+                        const clampedAlpha = Math.min(1, Math.max(0.05, alpha));
+
+                        ctx.globalAlpha = clampedAlpha;
                         ctx.strokeStyle = p.color;
                         ctx.lineWidth = LINE_WIDTH;
+
                         ctx.beginPath();
-                        ctx.moveTo(hist[0].x, hist[0].y);
-                        for (let i = 1; i < hist.length; i++) {
-                            ctx.lineTo(hist[i].x, hist[i].y);
-                        }
+                        ctx.moveTo(hist[i].x, hist[i].y);
+                        ctx.lineTo(hist[i + 1].x, hist[i + 1].y);
                         ctx.stroke();
                     }
 
-                    // ④ 在头部画圆点（当前帧位置）
-                    const head = hist[hist.length - 1];
+                    // ★ 头部圆点 (完全可见)
+                    const head = hist[len - 1];
+                    ctx.globalAlpha = 1.0;
                     ctx.beginPath();
                     ctx.arc(head.x, head.y, DOT_RADIUS, 0, Math.PI * 2);
                     ctx.fillStyle = p.color;
                     ctx.fill();
+
+                    // 恢复全局透明度
+                    ctx.globalAlpha = 1.0;
                 });
 
-                requestAnimationFrame(animate);
+                animId = requestAnimationFrame(animate);
             }
+
+            // 启动动画
             animate();
 
             window.addEventListener('resize', resize);
 
-            console.log('🌀 纯色拉长粒子 (历史长度 ' + HISTORY_LENGTH + ', 线宽 ' + LINE_WIDTH + ')');
+            console.log('🌀 轻量化粒子 · 数量: ' + PARTICLE_COUNT + ' · 历史长度: ' + HISTORY_LENGTH + ' · 圆线端 · 透明度渐变');
         })();
 
         // ================================================================
