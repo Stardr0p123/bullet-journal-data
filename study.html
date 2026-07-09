@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <title>沉浸学习 · 悬浮菜单</title>
+    <title>沉浸学习 · 速记+番茄</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'%3E%3Cpath fill='%23000000' d='M102.8 57.3C108.2 51.9 116.6 51.1 123 55.3L241.9 134.5C250.8 140.4 256.1 150.4 256.1 161.1L256.1 210.7L346.9 301.5C380.2 286.5 420.8 292.6 448.1 320L574.2 446.1C592.9 464.8 592.9 495.2 574.2 514L514.1 574.1C495.4 592.8 465 592.8 446.2 574.1L320.1 448C292.7 420.6 286.6 380.1 301.6 346.8L210.8 256L161.2 256C150.5 256 140.5 250.7 134.6 241.8L55.4 122.9C51.2 116.6 52 108.1 57.4 102.7L102.8 57.3zM247.8 360.8C241.5 397.7 250.1 436.7 274 468L179.1 563C151 591.1 105.4 591.1 77.3 563C49.2 534.9 49.2 489.3 77.3 461.2L212.7 325.7L247.9 360.8zM416.1 64C436.2 64 455.5 67.7 473.2 74.5C483.2 78.3 485 91 477.5 98.6L420.8 155.3C417.8 158.3 416.1 162.4 416.1 166.6L416.1 208C416.1 216.8 423.3 224 432.1 224L473.5 224C477.7 224 481.8 222.3 484.8 219.3L541.5 162.6C549.1 155.1 561.8 156.9 565.6 166.9C572.4 184.6 576.1 203.9 576.1 224C576.1 267.2 558.9 306.3 531.1 335.1L482 286C448.9 253 403.5 240.3 360.9 247.6L304.1 190.8L304.1 161.1L303.9 156.1C303.1 143.7 299.5 131.8 293.4 121.2C322.8 86.2 366.8 64 416.1 63.9z'/%3E%3C/svg%3E" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
@@ -31,10 +31,17 @@
             --item-gap: 6px;
             --menu-width: 220px;
 
-            --transition-speed: 0.32s;
-            --transition-bounce: 0.40s cubic-bezier(0.34, 1.56, 0.64, 1);
-
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif;
+
+            /* 组合按钮配色 — 草绿 + 淡钴蓝 */
+            --green-half: #7ccd7c;
+            --green-half-hover: #66bb6a;
+            --blue-half: #6cb2ff;
+            --blue-half-hover: #5b9bd5;
+
+            --tomato-bg: rgba(255, 255, 255, 0.50);
+            --tomato-border: rgba(255, 255, 255, 0.15);
+            --tomato-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
         }
 
         /* ================================================================
@@ -54,10 +61,6 @@
             font-size: 15px;
             color: var(--text);
             background: #dce8ef;
-            background:
-                radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.08) 0%, rgba(56, 189, 248, 0.03) 45%, rgba(15, 23, 42, 0.01) 70%, transparent 100%),
-                #dce8ef;
-            background-attachment: fixed;
             -webkit-font-smoothing: antialiased;
             contain: layout style paint;
         }
@@ -394,7 +397,454 @@
         }
 
         /* ================================================================
-           6.  全局涟漪
+           6.  右上角组合按钮（草绿 · 淡钴蓝）
+           ================================================================ */
+        .combo-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            z-index: 180;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        .combo-wrapper.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        .combo-btn {
+            position: relative;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: var(--tomato-shadow);
+            border: 2px solid rgba(255, 255, 255, 0.30);
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            background: #fff;
+        }
+        .combo-btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+        }
+        .combo-btn:active {
+            transform: scale(0.92);
+        }
+
+        .combo-btn .half {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+            cursor: pointer;
+            font-size: 18px;
+            color: #fff;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        }
+        .combo-btn .half.left {
+            left: 0;
+            background: var(--green-half);
+            border-right: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        .combo-btn .half.left:hover {
+            background: var(--green-half-hover);
+        }
+        .combo-btn .half.right {
+            right: 0;
+            background: var(--blue-half);
+            border-left: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        .combo-btn .half.right:hover {
+            background: var(--blue-half-hover);
+        }
+        .combo-btn .half i {
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.05));
+        }
+
+        /* 运行小圆点 */
+        .combo-btn .fab-badge {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            font-size: 14px;
+            color: var(--primary);
+            text-shadow: 0 0 12px rgba(6, 182, 212, 0.5);
+            line-height: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .combo-btn .fab-badge.active {
+            opacity: 1;
+            animation: dotPulse 1.8s infinite ease-in-out;
+        }
+        @keyframes dotPulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* ================================================================
+           7.  番茄钟卡片（右上角展开）
+           ================================================================ */
+        .tomato-clock {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            z-index: 185;
+            background: var(--tomato-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--tomato-border);
+            border-radius: var(--radius);
+            box-shadow: var(--tomato-shadow);
+            padding: 14px 18px;
+            min-width: 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            user-select: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            opacity: 0;
+            transform: scale(0.95) translateY(-10px);
+            pointer-events: none;
+            transform-origin: top right;
+        }
+        .tomato-clock.open {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        .tomato-clock .tomato-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        .tomato-clock .tomato-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-hint);
+            opacity: 0.7;
+        }
+        .tomato-clock .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: background 0.2s ease, transform 0.3s ease, color 0.2s ease;
+            line-height: 1;
+        }
+        .tomato-clock .close-btn:hover {
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--text);
+            transform: rotate(90deg);
+        }
+
+        .tomato-clock .timer-display {
+            font-size: 28px;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            text-align: center;
+            letter-spacing: 2px;
+            color: var(--text);
+            line-height: 1.2;
+            font-family: 'SF Mono', 'Menlo', monospace;
+        }
+        .tomato-clock .timer-display.prep {
+            color: #f59e0b;
+        }
+        .tomato-clock .timer-display.running {
+            color: var(--primary);
+        }
+        .tomato-clock .timer-display.idle {
+            color: var(--text-muted);
+        }
+
+        .tomato-clock .timer-controls {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .tomato-clock .timer-controls button {
+            background: rgba(255, 255, 255, 0.30);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: var(--radius-sm);
+            padding: 4px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.20s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+        .tomato-clock .timer-controls button:hover {
+            background: rgba(255, 255, 255, 0.50);
+            transform: scale(1.04);
+        }
+        .tomato-clock .timer-controls button:active {
+            transform: scale(0.94);
+        }
+        .tomato-clock .timer-controls button.primary-btn {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .tomato-clock .timer-controls button.primary-btn:hover {
+            background: var(--primary-dark);
+        }
+        .tomato-clock .timer-controls button.settings-btn {
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            padding: 4px 6px;
+            color: var(--text-muted);
+        }
+        .tomato-clock .timer-controls button.settings-btn:hover {
+            color: var(--text);
+            transform: rotate(30deg);
+        }
+
+        /* ================================================================
+           8.  速记便签卡片（右上角展开 · 3:4 · 占屏约1/16）
+           ================================================================ */
+        .note-panel {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            z-index: 185;
+            background: var(--tomato-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--tomato-border);
+            border-radius: var(--radius);
+            box-shadow: var(--tomato-shadow);
+            padding: 14px 16px;
+            width: 16vw;
+            height: 21.33vw;
+            min-width: 180px;
+            min-height: 240px;
+            max-width: 360px;
+            max-height: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            user-select: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            opacity: 0;
+            transform: scale(0.95) translateY(-10px);
+            pointer-events: none;
+            transform-origin: top right;
+        }
+        .note-panel.open {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        .note-panel .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .note-panel .note-header .note-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-hint);
+            opacity: 0.7;
+        }
+        .note-panel .note-header .close-note {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: background 0.2s ease, transform 0.3s ease, color 0.2s ease;
+            line-height: 1;
+        }
+        .note-panel .note-header .close-note:hover {
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--text);
+            transform: rotate(90deg);
+        }
+
+        .note-panel .note-body {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-height: 0;
+        }
+        .note-panel .note-body textarea {
+            flex: 1 1 auto;
+            width: 100%;
+            padding: 6px 8px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.20);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            font-size: 13px;
+            font-family: var(--font-sans);
+            color: var(--text);
+            resize: none;
+            outline: none;
+            transition: background 0.2s ease;
+            min-height: 60px;
+            line-height: 1.5;
+        }
+        .note-panel .note-body textarea:focus {
+            background: rgba(255, 255, 255, 0.35);
+        }
+        .note-panel .note-body textarea::placeholder {
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        .note-panel .note-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            gap: 8px;
+        }
+        .note-panel .note-footer .save-status {
+            font-size: 11px;
+            color: var(--text-muted);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        .note-panel .note-footer .save-status.saved {
+            color: var(--primary);
+            opacity: 0.9;
+        }
+        .note-panel .note-footer .save-btn {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-sm);
+            padding: 3px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.20s ease;
+        }
+        .note-panel .note-footer .save-btn:hover {
+            background: rgba(255, 255, 255, 0.50);
+            transform: scale(1.04);
+        }
+        .note-panel .note-footer .save-btn:active {
+            transform: scale(0.94);
+        }
+
+        /* ================================================================
+           9.  设置弹窗（仅番茄钟）
+           ================================================================ */
+        .settings-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            background: rgba(0, 0, 0, 0.20);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .settings-modal.open {
+            display: flex;
+        }
+        .settings-modal .modal-box {
+            background: rgba(255, 255, 255, 0.80);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            min-width: 240px;
+            box-shadow: 0 8px 48px rgba(0, 0, 0, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .settings-modal .modal-box h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+            text-align: center;
+        }
+        .settings-modal .modal-box .setting-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .settings-modal .modal-box .setting-group label {
+            font-size: 13px;
+            color: var(--text-hint);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: space-between;
+        }
+        .settings-modal .modal-box .setting-group input[type="number"] {
+            width: 70px;
+            padding: 4px 8px;
+            border: 1px solid rgba(0, 0, 0, 0.10);
+            border-radius: 6px;
+            font-size: 15px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.40);
+        }
+        .settings-modal .modal-box .modal-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 4px;
+        }
+        .settings-modal .modal-box .modal-actions button {
+            padding: 6px 20px;
+            border-radius: var(--radius-sm);
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .settings-modal .modal-box .modal-actions .save-btn {
+            background: var(--primary);
+            color: #fff;
+        }
+        .settings-modal .modal-box .modal-actions .save-btn:hover {
+            background: var(--primary-dark);
+        }
+        .settings-modal .modal-box .modal-actions .cancel-btn {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--text);
+        }
+        .settings-modal .modal-box .modal-actions .cancel-btn:hover {
+            background: rgba(0, 0, 0, 0.10);
+        }
+
+        /* ================================================================
+           10. 全局涟漪
            ================================================================ */
         .global-ripple {
             position: fixed;
@@ -418,7 +868,7 @@
         }
 
         /* ================================================================
-           7.  响应式
+           11. 响应式
            ================================================================ */
         @media (max-width: 820px) {
             :root {
@@ -445,6 +895,39 @@
             }
             .menu-panel .tool-item .tool-hint {
                 font-size: 10px;
+            }
+            .combo-wrapper {
+                top: 64px;
+                right: 20px;
+            }
+            .combo-btn {
+                width: 46px;
+                height: 46px;
+            }
+            .combo-btn .half {
+                font-size: 16px;
+            }
+            .tomato-clock {
+                top: 64px;
+                right: 20px;
+                padding: 12px 14px;
+                min-width: 160px;
+            }
+            .tomato-clock .timer-display {
+                font-size: 24px;
+            }
+            .tomato-clock .timer-controls button {
+                font-size: 12px;
+                padding: 3px 10px;
+            }
+            .note-panel {
+                top: 64px;
+                right: 20px;
+                width: 18vw;
+                height: 24vw;
+                min-width: 160px;
+                min-height: 213px;
+                padding: 12px 14px;
             }
         }
 
@@ -494,6 +977,42 @@
                 height: 4px;
                 right: 4px;
             }
+            .combo-wrapper {
+                top: 56px;
+                right: 16px;
+            }
+            .combo-btn {
+                width: 40px;
+                height: 40px;
+            }
+            .combo-btn .half {
+                font-size: 14px;
+            }
+            .tomato-clock {
+                top: 56px;
+                right: 16px;
+                padding: 10px 12px;
+                min-width: 140px;
+            }
+            .tomato-clock .timer-display {
+                font-size: 20px;
+            }
+            .tomato-clock .timer-controls button {
+                font-size: 11px;
+                padding: 2px 8px;
+            }
+            .note-panel {
+                top: 56px;
+                right: 16px;
+                width: 20vw;
+                height: 26.67vw;
+                min-width: 140px;
+                min-height: 187px;
+                padding: 10px 12px;
+            }
+            .note-panel .note-body textarea {
+                font-size: 12px;
+            }
         }
 
         @media (max-width: 400px) {
@@ -527,11 +1046,48 @@
             .menu-panel .tool-item .tool-hint {
                 font-size: 8px;
             }
+            .combo-wrapper {
+                top: 48px;
+                right: 12px;
+            }
+            .combo-btn {
+                width: 36px;
+                height: 36px;
+            }
+            .combo-btn .half {
+                font-size: 12px;
+            }
+            .tomato-clock {
+                top: 48px;
+                right: 12px;
+                padding: 8px 10px;
+                min-width: 120px;
+            }
+            .tomato-clock .timer-display {
+                font-size: 18px;
+            }
+            .tomato-clock .timer-controls button {
+                font-size: 10px;
+                padding: 2px 6px;
+            }
+            .note-panel {
+                top: 48px;
+                right: 12px;
+                width: 22vw;
+                height: 29.33vw;
+                min-width: 120px;
+                min-height: 160px;
+                padding: 8px 10px;
+            }
         }
 
         @media (-webkit-min-device-pixel-ratio: 2),
         (min-resolution: 192dpi) {
-            .menu-panel {
+            .menu-panel,
+            .tomato-clock,
+            .note-panel,
+            .combo-btn,
+            .settings-modal .modal-box {
                 backdrop-filter: blur(var(--glass-blur)) saturate(1.2);
                 -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.2);
             }
@@ -567,19 +1123,19 @@
             <span class="load-text"><i class="fas fa-folder-open"></i> 加载工具…</span>
         </div>
         <iframe id="toolFrame" name="toolFrame" title="工具页面" src=""
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads"
         loading="lazy"></iframe>
     </main>
 
     <!-- ============================================================
-    汉堡按钮 — 固定在左上角
+    左上角：汉堡按钮
     ============================================================ -->
     <button class="hamburger-fixed" id="hamburgerBtn" aria-label="切换菜单" tabindex="0">
         <span class="hamburger-icon"><i class="fas fa-bars"></i></span>
     </button>
 
     <!-- ============================================================
-    悬浮菜单面板
+    左侧：悬浮菜单面板
     ============================================================ -->
     <aside class="menu-panel" id="menuPanel" role="navigation" aria-label="学习工具导航">
         <ul class="tool-list" id="toolList">
@@ -594,11 +1150,78 @@
     </aside>
 
     <!-- ============================================================
+    右上角：组合按钮（左草绿 · 右淡钴蓝）
+    ============================================================ -->
+    <div class="combo-wrapper" id="comboWrapper">
+        <div class="combo-btn" id="comboBtn">
+            <div class="half left" id="tomatoTrigger" title="番茄钟">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="half right" id="noteTrigger" title="速记便签">
+                <i class="fas fa-sticky-note"></i>
+            </div>
+            <span class="fab-badge" id="fabBadge">●</span>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    番茄钟卡片（右上角展开）
+    ============================================================ -->
+    <div class="tomato-clock" id="tomatoClock">
+        <div class="tomato-header">
+            <span class="tomato-title">🍅 番茄钟</span>
+            <button class="close-btn" id="tomatoClose" title="收起"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="timer-display idle" id="timerDisplay">25:00</div>
+        <div class="timer-controls">
+            <button class="primary-btn" id="startStudyBtn"><i class="fas fa-play"></i> 开始做题</button>
+            <button id="tomatoBtn"><i class="fas fa-clock"></i> 番茄钟</button>
+            <button class="settings-btn" id="settingsBtn"><i class="fas fa-cog"></i></button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    速记便签卡片（右上角展开 · 3:4 · 占屏约1/16）
+    ============================================================ -->
+    <div class="note-panel" id="notePanel">
+        <div class="note-header">
+            <span class="note-title">📝 速记</span>
+            <button class="close-note" id="noteClose" title="收起"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="note-body">
+            <textarea id="noteText" placeholder="记录灵感… 自动保存"></textarea>
+        </div>
+        <div class="note-footer">
+            <span class="save-status" id="saveStatus">已保存</span>
+            <button class="save-btn" id="noteSaveBtn">保存</button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    设置弹窗（仅番茄钟）
+    ============================================================ -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="modal-box">
+            <h3>⏱ 番茄钟设置</h3>
+            <div class="setting-group">
+                <label>
+                    默认时长（分钟）
+                    <input type="number" id="tomatoMinutes" value="25" min="1" max="120" step="1" />
+                </label>
+            </div>
+            <div class="modal-actions">
+                <button class="save-btn" id="saveSettings">保存</button>
+                <button class="cancel-btn" id="cancelSettings">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
     核心脚本
     ============================================================ -->
     <script>
         // ================================================================
-        //  工具数据 — 仅保留 4 个「沉浸学习」工具
+        //  工具数据 — 4 个「沉浸学习」工具
         // ================================================================
         const TOOLS = [{
             id: 'tool-state',
@@ -631,7 +1254,7 @@
         }];
 
         // ================================================================
-        //  核心逻辑
+        //  核心逻辑 (菜单 & iframe)
         // ================================================================
         const frame = document.getElementById('toolFrame');
         const placeholder = document.getElementById('placeholder');
@@ -687,7 +1310,7 @@
                     if (e.button !== 0) return;
                     const id = li.dataset.toolId;
                     switchTool(id);
-                    closeMenu(); // 切换后自动关闭菜单
+                    closeMenu();
                 });
 
                 li.addEventListener('touchend', (e) => {
@@ -708,13 +1331,11 @@
             updateCount();
         }
 
-        // ----- 更新计数 -----
         function updateCount() {
             const idx = currentId ? TOOLS.findIndex(t => t.id === currentId) + 1 : 1;
             navCount.textContent = `${idx} / ${TOOLS.length}`;
         }
 
-        // ----- 切换工具 -----
         function switchTool(toolId) {
             const tool = TOOLS.find(t => t.id === toolId);
             if (!tool) return;
@@ -744,7 +1365,6 @@
             }, 50);
         }
 
-        // ----- iframe 加载完成 -----
         function onIframeLoad() {
             placeholder.classList.add('hidden');
             clearTimeout(loadTimeout);
@@ -756,7 +1376,6 @@
             } catch (_) { /* 跨域忽略 */ }
         }
 
-        // ----- 子页面消息 -----
         function handleMessage(event) {
             const data = event.data;
             if (!data || typeof data !== 'object') return;
@@ -769,7 +1388,6 @@
             }
         }
 
-        // ----- 菜单控制 -----
         function openMenu() {
             isMenuOpen = true;
             menuPanel.classList.add('open');
@@ -785,49 +1403,303 @@
         }
 
         function toggleMenu() {
-            if (isMenuOpen) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
+            if (isMenuOpen) closeMenu();
+            else openMenu();
         }
 
-        // ----- 刷新当前工具（修复版）-----
         function reloadCurrent() {
             if (!frame.src) return;
-            // 显示加载占位
             placeholder.classList.remove('hidden');
-
             try {
-                // 优先使用 iframe 的 reload 方法（同源或部分跨域也允许）
                 const win = frame.contentWindow;
                 if (win && win.location) {
-                    win.location.reload(true); // 强制从服务器重新加载
-                    // 设置超时隐藏占位（如果加载完成会触发 onload，但以防万一）
-                    setTimeout(() => {
-                        placeholder.classList.add('hidden');
-                    }, 3000);
+                    win.location.reload(true);
+                    setTimeout(() => { placeholder.classList.add('hidden'); }, 3000);
                     return;
                 }
-            } catch (e) {
-                // 跨域或其他错误，回退到重置 src
-                console.warn('无法使用 location.reload，回退到重置 src', e);
-            }
-
-            // 回退方案：清空再设置 src
+            } catch (e) { /* fallback */ }
             const src = frame.src;
             frame.src = '';
             clearTimeout(loadTimeout);
-            loadTimeout = setTimeout(() => {
-                frame.src = src;
-            }, 30);
-            setTimeout(() => {
-                placeholder.classList.add('hidden');
-            }, 3000);
+            loadTimeout = setTimeout(() => { frame.src = src; }, 30);
+            setTimeout(() => { placeholder.classList.add('hidden'); }, 3000);
         }
 
         // ================================================================
-        //  全局涟漪 (轻量)
+        //  番茄钟逻辑（基于时间戳，抗节能）
+        // ================================================================
+        const timerDisplay = document.getElementById('timerDisplay');
+        const startStudyBtn = document.getElementById('startStudyBtn');
+        const tomatoBtn = document.getElementById('tomatoBtn');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsModal = document.getElementById('settingsModal');
+        const tomatoMinutes = document.getElementById('tomatoMinutes');
+        const saveSettings = document.getElementById('saveSettings');
+        const cancelSettings = document.getElementById('cancelSettings');
+
+        const tomatoClock = document.getElementById('tomatoClock');
+        const tomatoClose = document.getElementById('tomatoClose');
+        const comboWrapper = document.getElementById('comboWrapper');
+        const fabBadge = document.getElementById('fabBadge');
+
+        const tomatoTrigger = document.getElementById('tomatoTrigger');
+        const noteTrigger = document.getElementById('noteTrigger');
+        const notePanel = document.getElementById('notePanel');
+        const noteClose = document.getElementById('noteClose');
+        const noteText = document.getElementById('noteText');
+        const noteSaveBtn = document.getElementById('noteSaveBtn');
+        const saveStatus = document.getElementById('saveStatus');
+
+        let timerState = 'idle';
+        let timerMode = 'countdown';
+        let timerInterval = null;
+        let remainingSeconds = 25 * 60;
+        let totalSeconds = 25 * 60;
+        let prepSeconds = 5;
+        let startTimestamp = null;
+
+        // ----- 番茄钟折叠/展开 -----
+        let isTomatoOpen = false;
+
+        function openTomato() {
+            if (isNoteOpen) closeNote();
+            isTomatoOpen = true;
+            tomatoClock.classList.add('open');
+            comboWrapper.classList.add('hidden');
+        }
+
+        function closeTomato() {
+            isTomatoOpen = false;
+            tomatoClock.classList.remove('open');
+            comboWrapper.classList.remove('hidden');
+        }
+
+        function toggleTomato() {
+            if (isTomatoOpen) closeTomato();
+            else openTomato();
+        }
+
+        // ----- 速记便签折叠/展开 -----
+        let isNoteOpen = false;
+
+        function openNote() {
+            if (isTomatoOpen) closeTomato();
+            isNoteOpen = true;
+            notePanel.classList.add('open');
+            comboWrapper.classList.add('hidden');
+            loadNote();
+            noteText.focus();
+        }
+
+        function closeNote() {
+            isNoteOpen = false;
+            notePanel.classList.remove('open');
+            comboWrapper.classList.remove('hidden');
+            saveNote();
+        }
+
+        function toggleNote() {
+            if (isNoteOpen) closeNote();
+            else openNote();
+        }
+
+        // ----- 速记便签存储 -----
+        function loadNote() {
+            try {
+                const data = localStorage.getItem('quick_note');
+                if (data) noteText.value = data;
+            } catch (e) { /* ignore */ }
+        }
+
+        function saveNote() {
+            try {
+                localStorage.setItem('quick_note', noteText.value);
+                saveStatus.textContent = '已保存';
+                saveStatus.className = 'save-status saved';
+                setTimeout(() => {
+                    saveStatus.className = 'save-status';
+                }, 2000);
+            } catch (e) { /* ignore */ }
+        }
+
+        function autoSaveNote() {
+            try {
+                localStorage.setItem('quick_note', noteText.value);
+                saveStatus.textContent = '已保存';
+                saveStatus.className = 'save-status saved';
+                clearTimeout(noteText._saveTimer);
+                noteText._saveTimer = setTimeout(() => {
+                    saveStatus.className = 'save-status';
+                }, 1500);
+            } catch (e) { /* ignore */ }
+        }
+
+        // ----- 计时器核心 -----
+        function updateDisplayFromTimestamp() {
+            if (timerState !== 'running' && timerState !== 'prep') return;
+            if (startTimestamp === null) return;
+
+            const now = Date.now();
+            let elapsed = (now - startTimestamp) / 1000;
+
+            if (timerMode === 'stopwatch') {
+                const seconds = Math.floor(elapsed);
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                remainingSeconds = seconds;
+            } else if (timerMode === 'countdown') {
+                let remaining = totalSeconds - elapsed;
+                if (remaining < 0) remaining = 0;
+                const mins = Math.floor(remaining / 60);
+                const secs = Math.floor(remaining % 60);
+                timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                remainingSeconds = remaining;
+                if (remaining <= 0) {
+                    stopTimer();
+                }
+            }
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            timerState = 'idle';
+            timerDisplay.className = 'timer-display idle';
+            fabBadge.classList.remove('active');
+            if (timerMode === 'countdown') {
+                remainingSeconds = totalSeconds;
+                const mins = Math.floor(remainingSeconds / 60);
+                const secs = remainingSeconds % 60;
+                timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            } else {
+                remainingSeconds = 0;
+                timerDisplay.textContent = '00:00';
+            }
+            startStudyBtn.innerHTML = '<i class="fas fa-play"></i> 开始做题';
+            tomatoBtn.innerHTML = '<i class="fas fa-clock"></i> 番茄钟';
+            startTimestamp = null;
+        }
+
+        function startStopwatch() {
+            if (timerInterval) stopTimer();
+            timerState = 'running';
+            timerMode = 'stopwatch';
+            startTimestamp = Date.now();
+            remainingSeconds = 0;
+            timerDisplay.textContent = '00:00';
+            timerDisplay.className = 'timer-display running';
+            fabBadge.classList.add('active');
+            startStudyBtn.innerHTML = '<i class="fas fa-stop"></i> 停止';
+            tomatoBtn.innerHTML = '<i class="fas fa-clock"></i> 番茄钟';
+
+            timerInterval = setInterval(() => {
+                updateDisplayFromTimestamp();
+            }, 200);
+        }
+
+        function startCountdown() {
+            if (timerInterval) stopTimer();
+            timerState = 'running';
+            timerMode = 'countdown';
+            startTimestamp = Date.now();
+            remainingSeconds = totalSeconds;
+            const mins = Math.floor(remainingSeconds / 60);
+            const secs = remainingSeconds % 60;
+            timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            timerDisplay.className = 'timer-display running';
+            fabBadge.classList.add('active');
+            startStudyBtn.innerHTML = '<i class="fas fa-play"></i> 开始做题';
+            tomatoBtn.innerHTML = '<i class="fas fa-stop"></i> 停止';
+
+            timerInterval = setInterval(() => {
+                updateDisplayFromTimestamp();
+            }, 200);
+        }
+
+        function startPrep() {
+            if (timerInterval) stopTimer();
+            timerState = 'prep';
+            timerMode = 'stopwatch';
+            startTimestamp = Date.now();
+            let prepLeft = prepSeconds;
+            timerDisplay.textContent = `00:${String(prepLeft).padStart(2, '0')}`;
+            timerDisplay.className = 'timer-display prep';
+            fabBadge.classList.add('active');
+            startStudyBtn.innerHTML = `<i class="fas fa-hourglass-half"></i> 准备 ${prepLeft}s`;
+            tomatoBtn.innerHTML = '<i class="fas fa-clock"></i> 番茄钟';
+
+            timerInterval = setInterval(() => {
+                const now = Date.now();
+                const elapsed = (now - startTimestamp) / 1000;
+                const remainingPrep = prepSeconds - elapsed;
+                if (remainingPrep <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    startStopwatch();
+                } else {
+                    const displaySecs = Math.ceil(remainingPrep);
+                    timerDisplay.textContent = `00:${String(displaySecs).padStart(2, '0')}`;
+                    startStudyBtn.innerHTML = `<i class="fas fa-hourglass-half"></i> 准备 ${displaySecs}s`;
+                }
+            }, 100);
+        }
+
+        function handleStartStudy() {
+            if (timerState === 'idle') {
+                startPrep();
+                if (!isTomatoOpen) openTomato();
+            } else if (timerState === 'prep') {
+                stopTimer();
+            } else if (timerState === 'running' && timerMode === 'stopwatch') {
+                stopTimer();
+            }
+        }
+
+        function handleTomato() {
+            if (timerState === 'idle') {
+                startCountdown();
+                if (!isTomatoOpen) openTomato();
+            } else if (timerState === 'prep') {
+                stopTimer();
+            } else if (timerState === 'running' && timerMode === 'countdown') {
+                stopTimer();
+            }
+        }
+
+        // ----- 设置功能 -----
+        function openSettings() {
+            tomatoMinutes.value = Math.floor(totalSeconds / 60);
+            settingsModal.classList.add('open');
+        }
+
+        function closeSettings() {
+            settingsModal.classList.remove('open');
+        }
+
+        function saveSettingsHandler() {
+            let val = parseInt(tomatoMinutes.value);
+            if (isNaN(val) || val < 1) val = 25;
+            if (val > 120) val = 120;
+            totalSeconds = val * 60;
+            if (timerState === 'idle') {
+                remainingSeconds = totalSeconds;
+                const mins = Math.floor(remainingSeconds / 60);
+                const secs = remainingSeconds % 60;
+                timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                timerDisplay.className = 'timer-display idle';
+            }
+            closeSettings();
+        }
+
+        settingsModal.addEventListener('click', (e) => {
+            if (e.target === settingsModal) closeSettings();
+        });
+
+        // ================================================================
+        //  全局涟漪
         // ================================================================
         const MAX_RIPPLES = 20;
         const ripples = [];
@@ -860,7 +1732,6 @@
         // ================================================================
         function init() {
             renderTools();
-
             frame.addEventListener('load', onIframeLoad);
             window.addEventListener('message', handleMessage);
 
@@ -868,7 +1739,6 @@
                 e.stopPropagation();
                 toggleMenu();
             });
-
             hamburgerBtn.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -876,13 +1746,11 @@
                 }
             });
 
-            // 刷新按钮：阻止冒泡，避免点击时关闭菜单
             reloadBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 reloadCurrent();
             });
 
-            // 点击页面其他区域关闭菜单（但汉堡和菜单内部除外）
             document.addEventListener('click', (e) => {
                 if (isMenuOpen && !menuPanel.contains(e.target) && e.target !== hamburgerBtn && !hamburgerBtn
                     .contains(e.target)) {
@@ -899,20 +1767,70 @@
                 }
             });
 
-            // 加载第一个工具
+            // ---- 组合按钮事件 ----
+            tomatoTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openTomato();
+            });
+
+            noteTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openNote();
+            });
+
+            // ---- 番茄钟事件 ----
+            tomatoClose.addEventListener('click', closeTomato);
+
+            startStudyBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                handleStartStudy();
+            });
+            tomatoBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                handleTomato();
+            });
+            settingsBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openSettings();
+            });
+            saveSettings.addEventListener('click', saveSettingsHandler);
+            cancelSettings.addEventListener('click', closeSettings);
+
+            // ---- 速记便签事件 ----
+            noteClose.addEventListener('click', closeNote);
+            noteSaveBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                saveNote();
+            });
+            noteText.addEventListener('input', autoSaveNote);
+
+            // ---- 加载第一个工具 ----
             const first = TOOLS[0];
             if (first) {
                 switchTool(first.id);
             }
-
-            // 默认菜单关闭
             closeMenu();
+
+            // 默认折叠所有卡片
+            closeTomato();
+            closeNote();
+            comboWrapper.classList.remove('hidden');
+
+            // 初始化计时器显示
+            remainingSeconds = totalSeconds;
+            const mins = Math.floor(remainingSeconds / 60);
+            const secs = remainingSeconds % 60;
+            timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            timerDisplay.className = 'timer-display idle';
+
+            // 加载速记内容
+            loadNote();
 
             setTimeout(() => {
                 placeholder.classList.add('hidden');
             }, 5000);
 
-            console.log('✅ 沉浸学习 · 悬浮菜单 · 刷新按钮已修复');
+            console.log('✅ 沉浸学习 · 组合按钮（草绿/淡钴蓝）+ 速记 + 番茄钟 已启动');
         }
 
         if (document.readyState === 'complete') {
@@ -930,7 +1848,11 @@
             openMenu,
             closeMenu,
             toggleMenu,
-            isMenuOpen: () => isMenuOpen
+            isMenuOpen: () => isMenuOpen,
+            openTomato,
+            closeTomato,
+            openNote,
+            closeNote
         };
     </script>
 </body>
