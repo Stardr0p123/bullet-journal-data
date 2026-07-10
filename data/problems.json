@@ -1,6 +1,305 @@
 {
   "questions": [
     {
+      "id": 1783690600007,
+      "pid": "CF551E",
+      "name": "GukiZ and GukiZiana",
+      "diff": "省选/NOI-",
+      "subDiff": "下位",
+      "think": 5,
+      "code": 8,
+      "quality": 8,
+      "feel": 6,
+      "date": "2026-07-10",
+      "status": "F",
+      "tags": [
+        "分块",
+        "STL",
+        "卡常"
+      ]
+    },
+    {
+      "id": 1783685578906,
+      "pid": "CF1954E",
+      "name": "Chain Reaction",
+      "diff": "提高",
+      "subDiff": "中位",
+      "think": 6,
+      "code": 6,
+      "quality": 8,
+      "feel": 8,
+      "date": "2026-07-10",
+      "status": "F",
+      "tags": [
+        "整除分块"
+      ]
+    },
+    {
+      "id": 1783672075797,
+      "pid": "P3172",
+      "name": "[CQOI2015] 选数",
+      "diff": "省选/NOI-",
+      "subDiff": "中位",
+      "think": 7,
+      "code": 7,
+      "quality": 8,
+      "feel": 7,
+      "date": "2026-07-10",
+      "status": "C",
+      "tags": [
+        "莫比乌斯反演",
+        "杜教筛"
+      ]
+    },
+    {
+      "id": 1783669834204,
+      "pid": "P5218",
+      "name": "无聊的水题 II",
+      "diff": "省选/NOI-",
+      "subDiff": "中位",
+      "think": 8,
+      "code": 6,
+      "quality": 8,
+      "feel": 6,
+      "date": "2026-07-10",
+      "status": "C",
+      "tags": [
+        "杜教筛",
+        "莫比乌斯反演"
+      ]
+    },
+    {
+      "id": 1783668643279,
+      "pid": "P4318",
+      "name": "完全平方数",
+      "diff": "省选/NOI-",
+      "subDiff": "下位",
+      "think": 6,
+      "code": 5,
+      "quality": 8,
+      "feel": 7,
+      "date": "2026-07-10",
+      "status": "F",
+      "tags": [
+        "莫比乌斯反演",
+        "容斥原理"
+      ]
+    },
+    {
+      "id": 1783668131031,
+      "pid": "P4213",
+      "name": "【模板】杜教筛",
+      "diff": "省选/NOI-",
+      "subDiff": "中位",
+      "think": 8,
+      "code": 5,
+      "quality": 8,
+      "feel": 8,
+      "date": "2026-07-10",
+      "status": "A",
+      "tags": [
+        "杜教筛",
+        "数论"
+      ]
+    },
+    {
+      "id": 1783603347953,
+      "pid": "CF1530F",
+      "name": "Bingo",
+      "diff": "提高",
+      "subDiff": "上位",
+      "think": 8,
+      "code": 6,
+      "quality": 8,
+      "feel": 6,
+      "date": "2026-07-09",
+      "status": "C",
+      "tags": [
+        "不知道"
+      ]
+    },
+    {
+      "id": 1783603293963,
+      "pid": "CF506D",
+      "name": "Mr. Kitayuta's Colorful Graph",
+      "diff": "提高",
+      "subDiff": "中位",
+      "think": 7,
+      "code": 7,
+      "quality": 8,
+      "feel": 7,
+      "date": "2026-07-09",
+      "status": "F",
+      "tags": [
+        "根号分治",
+        "并查集"
+      ]
+    },
+    {
+      "id": 1783583622537,
+      "pid": "CF1120C",
+      "name": "Compress String",
+      "diff": "提高+/省选-",
+      "subDiff": "中位",
+      "think": 6,
+      "code": 7,
+      "quality": 6,
+      "feel": 7,
+      "date": "2026-07-09",
+      "status": "F",
+      "tags": [
+        "Hash",
+        "DP"
+      ]
+    },
+    {
+      "id": 1783504025178,
+      "pid": "P3415",
+      "name": "祭坛",
+      "diff": "省选/NOI-",
+      "subDiff": "下位",
+      "think": 7,
+      "code": 7,
+      "quality": 8,
+      "feel": 9,
+      "date": "2026-07-08",
+      "status": "F",
+      "tags": [
+        "线段树",
+        "扫描线"
+      ]
+    },
+    {
+      "id": 1783415422071,
+      "pid": "P7914",
+      "name": "[CSP-S 2021] 括号序列",
+      "diff": "提高+/省选-",
+      "subDiff": "上位",
+      "think": 7,
+      "code": 8,
+      "quality": 8,
+      "feel": 4,
+      "date": "2026-07-07",
+      "status": "C",
+      "tags": [
+        "区间DP"
+      ]
+    },
+    {
+      "id": 1783330365897,
+      "pid": "CF1654F",
+      "name": "Minimal String Xoration",
+      "diff": "省选/NOI-",
+      "subDiff": "中位",
+      "think": 8,
+      "code": 4,
+      "quality": 8,
+      "feel": 6,
+      "date": "2026-07-06",
+      "status": "C",
+      "tags": [
+        "后缀排序"
+      ]
+    },
+    {
+      "id": 1783327673084,
+      "pid": "P6257",
+      "name": "[ICPC 2019 WF] First of Her Name",
+      "diff": "省选/NOI-",
+      "subDiff": "中位",
+      "think": 7,
+      "code": 8,
+      "quality": 9,
+      "feel": 9,
+      "date": "2026-07-06",
+      "status": "C",
+      "tags": [
+        "AC自动机"
+      ]
+    },
+    {
+      "id": 1783324195376,
+      "pid": "UVA1401",
+      "name": "Remember the Word",
+      "diff": "提高",
+      "subDiff": "下位",
+      "think": 5,
+      "code": 6,
+      "quality": 8,
+      "feel": 7,
+      "date": "2026-07-06",
+      "status": "F",
+      "tags": [
+        "DP",
+        "Trie"
+      ]
+    },
+    {
+      "id": 1783321706531,
+      "pid": "CF955D",
+      "name": "Scissors",
+      "diff": "提高+/省选-",
+      "subDiff": "上位",
+      "think": 7,
+      "code": 8,
+      "quality": 5,
+      "feel": 3,
+      "date": "2026-07-06",
+      "status": "C",
+      "tags": [
+        "KMP"
+      ]
+    },
+    {
+      "id": 1783301334943,
+      "pid": "P1239",
+      "name": "计数器",
+      "diff": "普及+/提高-",
+      "subDiff": "中位",
+      "think": 5,
+      "code": 5,
+      "quality": 7,
+      "feel": 7,
+      "date": "2026-07-06",
+      "status": "A",
+      "tags": [
+        "数位DP"
+      ]
+    },
+    {
+      "id": 1783301276450,
+      "pid": "P4289",
+      "name": "[HAOI2008]移动玩具",
+      "diff": "普及+/提高-",
+      "subDiff": "上位",
+      "think": 5,
+      "code": 7,
+      "quality": 9,
+      "feel": 8,
+      "date": "2026-07-06",
+      "status": "A",
+      "tags": [
+        "费用流"
+      ]
+    },
+    {
+      "id": 1783301239093,
+      "pid": "CF1083B",
+      "name": "The Fair Nut and Strings",
+      "diff": "提高",
+      "subDiff": "上位",
+      "think": 8,
+      "code": 3,
+      "quality": 9,
+      "feel": 7,
+      "date": "2026-07-06",
+      "status": "C",
+      "tags": [
+        "贪心",
+        "Trie"
+      ]
+    },
+    {
       "id": 1783136541682,
       "pid": "CF1082G",
       "name": "Petya and Graph",
@@ -2015,6 +2314,11 @@
       "id": "1783154994591_a1mk",
       "category": "通用",
       "text": "不要加一些神秘的小优化啊"
+    },
+    {
+      "id": "1783690656692_o41j",
+      "category": "DS",
+      "text": "STL的常数大小？"
     }
   ]
 }
