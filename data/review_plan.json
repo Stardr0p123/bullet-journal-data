@@ -1,6 +1,60 @@
 {
   "algorithms": [
     {
+      "id": "algo_1783692096821_7teuq",
+      "name": "杜教筛",
+      "category": "数学",
+      "difficulty": "hard",
+      "description": "",
+      "learnDate": "2026-07-10",
+      "note": "# 杜教筛：数学结构、算法流程与复杂度分析\n\n## 1. 问题定义与瓶颈\n\n杜教筛解决的核心问题是：**在 $O(n^{2/3})$ 时间内计算积性函数 $f$ 的前缀和**\n\n$$\nS(n) = \\sum_{i=1}^{n} f(i)\n$$\n\n其中 $n$ 的规模通常达到 $10^{10}$ 级别。\n\n传统线性筛的复杂度为 $O(n)$，在 $n$ 极大时空间和时间均不可接受。杜教筛的本质是一种**基于狄利克雷卷积的递归降维与记忆化搜索策略**。\n\n---\n\n## 2. 构造与核心恒等式\n\n设目标函数为 $f$。我们需要**人为选取一个辅助积性函数 $g$**，使得 $g$ 本身的前缀和极易计算，并且 $f$ 与 $g$ 的狄利克雷卷积 $h = f * g$ 的前缀和也极易计算。\n\n狄利克雷卷积定义为：\n\n$$\nh(n) = (f * g)(n) = \\sum_{d|n} f(d) \\cdot g\\left(\\frac{n}{d}\\right)\n$$\n\n考察 $h$ 的前缀和 $\\sum_{i=1}^{n} h(i)$，通过交换求和次序（枚举因子 $d$ 及其倍数），可将其转化为：\n\n$$\n\\sum_{i=1}^{n} h(i) = \\sum_{d=1}^{n} g(d) \\cdot S\\left(\\left\\lfloor \\frac{n}{d} \\right\\rfloor\\right)\n$$\n\n将上式右侧的 $d=1$ 项单独提取出来（注意 $g(1)$ 对于积性函数恒等于 $1$），得到杜教筛的**核心递归式**：\n\n$$\nS(n) = \\sum_{i=1}^{n} h(i) - \\sum_{d=2}^{n} g(d) \\cdot S\\left(\\left\\lfloor \\frac{n}{d} \\right\\rfloor\\right)\n\\tag{1}\n$$\n\n这个式子的逻辑意义是：**将未知的大规模目标前缀和，等价于两个已知/易算项（$\\sum h$ 与 $\\sum g \\cdot S(\\lfloor n/d \\rfloor)$）的差**。右侧第二项中的 $S$ 自变量严格小于 $n$（因为 $d \\ge 2$），从而构成了合法的递归降级关系。\n\n---\n\n## 3. 算法执行的三个关键优化机制\n\n### 3.1 整除分块（数论分块）\n\n观察递归式右侧第二项：$\\sum_{d=2}^{n} g(d) \\cdot S(\\lfloor n/d \\rfloor)$。\n\n对于任意的 $d$，$\\lfloor n/d \\rfloor$ 的取值只有 $O(\\sqrt{n})$ 种不同的连续区间。在同一个区间 $[l, r]$ 内，$S(\\lfloor n/d \\rfloor)$ 的值恒定，因此我们可以提取公因式，将区间求和转化为：\n\n$$\n\\sum_{\\text{区间 }[l,r]} S\\left(\\left\\lfloor \\frac{n}{l} \\right\\rfloor\\right) \\cdot \\sum_{d=l}^{r} g(d)\n$$\n\n由于我们选取 $g$ 时已保证其前缀和可 $O(1)$ 或 $O(\\log n)$ 计算，故这一层的枚举量从 $O(n)$ 骤降至 $O(\\sqrt{n})$。\n\n### 3.2 记忆化搜索（哈希表存储）\n\n递归计算 $S(n)$ 时，会大量重复计算相同参数的 $S(\\lfloor n/k \\rfloor)$。使用哈希表（无序映射）存储已计算的 $S(m)$ 值，保证每个不同的递归参数只被完整计算一次。\n\n由于递归参数全部由 $\\lfloor n/i \\rfloor$ 生成，其总数量级为 $O(\\sqrt{n})$，结合分块，确保状态数可控。\n\n### 3.3 线性筛预处理阈值（底部截断）\n\n递归不能无限深入到 $n=1$。我们设定一个阈值 $K = n^{2/3}$。预先用欧拉线性筛在 $O(K)$ 的时间内计算出所有 $S(1)$ 到 $S(K)$ 的精确值并存入数组。\n\n在递归过程中，当递归参数 $m \\le K$ 时，直接返回数组中的预处理值，**立即终止当前递归分支**，不再向下展开。这既节省了深层递归开销，也避免了哈希表存储过小的数造成的常数损耗。\n\n---\n\n## 4. 时间复杂度分析\n\n设总时间复杂度为 $T(n)$。\n\n-   **预处理阶段**：$O(K) = O(n^{2/3})$。\n-   **递归计算阶段**：所有需要递归计算的参数均为 $\\lfloor n/i \\rfloor > K$，即 $i < n/K = n^{1/3}$。对于每个这样的大参数，计算它的递归式时需要进行一次 $O(\\sqrt{m})$ 的整除分块遍历。\n\n因此，递归部分的复杂度为：\n\n$$\n\\sum_{i=1}^{n/K} \\sqrt{\\frac{n}{i}} = \\int_{1}^{n^{1/3}} \\sqrt{\\frac{n}{x}} \\, dx = O\\left( n^{\\frac{2}{3}} \\right)\n$$\n\n总复杂度 $T(n) = O(n^{2/3}) + O(n^{2/3}) = O(n^{2/3})$。该复杂度在理论上显著优于线性筛，且能处理 $10^{10}$ 级别的数据量。\n\n---\n\n## 5. 辅助函数 $g$ 的选取策略\n\n$g$ 的选取不是任意的，其唯一标准是：**使得 $h = f * g$ 的前缀和具有封闭形式或极低计算复杂度**。\n\n经典应用实例：\n\n-   **计算莫比乌斯函数前缀和** $S_{\\mu}(n)$：取 $g = \\mathbf{1}$（常函数，恒为 1），则 $h = \\mu * \\mathbf{1} = \\varepsilon$（单位函数，$\\varepsilon(1)=1$，其余为 0）。此时 $\\sum h(i) = 1$，$g$ 的前缀和即为 $d$ 的区间长度，计算复杂度为 $O(1)$。\n-   **计算欧拉函数前缀和** $S_{\\varphi}(n)$：仍取 $g = \\mathbf{1}$，则 $h = \\varphi * \\mathbf{1} = \\text{id}$（恒等函数，$\\text{id}(n)=n$）。此时 $\\sum h(i) = n(n+1)/2$，同样为封闭公式。\n\n---\n\n## 6. 总结性逻辑链条\n\n杜教筛并非暴力加速，而是利用数论中卷积的交换性，**主动引入一个结构简单的外挂函数 $g$**，构造出一个“目标前缀和 $S(n)$”与“一系列小规模 $S(\\lfloor n/i \\rfloor)$”之间的**强约束递归方程**。借助整除分块压缩遍历维度，借助记忆化压缩重复计算，借助预处理截断递归深度，最终将大规模求和问题映射为一个稀疏的状态空间搜索问题，从而在亚线性时间内完成求解。",
+      "reviewNodes": [
+        {
+          "label": "第1次",
+          "daysAfter": 1,
+          "key": "d1",
+          "date": "2026-07-11",
+          "done": false
+        },
+        {
+          "label": "第2次",
+          "daysAfter": 2,
+          "key": "d2",
+          "date": "2026-07-12",
+          "done": false
+        },
+        {
+          "label": "第3次",
+          "daysAfter": 4,
+          "key": "d4",
+          "date": "2026-07-14",
+          "done": false
+        },
+        {
+          "label": "第4次",
+          "daysAfter": 7,
+          "key": "d7",
+          "date": "2026-07-17",
+          "done": false
+        },
+        {
+          "label": "第5次",
+          "daysAfter": 15,
+          "key": "d15",
+          "date": "2026-07-25",
+          "done": false
+        },
+        {
+          "label": "第6次",
+          "daysAfter": 30,
+          "key": "d30",
+          "date": "2026-08-09",
+          "done": false
+        }
+      ],
+      "createdAt": "2026-07-10T14:01:36.821Z"
+    },
+    {
       "id": "algo_1782042321317_548ol",
       "name": "BSGS",
       "category": "数学",
@@ -30,21 +84,24 @@
           "daysAfter": 4,
           "key": "d4",
           "date": "2026-06-25",
-          "done": false
+          "done": true,
+          "checkedAt": "2026-06-25T00:17:46.432Z"
         },
         {
           "label": "第4次",
           "daysAfter": 7,
           "key": "d7",
           "date": "2026-06-28",
-          "done": false
+          "done": true,
+          "checkedAt": "2026-06-30T06:30:41.510Z"
         },
         {
           "label": "第5次",
           "daysAfter": 15,
           "key": "d15",
           "date": "2026-07-06",
-          "done": false
+          "done": true,
+          "checkedAt": "2026-07-09T02:47:10.019Z"
         },
         {
           "label": "第6次",
@@ -94,14 +151,16 @@
           "daysAfter": 7,
           "key": "d7",
           "date": "2026-06-24",
-          "done": false
+          "done": true,
+          "checkedAt": "2026-06-25T00:17:45.363Z"
         },
         {
           "label": "第5次",
           "daysAfter": 15,
           "key": "d15",
           "date": "2026-07-02",
-          "done": false
+          "done": true,
+          "checkedAt": "2026-07-02T01:41:27.395Z"
         },
         {
           "label": "第6次",
@@ -151,14 +210,16 @@
           "daysAfter": 7,
           "key": "d7",
           "date": "2026-06-24",
-          "done": false
+          "done": true,
+          "checkedAt": "2026-06-25T00:17:45.871Z"
         },
         {
           "label": "第5次",
           "daysAfter": 15,
           "key": "d15",
           "date": "2026-07-02",
-          "done": false
+          "done": true,
+          "checkedAt": "2026-07-02T01:41:51.292Z"
         },
         {
           "label": "第6次",
