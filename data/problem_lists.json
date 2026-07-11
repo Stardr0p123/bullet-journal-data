@@ -3301,7 +3301,7 @@
         "pid": "CF1580C",
         "name": "Train Maintenance",
         "difficulty": 5,
-        "done": false
+        "done": true
       },
       {
         "pid": "CF103D",
@@ -4309,7 +4309,57 @@
         "difficulty": 7,
         "done": false
       }
+    ],
+    "7.11": [
+      {
+        "pid": "CF1096E",
+        "name": "The Top Scorer",
+        "difficulty": 5,
+        "done": true
+      },
+      {
+        "pid": "CF1208G",
+        "name": "Polygons",
+        "difficulty": 7,
+        "done": true
+      },
+      {
+        "pid": "CF1540C1",
+        "name": "Converging Array (Easy Version)",
+        "difficulty": 7,
+        "done": false
+      },
+      {
+        "pid": "CF1778E",
+        "name": "The Tree Has Fallen!",
+        "difficulty": 7,
+        "done": false
+      },
+      {
+        "pid": "CF1815D",
+        "name": "XOR Counting",
+        "difficulty": 7,
+        "done": false
+      },
+      {
+        "pid": "CF1835C",
+        "name": "Twin Clusters",
+        "difficulty": 7,
+        "done": false
+      },
+      {
+        "pid": "CF1854C",
+        "name": "Expected Destruction",
+        "difficulty": 5,
+        "done": true
+      },
+      {
+        "pid": "CF2111F",
+        "name": "Puzzle",
+        "difficulty": 5,
+        "done": false
+      }
     ]
   },
-  "currentList": "专题-数据结构"
+  "currentList": "7.11"
 }
