@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -192,7 +193,7 @@
             border-bottom-color: rgba(255, 255, 255, 0.04);
         }
         .header-inner {
-            max-width: 1440px;
+            max-width: 1500px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -280,7 +281,7 @@
 
         /* ===== 主容器 ———— 修复滚动条的关键 ===== */
         .main-container {
-            max-width: 1440px;
+            max-width: 1500px;
             width: 100%;
             margin: 0 auto;
             padding: 18px 28px 20px;
@@ -294,7 +295,7 @@
 
         /* ---- 左侧列 ---- */
         .col-left {
-            flex: 0 0 300px;
+            flex: 0 0 360px;
             height: 100%;
             min-height: 0;
             overflow: hidden;
@@ -534,7 +535,7 @@
             padding-right: 4px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             min-height: 0;
         }
         .list-container::-webkit-scrollbar {
@@ -1080,32 +1081,40 @@
         .problem-item .pi-status:active {
             transform: scale(0.88);
         }
-        .problem-item .pi-status.status-solution {
-            background: rgba(74, 106, 138, 0.20);
-            color: #3a5a7a;
-            border: 1px solid rgba(74, 106, 138, 0.10);
-        }
-        .problem-item .pi-status.status-hint {
-            background: rgba(90, 122, 154, 0.18);
-            color: #4a6a8a;
-            border: 1px solid rgba(90, 122, 154, 0.08);
-        }
-        .problem-item .pi-status.status-ai {
-            background: rgba(106, 138, 170, 0.16);
-            color: #5a7a9a;
-            border: 1px solid rgba(106, 138, 170, 0.08);
-        }
-        .problem-item .pi-status.status-independent {
-            background: rgba(138, 170, 202, 0.14);
-            color: #6a8aaa;
-            border: 1px solid rgba(138, 170, 202, 0.06);
-        }
+        /* 灰色 - 保持不变 */
         .problem-item .pi-status.status-pending {
             background: rgba(148, 163, 184, 0.10);
             color: var(--text-muted);
             border: 1px solid rgba(148, 163, 184, 0.06);
         }
 
+        /* 最浅绿色 - independent（微微加深） */
+        .problem-item .pi-status.status-independent {
+            background: rgba(127, 186, 156, 0.14);
+            color: #629c7f;
+            border: 1px solid rgba(127, 186, 156, 0.06);
+        }
+
+        /* 浅绿色 - ai（微微加深） */
+        .problem-item .pi-status.status-ai {
+            background: rgba(98, 156, 127, 0.16);
+            color: #538e70;
+            border: 1px solid rgba(98, 156, 127, 0.08);
+        }
+
+        /* 中绿色 - hint（微微加深） */
+        .problem-item .pi-status.status-hint {
+            background: rgba(83, 142, 112, 0.18);
+            color: #447f62;
+            border: 1px solid rgba(83, 142, 112, 0.08);
+        }
+
+        /* 最深绿色 - solution（微微加深） */
+        .problem-item .pi-status.status-solution {
+            background: rgba(68, 127, 98, 0.20);
+            color: #357053;
+            border: 1px solid rgba(68, 127, 98, 0.10);
+        }
         .problem-item .pi-actions {
             display: flex;
             gap: 2px;
@@ -2045,8 +2054,8 @@
             <div class="logo-area">
                 <div class="logo-icon"><i class="fas fa-layer-group"></i></div>
                 <div>
-                    <span class="logo-text">题单 · 题库</span>
-                    <span class="logo-sub">记录 · 统计 · 随机</span>
+                    <span class="logo-text">题单管理</span>
+                    <span class="logo-sub">便捷题目记录器</span>
                 </div>
             </div>
             <div class="header-actions">
