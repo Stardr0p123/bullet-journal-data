@@ -5835,6 +5835,52 @@
         ],
         "date": "2026-08-07",
         "expanded": false
+      },
+      {
+        "pid": "P10834",
+        "name": "[COTS 2023] 题 Zadatak",
+        "difficulty": 7,
+        "status": "ai",
+        "think": 5,
+        "code": 8,
+        "quality": 9,
+        "feel": 5,
+        "tags": [
+          "线段树合并"
+        ],
+        "date": "2026-08-11",
+        "expanded": false
+      },
+      {
+        "pid": "P10394",
+        "name": "接连不断！",
+        "difficulty": 4,
+        "status": "solution",
+        "think": 7,
+        "code": 3,
+        "quality": 7,
+        "feel": 4,
+        "tags": [
+          "数论"
+        ],
+        "date": "2026-08-11",
+        "expanded": false
+      },
+      {
+        "pid": "P1298",
+        "name": "最接近的分数",
+        "difficulty": 6,
+        "status": "solution",
+        "think": 8,
+        "code": 3,
+        "quality": 9,
+        "feel": 8,
+        "tags": [
+          "Stern-Brocot树",
+          "数论"
+        ],
+        "date": "2026-08-11",
+        "expanded": false
       }
     ],
     "专题-动态规划 Level 2": [
@@ -13555,5 +13601,5 @@
       }
     ]
   },
-  "currentList": "代码源-待补"
+  "currentList": "杂题-做题记录"
 }
