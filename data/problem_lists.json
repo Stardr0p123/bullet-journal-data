@@ -12821,10 +12821,20 @@
       "groups": [],
       "problems": [
         {
+          "pid": "AT_abc160_f",
+          "name": "Distributing Integers",
+          "difficulty": 5,
+          "date": "2026-10-24",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
           "pid": "AT_abc281_g",
           "name": "Farthest City",
           "difficulty": 5,
-          "date": "",
+          "date": "2026-10-24",
           "note": "",
           "pinned": false,
           "know": false,
@@ -12845,16 +12855,6 @@
           "name": "[USACO22FEB] Cow Camp G",
           "difficulty": 5,
           "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "AT_abc160_f",
-          "name": "Distributing Integers",
-          "difficulty": 5,
-          "date": "2026-10-24",
           "note": "",
           "pinned": false,
           "know": false,
@@ -12941,6 +12941,371 @@
           "groupId": null
         }
       ]
+    },
+    "1800~2000 CF上的概率题": {
+      "groups": [],
+      "problems": [
+        {
+          "pid": "CF2081A",
+          "name": "Math Division",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF2020E",
+          "name": "Expected Power",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1925D",
+          "name": "Good Trip",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1824B1",
+          "name": "LuoTianyi and the Floating Islands (Easy Version)",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1777D",
+          "name": "Score of a Tree",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1773A",
+          "name": "Amazing Trick",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1753C",
+          "name": "Wish I Knew How to Sort",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1729E",
+          "name": "Guess the Cycle Size",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1726D",
+          "name": "Edge Split",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1713D",
+          "name": "Tournament Countdown",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1612E",
+          "name": "Messages",
+          "difficulty": 4,
+          "date": "2026-10-24",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1599C",
+          "name": "Bubble Strike",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1543C",
+          "name": "Need for Pink Slips",
+          "difficulty": 3,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1453D",
+          "name": "Checkpoints",
+          "difficulty": 5,
+          "date": "2026-10-24",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1009E",
+          "name": "Intercity Travelling",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF935D",
+          "name": "Fafa and Ancient Alphabet",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF870D",
+          "name": "Something with XOR Queries",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF846F",
+          "name": "Random Query",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF843B",
+          "name": "Interactive LowerBound",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF717D",
+          "name": "Dexterina's Lab",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF626D",
+          "name": "Jerry's Protest",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF540D",
+          "name": "Bad Luck Island",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF513C",
+          "name": "Second price auction",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF442B",
+          "name": "Andrey and Problem",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF351B",
+          "name": "Jeff and Furik",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF261B",
+          "name": "Maxim and Restaurant",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF235B",
+          "name": "Let's Play Osu!",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF204C",
+          "name": "Little Elephant and Furik and Rubik",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF167B",
+          "name": "Wizards and Huge Prize",
+          "difficulty": 4,
+          "date": "2026-10-24",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF148D",
+          "name": "Bag of mice",
+          "difficulty": 4,
+          "date": "2026-10-24",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF109B",
+          "name": "Lucky Probability",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF105B",
+          "name": "Dark Assembly",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF77B",
+          "name": "Falling Anvils",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF54C",
+          "name": "First Digit Law",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF30C",
+          "name": "Shooting Gallery",
+          "difficulty": 3,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF16E",
+          "name": "Fish",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        }
+      ]
     }
   },
   "listGroups": [
@@ -13010,8 +13375,9 @@
     "训练-数学",
     "做题记录",
     "训练-组合计数",
-    "杂题 10.23"
+    "杂题 10.23",
+    "1800~2000 CF上的概率题"
   ],
   "markedLists": [],
-  "currentList": "训练-组合计数"
+  "currentList": "1800~2000 CF上的概率题"
 }
