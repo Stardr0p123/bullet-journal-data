@@ -15,7 +15,7 @@
       ],
       "problems": [
         {
-          "pid": "AT_arc174_d",
+          "pid": "AT_ARC174_D",
           "name": "Keep Distance",
           "difficulty": 4,
           "date": "",
@@ -295,7 +295,7 @@
           "groupId": "g_8d5x07x04"
         },
         {
-          "pid": "AT_arc168_d",
+          "pid": "AT_ARC168_D",
           "name": "Maximizing LIS",
           "difficulty": 5,
           "date": "",
@@ -305,7 +305,7 @@
           "groupId": "g_8d5x07x04"
         },
         {
-          "pid": "AT_arc170_d",
+          "pid": "AT_ARC170_D",
           "name": "Triangle Card Game",
           "difficulty": 5,
           "date": "",
@@ -745,7 +745,7 @@
           "groupId": "g_ua4fpt4bp"
         },
         {
-          "pid": "AT_arc157_d",
+          "pid": "AT_ARC157_D",
           "name": "Yin Yang",
           "difficulty": 7,
           "date": "",
@@ -755,7 +755,7 @@
           "groupId": "g_ua4fpt4bp"
         },
         {
-          "pid": "AT_arc163_d",
+          "pid": "AT_ARC163_D",
           "name": "Sum of SCC",
           "difficulty": 7,
           "date": "2026-08-01",
@@ -1271,7 +1271,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc272_f",
+          "pid": "AT_ABC272_F",
           "name": "Two Strings",
           "difficulty": 7,
           "date": "",
@@ -1281,7 +1281,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_agc047_b",
+          "pid": "AT_AGC047_B",
           "name": "First Second",
           "difficulty": 4,
           "date": "",
@@ -1291,7 +1291,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc246_f",
+          "pid": "AT_ABC246_F",
           "name": "typewriter",
           "difficulty": 4,
           "date": "",
@@ -1301,7 +1301,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc225_f",
+          "pid": "AT_ABC225_F",
           "name": "String Cards",
           "difficulty": 7,
           "date": "",
@@ -1311,7 +1311,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc214_f",
+          "pid": "AT_ABC214_F",
           "name": "Substrings",
           "difficulty": 4,
           "date": "",
@@ -1321,7 +1321,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc213_f",
+          "pid": "AT_ABC213_F",
           "name": "Common Prefixes",
           "difficulty": 7,
           "date": "",
@@ -1331,7 +1331,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc268_f",
+          "pid": "AT_ABC268_F",
           "name": "Best Concatenation",
           "difficulty": 5,
           "date": "",
@@ -1341,7 +1341,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_arc058_d",
+          "pid": "AT_ARC058_D",
           "name": "Iroha Loves Strings",
           "difficulty": 8,
           "date": "",
@@ -1351,7 +1351,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc223_f",
+          "pid": "AT_ABC223_F",
           "name": "Parenthesis Checking",
           "difficulty": 4,
           "date": "",
@@ -1361,7 +1361,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc295_f",
+          "pid": "AT_ABC295_F",
           "name": "substr = S",
           "difficulty": 5,
           "date": "",
@@ -1371,7 +1371,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc301_f",
+          "pid": "AT_ABC301_F",
           "name": "Anti-DDoS",
           "difficulty": 7,
           "date": "",
@@ -1381,7 +1381,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc234_f",
+          "pid": "AT_ABC234_F",
           "name": "Reordering",
           "difficulty": 4,
           "date": "",
@@ -1391,7 +1391,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc200_f",
+          "pid": "AT_ABC200_F",
           "name": "Minflip Summation",
           "difficulty": 7,
           "date": "",
@@ -1401,7 +1401,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_arc117_c",
+          "pid": "AT_ARC117_C",
           "name": "Tricolor Pyramid",
           "difficulty": 5,
           "date": "",
@@ -1411,7 +1411,7 @@
           "groupId": "g_tk2hwseay"
         },
         {
-          "pid": "AT_abc284_f",
+          "pid": "AT_ABC284_F",
           "name": "ABCBAC",
           "difficulty": 4,
           "date": "",
@@ -1441,7 +1441,7 @@
           "groupId": "g_roy72jywq"
         },
         {
-          "pid": "AT_nikkei2019_2_final_h",
+          "pid": "AT_NIKKEI2019_2_FINAL_H",
           "name": "逆にする関数",
           "difficulty": 7,
           "date": "",
@@ -2282,7 +2282,7 @@
       ],
       "problems": [
         {
-          "pid": "AT_abc270_f",
+          "pid": "AT_ABC270_F",
           "name": "Transportation",
           "difficulty": 4,
           "date": "",
@@ -2292,7 +2292,7 @@
           "groupId": "g_jyn5f5bj5"
         },
         {
-          "pid": "AT_abc286_g",
+          "pid": "AT_ABC286_G",
           "name": "Unique Walk",
           "difficulty": 4,
           "date": "",
@@ -2302,7 +2302,7 @@
           "groupId": "g_jyn5f5bj5"
         },
         {
-          "pid": "AT_abc318_g",
+          "pid": "AT_ABC318_G",
           "name": "Typical Path Problem",
           "difficulty": 5,
           "date": "",
@@ -2312,7 +2312,7 @@
           "groupId": "g_jyn5f5bj5"
         },
         {
-          "pid": "AT_abc334_g",
+          "pid": "AT_ABC334_G",
           "name": "Christmas Color Grid 2",
           "difficulty": 5,
           "date": "",
@@ -2322,7 +2322,7 @@
           "groupId": "g_jyn5f5bj5"
         },
         {
-          "pid": "AT_agc001_c",
+          "pid": "AT_AGC001_C",
           "name": "Shorten Diameter",
           "difficulty": 4,
           "date": "",
@@ -2332,7 +2332,7 @@
           "groupId": "g_jyn5f5bj5"
         },
         {
-          "pid": "AT_agc005_c",
+          "pid": "AT_AGC005_C",
           "name": "Tree Restoring",
           "difficulty": 5,
           "date": "",
@@ -2342,7 +2342,7 @@
           "groupId": "g_jyn5f5bj5"
         },
         {
-          "pid": "AT_agc010_c",
+          "pid": "AT_AGC010_C",
           "name": "Cleaning",
           "difficulty": 4,
           "date": "",
@@ -2572,7 +2572,7 @@
           "groupId": "g_jyn5f5bj5"
         },
         {
-          "pid": "AT_abc277_f",
+          "pid": "AT_ABC277_F",
           "name": "Sorting a Matrix",
           "difficulty": 7,
           "date": "",
@@ -2582,7 +2582,7 @@
           "groupId": "g_wdx10q8c5"
         },
         {
-          "pid": "AT_agc014_d",
+          "pid": "AT_AGC014_D",
           "name": "Black and White Tree",
           "difficulty": 7,
           "date": "",
@@ -2592,7 +2592,7 @@
           "groupId": "g_wdx10q8c5"
         },
         {
-          "pid": "AT_agc032_c",
+          "pid": "AT_AGC032_C",
           "name": "Three Circuits",
           "difficulty": 6,
           "date": "",
@@ -2602,7 +2602,7 @@
           "groupId": "g_wdx10q8c5"
         },
         {
-          "pid": "AT_arc138_d",
+          "pid": "AT_ARC138_D",
           "name": "Differ by K bits",
           "difficulty": 7,
           "date": "",
@@ -2612,7 +2612,7 @@
           "groupId": "g_wdx10q8c5"
         },
         {
-          "pid": "AT_arc142_d",
+          "pid": "AT_ARC142_D",
           "name": "Deterministic Placing",
           "difficulty": 7,
           "date": "",
@@ -2622,7 +2622,7 @@
           "groupId": "g_wdx10q8c5"
         },
         {
-          "pid": "AT_arc163_d",
+          "pid": "AT_ARC163_D",
           "name": "Sum of SCC",
           "difficulty": 7,
           "date": "",
@@ -3023,7 +3023,7 @@
       ],
       "problems": [
         {
-          "pid": "AT_abc207_f",
+          "pid": "AT_ABC207_F",
           "name": "Tree Patrolling",
           "difficulty": 5,
           "date": "",
@@ -3033,7 +3033,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_abc259_f",
+          "pid": "AT_ABC259_F",
           "name": "Select Edges",
           "difficulty": 4,
           "date": "",
@@ -3043,7 +3043,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_abc310_f",
+          "pid": "AT_ABC310_F",
           "name": "Make 10 Again",
           "difficulty": 5,
           "date": "",
@@ -3053,7 +3053,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_abc317_f",
+          "pid": "AT_ABC317_F",
           "name": "Nim",
           "difficulty": 5,
           "date": "",
@@ -3063,7 +3063,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_abc342_f",
+          "pid": "AT_ABC342_F",
           "name": "Black Jack",
           "difficulty": 5,
           "date": "",
@@ -3073,7 +3073,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_abc344_f",
+          "pid": "AT_ABC344_F",
           "name": "Earn to Advance",
           "difficulty": 5,
           "date": "",
@@ -3083,7 +3083,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_abc369_f",
+          "pid": "AT_ABC369_F",
           "name": "Gather Coins",
           "difficulty": 4,
           "date": "",
@@ -3093,7 +3093,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_arc104_d",
+          "pid": "AT_ARC104_D",
           "name": "Multiset Mean",
           "difficulty": 5,
           "date": "",
@@ -3103,7 +3103,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_arc115_e",
+          "pid": "AT_ARC115_E",
           "name": "LEQ and NEQ",
           "difficulty": 6,
           "date": "2026-10-16",
@@ -3113,7 +3113,7 @@
           "groupId": "g_k25kbqfqz"
         },
         {
-          "pid": "AT_arc117_d",
+          "pid": "AT_ARC117_D",
           "name": "Miracle Tree",
           "difficulty": 5,
           "date": "",
@@ -3123,7 +3123,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_arc125_d",
+          "pid": "AT_ARC125_D",
           "name": "Unique Subsequence",
           "difficulty": 5,
           "date": "2026-08-21",
@@ -3133,7 +3133,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_arc159_d",
+          "pid": "AT_ARC159_D",
           "name": "LIS 2",
           "difficulty": 5,
           "date": "",
@@ -3143,7 +3143,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_dp_u",
+          "pid": "AT_DP_U",
           "name": "Grouping",
           "difficulty": 5,
           "date": "",
@@ -3153,7 +3153,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_dp_w",
+          "pid": "AT_DP_W",
           "name": "Intervals",
           "difficulty": 5,
           "date": "",
@@ -3163,7 +3163,7 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "AT_dp_y",
+          "pid": "AT_DP_Y",
           "name": "Grid 2",
           "difficulty": 5,
           "date": "",
@@ -3783,7 +3783,7 @@
           "groupId": "g_k25kbqfqz"
         },
         {
-          "pid": "AT_agc043_d",
+          "pid": "AT_AGC043_D",
           "name": "Merge Triplets",
           "difficulty": 6,
           "date": "",
@@ -3793,7 +3793,7 @@
           "groupId": "g_k25kbqfqz"
         },
         {
-          "pid": "AT_agc049_d",
+          "pid": "AT_AGC049_D",
           "name": "Convex Sequence",
           "difficulty": 7,
           "date": "",
@@ -3803,7 +3803,7 @@
           "groupId": "g_k25kbqfqz"
         },
         {
-          "pid": "AT_arc108_e",
+          "pid": "AT_ARC108_E",
           "name": "Random IS",
           "difficulty": 7,
           "date": "",
@@ -3813,7 +3813,7 @@
           "groupId": "g_k25kbqfqz"
         },
         {
-          "pid": "AT_arc114_d",
+          "pid": "AT_ARC114_D",
           "name": "Moving Pieces on Line",
           "difficulty": 7,
           "date": "",
@@ -3823,7 +3823,7 @@
           "groupId": "g_k25kbqfqz"
         },
         {
-          "pid": "AT_arc153_d",
+          "pid": "AT_ARC153_D",
           "name": "Sum of Sum of Digits",
           "difficulty": 7,
           "date": "",
@@ -3833,7 +3833,7 @@
           "groupId": "g_k25kbqfqz"
         },
         {
-          "pid": "AT_dp_z",
+          "pid": "AT_DP_Z",
           "name": "Frog 3",
           "difficulty": 7,
           "date": "",
@@ -3843,7 +3843,7 @@
           "groupId": "g_k25kbqfqz"
         },
         {
-          "pid": "AT_edpc_z",
+          "pid": "AT_EDPC_Z",
           "name": "Frog 3",
           "difficulty": 7,
           "date": "",
@@ -4093,7 +4093,7 @@
           "groupId": "g_plqjy4763"
         },
         {
-          "pid": "AT_agc002_f",
+          "pid": "AT_AGC002_F",
           "name": "Leftmost Ball",
           "difficulty": 7,
           "date": "",
@@ -4103,7 +4103,7 @@
           "groupId": "g_plqjy4763"
         },
         {
-          "pid": "AT_agc013_e",
+          "pid": "AT_AGC013_E",
           "name": "Placing Squares",
           "difficulty": 7,
           "date": "",
@@ -4113,7 +4113,7 @@
           "groupId": "g_plqjy4763"
         },
         {
-          "pid": "AT_agc016_f",
+          "pid": "AT_AGC016_F",
           "name": "Games on DAG",
           "difficulty": 8,
           "date": "",
@@ -4123,7 +4123,7 @@
           "groupId": "g_plqjy4763"
         },
         {
-          "pid": "AT_agc019_f",
+          "pid": "AT_AGC019_F",
           "name": "Yes or No",
           "difficulty": 8,
           "date": "",
@@ -4133,7 +4133,7 @@
           "groupId": "g_plqjy4763"
         },
         {
-          "pid": "AT_agc020_e",
+          "pid": "AT_AGC020_E",
           "name": "Encoding Subsets",
           "difficulty": 7,
           "date": "",
@@ -4143,7 +4143,7 @@
           "groupId": "g_plqjy4763"
         },
         {
-          "pid": "AT_agc022_e",
+          "pid": "AT_AGC022_E",
           "name": "Median Replace",
           "difficulty": 7,
           "date": "",
@@ -4153,7 +4153,7 @@
           "groupId": "g_plqjy4763"
         },
         {
-          "pid": "AT_agc032_d",
+          "pid": "AT_AGC032_D",
           "name": "Rotation Sort",
           "difficulty": 7,
           "date": "",
@@ -4163,7 +4163,7 @@
           "groupId": "g_plqjy4763"
         },
         {
-          "pid": "AT_agc033_d",
+          "pid": "AT_AGC033_D",
           "name": "Complexity",
           "difficulty": 7,
           "date": "",
@@ -4173,7 +4173,7 @@
           "groupId": "g_plqjy4763"
         },
         {
-          "pid": "AT_arc118_e",
+          "pid": "AT_ARC118_E",
           "name": "Avoid Permutations",
           "difficulty": 7,
           "date": "",
@@ -4183,7 +4183,7 @@
           "groupId": "g_plqjy4763"
         },
         {
-          "pid": "AT_arc127_e",
+          "pid": "AT_ARC127_E",
           "name": "Priority Queue",
           "difficulty": 7,
           "date": "",
@@ -4193,7 +4193,7 @@
           "groupId": "g_plqjy4763"
         },
         {
-          "pid": "AT_arc128_d",
+          "pid": "AT_ARC128_D",
           "name": "Neq Neq",
           "difficulty": 7,
           "date": "",
@@ -4529,7 +4529,7 @@
           "groupId": "g_n2bgqhfyk"
         },
         {
-          "pid": "AT_agc013_c",
+          "pid": "AT_AGC013_C",
           "name": "Ants on a Circle",
           "difficulty": 7,
           "date": "",
@@ -4539,7 +4539,7 @@
           "groupId": "g_klkhmnv7m"
         },
         {
-          "pid": "AT_agc016_b",
+          "pid": "AT_AGC016_B",
           "name": "Colorful Hats",
           "difficulty": 4,
           "date": "2026-10-16",
@@ -4549,7 +4549,7 @@
           "groupId": "g_klkhmnv7m"
         },
         {
-          "pid": "AT_agc020_c",
+          "pid": "AT_AGC020_C",
           "name": "Median Sum",
           "difficulty": 4,
           "date": "2026-10-18",
@@ -4559,7 +4559,7 @@
           "groupId": "g_klkhmnv7m"
         },
         {
-          "pid": "AT_agc027_c",
+          "pid": "AT_AGC027_C",
           "name": "ABland Yard",
           "difficulty": 4,
           "date": "2026-10-18",
@@ -4569,7 +4569,7 @@
           "groupId": "g_klkhmnv7m"
         },
         {
-          "pid": "AT_agc029_c",
+          "pid": "AT_AGC029_C",
           "name": "Lexicographic constraints",
           "difficulty": 5,
           "date": "2026-10-18",
@@ -4579,7 +4579,7 @@
           "groupId": "g_klkhmnv7m"
         },
         {
-          "pid": "AT_agc032_c",
+          "pid": "AT_AGC032_C",
           "name": "Three Circuits",
           "difficulty": 6,
           "date": "",
@@ -4589,7 +4589,7 @@
           "groupId": "g_klkhmnv7m"
         },
         {
-          "pid": "AT_agc039_c",
+          "pid": "AT_AGC039_C",
           "name": "Division by Two with Something",
           "difficulty": 7,
           "date": "",
@@ -4599,7 +4599,7 @@
           "groupId": "g_klkhmnv7m"
         },
         {
-          "pid": "AT_agc043_c",
+          "pid": "AT_AGC043_C",
           "name": "Giant Graph",
           "difficulty": 6,
           "date": "",
@@ -4609,7 +4609,7 @@
           "groupId": "g_klkhmnv7m"
         },
         {
-          "pid": "AT_agc061_b",
+          "pid": "AT_AGC061_B",
           "name": "Summation by Construction",
           "difficulty": 8,
           "date": "",
@@ -4619,7 +4619,7 @@
           "groupId": "g_n2bgqhfyk"
         },
         {
-          "pid": "AT_arc151_b",
+          "pid": "AT_ARC151_B",
           "name": "A < AP",
           "difficulty": 4,
           "date": "2026-10-18",
@@ -4629,7 +4629,7 @@
           "groupId": "g_klkhmnv7m"
         },
         {
-          "pid": "AT_arc153_c",
+          "pid": "AT_ARC153_C",
           "name": "± Increasing",
           "difficulty": 5,
           "date": "",
@@ -4639,7 +4639,7 @@
           "groupId": "g_klkhmnv7m"
         },
         {
-          "pid": "AT_arc157_d",
+          "pid": "AT_ARC157_D",
           "name": "Y Garden",
           "difficulty": 7,
           "date": "",
@@ -4649,7 +4649,7 @@
           "groupId": "g_klkhmnv7m"
         },
         {
-          "pid": "AT_kupc2017_g",
+          "pid": "AT_KUPC2017_G",
           "name": "encode/decode 2017",
           "difficulty": 0,
           "date": "",
@@ -6055,7 +6055,7 @@
           "groupId": "g_ac8mqomlk"
         },
         {
-          "pid": "AT_jsc2019_final_f",
+          "pid": "AT_JSC2019_FINAL_F",
           "name": "Count Permutations Many Times",
           "difficulty": 7,
           "date": "",
@@ -6315,7 +6315,7 @@
           "groupId": "g_ac8mqomlk"
         },
         {
-          "pid": "AT_abc287_g",
+          "pid": "AT_ABC287_G",
           "name": "Card Game",
           "difficulty": 5,
           "date": "",
@@ -6325,7 +6325,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc308_g",
+          "pid": "AT_ABC308_G",
           "name": "Minimum Xor Pair Query",
           "difficulty": 5,
           "date": "",
@@ -6335,7 +6335,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc311_g",
+          "pid": "AT_ABC311_G",
           "name": "One More Grid Task",
           "difficulty": 5,
           "date": "",
@@ -6345,7 +6345,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc324_g",
+          "pid": "AT_ABC324_G",
           "name": "Generate Arrays",
           "difficulty": 7,
           "date": "",
@@ -6355,7 +6355,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc327_f",
+          "pid": "AT_ABC327_F",
           "name": "Apples",
           "difficulty": 5,
           "date": "",
@@ -6365,7 +6365,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc328_f",
+          "pid": "AT_ABC328_F",
           "name": "Good Set Query",
           "difficulty": 4,
           "date": "",
@@ -6375,7 +6375,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc329_f",
+          "pid": "AT_ABC329_F",
           "name": "Colored Ball",
           "difficulty": 4,
           "date": "",
@@ -6385,7 +6385,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc332_f",
+          "pid": "AT_ABC332_F",
           "name": "Random Update Query",
           "difficulty": 5,
           "date": "",
@@ -6395,7 +6395,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc335_f",
+          "pid": "AT_ABC335_F",
           "name": "Hop Sugoroku",
           "difficulty": 5,
           "date": "",
@@ -6405,7 +6405,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc343_f",
+          "pid": "AT_ABC343_F",
           "name": "Second Largest Query",
           "difficulty": 4,
           "date": "",
@@ -6415,7 +6415,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc346_g",
+          "pid": "AT_ABC346_G",
           "name": "Alone",
           "difficulty": 5,
           "date": "",
@@ -6425,7 +6425,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc353_g",
+          "pid": "AT_ABC353_G",
           "name": "Merchant Takahashi",
           "difficulty": 4,
           "date": "",
@@ -6435,7 +6435,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc356_f",
+          "pid": "AT_ABC356_F",
           "name": "Distance Component Size",
           "difficulty": 5,
           "date": "",
@@ -6445,7 +6445,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_abc375_g",
+          "pid": "AT_ABC375_G",
           "name": "Road Blocked",
           "difficulty": 5,
           "date": "",
@@ -6455,7 +6455,7 @@
           "groupId": "g_ops7hb5la"
         },
         {
-          "pid": "AT_arc146_d",
+          "pid": "AT_ARC146_D",
           "name": ">= K",
           "difficulty": 7,
           "date": "",
@@ -6716,7 +6716,7 @@
       ],
       "problems": [
         {
-          "pid": "AT_abc237_g",
+          "pid": "AT_ABC237_G",
           "name": "Range Sort Query",
           "difficulty": 5,
           "date": "",
@@ -6726,7 +6726,7 @@
           "groupId": "g_ab3beurwo"
         },
         {
-          "pid": "AT_abc335_f",
+          "pid": "AT_ABC335_F",
           "name": "Hop Sugoroku",
           "difficulty": 5,
           "date": "",
@@ -6736,7 +6736,7 @@
           "groupId": "g_ab3beurwo"
         },
         {
-          "pid": "AT_abc341_g",
+          "pid": "AT_ABC341_G",
           "name": "Highest Ratio",
           "difficulty": 5,
           "date": "",
@@ -6746,7 +6746,7 @@
           "groupId": "g_ab3beurwo"
         },
         {
-          "pid": "AT_abc353_g",
+          "pid": "AT_ABC353_G",
           "name": "Merchant Takahashi",
           "difficulty": 4,
           "date": "",
@@ -6756,7 +6756,7 @@
           "groupId": "g_ab3beurwo"
         },
         {
-          "pid": "AT_abc366_g",
+          "pid": "AT_ABC366_G",
           "name": "XOR Neighbors",
           "difficulty": 5,
           "date": "",
@@ -6766,7 +6766,7 @@
           "groupId": "g_ab3beurwo"
         },
         {
-          "pid": "AT_arc157_c",
+          "pid": "AT_ARC157_C",
           "name": "YY Square",
           "difficulty": 4,
           "date": "",
@@ -6776,7 +6776,7 @@
           "groupId": "g_ab3beurwo"
         },
         {
-          "pid": "AT_arc165_c",
+          "pid": "AT_ARC165_C",
           "name": "Social Distance on Graph",
           "difficulty": 4,
           "date": "",
@@ -7156,7 +7156,7 @@
           "groupId": "g_ofpzkq530"
         },
         {
-          "pid": "AT_abc221_g",
+          "pid": "AT_ABC221_G",
           "name": "Jumping Sequence",
           "difficulty": 7,
           "date": "",
@@ -7166,7 +7166,7 @@
           "groupId": "g_ofpzkq530"
         },
         {
-          "pid": "AT_abc232_g",
+          "pid": "AT_ABC232_G",
           "name": "Modulo Shortest Path",
           "difficulty": 7,
           "date": "",
@@ -7176,7 +7176,7 @@
           "groupId": "g_ofpzkq530"
         },
         {
-          "pid": "AT_abc336_g",
+          "pid": "AT_ABC336_G",
           "name": "16 Integers",
           "difficulty": 7,
           "date": "",
@@ -7186,7 +7186,7 @@
           "groupId": "g_ofpzkq530"
         },
         {
-          "pid": "AT_agc020_e",
+          "pid": "AT_AGC020_E",
           "name": "Encoding Subsets",
           "difficulty": 7,
           "date": "",
@@ -7196,7 +7196,7 @@
           "groupId": "g_ofpzkq530"
         },
         {
-          "pid": "AT_agc056_c",
+          "pid": "AT_AGC056_C",
           "name": "01 Balanced",
           "difficulty": 7,
           "date": "",
@@ -7206,7 +7206,7 @@
           "groupId": "g_ofpzkq530"
         },
         {
-          "pid": "AT_arc140_e",
+          "pid": "AT_ARC140_E",
           "name": "Not Equal Rectangle",
           "difficulty": 7,
           "date": "",
@@ -7216,7 +7216,7 @@
           "groupId": "g_ofpzkq530"
         },
         {
-          "pid": "AT_arc147_e",
+          "pid": "AT_ARC147_E",
           "name": "Examination",
           "difficulty": 7,
           "date": "",
@@ -7226,7 +7226,7 @@
           "groupId": "g_ofpzkq530"
         },
         {
-          "pid": "AT_arc172_d",
+          "pid": "AT_ARC172_D",
           "name": "Distance Ranking",
           "difficulty": 7,
           "date": "",
@@ -7436,7 +7436,7 @@
           "groupId": "g_iv4sjpm4t"
         },
         {
-          "pid": "AT_agc017_f",
+          "pid": "AT_AGC017_F",
           "name": "Zigzag",
           "difficulty": 8,
           "date": "",
@@ -7446,7 +7446,7 @@
           "groupId": "g_iv4sjpm4t"
         },
         {
-          "pid": "AT_agc018_f",
+          "pid": "AT_AGC018_F",
           "name": "Two Trees",
           "difficulty": 8,
           "date": "",
@@ -7456,7 +7456,7 @@
           "groupId": "g_iv4sjpm4t"
         },
         {
-          "pid": "AT_agc029_f",
+          "pid": "AT_AGC029_F",
           "name": "Construction of a tree",
           "difficulty": 8,
           "date": "",
@@ -7466,7 +7466,7 @@
           "groupId": "g_iv4sjpm4t"
         },
         {
-          "pid": "AT_agc038_e",
+          "pid": "AT_AGC038_E",
           "name": "Gachapon",
           "difficulty": 8,
           "date": "",
@@ -7476,7 +7476,7 @@
           "groupId": "g_iv4sjpm4t"
         },
         {
-          "pid": "AT_agc061_d",
+          "pid": "AT_AGC061_D",
           "name": "Almost Multiplication Table",
           "difficulty": 8,
           "date": "",
@@ -7486,7 +7486,7 @@
           "groupId": "g_iv4sjpm4t"
         },
         {
-          "pid": "AT_agc064_d",
+          "pid": "AT_AGC064_D",
           "name": "Red and Blue Chips",
           "difficulty": 8,
           "date": "",
@@ -7496,7 +7496,7 @@
           "groupId": "g_iv4sjpm4t"
         },
         {
-          "pid": "AT_arc166_e",
+          "pid": "AT_ARC166_E",
           "name": "Fizz Buzz Difference",
           "difficulty": 8,
           "date": "",
@@ -7582,7 +7582,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc162_f",
+          "pid": "AT_ABC162_F",
           "name": "Select Half",
           "difficulty": 4,
           "date": "",
@@ -7592,7 +7592,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc179_f",
+          "pid": "AT_ABC179_F",
           "name": "Simplified Reversi",
           "difficulty": 4,
           "date": "",
@@ -7602,7 +7602,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc184_f",
+          "pid": "AT_ABC184_F",
           "name": "Programming Contest",
           "difficulty": 4,
           "date": "",
@@ -7612,7 +7612,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc216_f",
+          "pid": "AT_ABC216_F",
           "name": "Max Sum Counting",
           "difficulty": 4,
           "date": "",
@@ -7622,7 +7622,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc221_e",
+          "pid": "AT_ABC221_E",
           "name": "LEQ",
           "difficulty": 4,
           "date": "",
@@ -7632,7 +7632,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc232_f",
+          "pid": "AT_ABC232_F",
           "name": "Simple Operations on Sequence",
           "difficulty": 4,
           "date": "",
@@ -7642,7 +7642,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc234_f",
+          "pid": "AT_ABC234_F",
           "name": "Reordering",
           "difficulty": 4,
           "date": "",
@@ -7652,7 +7652,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc249_f",
+          "pid": "AT_ABC249_F",
           "name": "Ignore Operations",
           "difficulty": 4,
           "date": "",
@@ -7662,7 +7662,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc270_f",
+          "pid": "AT_ABC270_F",
           "name": "Transportation",
           "difficulty": 4,
           "date": "",
@@ -7672,7 +7672,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc278_f",
+          "pid": "AT_ABC278_F",
           "name": "Shiritori",
           "difficulty": 4,
           "date": "",
@@ -7682,7 +7682,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc296_f",
+          "pid": "AT_ABC296_F",
           "name": "Simultaneous Swap",
           "difficulty": 4,
           "date": "",
@@ -7692,7 +7692,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_abc308_f",
+          "pid": "AT_ABC308_F",
           "name": "Vouchers",
           "difficulty": 4,
           "date": "",
@@ -7702,7 +7702,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_arc149_c",
+          "pid": "AT_ARC149_C",
           "name": "Avoid Prime Sum",
           "difficulty": 4,
           "date": "",
@@ -7712,7 +7712,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_arc154_c",
+          "pid": "AT_ARC154_C",
           "name": "Roller",
           "difficulty": 4,
           "date": "",
@@ -7722,7 +7722,7 @@
           "groupId": "g_60eiqv494"
         },
         {
-          "pid": "AT_arc158_c",
+          "pid": "AT_ARC158_C",
           "name": "All Pair Digit Sums",
           "difficulty": 4,
           "date": "",
@@ -8112,7 +8112,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_abc199_f",
+          "pid": "AT_ABC199_F",
           "name": "Graph Smoothing",
           "difficulty": 5,
           "date": "",
@@ -8122,7 +8122,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_abc228_g",
+          "pid": "AT_ABC228_G",
           "name": "Digits on Grid",
           "difficulty": 7,
           "date": "",
@@ -8132,7 +8132,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_abc256_g",
+          "pid": "AT_ABC256_G",
           "name": "Black and White Stones",
           "difficulty": 5,
           "date": "",
@@ -8142,7 +8142,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_abc262_f",
+          "pid": "AT_ABC262_F",
           "name": "I hate Matrix Construction",
           "difficulty": 5,
           "date": "",
@@ -8152,7 +8152,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_abc283_g",
+          "pid": "AT_ABC283_G",
           "name": "Partial Xor Enumeration",
           "difficulty": 5,
           "date": "",
@@ -8162,7 +8162,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_abc289_f",
+          "pid": "AT_ABC289_F",
           "name": "Teleporter Takahashi",
           "difficulty": 5,
           "date": "",
@@ -8172,7 +8172,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_abc303_f",
+          "pid": "AT_ABC303_F",
           "name": "Damage over Time",
           "difficulty": 5,
           "date": "",
@@ -8182,7 +8182,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_abc310_f",
+          "pid": "AT_ABC310_F",
           "name": "Make 10 Again",
           "difficulty": 5,
           "date": "",
@@ -8192,7 +8192,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_abc319_f",
+          "pid": "AT_ABC319_F",
           "name": "Fake Plastic Trees",
           "difficulty": 7,
           "date": "",
@@ -8202,7 +8202,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_abc326_f",
+          "pid": "AT_ABC326_F",
           "name": "Robot Rotation",
           "difficulty": 5,
           "date": "",
@@ -8212,7 +8212,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_abc353_f",
+          "pid": "AT_ABC353_F",
           "name": "Tile Distance",
           "difficulty": 5,
           "date": "",
@@ -8222,7 +8222,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_arc111_c",
+          "pid": "AT_ARC111_C",
           "name": "Too Heavy",
           "difficulty": 5,
           "date": "",
@@ -8232,7 +8232,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_arc131_d",
+          "pid": "AT_ARC131_D",
           "name": "AtArcher",
           "difficulty": 5,
           "date": "",
@@ -8242,7 +8242,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_arc137_c",
+          "pid": "AT_ARC137_C",
           "name": "Distinct Numbers",
           "difficulty": 5,
           "date": "",
@@ -8252,7 +8252,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_arc171_c",
+          "pid": "AT_ARC171_C",
           "name": "Swap on Tree",
           "difficulty": 7,
           "date": "",
@@ -8262,7 +8262,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_arc173_d",
+          "pid": "AT_ARC173_D",
           "name": "Bracket Walk",
           "difficulty": 7,
           "date": "",
@@ -8272,7 +8272,7 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "AT_arc175_d",
+          "pid": "AT_ARC175_D",
           "name": "LIS on Tree 2",
           "difficulty": 5,
           "date": "",
@@ -8737,7 +8737,7 @@
           "groupId": null
         },
         {
-          "pid": "AT_arc229_d",
+          "pid": "AT_ARC229_D",
           "name": "[ARC229D] Nim_k ?",
           "difficulty": 5,
           "date": "2026-10-08",
@@ -9208,7 +9208,7 @@
           "groupId": "g_av408d9wz"
         },
         {
-          "pid": "AT_abc342_d",
+          "pid": "AT_ABC342_D",
           "name": "Square Pair",
           "difficulty": 4,
           "date": "2026-10-12",
@@ -9989,7 +9989,7 @@
       ],
       "problems": [
         {
-          "pid": "AT_abc280_e",
+          "pid": "AT_ABC280_E",
           "name": "Critical Hit",
           "difficulty": 3,
           "date": "2026-10-12",
@@ -10059,7 +10059,7 @@
           "groupId": "g_m9h9kto4a"
         },
         {
-          "pid": "AT_abc151_e",
+          "pid": "AT_ABC151_E",
           "name": "Max-Min Sums",
           "difficulty": 4,
           "date": "",
@@ -10069,7 +10069,7 @@
           "groupId": "g_m9h9kto4a"
         },
         {
-          "pid": "AT_abc205_e",
+          "pid": "AT_ABC205_E",
           "name": "White and Black Balls",
           "difficulty": 4,
           "date": "",
@@ -10079,7 +10079,7 @@
           "groupId": "g_m9h9kto4a"
         },
         {
-          "pid": "AT_abc263_e",
+          "pid": "AT_ABC263_E",
           "name": "Sugoroku 3",
           "difficulty": 4,
           "date": "",
@@ -10089,7 +10089,7 @@
           "groupId": "g_m9h9kto4a"
         },
         {
-          "pid": "AT_abc275_e",
+          "pid": "AT_ABC275_E",
           "name": "Sugoroku 4",
           "difficulty": 4,
           "date": "",
@@ -10099,7 +10099,7 @@
           "groupId": "g_m9h9kto4a"
         },
         {
-          "pid": "AT_abc298_e",
+          "pid": "AT_ABC298_E",
           "name": "Unfair Sugoroku",
           "difficulty": 4,
           "date": "",
@@ -10109,7 +10109,7 @@
           "groupId": "g_m9h9kto4a"
         },
         {
-          "pid": "AT_abc307_e",
+          "pid": "AT_ABC307_E",
           "name": "Distinct Adjacent",
           "difficulty": 4,
           "date": "",
@@ -10119,7 +10119,7 @@
           "groupId": "g_m9h9kto4a"
         },
         {
-          "pid": "AT_abc314_e",
+          "pid": "AT_ABC314_E",
           "name": "Roulettes",
           "difficulty": 4,
           "date": "",
@@ -10129,7 +10129,7 @@
           "groupId": "g_m9h9kto4a"
         },
         {
-          "pid": "AT_abc350_e",
+          "pid": "AT_ABC350_E",
           "name": "Toward 0",
           "difficulty": 4,
           "date": "",
@@ -10209,7 +10209,7 @@
           "groupId": "g_m9h9kto4a"
         },
         {
-          "pid": "AT_abc172_e",
+          "pid": "AT_ABC172_E",
           "name": "NEQ",
           "difficulty": 5,
           "date": "",
@@ -10219,7 +10219,7 @@
           "groupId": "g_ihon8u1rb"
         },
         {
-          "pid": "AT_abc281_g",
+          "pid": "AT_ABC281_G",
           "name": "Farthest City",
           "difficulty": 5,
           "date": "",
@@ -10229,7 +10229,7 @@
           "groupId": "g_ihon8u1rb"
         },
         {
-          "pid": "AT_abc321_g",
+          "pid": "AT_ABC321_G",
           "name": "Electric Circuit",
           "difficulty": 5,
           "date": "",
@@ -10429,7 +10429,7 @@
           "groupId": "g_ihon8u1rb"
         },
         {
-          "pid": "AT_abc276_g",
+          "pid": "AT_ABC276_G",
           "name": "Count Sequences",
           "difficulty": 7,
           "date": "",
@@ -10439,7 +10439,7 @@
           "groupId": "g_ihon8u1rb"
         },
         {
-          "pid": "AT_abc310_g",
+          "pid": "AT_ABC310_G",
           "name": "Takahashi and Pass-Ball",
           "difficulty": 7,
           "date": "",
@@ -10449,7 +10449,7 @@
           "groupId": "g_ihon8u1rb"
         },
         {
-          "pid": "AT_abc327_g",
+          "pid": "AT_ABC327_G",
           "name": "Many Good Tuple Problems",
           "difficulty": 7,
           "date": "",
@@ -10459,7 +10459,7 @@
           "groupId": "g_ihon8u1rb"
         },
         {
-          "pid": "AT_abc331_g",
+          "pid": "AT_ABC331_G",
           "name": "Collect Them All",
           "difficulty": 7,
           "date": "",
@@ -10469,7 +10469,7 @@
           "groupId": "g_ihon8u1rb"
         },
         {
-          "pid": "AT_abc352_g",
+          "pid": "AT_ABC352_G",
           "name": "Socks 3",
           "difficulty": 7,
           "date": "",
@@ -10559,7 +10559,7 @@
           "groupId": "g_ihon8u1rb"
         },
         {
-          "pid": "AT_abc345_g",
+          "pid": "AT_ABC345_G",
           "name": "Sugoroku 5",
           "difficulty": 8,
           "date": "",
@@ -10569,7 +10569,7 @@
           "groupId": "g_xikirgx0c"
         },
         {
-          "pid": "AT_abc364_g",
+          "pid": "AT_ABC364_G",
           "name": "Last Passenger",
           "difficulty": 8,
           "date": "",
@@ -10635,7 +10635,7 @@
       ],
       "problems": [
         {
-          "pid": "AT_agc028_b",
+          "pid": "AT_AGC028_B",
           "name": "Removing Blocks",
           "difficulty": 7,
           "date": "",
@@ -10645,7 +10645,7 @@
           "groupId": "g_hte7v4r8k"
         },
         {
-          "pid": "AT_arc101_c",
+          "pid": "AT_ARC101_C",
           "name": "Ribbons on Tree",
           "difficulty": 7,
           "date": "",
@@ -10655,7 +10655,7 @@
           "groupId": "g_hte7v4r8k"
         },
         {
-          "pid": "AT_arc110_d",
+          "pid": "AT_ARC110_D",
           "name": "Binomial Coefficient is Fun",
           "difficulty": 5,
           "date": "",
@@ -10795,7 +10795,7 @@
           "groupId": "g_bs8o4hxsc"
         },
         {
-          "pid": "AT_abc173_f",
+          "pid": "AT_ABC173_F",
           "name": "Intervals on Tree",
           "difficulty": 4,
           "date": "2026-10-15",
@@ -10895,7 +10895,7 @@
           "groupId": "g_g9txgq1u2"
         },
         {
-          "pid": "AT_abc217_g",
+          "pid": "AT_ABC217_G",
           "name": "Groups",
           "difficulty": 5,
           "date": "2026-10-15",
@@ -10939,16 +10939,6 @@
           "name": "Tyler and Strings",
           "difficulty": 5,
           "date": "2026-10-16",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_bs8o4hxsc"
-        },
-        {
-          "pid": "CF1710C",
-          "name": "XOR Triangle",
-          "difficulty": 5,
-          "date": "",
           "note": "",
           "pinned": false,
           "know": false,
@@ -11045,7 +11035,7 @@
           "groupId": "g_dpra6vy2q"
         },
         {
-          "pid": "AT_abc259_h",
+          "pid": "AT_ABC259_H",
           "name": "Yet Another Path Counting",
           "difficulty": 6,
           "date": "",
@@ -11085,7 +11075,7 @@
           "groupId": "g_2kkoc75id"
         },
         {
-          "pid": "AT_abc214_g",
+          "pid": "AT_ABC214_G",
           "name": "Three Permutations",
           "difficulty": 7,
           "date": "",
@@ -11095,7 +11085,7 @@
           "groupId": "g_dpra6vy2q"
         },
         {
-          "pid": "AT_abc242_h",
+          "pid": "AT_ABC242_H",
           "name": "Random Painting",
           "difficulty": 7,
           "date": "",
@@ -11105,7 +11095,7 @@
           "groupId": "g_hte7v4r8k"
         },
         {
-          "pid": "AT_abc303_h",
+          "pid": "AT_ABC303_H",
           "name": "Constrained Tree Degree",
           "difficulty": 7,
           "date": "",
@@ -11115,7 +11105,7 @@
           "groupId": "g_g9txgq1u2"
         },
         {
-          "pid": "AT_abc313_h",
+          "pid": "AT_ABC313_H",
           "name": "Group Photo",
           "difficulty": 7,
           "date": "",
@@ -11125,7 +11115,7 @@
           "groupId": "g_hte7v4r8k"
         },
         {
-          "pid": "AT_agc005_d",
+          "pid": "AT_AGC005_D",
           "name": "~K Perm Counting",
           "difficulty": 7,
           "date": "",
@@ -11135,7 +11125,7 @@
           "groupId": "g_dpra6vy2q"
         },
         {
-          "pid": "AT_arc121_e",
+          "pid": "AT_ARC121_E",
           "name": "Directed Tree",
           "difficulty": 7,
           "date": "",
@@ -11145,7 +11135,7 @@
           "groupId": "g_dpra6vy2q"
         },
         {
-          "pid": "AT_joisc2018_d",
+          "pid": "AT_JOISC2018_D",
           "name": "修行",
           "difficulty": 7,
           "date": "",
@@ -11395,7 +11385,7 @@
           "groupId": "g_g9txgq1u2"
         },
         {
-          "pid": "AT_abc249_h",
+          "pid": "AT_ABC249_H",
           "name": "Dye Color",
           "difficulty": 8,
           "date": "",
@@ -11405,7 +11395,7 @@
           "groupId": "g_hte7v4r8k"
         },
         {
-          "pid": "AT_abc260_h",
+          "pid": "AT_ABC260_H",
           "name": "Colorfulness",
           "difficulty": 8,
           "date": "",
@@ -11415,7 +11405,7 @@
           "groupId": "g_hte7v4r8k"
         },
         {
-          "pid": "AT_abc288_h",
+          "pid": "AT_ABC288_H",
           "name": "A Nameless Counting Problem",
           "difficulty": 8,
           "date": "",
@@ -11425,7 +11415,7 @@
           "groupId": "g_g9txgq1u2"
         },
         {
-          "pid": "AT_abc294_h",
+          "pid": "AT_ABC294_H",
           "name": "K-Coloring",
           "difficulty": 8,
           "date": "",
@@ -11435,7 +11425,7 @@
           "groupId": "g_2kkoc75id"
         },
         {
-          "pid": "AT_abc309_h",
+          "pid": "AT_ABC309_H",
           "name": "Simple Path Counting Problem",
           "difficulty": 8,
           "date": "",
@@ -11445,7 +11435,7 @@
           "groupId": "g_hte7v4r8k"
         },
         {
-          "pid": "AT_abc311_h",
+          "pid": "AT_ABC311_H",
           "name": "Many Illuminations",
           "difficulty": 8,
           "date": "",
@@ -11746,7 +11736,7 @@
         {
           "id": "g_pfg5wj78v",
           "name": "1900~2400",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_cuuuvpner",
@@ -12569,8 +12559,8 @@
           "pid": "CF1921F",
           "name": "Sum of Progression",
           "difficulty": 5,
-          "date": "",
-          "note": "",
+          "date": "2026-10-25",
+          "note": "完成时间：0小时15分钟\n根号分治",
           "pinned": false,
           "know": false,
           "groupId": "g_pfg5wj78v"
@@ -12589,8 +12579,8 @@
           "pid": "CF1923E",
           "name": "Count Paths",
           "difficulty": 5,
-          "date": "",
-          "note": "",
+          "date": "2026-10-25",
+          "note": "完成时间：0小时37分钟\n发现维护的颜色集合随深度单调不增，故可以均摊暴力减",
           "pinned": false,
           "know": false,
           "groupId": "g_pfg5wj78v"
@@ -12599,8 +12589,8 @@
           "pid": "CF1977D",
           "name": "XORificator",
           "difficulty": 5,
-          "date": "",
-          "note": "",
+          "date": "2026-10-25",
+          "note": "完成时间：0小时11分钟\n简单异或哈希题",
           "pinned": false,
           "know": false,
           "groupId": "g_pfg5wj78v"
@@ -12814,131 +12804,6 @@
           "pinned": false,
           "know": false,
           "groupId": "g_pfg5wj78v"
-        }
-      ]
-    },
-    "杂题 10.23": {
-      "groups": [],
-      "problems": [
-        {
-          "pid": "AT_abc160_f",
-          "name": "Distributing Integers",
-          "difficulty": 5,
-          "date": "2026-10-24",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "AT_abc281_g",
-          "name": "Farthest City",
-          "difficulty": 5,
-          "date": "2026-10-24",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "P15387",
-          "name": "Soso 的期望并查集 / exsodsu",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "P8190",
-          "name": "[USACO22FEB] Cow Camp G",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "AT_agc053_c",
-          "name": "Random Card Game",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "AT_agc060_c",
-          "name": "Large Heap",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "AT_arc108_e",
-          "name": "Random IS",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "AT_arc170_e",
-          "name": "BDFS",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "AT_arc174_e",
-          "name": "Existence Counting",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "AT_dwacon6th_prelims_e",
-          "name": "Span Covering",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "P10879",
-          "name": "「KDOI-07」对树链剖分的爱",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
-          "pid": "P12061",
-          "name": "[THUPC 2025 决赛] 喜爱之钥",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": null
         }
       ]
     },
@@ -13306,6 +13171,162 @@
           "groupId": null
         }
       ]
+    },
+    "训练": {
+      "groups": [],
+      "problems": [
+        {
+          "pid": "P3997",
+          "name": "[SHOI2013] 扇形面积并",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P3854",
+          "name": "[TJOI2008] 通讯网破坏",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        }
+      ]
+    },
+    "教学题单": {
+      "groups": [
+        {
+          "id": "g_i8e9x9pbe",
+          "name": "10.23",
+          "collapsed": true
+        }
+      ],
+      "problems": [
+        {
+          "pid": "AT_ABC160_F",
+          "name": "Distributing Integers",
+          "difficulty": 5,
+          "date": "2026-10-24",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        },
+        {
+          "pid": "AT_ABC281_G",
+          "name": "Farthest City",
+          "difficulty": 5,
+          "date": "2026-10-24",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        },
+        {
+          "pid": "P15387",
+          "name": "Soso 的期望并查集 / exsodsu",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        },
+        {
+          "pid": "P8190",
+          "name": "[USACO22FEB] Cow Camp G",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        },
+        {
+          "pid": "AT_AGC053_C",
+          "name": "Random Card Game",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        },
+        {
+          "pid": "AT_AGC060_C",
+          "name": "Large Heap",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        },
+        {
+          "pid": "AT_ARC108_E",
+          "name": "Random IS",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        },
+        {
+          "pid": "AT_ARC170_E",
+          "name": "BDFS",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        },
+        {
+          "pid": "AT_ARC174_E",
+          "name": "Existence Counting",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        },
+        {
+          "pid": "AT_DWACON6TH_PRELIMS_E",
+          "name": "Span Covering",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        },
+        {
+          "pid": "P10879",
+          "name": "「KDOI-07」对树链剖分的爱",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        },
+        {
+          "pid": "P12061",
+          "name": "[THUPC 2025 决赛] 喜爱之钥",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_i8e9x9pbe"
+        }
+      ]
     }
   },
   "listGroups": [
@@ -13327,7 +13348,7 @@
     {
       "id": "lg_t3fhs0x35",
       "name": "其他",
-      "collapsed": false
+      "collapsed": true
     }
   ],
   "listGroupMap": {
@@ -13375,9 +13396,10 @@
     "训练-数学",
     "做题记录",
     "训练-组合计数",
-    "杂题 10.23",
-    "1800~2000 CF上的概率题"
+    "教学题单",
+    "1800~2000 CF上的概率题",
+    "训练"
   ],
   "markedLists": [],
-  "currentList": "1800~2000 CF上的概率题"
+  "currentList": "教学题单"
 }
