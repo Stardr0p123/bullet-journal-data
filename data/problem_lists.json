@@ -16410,7 +16410,7 @@
         {
           "id": "g_1nm6b6ssm",
           "name": "Part1-Deepseek",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_o2gpmf7b9",
@@ -18402,104 +18402,139 @@
         }
       ]
     },
-    "训练-代码源风格题目": {
+    "训练-转化 Ⅱ": {
       "groups": [
         {
-          "id": "g_ysh3sgtgv",
-          "name": "一、序列操作：函数复合与线段树维护",
+          "id": "g_xj8um5bre",
+          "name": "序列与区间结构：变换、复合与线段树设计",
           "collapsed": true
         },
         {
-          "id": "g_sa8qdptgv",
-          "name": "二、连续段、单调栈与笛卡尔树",
+          "id": "g_aa0jagbre",
+          "name": "连续段、区间计数与笛卡尔树",
           "collapsed": true
         },
         {
-          "id": "g_vn51bmtgv",
-          "name": "三、树上路径、差分与子树合并",
+          "id": "g_42n20lbre",
+          "name": "树上的计数、路径与合并",
           "collapsed": true
         },
         {
-          "id": "g_0z5so2tgv",
-          "name": "四、约束转结构：并查集、Kruskal 重构树与虚树",
+          "id": "g_gzawj9bre",
+          "name": "并查集：连通性、重构树与“加边即合并”",
           "collapsed": true
         },
         {
-          "id": "g_nuqdm8tgv",
-          "name": "五、DP 优化：分治、线段树与凸包",
+          "id": "g_yc4hnbbre",
+          "name": "离线与时间轴：CDQ、整体二分、线段树分治、回滚",
           "collapsed": true
         },
         {
-          "id": "g_7krd0xtgv",
-          "name": "六、按位贪心、线性基与正难则反",
+          "id": "g_lgsoekbre",
+          "name": "贪心 × 数据结构：反悔、堆与扫描线",
           "collapsed": true
         },
         {
-          "id": "g_l0ayo0tgv",
-          "name": "七、贪心维护与过程转对象",
+          "id": "g_jzcyzzbre",
+          "name": "按位与位运算结构",
+          "collapsed": true
+        },
+        {
+          "id": "g_lsqpg8euw",
+          "name": "DP 优化：分治、线段树与凸包",
           "collapsed": true
         }
       ],
       "problems": [
         {
-          "pid": "P3215",
-          "name": "[HNOI2011] 括号修复",
+          "pid": "CF750E",
+          "name": "New Year and Old Subsequence",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_ysh3sgtgv"
+          "groupId": "g_xj8um5bre"
         },
         {
-          "pid": "CF1609E",
-          "name": "William The Oblivious",
+          "pid": "CF1380F",
+          "name": "Strange Addition",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_ysh3sgtgv"
+          "groupId": "g_xj8um5bre"
         },
         {
-          "pid": "CF1638E",
-          "name": "Colorful Operations",
+          "pid": "CF1942F",
+          "name": "Farmer John's Favorite Function",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_ysh3sgtgv"
+          "groupId": "g_xj8um5bre"
         },
         {
-          "pid": "CF1750E",
-          "name": "Bracket Cost",
+          "pid": "AT_ARC164_E",
+          "name": "Segment-Tree Optimization",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_ysh3sgtgv"
+          "groupId": "g_xj8um5bre"
         },
         {
-          "pid": "AT_arc159_d",
-          "name": "LIS 2",
+          "pid": "AT_AGC030_D",
+          "name": "Inversion Sum",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_ysh3sgtgv"
+          "groupId": "g_xj8um5bre"
         },
         {
-          "pid": "AT_abc237_g",
-          "name": "Range Sort Query",
+          "pid": "P10513",
+          "name": "括号",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_ysh3sgtgv"
+          "groupId": "g_xj8um5bre"
+        },
+        {
+          "pid": "P4314",
+          "name": "CPU 监控",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_xj8um5bre"
+        },
+        {
+          "pid": "CF1777F",
+          "name": "Comfortably Numb",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_aa0jagbre"
+        },
+        {
+          "pid": "CF1827B2",
+          "name": "Range Sorting (Hard Version)",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_aa0jagbre"
         },
         {
           "pid": "CF1730E",
@@ -18509,17 +18544,37 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_sa8qdptgv"
+          "groupId": "g_aa0jagbre"
         },
         {
-          "pid": "CF1976E",
-          "name": "Splittable Permutations",
+          "pid": "AT_ARC133_D",
+          "name": "Range XOR",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_sa8qdptgv"
+          "groupId": "g_aa0jagbre"
+        },
+        {
+          "pid": "P3400",
+          "name": "仓鼠窝",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_aa0jagbre"
+        },
+        {
+          "pid": "P9461",
+          "name": "「EZEC-14」众数 II",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_aa0jagbre"
         },
         {
           "pid": "P4755",
@@ -18529,307 +18584,207 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_sa8qdptgv"
+          "groupId": "g_aa0jagbre"
         },
         {
-          "pid": "P3246",
-          "name": "[HNOI2016] 序列",
+          "pid": "CF1110F",
+          "name": "Nearest Leaf",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_sa8qdptgv"
+          "groupId": "g_42n20lbre"
         },
         {
-          "pid": "AT_abc234_g",
-          "name": "Divide a Sequence",
+          "pid": "CF1486F",
+          "name": "Pairs of Paths",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_sa8qdptgv"
+          "groupId": "g_42n20lbre"
         },
         {
-          "pid": "AT_abc252_g",
-          "name": "Pre-Order",
+          "pid": "CF1149C",
+          "name": "Tree Generator™",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_sa8qdptgv"
+          "groupId": "g_42n20lbre"
         },
         {
-          "pid": "CF1632E2",
-          "name": "Distance Tree (hard version)",
+          "pid": "CF1000G",
+          "name": "Two-Paths",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_42n20lbre"
         },
         {
-          "pid": "CF1795F",
-          "name": "Blocking Chips",
+          "pid": "AT_ARC121_E",
+          "name": "Directed Tree",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_42n20lbre"
         },
         {
-          "pid": "CF1842F",
-          "name": "Tenzing and Tree",
+          "pid": "P9534",
+          "name": "[YsOI2023] 广度优先遍历",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_42n20lbre"
         },
         {
-          "pid": "CF1830D",
-          "name": "Mex Tree",
+          "pid": "P10678",
+          "name": "『STA - R6』月",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_42n20lbre"
         },
         {
-          "pid": "CF1904E",
-          "name": "Tree Queries",
+          "pid": "CF1184E3",
+          "name": "Daleks' Invasion (hard)",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_gzawj9bre"
         },
         {
-          "pid": "P1600",
-          "name": "[NOIP 2016 提高组] 天天爱跑步",
+          "pid": "CF1416D",
+          "name": "Graph and Queries",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_gzawj9bre"
         },
         {
-          "pid": "P2680",
-          "name": "[NOIP 2015 提高组] 运输计划",
+          "pid": "CF1555F",
+          "name": "Good Graph",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_gzawj9bre"
         },
         {
-          "pid": "P5021",
-          "name": "[NOIP 2018 提高组] 赛道修建",
+          "pid": "AT_AGC038_D",
+          "name": "Unique Path",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_gzawj9bre"
         },
         {
-          "pid": "P1084",
-          "name": "[NOIP 2012 提高组] 疫情控制",
+          "pid": "AT_ARC105_E",
+          "name": "Keep Graph Disconnected",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_gzawj9bre"
         },
         {
-          "pid": "AT_abc359_g",
-          "name": "Sum of Tree Distance",
+          "pid": "P10238",
+          "name": "[yLCPC2024] F. PANDORA PARADOXXX",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_gzawj9bre"
         },
         {
-          "pid": "AT_arc117_d",
-          "name": "Miracle Tree",
+          "pid": "P2266",
+          "name": "爱的供养",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_gzawj9bre"
         },
         {
-          "pid": "AT_arc116_e",
-          "name": "Spread of Information",
+          "pid": "CF1858E2",
+          "name": "Rollbacks (Hard Version)",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vn51bmtgv"
+          "groupId": "g_yc4hnbbre"
         },
         {
-          "pid": "CF1758E",
-          "name": "Tick, Tock",
+          "pid": "CF1444C",
+          "name": "Team-Building",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_0z5so2tgv"
+          "groupId": "g_yc4hnbbre"
         },
         {
-          "pid": "P4180",
-          "name": "[BJWC2010] 严格次小生成树",
+          "pid": "CF848C",
+          "name": "Goodbye Souvenir",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_0z5so2tgv"
+          "groupId": "g_yc4hnbbre"
         },
         {
-          "pid": "AT_abc295_g",
-          "name": "Minimum Reachable City",
+          "pid": "CF940F",
+          "name": "Machine Learning",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_0z5so2tgv"
+          "groupId": "g_yc4hnbbre"
         },
         {
-          "pid": "CF1715E",
-          "name": "Long Way Home",
+          "pid": "AT_AGC002_D",
+          "name": "Stamp Rally",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_nuqdm8tgv"
+          "groupId": "g_yc4hnbbre"
         },
         {
-          "pid": "CF1859E",
-          "name": "Maximum Monogonosity",
+          "pid": "P17090",
+          "name": "『lnOI-R1』掐头去尾",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_nuqdm8tgv"
-        },
-        {
-          "pid": "CF1889C2",
-          "name": "Doremy's Drying Plan (Hard Version)",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_nuqdm8tgv"
-        },
-        {
-          "pid": "P4655",
-          "name": "[CEOI2017] Building Bridges",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_nuqdm8tgv"
-        },
-        {
-          "pid": "P4093",
-          "name": "[HEOI2016/TJOI2016] 序列",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_nuqdm8tgv"
-        },
-        {
-          "pid": "AT_abc341_g",
-          "name": "Highest Ratio",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_nuqdm8tgv"
-        },
-        {
-          "pid": "CF1863F",
-          "name": "Divide, XOR, and Conquer",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7krd0xtgv"
-        },
-        {
-          "pid": "CF1935E",
-          "name": "Distance Learning Courses in MAC",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7krd0xtgv"
-        },
-        {
-          "pid": "CF1778E",
-          "name": "The Tree Has Fallen!",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7krd0xtgv"
-        },
-        {
-          "pid": "P3293",
-          "name": "[SCOI2016] 美味",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7krd0xtgv"
-        },
-        {
-          "pid": "P5283",
-          "name": "[十二省联考 2019] 异或粽子",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7krd0xtgv"
-        },
-        {
-          "pid": "AT_abc308_g",
-          "name": "Minimum Xor Pair Query",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7krd0xtgv"
+          "groupId": "g_yc4hnbbre"
         },
         {
           "pid": "CF1852C",
@@ -18839,57 +18794,287 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_l0ayo0tgv"
+          "groupId": "g_lgsoekbre"
         },
         {
-          "pid": "P1792",
-          "name": "[国家集训队] 种树",
+          "pid": "CF1389F",
+          "name": "Bicolored Segments",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_l0ayo0tgv"
+          "groupId": "g_lgsoekbre"
         },
         {
-          "pid": "P4155",
-          "name": "[SCOI2015] 国旗计划",
+          "pid": "CF1469F",
+          "name": "Power Sockets",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_l0ayo0tgv"
+          "groupId": "g_lgsoekbre"
         },
         {
-          "pid": "P1966",
-          "name": "[NOIP 2013 提高组] 火柴排队",
+          "pid": "CF1439C",
+          "name": "Greedy Shopping",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_l0ayo0tgv"
+          "groupId": "g_lgsoekbre"
         },
         {
-          "pid": "AT_arc136_c",
-          "name": "Circular Addition",
+          "pid": "P3602",
+          "name": "Koishi Loves Segments",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_l0ayo0tgv"
+          "groupId": "g_lgsoekbre"
         },
         {
-          "pid": "AT_arc132_d",
-          "name": "Between Two Binary Strings",
+          "pid": "P10768",
+          "name": "「CROI · R2」落月摇情",
           "difficulty": 0,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_l0ayo0tgv"
+          "groupId": "g_lgsoekbre"
+        },
+        {
+          "pid": "CF1935E",
+          "name": "Distance Learning Courses in MAC",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_jzcyzzbre"
+        },
+        {
+          "pid": "CF1327F",
+          "name": "AND Segments",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_jzcyzzbre"
+        },
+        {
+          "pid": "CF1665E",
+          "name": "MinimizOR",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_jzcyzzbre"
+        },
+        {
+          "pid": "CF1004F",
+          "name": "Sonya and Bitwise OR",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_jzcyzzbre"
+        },
+        {
+          "pid": "AT_ARC127_D",
+          "name": "Sum of Min of Xor",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_jzcyzzbre"
+        },
+        {
+          "pid": "AT_AGC015_D",
+          "name": "A or...or B Problem",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_jzcyzzbre"
+        },
+        {
+          "pid": "P11146",
+          "name": "「SFMOI Round I」Strange Train Game",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_jzcyzzbre"
+        },
+        {
+          "pid": "P9745",
+          "name": "「KDOI-06-S」树上异或",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_jzcyzzbre"
+        },
+        {
+          "pid": "CF1609E",
+          "name": "William The Oblivious",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_xj8um5bre"
+        },
+        {
+          "pid": "CF1638E",
+          "name": "Colorful Operations",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_xj8um5bre"
+        },
+        {
+          "pid": "CF1750E",
+          "name": "Bracket Cost",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_xj8um5bre"
+        },
+        {
+          "pid": "CF1976E",
+          "name": "Splittable Permutations",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_aa0jagbre"
+        },
+        {
+          "pid": "CF1795F",
+          "name": "Blocking Chips",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_42n20lbre"
+        },
+        {
+          "pid": "CF1842F",
+          "name": "Tenzing and Tree",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_42n20lbre"
+        },
+        {
+          "pid": "CF1904E",
+          "name": "Tree Queries",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_42n20lbre"
+        },
+        {
+          "pid": "CF1632E2",
+          "name": "Distance Tree (hard version)",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_42n20lbre"
+        },
+        {
+          "pid": "CF1830D",
+          "name": "Mex Tree",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_42n20lbre"
+        },
+        {
+          "pid": "CF1758E",
+          "name": "Tick, Tock",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_gzawj9bre"
+        },
+        {
+          "pid": "CF1715E",
+          "name": "Long Way Home",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_lsqpg8euw"
+        },
+        {
+          "pid": "CF1859E",
+          "name": "Maximum Monogonosity",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_lsqpg8euw"
+        },
+        {
+          "pid": "CF1889C2",
+          "name": "Doremy's Drying Plan (Hard Version)",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_lsqpg8euw"
+        },
+        {
+          "pid": "CF1778E",
+          "name": "The Tree Has Fallen!",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_jzcyzzbre"
+        },
+        {
+          "pid": "CF1863F",
+          "name": "Divide, XOR, and Conquer",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_jzcyzzbre"
         }
       ]
     }
@@ -18944,7 +19129,7 @@
     "训练-转化": "lg_x1v7wey3l",
     "训练-强化": "lg_x1v7wey3l",
     "训练-计数": "lg_x1v7wey3l",
-    "训练-代码源风格题目": "lg_x1v7wey3l"
+    "训练-转化 Ⅱ": "lg_x1v7wey3l"
   },
   "listLocks": {},
   "listPins": {
@@ -18978,13 +19163,13 @@
     "代码源杂题",
     "代码源周作业",
     "训练-计数",
-    "训练-代码源风格题目"
+    "训练-转化 Ⅱ"
   ],
   "markedLists": [
     "训练-计数",
     "训练-强化"
   ],
-  "currentList": "训练-思维",
+  "currentList": "训练-转化 Ⅱ",
   "_codex": {
     "mock": [
       {
