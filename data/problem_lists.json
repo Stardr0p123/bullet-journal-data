@@ -625,16 +625,6 @@
           "groupId": "g_8d5x07x04"
         },
         {
-          "pid": "CF1935E",
-          "name": "Distance Learning Courses in MAC",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_8d5x07x04"
-        },
-        {
           "pid": "CF1951E",
           "name": "No Palindromes",
           "difficulty": 5,
@@ -695,16 +685,6 @@
           "groupId": "g_8d5x07x04"
         },
         {
-          "pid": "CF1852C",
-          "name": "Ina of the Mountain",
-          "difficulty": 6,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_ua4fpt4bp"
-        },
-        {
           "pid": "CF505E",
           "name": "Mr. Kitayuta vs. Bamboos",
           "difficulty": 6,
@@ -747,16 +727,6 @@
         {
           "pid": "CF1338D",
           "name": "Nested Rubber Bands",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_ua4fpt4bp"
-        },
-        {
-          "pid": "CF1715E",
-          "name": "Long Way Home",
           "difficulty": 7,
           "date": "",
           "note": "",
@@ -1103,16 +1073,6 @@
         {
           "pid": "CF1730D",
           "name": "Prefixes and Suffixes",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_tk2hwseay"
-        },
-        {
-          "pid": "CF1750E",
-          "name": "Bracket Cost",
           "difficulty": 5,
           "date": "",
           "note": "",
@@ -3323,16 +3283,6 @@
           "groupId": "g_n53jx8xi6"
         },
         {
-          "pid": "CF1327F",
-          "name": "AND Segments",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_n53jx8xi6"
-        },
-        {
           "pid": "CF1354E",
           "name": "Graph Coloring",
           "difficulty": 5,
@@ -4315,16 +4265,6 @@
         {
           "pid": "CF739E",
           "name": "Gosha is hunting",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_plqjy4763"
-        },
-        {
-          "pid": "CF750E",
-          "name": "New Year and Old Subsequence",
           "difficulty": 7,
           "date": "",
           "note": "",
@@ -5348,16 +5288,6 @@
           "pid": "P4292",
           "name": "[WC2010] 重建计划",
           "difficulty": 8,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_ac8mqomlk"
-        },
-        {
-          "pid": "P4314",
-          "name": "CPU 监控",
-          "difficulty": 6,
           "date": "",
           "note": "",
           "pinned": false,
@@ -6499,16 +6429,6 @@
           "name": "Train Maintenance",
           "difficulty": 5,
           "date": "2026-07-13",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_ops7hb5la"
-        },
-        {
-          "pid": "CF1638E",
-          "name": "Colorful Operations",
-          "difficulty": 7,
-          "date": "",
           "note": "",
           "pinned": false,
           "know": false,
@@ -10344,16 +10264,6 @@
           "groupId": "g_cuuuvpner"
         },
         {
-          "pid": "CF1444C",
-          "name": "Team-Building",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_cuuuvpner"
-        },
-        {
           "pid": "CF1446C",
           "name": "Xor Tree",
           "difficulty": 4,
@@ -14017,16 +13927,6 @@
           "groupId": "g_zb6628nhv"
         },
         {
-          "pid": "CF1486F",
-          "name": "Pairs of Paths",
-          "difficulty": 6,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_zb6628nhv"
-        },
-        {
           "pid": "CF1473F",
           "name": "Strange Set",
           "difficulty": 7,
@@ -15373,16 +15273,6 @@
           "groupId": "g_tka6ehj12"
         },
         {
-          "pid": "CF1638E",
-          "name": "Colorful Operations",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_tka6ehj12"
-        },
-        {
           "pid": "CF1658E",
           "name": "Gojou and Grid Game",
           "difficulty": 7,
@@ -15506,16 +15396,6 @@
           "pid": "CF1860E",
           "name": "Fast Travel Text Game",
           "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_tka6ehj12"
-        },
-        {
-          "pid": "CF1863F",
-          "name": "Divide, XOR, and Conquer",
-          "difficulty": 7,
           "date": "",
           "note": "",
           "pinned": false,
@@ -15816,16 +15696,6 @@
         {
           "pid": "CF1924B",
           "name": "Space Harbour",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_ab3beurwo"
-        },
-        {
-          "pid": "CF1935E",
-          "name": "Distance Learning Courses in Mac",
           "difficulty": 5,
           "date": "",
           "note": "",
@@ -16545,16 +16415,6 @@
           "groupId": "g_1nm6b6ssm"
         },
         {
-          "pid": "CF1327F",
-          "name": "AND Segments",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1nm6b6ssm"
-        },
-        {
           "pid": "CF1368E",
           "name": "Ski Accidents",
           "difficulty": 5,
@@ -16618,16 +16478,6 @@
           "pid": "CF1391E",
           "name": "Pairs of Pairs",
           "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1nm6b6ssm"
-        },
-        {
-          "pid": "CF1416D",
-          "name": "Graph and Queries",
-          "difficulty": 6,
           "date": "",
           "note": "",
           "pinned": false,
@@ -16868,16 +16718,6 @@
           "pid": "AT_AGC028_D",
           "name": "Chords",
           "difficulty": 8,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1nm6b6ssm"
-        },
-        {
-          "pid": "AT_AGC030_D",
-          "name": "Inversion Sum",
-          "difficulty": 7,
           "date": "",
           "note": "",
           "pinned": false,
@@ -18619,16 +18459,6 @@
         {
           "pid": "CF1000G",
           "name": "Two-Paths",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_42n20lbre"
-        },
-        {
-          "pid": "AT_ARC121_E",
-          "name": "Directed Tree",
           "difficulty": 0,
           "date": "",
           "note": "",
