@@ -2201,6 +2201,11 @@
         {
           "id": "g_d18sm0r8t",
           "name": "11.11",
+          "collapsed": true
+        },
+        {
+          "id": "g_xj9l6vh1r",
+          "name": "11.15",
           "collapsed": false
         }
       ],
@@ -3104,6 +3109,66 @@
           "pinned": false,
           "know": false,
           "groupId": "g_d18sm0r8t"
+        },
+        {
+          "pid": "CF1442D",
+          "name": "Sum",
+          "difficulty": 7,
+          "date": "2026-11-15",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_xj9l6vh1r"
+        },
+        {
+          "pid": "CF1558D",
+          "name": "Top-Notch Insertions",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_xj9l6vh1r"
+        },
+        {
+          "pid": "CF442D",
+          "name": "Adam and Tree",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_xj9l6vh1r"
+        },
+        {
+          "pid": "CF702F",
+          "name": "T-Shirts",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_xj9l6vh1r"
+        },
+        {
+          "pid": "CF946G",
+          "name": "Almost Increasing Array",
+          "difficulty": 6,
+          "date": "2026-11-15",
+          "note": "@ 清新\n# DP优化 树状数组\n完成时间：0小时58分钟\n独立完成\n破冰点：活了一万年才知道哪里都可以作为答案",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_xj9l6vh1r"
+        },
+        {
+          "pid": "P13842",
+          "name": "篱莘龙",
+          "difficulty": 7,
+          "date": "2026-11-15",
+          "note": "#数据结构 扫描线 线段树\n@码农 细节题\n完成时间：3小时13分钟\n看了题解\n破冰点：聪明的线段树",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_xj9l6vh1r"
         }
       ]
     },
@@ -3112,87 +3177,87 @@
         {
           "id": "g_049wj6a7t",
           "name": "11.06 构造",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_f7rt7ea0z",
           "name": "11.02 杂",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_2czqyp5oo",
           "name": "10.26杂题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_6lfa3a5vc",
           "name": "10.23贪心专题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_m4p40lcad",
           "name": "10.16图论专题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_rgc1vh3zq",
           "name": "10.19杂题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_iq2ezetpa",
           "name": "10.12杂题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_poumkivev",
           "name": "10.09凸优化、Monge、决策单调性专题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_q0gwql8s4",
           "name": "10.05杂题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_hnsi645tk",
           "name": "09.28杂题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_e1vl8ubh9",
           "name": "09.25计数专题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_3rryd2hwi",
           "name": "09.21杂题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_o3b6n7s3s",
           "name": "09.18构造",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_5u9wh4hm5",
           "name": "09.14杂题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_vs9i3vpuf",
           "name": "09.11数据结构",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_5htytuglf",
           "name": "09.07杂题",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_t765bkx2l",
           "name": "09.04dp专题",
-          "collapsed": true
+          "collapsed": false
         }
       ],
       "problems": [
@@ -4269,16 +4334,6 @@
         {
           "pid": "P13841",
           "name": "芳权多",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_vs9i3vpuf"
-        },
-        {
-          "pid": "P13842",
-          "name": "篱莘龙",
           "difficulty": 7,
           "date": "",
           "note": "",
@@ -5754,7 +5809,7 @@
         {
           "id": "g_pesp40vrk",
           "name": "DP 与计数 DP",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_7mi6hxvrk",
@@ -7381,7 +7436,7 @@
           "date": "",
           "note": "",
           "pinned": false,
-          "know": false,
+          "know": true,
           "groupId": "g_veb6lr6a4"
         },
         {
@@ -17568,6 +17623,16 @@
           "pinned": false,
           "know": false,
           "groupId": null
+        },
+        {
+          "pid": "P13234",
+          "name": "[GCJ 2015 Finals] Campinatorics",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
         }
       ]
     }
@@ -17656,7 +17721,7 @@
   "markedLists": [
     "训练-强化"
   ],
-  "currentList": "专题-DP",
+  "currentList": "教学题单",
   "_codex": {
     "mock": [
       {
@@ -18596,17 +18661,48 @@
       "inbox": [],
       "doing": [
         {
+          "id": "dt_yswrs7uis",
+          "listName": "教学题单",
+          "pid": "CF442D",
+          "name": "Adam and Tree",
+          "difficulty": 7,
+          "addedAt": 1794725069572,
+          "status": "doing",
+          "movedAt": 1794731009963
+        },
+        {
+          "id": "dt_ny1diyx59",
+          "listName": "教学题单",
+          "pid": "CF702F",
+          "name": "T-Shirts",
+          "difficulty": 7,
+          "addedAt": 1794747234573,
+          "status": "doing",
+          "movedAt": 1794747238991
+        },
+        {
+          "id": "dt_0di0jhp53",
+          "listName": "教学题单",
+          "pid": "CF1558D",
+          "name": "Top-Notch Insertions",
+          "difficulty": 7,
+          "addedAt": 1794731081224,
+          "status": "doing",
+          "movedAt": 1794747239786
+        }
+      ],
+      "suspended": [
+        {
           "id": "dt_uf8rs5d4u",
           "listName": "训练-转化",
           "pid": "CF1858E2",
           "name": "Rollbacks (Hard Version)",
           "difficulty": 7,
           "addedAt": 1794643165758,
-          "status": "doing",
-          "movedAt": 1794643165758
-        }
-      ],
-      "suspended": [
+          "status": "suspended",
+          "movedAt": 1794643165758,
+          "suspendedAt": 1794648768832
+        },
         {
           "id": "dt_0093n8dej",
           "listName": "训练-思维",
@@ -18663,18 +18759,42 @@
           "suspendedAt": 1794557711906
         }
       ],
-      "done": [],
-      "activeId": "dt_uf8rs5d4u",
-      "activeSince": 1794643165758,
+      "done": [
+        {
+          "id": "dt_szy41ty2w",
+          "listName": "教学题单",
+          "pid": "P13842",
+          "name": "篱莘龙",
+          "difficulty": 7,
+          "durationMs": 11631027,
+          "usedSolution": true,
+          "icebreak": "聪明的线段树",
+          "doneAt": 1794742716641
+        },
+        {
+          "id": "dt_b14jfvwyh",
+          "listName": "教学题单",
+          "pid": "CF946G",
+          "name": "Almost Increasing Array",
+          "difficulty": 6,
+          "durationMs": 3520501,
+          "usedSolution": false,
+          "icebreak": "活了一万年才知道哪里都可以作为答案",
+          "doneAt": 1794728622045
+        }
+      ],
+      "activeId": "dt_yswrs7uis",
+      "activeSince": 1794742730284,
       "elapsed": {
         "dt_864fzh4a4": 5058153,
         "dt_94q8po90k": 671325,
         "dt_w12mvv1g4": 1573983,
-        "dt_0093n8dej": 437350
+        "dt_0093n8dej": 437350,
+        "dt_uf8rs5d4u": 5603074
       },
       "today": {
-        "date": "2026-11-14",
-        "ms": 437350
+        "date": "2026-11-15",
+        "ms": 17499127
       }
     }
   }
