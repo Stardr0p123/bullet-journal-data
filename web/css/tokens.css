@@ -1,0 +1,75 @@
+/* ============================================================
+   tokens.css — 设计令牌层
+   只放 CSS 变量：颜色、主题、字体、字号、尺寸
+   不含任何组件/布局选择器
+   ============================================================ */
+
+:root{
+  --base-size:14px;
+  --primary:#5a8a9a;
+  --primary-dark:#4a7a8a;
+  --primary-light:#7a9aaa;
+  --primary-soft:rgba(90,138,154,.13);
+  --primary-glow:rgba(90,138,154,.22);
+  --primary-gradient:linear-gradient(135deg,#5a8a9a 0%,#4a7a8a 50%,#3a6a7a 100%);
+  --pin-active:#61c454;
+  --success:#5a8a7a;
+  --warning:#b8a06a;
+  --danger:#b06a6a;
+  --bg-start:#d5dbe3;
+  --bg-end:#c8ced6;
+  --text:#1a2a3a;
+  --text-secondary:#3a4a5a;
+  --text-muted:#7a8a9a;
+  --glass-bg:#dce2e8;
+  --glass-bg-hover:#e4e9ef;
+  --glass-border:rgba(255,255,255,.35);
+  --glass-shadow:0 2px 12px rgba(0,0,0,.04);
+  --glass-hover-shadow:0 4px 20px rgba(0,0,0,.08);
+  --surface:rgba(26,42,58,.035);
+  --surface-hover:rgba(26,42,58,.075);
+  --surface-active:rgba(90,138,154,.16);
+  --input-bg:rgba(26,42,58,.035);
+  --input-bg-focus:rgba(90,138,154,.09);
+  --border-subtle:rgba(90,138,154,.10);
+  --border-color:rgba(90,138,154,.16);
+  --dot-done:#61c454;
+  --dot-pending:#9aa6b0;
+  --dot-know:#e6a23c;
+  --daily-queue:#4a90d9;
+  --daily-active:#4a90d9;
+  --diff-0:#AAAAAA;--diff-1:#d44141;--diff-2:#e68d3a;--diff-3:#d4c62a;--diff-4:#47c49a;
+  --diff-5:#58c1d1;--diff-6:#648fec;--diff-7:#a482db;--diff-8:#2863bb;
+  --diff-none:#e58aa8;
+  --mark-color:#409eff;
+  --title-bar-height:38px;
+  --radius:14px;
+  --radius-sm:10px;
+  --radius-lg:20px;
+  --radius-full:9999px;
+  --font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Noto Sans SC',sans-serif;
+  --font-mono:'SF Mono','Fira Code','Consolas',monospace;
+}
+[data-theme="default-dark"]{--primary-soft:rgba(90,138,154,.18);--primary-glow:rgba(90,138,154,.30);--bg-start:#141a1e;--bg-end:#0e1216;--text:#e8ecf0;--text-secondary:#b0c0c8;--text-muted:#7a8a92;--glass-bg:#2a3238;--glass-bg-hover:#343e44;--glass-border:rgba(255,255,255,.06);--glass-shadow:0 2px 12px rgba(0,0,0,.3);--glass-hover-shadow:0 4px 20px rgba(0,0,0,.4);--surface:rgba(255,255,255,.035);--surface-hover:rgba(255,255,255,.08);--surface-active:rgba(90,138,154,.22);--input-bg:rgba(255,255,255,.045);--input-bg-focus:rgba(90,138,154,.14);--border-subtle:rgba(255,255,255,.05);--border-color:rgba(255,255,255,.09);--dot-done:#61c454;--dot-pending:#5c6a76;--dot-know:#e0b054;}
+[data-theme="catppuccin-latte"]{--primary:#1e66f5;--primary-dark:#1a56d5;--primary-light:#4a80f7;--primary-soft:rgba(30,102,245,.13);--primary-glow:rgba(30,102,245,.22);--primary-gradient:linear-gradient(135deg,#1e66f5 0%,#179299 100%);--bg-start:#eff1f5;--bg-end:#e6e9ef;--text:#4c4f69;--text-secondary:#5c5f77;--text-muted:#8c8fa1;--glass-bg:#ffffff;--glass-bg-hover:#f7f8fc;--glass-border:rgba(76,79,105,.08);--glass-shadow:0 2px 12px rgba(76,79,105,.06);--glass-hover-shadow:0 4px 20px rgba(76,79,105,.10);--surface:rgba(76,79,105,.045);--surface-hover:rgba(76,79,105,.085);--surface-active:rgba(30,102,245,.13);--input-bg:rgba(76,79,105,.045);--input-bg-focus:rgba(30,102,245,.08);--border-subtle:rgba(76,79,105,.07);--border-color:rgba(76,79,105,.13);--dot-done:#40a02b;--dot-pending:#9ca0b0;--dot-know:#df8e1d;--success:#40a02b;--warning:#df8e1d;--danger:#d20f39;--pin-active:#40a02b;}
+[data-theme="catppuccin-mocha"]{--primary:#89b4fa;--primary-dark:#74a3eb;--primary-light:#a0c4ff;--primary-soft:rgba(137,180,250,.16);--primary-glow:rgba(137,180,250,.28);--primary-gradient:linear-gradient(135deg,#89b4fa 0%,#94e2d5 100%);--bg-start:#1e1e2e;--bg-end:#181825;--text:#cdd6f4;--text-secondary:#bac2de;--text-muted:#7f849c;--glass-bg:#24243a;--glass-bg-hover:#2c2c42;--glass-border:rgba(255,255,255,.06);--glass-shadow:0 2px 12px rgba(0,0,0,.35);--glass-hover-shadow:0 4px 20px rgba(0,0,0,.45);--surface:rgba(255,255,255,.035);--surface-hover:rgba(255,255,255,.08);--surface-active:rgba(137,180,250,.18);--input-bg:rgba(255,255,255,.045);--input-bg-focus:rgba(137,180,250,.14);--border-subtle:rgba(255,255,255,.05);--border-color:rgba(255,255,255,.08);--dot-done:#a6e3a1;--dot-pending:#6c7086;--dot-know:#f9e2af;--success:#a6e3a1;--warning:#f9e2af;--danger:#f38ba8;--pin-active:#a6e3a1;}
+[data-theme="nord"]{--primary:#88c0d0;--primary-dark:#7eb0c0;--primary-light:#9dd0dd;--primary-soft:rgba(136,192,208,.14);--primary-glow:rgba(136,192,208,.25);--primary-gradient:linear-gradient(135deg,#88c0d0 0%,#81a1c1 100%);--bg-start:#2e3440;--bg-end:#242933;--text:#eceff4;--text-secondary:#d8dee9;--text-muted:#7b8a9c;--glass-bg:#3b4252;--glass-bg-hover:#434c5e;--glass-border:rgba(255,255,255,.06);--glass-shadow:0 2px 12px rgba(0,0,0,.3);--glass-hover-shadow:0 4px 20px rgba(0,0,0,.4);--surface:rgba(255,255,255,.035);--surface-hover:rgba(255,255,255,.08);--surface-active:rgba(136,192,208,.16);--input-bg:rgba(255,255,255,.045);--input-bg-focus:rgba(136,192,208,.13);--border-subtle:rgba(255,255,255,.05);--border-color:rgba(255,255,255,.08);--dot-done:#a3be8c;--dot-pending:#4c566a;--dot-know:#ebcb8b;--success:#a3be8c;--warning:#ebcb8b;--danger:#bf616a;--pin-active:#a3be8c;}
+[data-theme="solarized-light"]{--primary:#268bd2;--primary-dark:#1f76b8;--primary-light:#4aa1dc;--primary-soft:rgba(38,139,210,.12);--primary-glow:rgba(38,139,210,.22);--primary-gradient:linear-gradient(135deg,#268bd2 0%,#2aa198 100%);--bg-start:#fdf6e3;--bg-end:#eee8d5;--text:#073642;--text-secondary:#586e75;--text-muted:#93a1a1;--glass-bg:#fffbf0;--glass-bg-hover:#fffdf6;--glass-border:rgba(7,54,66,.07);--glass-shadow:0 2px 12px rgba(7,54,66,.06);--glass-hover-shadow:0 4px 20px rgba(7,54,66,.10);--surface:rgba(7,54,66,.045);--surface-hover:rgba(7,54,66,.085);--surface-active:rgba(38,139,210,.13);--input-bg:rgba(7,54,66,.045);--input-bg-focus:rgba(38,139,210,.08);--border-subtle:rgba(7,54,66,.08);--border-color:rgba(7,54,66,.13);--dot-done:#859900;--dot-pending:#93a1a1;--dot-know:#b58900;--success:#859900;--warning:#b58900;--danger:#dc322f;--pin-active:#859900;}
+[data-theme="solarized-dark"]{--primary:#268bd2;--primary-dark:#1f76b8;--primary-light:#4aa1dc;--primary-soft:rgba(38,139,210,.16);--primary-glow:rgba(38,139,210,.26);--primary-gradient:linear-gradient(135deg,#268bd2 0%,#2aa198 100%);--bg-start:#002b36;--bg-end:#001f27;--text:#eee8d5;--text-secondary:#93a1a1;--text-muted:#6c8a8a;--glass-bg:#073642;--glass-bg-hover:#0e4450;--glass-border:rgba(255,255,255,.05);--glass-shadow:0 2px 12px rgba(0,0,0,.3);--glass-hover-shadow:0 4px 20px rgba(0,0,0,.4);--surface:rgba(255,255,255,.035);--surface-hover:rgba(255,255,255,.08);--surface-active:rgba(38,139,210,.18);--input-bg:rgba(255,255,255,.045);--input-bg-focus:rgba(38,139,210,.14);--border-subtle:rgba(255,255,255,.05);--border-color:rgba(255,255,255,.08);--dot-done:#859900;--dot-pending:#586e75;--dot-know:#b58900;--success:#859900;--warning:#b58900;--danger:#dc322f;--pin-active:#859900;}
+[data-theme="oled"]{--primary:#5ac8fa;--primary-dark:#40a8d8;--primary-light:#7ad4fa;--primary-soft:rgba(90,200,250,.13);--primary-glow:rgba(90,200,250,.22);--primary-gradient:linear-gradient(135deg,#5ac8fa 0%,#30d158 100%);--bg-start:#000;--bg-end:#000;--text:#f5f5f7;--text-secondary:#b8b8bd;--text-muted:#6e6e73;--glass-bg:#0a0a0a;--glass-bg-hover:#141414;--glass-border:rgba(255,255,255,.07);--glass-shadow:0 2px 12px rgba(0,0,0,.6);--glass-hover-shadow:0 4px 20px rgba(0,0,0,.7);--surface:rgba(255,255,255,.04);--surface-hover:rgba(255,255,255,.09);--surface-active:rgba(90,200,250,.16);--input-bg:rgba(255,255,255,.045);--input-bg-focus:rgba(90,200,250,.13);--border-subtle:rgba(255,255,255,.07);--border-color:rgba(255,255,255,.11);--dot-done:#30d158;--dot-pending:#48484a;--dot-know:#ffd60a;--success:#30d158;--warning:#ffd60a;--danger:#ff453a;--pin-active:#30d158;}
+html[data-font="default"]{--font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Noto Sans SC',sans-serif;}
+html[data-font="serif"]{--font-sans:Georgia,'Songti SC','SimSun',serif;}
+html[data-font="kai"]{--font-sans:'Kaiti SC','STKaiti',KaiTi,'PingFang SC',sans-serif;}
+html[data-font="mono"]{--font-sans:'SF Mono','Consolas','PingFang SC',monospace;}
+html[data-fsize="s"]{--base-size:13px;}
+html[data-fsize="m"]{--base-size:14px;}
+html[data-fsize="l"]{--base-size:15.5px;}
+
+/* 训练区四态（挂起沿用 --dot-know，与「会了没写」同色）；待做池默认与进行中同为蓝色 */
+html[data-theme="default-dark"]{--daily-queue:#6aa8f0;--daily-active:#6aa8f0;}
+html[data-theme="catppuccin-latte"]{--daily-queue:#1e66f5;--daily-active:#1e66f5;}
+html[data-theme="catppuccin-mocha"]{--daily-queue:#89b4fa;--daily-active:#89b4fa;}
+html[data-theme="nord"]{--daily-queue:#5e81ac;--daily-active:#5e81ac;}
+html[data-theme="solarized-light"]{--daily-queue:#268bd2;--daily-active:#268bd2;}
+html[data-theme="solarized-dark"]{--daily-queue:#4aa1dc;--daily-active:#4aa1dc;}
+html[data-theme="oled"]{--daily-queue:#0a84ff;--daily-active:#0a84ff;}

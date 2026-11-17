@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>题单 · 题库管理</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'%3E%3Cpath fill='%23000000' d='M296.5 69.2C311.4 62.3 328.6 62.3 343.5 69.2L562.1 170.2C570.6 174.1 576 182.6 576 192C576 201.4 570.6 209.9 562.1 213.8L343.5 314.8C328.6 321.7 311.4 321.7 296.5 314.8L77.9 213.8C69.4 209.8 64 201.3 64 192C64 182.7 69.4 174.1 77.9 170.2L296.5 69.2z'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="./vendor/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="./vendor/katex/katex.min.css" />
+<link rel="stylesheet" href="./css/tokens.css" />
+<link rel="stylesheet" href="./css/main.css" />
+<link rel="stylesheet" href="./css/codex.css" />
+</head>
+<body>
+
+<div class="app-container">
+  <div id="title-bar" data-tauri-drag-region>
+    <div class="window-title" data-tauri-drag-region>题单管理</div>
+    <div class="window-controls">
+      <button class="window-btn minimize" id="winMinBtn" title="最小化"><i class="fas fa-chevron-down"></i></button>
+      <button class="window-btn maximize" id="winMaxBtn" title="最大化"><i class="fas fa-chevron-up"></i></button>
+      <button class="window-btn close" id="winCloseBtn" title="关闭"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <aside class="sidebar-left">
+      <div class="logo-area">
+        <div class="logo-icon" id="logoBtn" title="双击：重做"><i class="fas fa-layer-group"></i></div>
+        <div>
+          <span class="logo-text">题单管理</span>
+          <span class="logo-sub">便捷题目记录器</span>
+        </div>
+        <div class="logo-actions">
+          <button class="logo-book" id="searchBtn" title="搜索题目 / 标签 (Ctrl+F)"><i class="fas fa-search"></i></button>
+          <button class="logo-book" id="codexBtn" title="训练 · 模拟赛 / Trick 库 / 日常 (Ctrl+B)">
+            <i class="fas fa-book"></i>
+            <span class="logo-book-badge" id="codexBadge"></span>
+          </button>
+          <button class="logo-treasure" id="treasureBtn" title="百宝箱 (Ctrl+,)">···</button>
+        </div>
+      </div>
+      <div class="list-section">
+        <div class="input-group">
+          <input type="text" id="listNameInput" placeholder="新题单名称…" />
+          <button class="icon-btn primary" id="createListBtn" title="创建题单"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="list-container" id="listContainer"></div>
+      </div>
+      <div class="sidebar-resizer" id="sidebarResizer" title="拖动调整侧栏宽度 · 双击复位"></div>
+    </aside>
+
+    <main class="main-content">
+      <div class="main-header">
+        <div class="ph-left">
+          <div class="ph-title-row">
+            <span class="ph-name" id="currentListName">选择题单 <span class="ph-sub">查看题目</span></span>
+            <span class="ph-lock" id="listLockBtn" title="只读锁 (Ctrl+L)"><i class="fas fa-lock-open"></i></span>
+          </div>
+          <div class="ph-progress" id="phProgress">
+            <div class="progress-bar"><div class="fill" id="progressFill"></div></div>
+            <span class="progress-text" id="progressText">0/0</span>
+          </div>
+          <div class="ph-diffbar" id="diffBar"></div>
+        </div>
+        <div class="ph-actions">
+          <div class="view-toggle" id="viewToggle" data-view="all">
+            <span class="view-toggle-thumb"></span>
+            <button class="view-toggle-btn active" data-view="all">全部</button>
+            <button class="view-toggle-btn" data-view="pending">未做</button>
+            <button class="view-toggle-btn" data-view="done">已做</button>
+          </div>
+          <button class="btn-ghost-sm" id="layoutToggleBtn" title="切换单栏 / 双栏"><i class="fas fa-bars"></i> <span id="layoutLabel">单栏</span></button>
+          <button class="btn-ghost-sm" id="groupViewBtn" title="视图分组 (Ctrl+I)"><i class="fas fa-layer-group"></i> 无分类</button>
+          <button class="btn-ghost-sm" id="addGroupBtn" title="新建组 (Ctrl+N)"><i class="fas fa-folder-plus"></i> 新建组</button>
+          <button class="btn-ghost-sm" id="batchImportBtn" title="批量导入 (Ctrl+P)"><i class="fas fa-file-import"></i> 批量导入</button>
+        </div>
+      </div>
+
+      <div class="problem-toolbar" id="problemToolbar" style="display:none;">
+        <div class="toolbar-left">
+          <button class="btn-ghost-sm" id="toggleMultiSelectBtn" title="切换多选 (Ctrl+M)"><i class="fas fa-check-square"></i> 多选</button>
+          <label class="select-all-label">
+            <input type="checkbox" class="custom-checkbox" id="selectAllCheckbox" style="opacity:1;width:18px;height:18px;margin-right:2px;" />
+            <span>全选 (Alt+A)</span>
+          </label>
+          <span class="selected-count" id="selectedCount">已选 0 题</span>
+        </div>
+        <div class="toolbar-right">
+          <button class="toolbar-action primary" id="applyDiffBtn" data-popup-trigger="diffPopup"><i class="fas fa-tag"></i> 应用难度</button>
+          <button class="toolbar-action success" id="batchExportBtn" data-popup-trigger="exportPopup"><i class="fas fa-file-excel"></i> 批量导出</button>
+          <button class="toolbar-action" id="batchMoveBtn" data-popup-trigger="moveGroupPopup"><i class="fas fa-folder-open"></i> 移到组内</button>
+          <button class="toolbar-action" id="batchMoveListBtn" data-popup-trigger="moveListPopup"><i class="fas fa-arrow-right"></i> 移到题单</button>
+          <button class="toolbar-action" id="batchOpenBtn" title="批量打开 (Alt+O)"><i class="fas fa-external-link-alt"></i> 批量打开</button>
+          <button class="toolbar-action danger" id="batchDeleteBtn"><i class="fas fa-trash-alt"></i> 批量删除</button>
+        </div>
+      </div>
+
+      <div class="input-group" id="addProblemGroup">
+        <input type="text" id="problemPidInput" placeholder="题号 (如 P1001, CF1234A)" />
+        <input type="text" id="problemNameInput" placeholder="题目名称" />
+        <select id="problemDiffSelect">
+          <option value="0">暂无</option><option value="1">入门</option><option value="2">普及-</option>
+          <option value="3">普及</option><option value="4">普及+/提高-</option><option value="5">提高</option>
+          <option value="6">提高+/省选-</option><option value="7">省选/NOI-</option><option value="8">NOI/NOI+/CTS</option>
+        </select>
+        <select id="problemGroupSelect"><option value="">未分组</option></select>
+        <button class="btn-sm" id="addProblemBtn"><i class="fas fa-plus"></i> 添加</button>
+        <button class="btn-sm ghost" id="sortByOjBtn" title="按 OJ 排序"><i class="fas fa-code-branch"></i> OJ</button>
+        <button class="btn-sm ghost" id="sortByDiffBtn" title="按难度排序"><i class="fas fa-sort-numeric-down"></i> 难度</button>
+      </div>
+
+      <div class="problem-list" id="problemList"></div>
+    </main>
+  </div>
+</div>
+
+<div class="popup" id="diffPopup">
+  <input type="text" id="batchDiffString" placeholder="如 55555" autocomplete="off" />
+  <span class="popup-hint">0-8 · Enter</span>
+</div>
+<div class="popup export-popup" id="exportPopup">
+  <div class="seg-toggle export-seg" id="exportModeToggle" data-mode="nodiff">
+    <span class="seg-thumb"></span>
+    <button class="active" data-export-mode="nodiff">不带难度</button>
+    <button data-export-mode="diff">带难度</button>
+    <button data-export-mode="pid">仅题号</button>
+  </div>
+  <div class="export-actions">
+    <button class="btn-sm ghost" data-export-go="file"><i class="fas fa-file-export"></i> 导出到 TSV</button>
+    <button class="btn-sm" data-export-go="clip"><i class="fas fa-copy"></i> 导出到剪贴板</button>
+  </div>
+</div>
+<div class="popup" id="moveListPopup">
+  <select id="moveTargetList"></select>
+  <button class="btn-sm ghost" id="moveCopyToggle"><i class="fas fa-share"></i> 移动</button>
+  <button class="btn-sm btn-icon" id="moveConfirmBtn" title="应用"><i class="fas fa-arrow-right"></i></button>
+</div>
+<div class="popup" id="moveGroupPopup">
+  <select id="moveGroupSelect"></select>
+  <input type="text" id="newGroupName" style="display:none;width:130px;" placeholder="新组名称" />
+  <button class="btn-sm btn-icon" id="moveGroupConfirmBtn" title="应用"><i class="fas fa-check"></i></button>
+</div>
+
+<div class="context-menu" id="contextMenu"></div>
+<div class="readonly-badge" id="readonlyBadge"><i class="fas fa-lock"></i> 只读模式</div>
+
+<div class="modal-overlay" id="treasureModal">
+  <div class="modal-box treasure-box">
+    <button class="modal-close treasure-close" data-close="treasureModal"><i class="fas fa-times"></i></button>
+    <div class="treasure-sidebar">
+      <button class="ts-btn active" data-tab="stats"><i class="fas fa-chart-bar"></i> 统计</button>
+      <button class="ts-btn" data-tab="random"><i class="fas fa-dice"></i> 随机跳题</button>
+      <button class="ts-btn" data-tab="organize"><i class="fas fa-right-left"></i> 题单整理</button>
+      <button class="ts-btn" data-tab="themes"><i class="fas fa-palette"></i> 主题</button>
+      <button class="ts-btn" data-tab="settings"><i class="fas fa-cog"></i> 设置</button>
+      <button class="ts-btn" data-tab="changelog"><i class="fas fa-scroll"></i> 更新日志</button>
+    </div>
+    <div class="treasure-content" id="treasureContent"></div>
+  </div>
+</div>
+
+<!-- ============ 训练：模拟赛 / Trick 库 / 日常 ============ -->
+<div class="modal-overlay" id="codexModal">
+  <div class="modal-box codex-box">
+    <button class="modal-close codex-close" data-close="codexModal"><i class="fas fa-times"></i></button>
+    <header class="codex-head">
+      <nav class="codex-tabs" id="codexTabs" data-index="0">
+        <span class="codex-tab-thumb"></span>
+        <button class="codex-tab active" data-codex-tab="mock"><i class="fas fa-stopwatch"></i><span>模拟赛</span></button>
+        <button class="codex-tab" data-codex-tab="tricks"><i class="fas fa-lightbulb"></i><span>Trick 库</span></button>
+        <button class="codex-tab" data-codex-tab="daily"><i class="fas fa-sun"></i><span>日常</span></button>
+      </nav>
+      <div class="codex-head-actions" id="codexHeadActions" data-active="mock">
+        <div class="codex-slot" data-slot="mock">
+          <button class="ck-btn primary" id="mockNewBtn"><i class="fas fa-plus"></i> 新建模拟赛</button>
+        </div>
+        <div class="codex-slot" data-slot="tricks">
+          <button class="ck-btn primary" id="trickAddBtn"><i class="fas fa-plus"></i> 添加 Trick</button>
+        </div>
+        <div class="codex-slot" data-slot="daily">
+          <span class="dl-stat"><i class="fas fa-check-circle"></i> 今日完成 <b id="dlDoneCount">0</b></span>
+          <span class="dl-stat"><i class="fas fa-hourglass-half"></i> 投入 <b id="dlFocus">00:00:00</b></span>
+        </div>
+      </div>
+    </header>
+    <div class="codex-content" id="codexContent"></div>
+  </div>
+</div>
+
+<!-- 新建模拟赛 -->
+<div class="modal-overlay" id="mockNewModal">
+  <div class="modal-box" style="max-width:470px;">
+    <h3><i class="fas fa-stopwatch" style="color:var(--primary);"></i> 新建模拟赛
+      <button class="modal-close" data-close="mockNewModal"><i class="fas fa-times"></i></button>
+    </h3>
+    <div class="form-group">
+      <label>模拟赛名称</label>
+      <input type="text" id="mockNameInput" placeholder="默认当天日期" />
+      <div class="hint">默认填入当天日期，可自行修改</div>
+    </div>
+    <div class="form-group">
+      <label>赛制风格</label>
+      <div class="style-picker" id="mockStylePicker">
+        <button type="button" class="style-card active" data-style="csp-s" style="--sc-accent:#5a8a9a;">
+          <span class="sc-name">CSP-S</span>
+          <span class="sc-desc">4 小时 · 4 题</span>
+        </button>
+        <button type="button" class="style-card" data-style="noip" style="--sc-accent:#648fec;">
+          <span class="sc-name">NOIP</span>
+          <span class="sc-desc">4.5 小时 · 4 题</span>
+        </button>
+        <button type="button" class="style-card" data-style="province" style="--sc-accent:#a482db;">
+          <span class="sc-name">省选</span>
+          <span class="sc-desc">5 小时 · 3 题</span>
+        </button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>开始方式</label>
+      <div class="seg-toggle" id="mockStartToggle" data-mode="now">
+        <span class="seg-thumb"></span>
+        <button class="active" data-mode="now">立即开始</button>
+        <button data-mode="at">定时开始</button>
+      </div>
+      <div id="mockStartAtWrap" style="display:none;margin-top:2px;">
+        <input type="datetime-local" id="mockStartAt" />
+        <div class="hint">到点自动开赛并开始倒计时，期间可以正常使用其他功能</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost-modal" data-close="mockNewModal">取消</button>
+      <button class="btn btn-primary-modal" id="mockCreateBtn"><i class="fas fa-flag-checkered"></i> 开始模拟</button>
+    </div>
+  </div>
+</div>
+
+<!-- 添加 / 编辑 Trick -->
+<div class="modal-overlay" id="trickModal">
+  <div class="modal-box" style="max-width:540px;">
+    <h3><i class="fas fa-lightbulb" style="color:var(--primary);"></i> <span id="trickModalTitle">添加 Trick</span>
+      <button class="modal-close" data-close="trickModal"><i class="fas fa-times"></i></button>
+    </h3>
+    <div class="form-row">
+      <div class="form-group" style="flex:3;">
+        <label>关键性质</label>
+        <input type="text" id="trickKey" placeholder="如：答案具有单调性 / 操作可差分" />
+      </div>
+      <div class="form-group" style="flex:1;min-width:100px;">
+        <label>优先级</label>
+        <input type="number" id="trickPriority" value="1" min="1" max="99" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>转化点</label>
+      <input type="text" id="trickTransform" placeholder="如：二分答案 → 判定可行性" />
+    </div>
+    <div class="form-group">
+      <label>相关算法</label>
+      <input type="text" id="trickAlgo" placeholder="如：二分 + 前缀和 / 树状数组" />
+    </div>
+    <div class="form-group">
+      <label>例子题</label>
+      <div class="tk-ex-picker">
+        <div class="tk-ex-selected" id="trickExampleSel"></div>
+        <input type="text" id="trickExampleSearch" placeholder="搜索题号 / 题目名 / 题单…" autocomplete="off" />
+        <div class="tk-ex-results" id="trickExampleResults"></div>
+      </div>
+      <div class="hint"><i class="fas fa-location-arrow"></i> 单选。展开 Trick 后点击例子题，可直接定位到题单原位置。</div>
+    </div>
+    <div class="form-group">
+      <label>注释</label>
+      <textarea id="trickNote" style="min-height:76px;" placeholder="适用范围、易错点、例题…&#10;支持 Markdown：**加粗**、`代码`、- 列表、[链接](https://…)"></textarea>
+      <div class="hint"><i class="fas fa-code"></i> 全部字段支持 Markdown 与公式：**加粗**、*斜体*、`行内代码`、列表、引用、代码块、链接、<code>$...$</code>、<code>$$...$$</code></div>
+    </div>
+    <div class="form-group">
+      <label>颜色</label>
+      <div class="color-row">
+        <input type="color" id="trickColor" value="#5a8a9a" />
+        <div class="color-swatches" id="trickSwatches"></div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost-modal" data-close="trickModal">取消</button>
+      <button class="btn btn-primary-modal" id="trickSaveBtn"><i class="fas fa-save"></i> 保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- 完成一道题 -->
+<div class="modal-overlay" id="dailyDoneModal">
+  <div class="modal-box" style="max-width:460px;">
+    <h3><i class="fas fa-flag-checkered" style="color:var(--success);"></i> 完成题目
+      <button class="modal-close" data-close="dailyDoneModal"><i class="fas fa-times"></i></button>
+    </h3>
+    <div class="dl-done-summary">
+      <span class="dl-done-pid" id="dailyDonePid">P1001</span>
+      <span class="dl-done-name" id="dailyDoneName"></span>
+      <span class="dl-done-time"><i class="fas fa-clock"></i> <b id="dailyDoneElapsed">00:00:00</b></span>
+    </div>
+    <div class="form-group">
+      <label>是否看了题解</label>
+      <div class="radio-row">
+        <label class="radio-pill"><input type="radio" name="dailySolved" value="no" checked /><span>否，自己做出来的</span></label>
+        <label class="radio-pill"><input type="radio" name="dailySolved" value="yes" /><span>是，看了题解</span></label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>破冰点记录 <em style="color:var(--danger);">*</em></label>
+      <textarea id="dailyIcebreak" style="min-height:104px;" placeholder="卡在哪里？哪一步想通了？关键结论是什么？"></textarea>
+      <div class="hint">必填。会和时间一起写进题目笔记，方便以后回看。</div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost-modal" data-close="dailyDoneModal">取消</button>
+      <button class="btn btn-primary-modal" id="dailyDoneConfirmBtn"><i class="fas fa-check"></i> 确认完成</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="tourModal">
+  <div class="modal-box tour-box">
+    <div class="tour-slide" id="tourSlide"></div>
+    <div class="tour-footer">
+      <div class="tour-dots" id="tourDots"></div>
+      <div class="tour-actions">
+        <button class="btn btn-ghost-modal" id="tourSkipBtn">跳过</button>
+        <button class="btn btn-primary-modal" id="tourNextBtn">下一步</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="searchModal">
+  <div class="modal-box search-box">
+    <h3><i class="fas fa-search" style="color:var(--primary);"></i> <span id="searchTitle">搜索题目</span>
+      <button class="modal-close" data-close="searchModal"><i class="fas fa-times"></i></button>
+    </h3>
+    <input type="text" id="searchInput" class="search-input" placeholder="输入题号 / 题名 / 标签 / 笔记内容…" autocomplete="off" />
+    <div class="seg-toggle search-seg" id="searchModeToggle" data-mode="title">
+      <span class="seg-thumb"></span>
+      <button class="active" data-search-mode="title">题号 / 题名</button>
+      <button data-search-mode="tag">标签</button>
+      <button data-search-mode="note">笔记</button>
+    </div>
+    <div class="search-list" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="batchModal">
+  <div class="modal-box">
+    <h3><i class="fas fa-file-import" style="color:var(--primary);"></i> 批量导入
+      <button class="modal-close" data-close="batchModal"><i class="fas fa-times"></i></button>
+    </h3>
+    <div class="seg-toggle" id="importSegToggle" data-mode="nodiff">
+      <span class="seg-thumb"></span>
+      <button class="active" data-mode="nodiff">不带难度</button>
+      <button data-mode="diff">带难度</button>
+    </div>
+    <div class="form-group">
+      <label>粘贴题单数据</label>
+      <textarea id="batchInput" placeholder="每行一个&#10;不带难度：题号 + Tab/空格 + 题目名&#10;带难度：题号 + Tab/空格 + 难度(0-8) + Tab/空格 + 题目名&#10;组头：「&gt;」+ 组名"></textarea>
+      <div class="hint" id="batchHint">不带难度：每行「题号 + Tab/空格 + 题目名」</div>
+    </div>
+    <div class="preview-stats" id="batchStats">已解析 0 条</div>
+    <div class="preview-area" id="batchPreview"></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost-modal" data-close="batchModal">取消</button>
+      <button class="btn btn-primary-modal" id="batchConfirmBtn"><i class="fas fa-check"></i> 确认导入</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="importGroupModal">
+  <div class="modal-box" style="max-width:380px;">
+    <h3><i class="fas fa-folder-open" style="color:var(--primary);"></i> 是否导入到组？</h3>
+    <div style="color:var(--text-secondary);font-size:.93em;line-height:1.65;margin-bottom:12px;">未检测到分组信息，是否将这些题目统一导入到某个组？</div>
+    <div class="form-group">
+      <label>目标组</label>
+      <select id="importGroupSelect"></select>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost-modal" id="importGroupCancelBtn">取消</button>
+      <button class="btn btn-primary-modal" id="importGroupOkBtn"><i class="fas fa-check"></i> 确定</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="editModal">
+  <div class="modal-box" style="max-width:420px;">
+    <h3><i class="fas fa-edit" style="color:var(--primary);"></i> 编辑题目
+      <button class="modal-close" data-close="editModal"><i class="fas fa-times"></i></button>
+    </h3>
+    <input type="hidden" id="editProblemPid" />
+    <div class="form-row">
+      <div class="form-group"><label>题号</label><input type="text" id="editPid" /></div>
+      <div class="form-group"><label>名称</label><input type="text" id="editName" /></div>
+    </div>
+    <div class="form-group">
+      <label>做题时间（留空表示未完成）</label>
+      <input type="date" id="editDate" />
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost-modal" data-close="editModal">取消</button>
+      <button class="btn btn-primary-modal" id="editSaveBtn"><i class="fas fa-save"></i> 保存</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="noteModal">
+  <div class="modal-box" style="max-width:560px;">
+    <h3><i class="fas fa-sticky-note" style="color:var(--warning);"></i> <span id="noteTitle">题目笔记</span>
+      <button class="modal-close" data-close="noteModal"><i class="fas fa-times"></i></button>
+    </h3>
+    <div class="form-group">
+      <textarea id="noteTextarea" placeholder="记录题目思路、易错点、关键结论…&#10;#red 莫队 分块 离线&#10;#FFEE00 注意取模细节" style="min-height:220px;"></textarea>
+      <div class="hint"><i class="fas fa-tags"></i> 标签写在笔记任意位置：<code>#颜色 标签</code>，空格即换下一个标签，换行或下一个颜色标记结束。例如 <code>#red 莫队 分块</code> 会得到两个红色标签；颜色可用 red / orange / yellow / green / cyan / blue / purple / pink / gray（或中文名），也可直接写十六进制 <code>#FFEE00</code>、<code>#f0e</code>。</div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost-modal" data-close="noteModal">取消</button>
+      <button class="btn btn-primary-modal" id="noteSaveBtn"><i class="fas fa-save"></i> 保存</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="promptModal">
+  <div class="modal-box" style="max-width:360px;">
+    <h3 id="promptTitle"><i class="fas fa-pen" style="color:var(--primary);"></i> 输入</h3>
+    <div class="form-group">
+      <input type="text" id="promptInput" />
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost-modal" data-close="promptModal">取消</button>
+      <button class="btn btn-primary-modal" id="promptOkBtn"><i class="fas fa-check"></i> 确定</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="themeEditModal">
+  <div class="modal-box" style="max-width:480px;">
+    <h3><i class="fas fa-palette" style="color:var(--primary);"></i> 编辑主题 <span id="editThemeName" style="font-weight:400;color:var(--text-muted);font-size:.86em;"></span>
+      <button class="modal-close" data-close="themeEditModal"><i class="fas fa-times"></i></button>
+    </h3>
+    <div class="form-group">
+      <label>名称</label>
+      <input type="text" id="editThemeTitle" />
+    </div>
+    <div class="tp-section-title" style="margin-top:12px;">颜色</div>
+    <div id="themeEditorRows"></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost-modal" data-close="themeEditModal">取消</button>
+      <button class="btn btn-primary-modal" id="themeEditSaveBtn"><i class="fas fa-save"></i> 保存</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="diffPaletteModal">
+  <div class="modal-box" style="max-width:480px;">
+    <h3><i class="fas fa-swatchbook" style="color:var(--primary);"></i> <span id="diffPaletteModalTitle">编辑难度配色</span>
+      <button class="modal-close" data-close="diffPaletteModal"><i class="fas fa-times"></i></button>
+    </h3>
+    <div class="form-group"><label>名称</label><input type="text" id="diffPaletteName" /></div>
+    <div class="dp-editor" id="diffPaletteEditor"></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost-modal" data-close="diffPaletteModal">取消</button>
+      <button class="btn btn-primary-modal" id="diffPaletteSaveBtn"><i class="fas fa-save"></i> 保存</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box" style="max-width:380px;">
+    <h3 id="confirmTitle"><i class="fas fa-exclamation-triangle" style="color:var(--danger);"></i> 确认</h3>
+    <div id="confirmMsg" style="color:var(--text-secondary);font-size:.93em;line-height:1.65;"></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost-modal" data-close="confirmModal">取消</button>
+      <button class="btn btn-primary-modal" id="confirmBtn" style="background:var(--danger);">确认</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="shortcutsModal">
+  <div class="modal-box shortcuts-box">
+    <h3><i class="fas fa-keyboard" style="color:var(--primary);"></i> 快捷键指南
+      <button class="modal-close" data-close="shortcutsModal"><i class="fas fa-times"></i></button>
+    </h3>
+    <div class="shortcuts-body" id="shortcutsBody"></div>
+    <div class="shortcuts-foot">
+      <i class="fas fa-lightbulb"></i>
+      <span>提示：右键题目可「即刻开始」；选中多题后用 <kbd>Ctrl</kbd> + <kbd>0–8</kbd> 按从上到下的顺序标记难度。</span>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="./vendor/katex/katex.min.js"></script>
+<script src="./vendor/katex/auto-render.min.js"></script>
+<script type="module" src="./js/tauri-bridge.js"></script>
+<script type="module" src="./js/app.js"></script>
+</body>
+</html>

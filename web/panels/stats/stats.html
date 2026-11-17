@@ -1,0 +1,31 @@
+<div class="tp-page" data-page="stats">
+    <div class="tp-title"><i class="fas fa-chart-bar"></i> 统计</div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="num" id="stTotal">0</div><div class="lbl">总题数</div></div>
+      <div class="stat-box"><div class="num" id="stDone">0</div><div class="lbl">已做</div></div>
+      <div class="stat-box"><div class="num" id="stWeek">0</div><div class="lbl">本周</div></div>
+      <div class="stat-box"><div class="num"><span id="stStreak">0</span><span class="unit">天</span></div><div class="lbl">连续</div></div>
+    </div>
+    <div class="tp-section">
+      <div class="tp-section-head"><span class="tp-section-title">近 210 天</span><span class="tp-section-extra" id="stHmSum"></span></div>
+      <div class="hm-grid" id="stHeatmap"></div>
+      <div class="hm-legend">
+        <span>难度</span>
+        <span class="hm-diff-row" id="stDiffLegend"></span>
+        <span class="hm-sep"></span>
+        <span>题量</span>
+        <span class="hm-qty"><i class="hm-sw" style="opacity:.35" title="1–3 题"></i>1–3</span>
+        <span class="hm-qty"><i class="hm-sw" style="opacity:.55" title="4–6 题"></i>4–6</span>
+        <span class="hm-qty"><i class="hm-sw" style="opacity:.75" title="7–9 题"></i>7–9</span>
+        <span class="hm-qty"><i class="hm-sw" style="opacity:.95" title="10+ 题"></i>10+</span>
+      </div>
+    </div>
+    <div class="tp-section">
+      <div class="tp-section-head"><span class="tp-section-title">累计完成</span><span class="tp-section-extra" id="stCurveSum"></span></div>
+      <div id="stCurve" class="curve-box"></div>
+    </div>
+    <div class="tp-section">
+      <div class="tp-section-title">难度分布</div>
+      <div id="stDiffList"></div>
+    </div>
+  </div>

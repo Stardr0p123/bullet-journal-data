@@ -1,0 +1,23 @@
+<div class="tp-page" data-page="random">
+    <div class="tp-title"><i class="fas fa-dice"></i> 随机跳题</div>
+    <div class="random-controls">
+      <select id="randomDiffMin">
+        <option value="0">0 暂无</option><option value="1">1 入门</option><option value="2">2 普及-</option>
+        <option value="3">3 普及</option><option value="4">4 普及+/提高-</option><option value="5" selected>5 提高</option>
+        <option value="6">6 提高+/省选-</option><option value="7">7 省选/NOI-</option><option value="8">8 NOI/NOI+/CTS</option>
+      </select>
+      <span style="color:var(--text-muted);font-size:.86em;">~</span>
+      <select id="randomDiffMax">
+        <option value="0">0 暂无</option><option value="1">1 入门</option><option value="2">2 普及-</option>
+        <option value="3">3 普及</option><option value="4">4 普及+/提高-</option><option value="5">5 提高</option>
+        <option value="6" selected>6 提高+/省选-</option><option value="7">7 省选/NOI-</option><option value="8">8 NOI/NOI+/CTS</option>
+      </select>
+      <div class="scope-toggle" id="randomScopeToggle">
+        <button data-scope="current">当前</button>
+        <button class="active" data-scope="global">全局</button>
+        <button data-scope="marked">标记</button>
+      </div>
+      <button class="btn-sm" id="randomGoBtn"><i class="fas fa-shuffle"></i> <span id="randomGoLabel">随机</span></button>
+    </div>
+    <div class="random-result-list" id="randomResult"><div class="random-empty">点击「随机」抽取 5 道未做题目</div></div>
+  </div>
