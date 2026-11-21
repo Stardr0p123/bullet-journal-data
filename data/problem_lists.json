@@ -1568,6 +1568,17 @@
           "pinned": false,
           "know": false,
           "groupId": null
+        },
+        {
+          "pid": "P6688",
+          "name": "可重集",
+          "difficulty": 5,
+          "date": "2026-11-20",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null,
+          "firstDone": "2026-11-20"
         }
       ]
     },
@@ -2212,6 +2223,16 @@
           "id": "g_v6qc90sii",
           "name": "11.16",
           "collapsed": true
+        },
+        {
+          "id": "g_ddx2e8ltv",
+          "name": "11.18",
+          "collapsed": true
+        },
+        {
+          "id": "g_vbll5ive5",
+          "name": "11.20",
+          "collapsed": false
         }
       ],
       "problems": [
@@ -3066,14 +3087,15 @@
           "groupId": "g_d18sm0r8t"
         },
         {
-          "pid": "AT_DWACON6TH_PRELIMS_C",
+          "pid": "AT_dwacon6th_prelims_c",
           "name": "Cookie Distribution",
           "difficulty": 7,
-          "date": "",
+          "date": "2023-02-20",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_d18sm0r8t"
+          "groupId": "g_d18sm0r8t",
+          "firstDone": "2026-11-20"
         },
         {
           "pid": "AT_TENKA1_2019_F",
@@ -3214,6 +3236,126 @@
           "pinned": false,
           "know": false,
           "groupId": "g_v6qc90sii"
+        },
+        {
+          "pid": "CF2285E",
+          "name": "Arithmetic Subarray",
+          "difficulty": 6,
+          "date": "2026-11-18",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_ddx2e8ltv"
+        },
+        {
+          "pid": "CF2285F",
+          "name": "Mooclear Reactor 3",
+          "difficulty": 7,
+          "date": "2026-11-18",
+          "note": "#green 码农 细节题 \n#yellow 毒瘤 实现 \n#red 差评\n#blue 根号分治 模板题",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_ddx2e8ltv"
+        },
+        {
+          "pid": "CF2057E2",
+          "name": "Another Exercise on Graphs (hard version)",
+          "difficulty": 7,
+          "date": "2026-11-18",
+          "note": "#blue 并查集 暴力优化 最短路\n#yellow 小清新 tricky\n完成时间：1小时19分钟\n看了题解\n破冰点：比较聪明的并查集转化。",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_ddx2e8ltv"
+        },
+        {
+          "pid": "CF2081D",
+          "name": "MST in Modulo Graph",
+          "difficulty": 6,
+          "date": "2026-11-18",
+          "note": "#blue 贪心 调和级数\n#green 神题 Ad-hoc\n完成时间：0小时28分钟\n看了题解\n破冰点：贪心还是太强了",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_ddx2e8ltv"
+        },
+        {
+          "pid": "CF293E",
+          "name": "Close Vertices",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": true,
+          "groupId": "g_ddx2e8ltv"
+        },
+        {
+          "pid": "AT_ARC191_D",
+          "name": "Moving Pieces on Graph",
+          "difficulty": 7,
+          "date": "2026-11-18",
+          "note": "#blue 分讨\n#green 细节 实现\n#red 差评\n完成时间：1小时3分钟\n看了题解\n破冰点：这个分讨有点难。",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_ddx2e8ltv"
+        },
+        {
+          "pid": "P15534",
+          "name": "那猫猫城的集市",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_ddx2e8ltv"
+        },
+        {
+          "pid": "P12104",
+          "name": "[NERC2024] Managing Cluster",
+          "difficulty": 6,
+          "date": "2026-11-18",
+          "note": "#blue 构造 贪心\n#green 神仙题 细节题\n#yellow 实现\n完成时间：2小时30分钟\n看了题解\n破冰点：这个构造有点牛，感觉是我想不出来的奇偶构造。",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_ddx2e8ltv"
+        },
+        {
+          "pid": "P6932",
+          "name": "[ICPC2017 WF] Money for Nothing",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_vbll5ive5"
+        },
+        {
+          "pid": "P7024",
+          "name": "[NWRRC2017] Fygon 2.0",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_vbll5ive5"
+        },
+        {
+          "pid": "AT_abc458_g",
+          "name": "Children Yearn for the Evil Kindergarten",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_vbll5ive5"
+        },
+        {
+          "pid": "AT_abc464_g",
+          "name": "Celester 2",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_vbll5ive5"
         }
       ]
     },
@@ -3380,16 +3522,6 @@
           "pid": "CF2081D",
           "name": "MST in Modulo Graph",
           "difficulty": 6,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_m4p40lcad"
-        },
-        {
-          "pid": "CF2057E2",
-          "name": "Another Exercise on Graphs (hard version)",
-          "difficulty": 7,
           "date": "",
           "note": "",
           "pinned": false,
@@ -4763,47 +4895,47 @@
         {
           "id": "g_lvtb4h764",
           "name": "周作业80",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_mwafnb61l",
           "name": "周作业81",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_t1jbibmra",
           "name": "周作业82",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_vj5do15uq",
           "name": "周作业83",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_zb6628nhv",
           "name": "周作业84",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_5zsd2ocgi",
           "name": "周作业85",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_wu8ik66j8",
           "name": "周作业86",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_hs19l2vck",
           "name": "周作业87",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_yvml2yzrp",
           "name": "周作业88",
-          "collapsed": true
+          "collapsed": false
         }
       ],
       "problems": [
@@ -5048,29 +5180,9 @@
           "groupId": "g_mwafnb61l"
         },
         {
-          "pid": "CF1187E",
-          "name": "Tree Painting",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_t1jbibmra"
-        },
-        {
           "pid": "CF1179C",
           "name": "Serge and Dining Room",
           "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_t1jbibmra"
-        },
-        {
-          "pid": "CF1204E",
-          "name": "Natasha, Sasha and the Prefix Sums",
-          "difficulty": 5,
           "date": "",
           "note": "",
           "pinned": false,
@@ -7979,8 +8091,8 @@
           "pid": "CF1930E",
           "name": "2..3...4.... Wonderful! Wonderful!",
           "difficulty": 6,
-          "date": "",
-          "note": "",
+          "date": "2026-11-17",
+          "note": "完成时间：1小时6分钟\n看了题解\n破冰点：太难了。感觉这个东西证起来还是比较难的。",
           "pinned": false,
           "know": false,
           "groupId": "g_4d11c7gf4"
@@ -8242,7 +8354,7 @@
           "date": "",
           "note": "",
           "pinned": false,
-          "know": false,
+          "know": true,
           "groupId": "g_08mbtlgf4"
         },
         {
@@ -8292,7 +8404,7 @@
           "date": "",
           "note": "",
           "pinned": false,
-          "know": false,
+          "know": true,
           "groupId": "g_dt6u5mgf4"
         },
         {
@@ -8699,8 +8811,8 @@
           "pid": "CF1527E",
           "name": "Partition Game",
           "difficulty": 6,
-          "date": "",
-          "note": "",
+          "date": "2026-11-17",
+          "note": "完成时间：0小时0分钟\n独立完成\n破冰点：做过了",
           "pinned": false,
           "know": false,
           "groupId": "g_k7jxeyrhc"
@@ -9225,8 +9337,8 @@
           "pid": "CF932E",
           "name": "Team Work",
           "difficulty": 6,
-          "date": "",
-          "note": "",
+          "date": "2026-11-17",
+          "note": "#blue 斯特林数 组合数学\n#yellow 推式子题\n完成时间：3小时21分钟\n看了题解\n破冰点：这个递推不简单。看错题了。",
           "pinned": false,
           "know": false,
           "groupId": "g_dpra6vy2q"
@@ -9648,54 +9760,64 @@
         {
           "id": "g_qlaplq6hf",
           "name": "数论与整除",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_1pkoa96hf",
           "name": "位运算与线性基",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_pmprw76hf",
           "name": "贪心、排序与双指针",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_9zb4d86hf",
           "name": "二分与判定",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_7f1zpm6hf",
           "name": "图论与树",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_kqldxi6hf",
           "name": "构造与 Ad-hoc",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_4f9pmu6hf",
           "name": "DP 与搜索",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_q9fy4p6hf",
           "name": "期望、博弈与交互",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_qa85kp6hf",
           "name": "几何、网格与观察",
-          "collapsed": false
+          "collapsed": true
         }
       ],
       "problems": [
         {
-          "pid": "CF1734E",
-          "name": "Rectangular Congruence",
-          "difficulty": 5,
+          "pid": "AT_ARC150_C",
+          "name": "Path and Subsequence",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_7f1zpm6hf"
+        },
+        {
+          "pid": "AT_ARC158_C",
+          "name": "All Pair Digit Sums",
+          "difficulty": 4,
           "date": "",
           "note": "",
           "pinned": false,
@@ -9703,29 +9825,159 @@
           "groupId": "g_qlaplq6hf"
         },
         {
-          "pid": "CF1967B2",
-          "name": "Reverse Card (Hard Version)",
+          "pid": "CF1360H",
+          "name": "Binary Median",
+          "difficulty": 4,
+          "date": "2026-11-11",
+          "note": "@ 细节题 码农\n完成时间：0小时28分钟\n独立完成\n破冰点：细节有一点多",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9zb4d86hf"
+        },
+        {
+          "pid": "CF1621D",
+          "name": "The Winter Hike",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_qa85kp6hf"
+        },
+        {
+          "pid": "CF1838D",
+          "name": "Bracket Walk",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_qa85kp6hf"
+        },
+        {
+          "pid": "AT_ABC289_F",
+          "name": "Teleporter Takahashi",
           "difficulty": 5,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_qlaplq6hf"
+          "groupId": "g_qa85kp6hf"
         },
         {
-          "pid": "CF2013E",
-          "name": "Prefix GCD",
+          "pid": "AT_ABC303_F",
+          "name": "Damage over Time",
           "difficulty": 5,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_qlaplq6hf"
+          "groupId": "g_9zb4d86hf"
         },
         {
-          "pid": "CF1789E",
-          "name": "Serval and Music Game",
-          "difficulty": 7,
+          "pid": "AT_ABC326_F",
+          "name": "Robot Rotation",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_4f9pmu6hf"
+        },
+        {
+          "pid": "AT_ABC341_G",
+          "name": "Highest Ratio",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9zb4d86hf"
+        },
+        {
+          "pid": "AT_ABC353_F",
+          "name": "Tile Distance",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_qa85kp6hf"
+        },
+        {
+          "pid": "AT_ABC366_G",
+          "name": "XOR Neighbors",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_1pkoa96hf"
+        },
+        {
+          "pid": "AT_AGC045_A",
+          "name": "Xor Battle",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_1pkoa96hf"
+        },
+        {
+          "pid": "AT_AGC049_A",
+          "name": "Erasing Vertices",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_q9fy4p6hf"
+        },
+        {
+          "pid": "AT_ARC131_D",
+          "name": "AtArcher",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9zb4d86hf"
+        },
+        {
+          "pid": "AT_ARC137_C",
+          "name": "Distinct Numbers",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_q9fy4p6hf"
+        },
+        {
+          "pid": "AT_ARC156_C",
+          "name": "Tree and LCS",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_7f1zpm6hf"
+        },
+        {
+          "pid": "AT_ARC175_C",
+          "name": "Jumping Through Intervals",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_pmprw76hf"
+        },
+        {
+          "pid": "CF1036C",
+          "name": "Classy Numbers",
+          "difficulty": 5,
           "date": "",
           "note": "",
           "pinned": false,
@@ -9743,64 +9995,104 @@
           "groupId": "g_qlaplq6hf"
         },
         {
-          "pid": "CF980D",
-          "name": "Perfect Groups",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_qlaplq6hf"
-        },
-        {
-          "pid": "CF1036C",
-          "name": "Classy Numbers",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_qlaplq6hf"
-        },
-        {
-          "pid": "AT_ARC158_C",
-          "name": "All Pair Digit Sums",
-          "difficulty": 4,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_qlaplq6hf"
-        },
-        {
-          "pid": "P14139",
-          "name": "「SFMOI Round II」Strange Counting Game",
-          "difficulty": 6,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_qlaplq6hf"
-        },
-        {
-          "pid": "P15548",
-          "name": "「Stoi2037」反方向的钟",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_qlaplq6hf"
-        },
-        {
-          "pid": "CF1934D1",
-          "name": "XOR Break --- Solo Version",
+          "pid": "CF1288D",
+          "name": "Minimax Problem",
           "difficulty": 5,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
           "groupId": "g_1pkoa96hf"
+        },
+        {
+          "pid": "CF1307D",
+          "name": "Cow and Fields",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_7f1zpm6hf"
+        },
+        {
+          "pid": "CF1364D",
+          "name": "Ehab's Last Corollary",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_7f1zpm6hf"
+        },
+        {
+          "pid": "CF1407D",
+          "name": "Discrete Centrifugal Jumps",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_4f9pmu6hf"
+        },
+        {
+          "pid": "CF1428E",
+          "name": "Carrots for Rabbits",
+          "difficulty": 5,
+          "date": "2026-11-11",
+          "note": "完成时间：0小时0分钟\n独立完成\n破冰点：做过了",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_pmprw76hf"
+        },
+        {
+          "pid": "CF1467E",
+          "name": "Distinctive Roots in a Tree",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_7f1zpm6hf"
+        },
+        {
+          "pid": "CF1470C",
+          "name": "Strange Shuffle",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_q9fy4p6hf"
+        },
+        {
+          "pid": "CF1492E",
+          "name": "Almost Fault-Tolerant Database",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_kqldxi6hf"
+        },
+        {
+          "pid": "CF1521D",
+          "name": "Nastia Plays with a Tree",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_7f1zpm6hf"
+        },
+        {
+          "pid": "CF1537E2",
+          "name": "Erase and Extend (Hard Version)",
+          "difficulty": 5,
+          "date": "2026-11-11",
+          "note": "# 贪心 \n@ 神仙题\n完成时间：0小时13分钟\n看了题解\n破冰点：聪明的贪心解法",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_pmprw76hf"
         },
         {
           "pid": "CF1658D2",
@@ -9823,234 +10115,14 @@
           "groupId": "g_1pkoa96hf"
         },
         {
-          "pid": "CF1288D",
-          "name": "Minimax Problem",
+          "pid": "CF1734E",
+          "name": "Rectangular Congruence",
           "difficulty": 5,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_1pkoa96hf"
-        },
-        {
-          "pid": "AT_AGC045_A",
-          "name": "Xor Battle",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1pkoa96hf"
-        },
-        {
-          "pid": "AT_ABC366_G",
-          "name": "XOR Neighbors",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1pkoa96hf"
-        },
-        {
-          "pid": "P14960",
-          "name": "「KWOI R1」XOR and Sliding Window",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1pkoa96hf"
-        },
-        {
-          "pid": "P14961",
-          "name": "「KWOI R1」XOR and Increasing",
-          "difficulty": 6,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1pkoa96hf"
-        },
-        {
-          "pid": "CF1991F",
-          "name": "Triangle Formation",
-          "difficulty": 5,
-          "date": "2026-11-11",
-          "note": "# Ad-hoc \n@ 有诈\n完成时间：1小时13分钟\n独立完成\n破冰点：这个48剪枝也太难绷了。。",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_pmprw76hf"
-        },
-        {
-          "pid": "CF576C",
-          "name": "Points on Plane",
-          "difficulty": 5,
-          "date": "2026-11-11",
-          "note": "# 莫队\n完成时间：0小时9分钟\n独立完成\n破冰点：这不是我们莫队板子吗",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_pmprw76hf"
-        },
-        {
-          "pid": "CF1428E",
-          "name": "Carrots for Rabbits",
-          "difficulty": 5,
-          "date": "2026-11-11",
-          "note": "完成时间：0小时0分钟\n独立完成\n破冰点：做过了",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_pmprw76hf"
-        },
-        {
-          "pid": "CF1537E2",
-          "name": "Erase and Extend (Hard Version)",
-          "difficulty": 5,
-          "date": "2026-11-11",
-          "note": "# 贪心 \n@ 神仙题\n完成时间：0小时13分钟\n看了题解\n破冰点：聪明的贪心解法",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_pmprw76hf"
-        },
-        {
-          "pid": "AT_ARC152_C",
-          "name": "Pivot",
-          "difficulty": 6,
-          "date": "2026-11-11",
-          "note": "@ 结论题\n完成时间：0小时19分钟\n独立完成\n破冰点：猜对了",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_pmprw76hf"
-        },
-        {
-          "pid": "AT_ARC175_C",
-          "name": "Jumping Through Intervals",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_pmprw76hf"
-        },
-        {
-          "pid": "P9088",
-          "name": "「SvR-2」1+2=3",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_pmprw76hf"
-        },
-        {
-          "pid": "CF1918D",
-          "name": "Blocking Elements",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_9zb4d86hf"
-        },
-        {
-          "pid": "CF1993D",
-          "name": "Med-imize",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_9zb4d86hf"
-        },
-        {
-          "pid": "CF1360H",
-          "name": "Binary Median",
-          "difficulty": 4,
-          "date": "2026-11-11",
-          "note": "@ 细节题 码农\n完成时间：0小时28分钟\n独立完成\n破冰点：细节有一点多",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_9zb4d86hf"
-        },
-        {
-          "pid": "CF985D",
-          "name": "Sand Fortress",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_9zb4d86hf"
-        },
-        {
-          "pid": "AT_ABC303_F",
-          "name": "Damage over Time",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_9zb4d86hf"
-        },
-        {
-          "pid": "AT_ABC341_G",
-          "name": "Highest Ratio",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_9zb4d86hf"
-        },
-        {
-          "pid": "AT_ARC131_D",
-          "name": "AtArcher",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_9zb4d86hf"
-        },
-        {
-          "pid": "CF1762E",
-          "name": "Tree Sum",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7f1zpm6hf"
-        },
-        {
-          "pid": "CF1943C",
-          "name": "Tree Compass",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7f1zpm6hf"
-        },
-        {
-          "pid": "CF1325E",
-          "name": "Ehab's REAL Number Theory Problem",
-          "difficulty": 6,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7f1zpm6hf"
-        },
-        {
-          "pid": "CF1364D",
-          "name": "Ehab's Last Corollary",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7f1zpm6hf"
+          "groupId": "g_qlaplq6hf"
         },
         {
           "pid": "CF1738D",
@@ -10073,8 +10145,18 @@
           "groupId": "g_7f1zpm6hf"
         },
         {
-          "pid": "CF1860E",
-          "name": "Fast Travel Text Game",
+          "pid": "CF1826E",
+          "name": "Walk the Runway",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_4f9pmu6hf"
+        },
+        {
+          "pid": "CF1842D",
+          "name": "Tenzing and His Animal Friends",
           "difficulty": 5,
           "date": "",
           "note": "",
@@ -10083,8 +10165,18 @@
           "groupId": "g_7f1zpm6hf"
         },
         {
-          "pid": "CF1842D",
-          "name": "Tenzing and His Animal Friends",
+          "pid": "CF1856D",
+          "name": "More Wrong",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_q9fy4p6hf"
+        },
+        {
+          "pid": "CF1860E",
+          "name": "Fast Travel Text Game",
           "difficulty": 5,
           "date": "",
           "note": "",
@@ -10103,84 +10195,14 @@
           "groupId": "g_7f1zpm6hf"
         },
         {
-          "pid": "CF1307D",
-          "name": "Cow and Fields",
+          "pid": "CF1918D",
+          "name": "Blocking Elements",
           "difficulty": 5,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_7f1zpm6hf"
-        },
-        {
-          "pid": "CF1467E",
-          "name": "Distinctive Roots in a Tree",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7f1zpm6hf"
-        },
-        {
-          "pid": "CF1521D",
-          "name": "Nastia Plays with a Tree",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7f1zpm6hf"
-        },
-        {
-          "pid": "AT_ARC150_C",
-          "name": "Path and Subsequence",
-          "difficulty": 4,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7f1zpm6hf"
-        },
-        {
-          "pid": "AT_ARC156_C",
-          "name": "Tree and LCS",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7f1zpm6hf"
-        },
-        {
-          "pid": "AT_AGC067_A",
-          "name": "Big Clique Everywhere",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7f1zpm6hf"
-        },
-        {
-          "pid": "P9534",
-          "name": "[YsOI2023] 广度优先遍历",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7f1zpm6hf"
-        },
-        {
-          "pid": "P15013",
-          "name": "FUN!!",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_7f1zpm6hf"
+          "groupId": "g_9zb4d86hf"
         },
         {
           "pid": "CF1919D",
@@ -10191,6 +10213,26 @@
           "pinned": false,
           "know": false,
           "groupId": "g_kqldxi6hf"
+        },
+        {
+          "pid": "CF1934D1",
+          "name": "XOR Break --- Solo Version",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_1pkoa96hf"
+        },
+        {
+          "pid": "CF1943C",
+          "name": "Tree Compass",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_7f1zpm6hf"
         },
         {
           "pid": "CF1948E",
@@ -10213,14 +10255,34 @@
           "groupId": "g_kqldxi6hf"
         },
         {
-          "pid": "CF763B",
-          "name": "Timofey and rectangles",
+          "pid": "CF1967B2",
+          "name": "Reverse Card (Hard Version)",
           "difficulty": 5,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_kqldxi6hf"
+          "groupId": "g_qlaplq6hf"
+        },
+        {
+          "pid": "CF1991F",
+          "name": "Triangle Formation",
+          "difficulty": 5,
+          "date": "2026-11-11",
+          "note": "# Ad-hoc \n@ 有诈\n完成时间：1小时13分钟\n独立完成\n破冰点：这个48剪枝也太难绷了。。",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_pmprw76hf"
+        },
+        {
+          "pid": "CF1993D",
+          "name": "Med-imize",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9zb4d86hf"
         },
         {
           "pid": "CF2002E",
@@ -10231,6 +10293,276 @@
           "pinned": false,
           "know": false,
           "groupId": "g_kqldxi6hf"
+        },
+        {
+          "pid": "CF2013E",
+          "name": "Prefix GCD",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_qlaplq6hf"
+        },
+        {
+          "pid": "CF576C",
+          "name": "Points on Plane",
+          "difficulty": 5,
+          "date": "2026-11-11",
+          "note": "# 莫队\n完成时间：0小时9分钟\n独立完成\n破冰点：这不是我们莫队板子吗",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_pmprw76hf"
+        },
+        {
+          "pid": "CF763B",
+          "name": "Timofey and rectangles",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_kqldxi6hf"
+        },
+        {
+          "pid": "CF922E",
+          "name": "Birds",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_4f9pmu6hf"
+        },
+        {
+          "pid": "CF940E",
+          "name": "Cashback",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_4f9pmu6hf"
+        },
+        {
+          "pid": "CF980D",
+          "name": "Perfect Groups",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_qlaplq6hf"
+        },
+        {
+          "pid": "CF985D",
+          "name": "Sand Fortress",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9zb4d86hf"
+        },
+        {
+          "pid": "P14960",
+          "name": "「KWOI R1」XOR and Sliding Window",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_1pkoa96hf"
+        },
+        {
+          "pid": "P15013",
+          "name": "FUN!!",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_7f1zpm6hf"
+        },
+        {
+          "pid": "P15548",
+          "name": "「Stoi2037」反方向的钟",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_qlaplq6hf"
+        },
+        {
+          "pid": "P17333",
+          "name": "「TPOI-2C」Secret Illumination",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_kqldxi6hf"
+        },
+        {
+          "pid": "P3147",
+          "name": "[USACO06FEB] 262144",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_4f9pmu6hf"
+        },
+        {
+          "pid": "P9088",
+          "name": "「SvR-2」1+2=3",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_pmprw76hf"
+        },
+        {
+          "pid": "P9534",
+          "name": "[YsOI2023] 广度优先遍历",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_7f1zpm6hf"
+        },
+        {
+          "pid": "P9575",
+          "name": "「TAOI-2」喵了个喵 Ⅳ",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_kqldxi6hf"
+        },
+        {
+          "pid": "AT_AGC066_A",
+          "name": "Adjacent Difference",
+          "difficulty": 6,
+          "date": "2026-11-13",
+          "note": "完成时间：2小时40分钟\n独立完成\n破冰点：按点的奇偶决定最后取模的奇偶。",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_kqldxi6hf"
+        },
+        {
+          "pid": "AT_ARC152_C",
+          "name": "Pivot",
+          "difficulty": 6,
+          "date": "2026-11-11",
+          "note": "@ 结论题\n完成时间：0小时19分钟\n独立完成\n破冰点：猜对了",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_pmprw76hf"
+        },
+        {
+          "pid": "AT_ARC153_C",
+          "name": "± Increasing Sequence",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_kqldxi6hf"
+        },
+        {
+          "pid": "CF1325E",
+          "name": "Ehab's REAL Number Theory Problem",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_7f1zpm6hf"
+        },
+        {
+          "pid": "P14139",
+          "name": "「SFMOI Round II」Strange Counting Game",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_qlaplq6hf"
+        },
+        {
+          "pid": "P14961",
+          "name": "「KWOI R1」XOR and Increasing",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_1pkoa96hf"
+        },
+        {
+          "pid": "AT_ABC228_G",
+          "name": "Digits on Grid",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_4f9pmu6hf"
+        },
+        {
+          "pid": "AT_ABC319_F",
+          "name": "Fake Plastic Trees",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_4f9pmu6hf"
+        },
+        {
+          "pid": "AT_AGC030_D",
+          "name": "Inversion Sum",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_q9fy4p6hf"
+        },
+        {
+          "pid": "AT_AGC067_A",
+          "name": "Big Clique Everywhere",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_7f1zpm6hf"
+        },
+        {
+          "pid": "AT_ARC172_D",
+          "name": "Distance Ranking",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_kqldxi6hf"
+        },
+        {
+          "pid": "AT_ARC173_D",
+          "name": "Bracket Walk",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_qa85kp6hf"
         },
         {
           "pid": "CF1474E",
@@ -10253,244 +10585,24 @@
           "groupId": "g_kqldxi6hf"
         },
         {
-          "pid": "CF1492E",
-          "name": "Almost Fault-Tolerant Database",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_kqldxi6hf"
-        },
-        {
-          "pid": "AT_AGC066_A",
-          "name": "Adjacent Difference",
-          "difficulty": 6,
-          "date": "2026-11-13",
-          "note": "完成时间：2小时40分钟\n独立完成\n破冰点：按点的奇偶决定最后取模的奇偶。",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_kqldxi6hf"
-        },
-        {
-          "pid": "AT_ARC153_C",
-          "name": "± Increasing Sequence",
-          "difficulty": 6,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_kqldxi6hf"
-        },
-        {
-          "pid": "AT_ARC172_D",
-          "name": "Distance Ranking",
+          "pid": "CF1762E",
+          "name": "Tree Sum",
           "difficulty": 7,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_kqldxi6hf"
+          "groupId": "g_7f1zpm6hf"
         },
         {
-          "pid": "P9575",
-          "name": "「TAOI-2」喵了个喵 Ⅳ",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_kqldxi6hf"
-        },
-        {
-          "pid": "P17333",
-          "name": "「TPOI-2C」Secret Illumination",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_kqldxi6hf"
-        },
-        {
-          "pid": "CF1407D",
-          "name": "Discrete Centrifugal Jumps",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_4f9pmu6hf"
-        },
-        {
-          "pid": "CF1826E",
-          "name": "Walk the Runway",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_4f9pmu6hf"
-        },
-        {
-          "pid": "CF940E",
-          "name": "Cashback",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_4f9pmu6hf"
-        },
-        {
-          "pid": "CF922E",
-          "name": "Birds",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_4f9pmu6hf"
-        },
-        {
-          "pid": "AT_ABC319_F",
-          "name": "Fake Plastic Trees",
+          "pid": "CF1789E",
+          "name": "Serval and Music Game",
           "difficulty": 7,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_4f9pmu6hf"
-        },
-        {
-          "pid": "AT_ABC326_F",
-          "name": "Robot Rotation",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_4f9pmu6hf"
-        },
-        {
-          "pid": "AT_ABC228_G",
-          "name": "Digits on Grid",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_4f9pmu6hf"
-        },
-        {
-          "pid": "P3147",
-          "name": "[USACO06FEB] 262144",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_4f9pmu6hf"
-        },
-        {
-          "pid": "AT_AGC030_D",
-          "name": "Inversion Sum",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_q9fy4p6hf"
-        },
-        {
-          "pid": "AT_AGC049_A",
-          "name": "Erasing Vertices",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_q9fy4p6hf"
-        },
-        {
-          "pid": "AT_ARC137_C",
-          "name": "Distinct Numbers",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_q9fy4p6hf"
-        },
-        {
-          "pid": "CF1856D",
-          "name": "More Wrong",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_q9fy4p6hf"
-        },
-        {
-          "pid": "CF1470C",
-          "name": "Strange Shuffle",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_q9fy4p6hf"
-        },
-        {
-          "pid": "CF1838D",
-          "name": "Bracket Walk",
-          "difficulty": 4,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_qa85kp6hf"
-        },
-        {
-          "pid": "CF1621D",
-          "name": "The Winter Hike",
-          "difficulty": 4,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_qa85kp6hf"
-        },
-        {
-          "pid": "AT_ARC173_D",
-          "name": "Bracket Walk",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_qa85kp6hf"
-        },
-        {
-          "pid": "AT_ABC289_F",
-          "name": "Teleporter Takahashi",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_qa85kp6hf"
-        },
-        {
-          "pid": "AT_ABC353_F",
-          "name": "Tile Distance",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_qa85kp6hf"
+          "groupId": "g_qlaplq6hf"
         }
       ]
     },
@@ -12111,62 +12223,62 @@
         {
           "id": "g_fsd3lebn5",
           "name": "一、线段树：信息合并、懒标记与扫描线",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_m6j29lbn5",
           "name": "二、线段树：势能分析、区间赋值与 seg-beats",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_6kb8oybn5",
           "name": "三、线段树合并与启发式合并",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_0a8fombn5",
           "name": "四、可持久化与主席树",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_f4a4pabn5",
           "name": "五、树状数组、离线与二维偏序",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_0jn41vbn5",
           "name": "六、分块与莫队",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_4th2d9bn5",
           "name": "七、根号分治（阈值枚举、重轻分类）",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_tlxhvobn5",
           "name": "八、并查集、线段树分治与可撤销",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_nrkm9jbn5",
           "name": "九、树上数据结构：树剖、点分治、LCT、dsu on tree",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_fbs3b8bn5",
           "name": "十、单调栈 / 单调队列与笛卡尔树",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_hmjgh9bn5",
           "name": "十一、Trie、哈希与字符串结构",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_9j2rqrbn5",
           "name": "十二、平衡树与 ODT",
-          "collapsed": true
+          "collapsed": false
         }
       ],
       "problems": [
@@ -12357,7 +12469,7 @@
           "date": "",
           "note": "",
           "pinned": false,
-          "know": false,
+          "know": true,
           "groupId": "g_fsd3lebn5"
         },
         {
@@ -14588,52 +14700,52 @@
         {
           "id": "g_neht401ck",
           "name": "一、排序与交换论证",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_blu8f81ck",
           "name": "二、相邻交换、逆序与冒泡",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_oqdt8g1ck",
           "name": "三、反悔贪心（堆、可撤销）",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_2tyxhr1ck",
           "name": "四、区间贪心：覆盖、扩展与扫描",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_20xlt01ck",
           "name": "五、堆与资源分配",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_5xbq1j1ck",
           "name": "六、贪心 + 二分判定",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_2tfefm1ck",
           "name": "七、构造 + 贪心",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_tjcxlc1ck",
           "name": "八、按位 / 数论 / 奇偶性贪心",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_vf562p1ck",
           "name": "九、树上贪心",
-          "collapsed": false
+          "collapsed": true
         },
         {
           "id": "g_azzawr1ck",
           "name": "十、博弈与策略贪心",
-          "collapsed": false
+          "collapsed": true
         }
       ],
       "problems": [
@@ -16228,8 +16340,8 @@
           "pid": "AT_ARC104_D",
           "name": "Multiset Mean",
           "difficulty": 5,
-          "date": "",
-          "note": "",
+          "date": "2026-11-19",
+          "note": "#blue 背包 前缀和优化多重背包计数\n#green tricky 均值转化\n完成时间：0小时59分钟\n看了题解\n破冰点：前缀和优化多重背包计数。",
           "pinned": false,
           "know": false,
           "groupId": "g_dc87970tj"
@@ -16368,8 +16480,8 @@
           "pid": "CF1204E",
           "name": "Natasha, Sasha and the Prefix Sums",
           "difficulty": 5,
-          "date": "",
-          "note": "",
+          "date": "2026-11-19",
+          "note": "#blue 计数 容斥原理 格路计数\n#green 路径反射 \n完成时间：0小时33分钟\n独立完成\n破冰点：乱拼的式子竟然对了。",
           "pinned": false,
           "know": false,
           "groupId": "g_dc87970tj"
@@ -16378,8 +16490,8 @@
           "pid": "CF1223E",
           "name": "Paint the Tree",
           "difficulty": 5,
-          "date": "",
-          "note": "",
+          "date": "2026-11-20",
+          "note": "完成时间：0小时43分钟\n独立完成\n破冰点：简单的树形DP+贪心",
           "pinned": false,
           "know": false,
           "groupId": "g_aykarp0tj"
@@ -16678,8 +16790,8 @@
           "pid": "CF1860D",
           "name": "Balanced String",
           "difficulty": 5,
-          "date": "",
-          "note": "",
+          "date": "2026-11-19",
+          "note": "#blue DP\n完成时间：0小时22分钟\n独立完成\n破冰点：？",
           "pinned": false,
           "know": false,
           "groupId": "g_dc87970tj"
@@ -17593,10 +17705,10 @@
           "pid": "P16328",
           "name": "夜曲",
           "difficulty": 4,
-          "date": "",
-          "note": "",
+          "date": "2026-11-20",
+          "note": "完成时间：0小时53分钟\n看了题解\n破冰点：气笑了这个二分",
           "pinned": false,
-          "know": true,
+          "know": false,
           "groupId": null
         },
         {
@@ -17740,53 +17852,192 @@
   "_codex": {
     "mock": [
       {
-        "id": "mc_cqhy1p32k",
-        "name": "2026-11-18",
+        "id": "mc_bqmeay2kg",
+        "name": "2026-11-19",
         "style": "noip",
-        "createdAt": 1794901393676,
-        "startedAt": null,
-        "endsAt": null,
-        "scheduledAt": 1794957600000,
+        "createdAt": 1795097628160,
+        "startedAt": 1795130400000,
+        "endsAt": 1795146600000,
+        "scheduledAt": null,
         "durationMs": 16200000,
-        "status": "scheduled",
-        "submittedAt": null,
-        "archivedAt": null,
+        "status": "finished",
+        "submittedAt": 1795146600000,
+        "archivedAt": 1795159989719,
+        "rank": "5/24",
+        "finishedAt": 1795247419300,
         "problems": [
           {
-            "id": "mp_x7qto232k",
+            "id": "mp_0ojag42kg",
             "name": "T1",
-            "estScore": "",
-            "records": [],
-            "realScore": "",
+            "estScore": 100,
+            "records": [
+              {
+                "score": 100,
+                "at": 1795132064271
+              }
+            ],
+            "realScore": 100,
             "code": "",
-            "review": ""
+            "review": "简单模拟+二维差分",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
-            "id": "mp_hxrr2q32k",
+            "id": "mp_1kx2082kg",
             "name": "T2",
-            "estScore": "",
-            "records": [],
-            "realScore": "",
+            "estScore": 100,
+            "records": [
+              {
+                "score": 100,
+                "at": 1795133784029
+              }
+            ],
+            "realScore": 100,
             "code": "",
-            "review": ""
+            "review": "简单随机化哈希",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
-            "id": "mp_ip1erv32k",
+            "id": "mp_670u2h2kg",
             "name": "T3",
-            "estScore": "",
-            "records": [],
-            "realScore": "",
+            "estScore": 10,
+            "records": [
+              {
+                "score": 10,
+                "at": 1795143407530
+              }
+            ],
+            "realScore": 10,
             "code": "",
-            "review": ""
+            "review": "阶乘小暴力",
+            "solutionCode": "",
+            "suppPid": "T3·y2kg",
+            "suppDoneAt": 1795176672268,
+            "suppNote": "补题完成 · 11/20 20:11\n看了题解 · 2小时42分钟\n破冰点：111"
           },
           {
-            "id": "mp_bggscf32k",
+            "id": "mp_5g5cpz2kg",
             "name": "T4",
-            "estScore": "",
-            "records": [],
-            "realScore": "",
+            "estScore": 35,
+            "records": [
+              {
+                "score": 25,
+                "at": 1795141283137
+              },
+              {
+                "score": 35,
+                "at": 1795146202438
+              }
+            ],
+            "realScore": 25,
             "code": "",
-            "review": ""
+            "review": "挂了一点",
+            "solutionCode": "",
+            "suppPid": "T4·y2kg",
+            "suppDoneAt": null,
+            "suppNote": ""
+          }
+        ]
+      },
+      {
+        "id": "mc_yc6rrryqw",
+        "name": "2026-11-19",
+        "style": "noip",
+        "createdAt": 1795043968808,
+        "startedAt": 1795044000000,
+        "endsAt": 1795060200000,
+        "scheduledAt": null,
+        "durationMs": 16200000,
+        "status": "finished",
+        "submittedAt": 1795060200000,
+        "archivedAt": 1795068688872,
+        "rank": "8/25",
+        "finishedAt": 1795097612604,
+        "problems": [
+          {
+            "id": "mp_5cmnhnyqx",
+            "name": "T1",
+            "estScore": 100,
+            "records": [
+              {
+                "score": 100,
+                "at": 1795053717623
+              }
+            ],
+            "realScore": 100,
+            "code": "",
+            "review": "AC，有点难",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
+          },
+          {
+            "id": "mp_6yfpcdyqx",
+            "name": "T2",
+            "estScore": 50,
+            "records": [
+              {
+                "score": 15,
+                "at": 1795056925289
+              },
+              {
+                "score": 30,
+                "at": 1795057379026
+              },
+              {
+                "score": 50,
+                "at": 1795058332684
+              }
+            ],
+            "realScore": 35,
+            "code": "",
+            "review": "啥叫交互题",
+            "solutionCode": "",
+            "suppPid": "T2·ryqw",
+            "suppDoneAt": 1795079274157,
+            "suppNote": "补题完成 · 11/19 17:07\n看了题解 · 0小时0分钟\n破冰点：1"
+          },
+          {
+            "id": "mp_kpiw3jyqx",
+            "name": "T3",
+            "estScore": 40,
+            "records": [
+              {
+                "score": 40,
+                "at": 1795053719626
+              }
+            ],
+            "realScore": 40,
+            "code": "",
+            "review": "小暴力",
+            "solutionCode": "",
+            "suppPid": "T3·ryqw",
+            "suppDoneAt": null,
+            "suppNote": ""
+          },
+          {
+            "id": "mp_0ekunxyqx",
+            "name": "T4",
+            "estScore": 5,
+            "records": [
+              {
+                "score": 5,
+                "at": 1795059693250
+              }
+            ],
+            "realScore": 8,
+            "code": "",
+            "review": "不会",
+            "solutionCode": "",
+            "suppPid": "T4·ryqw",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
         ]
       },
@@ -17799,7 +18050,7 @@
         "endsAt": 1794887599892,
         "scheduledAt": null,
         "durationMs": 16200000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1794887599892,
         "archivedAt": 1794901339932,
         "problems": [
@@ -17815,7 +18066,11 @@
             ],
             "realScore": 100,
             "code": "",
-            "review": "ok"
+            "review": "ok",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_mtx6oo7pw",
@@ -17829,7 +18084,11 @@
             ],
             "realScore": 30,
             "code": "",
-            "review": "感觉还差一堆"
+            "review": "感觉还差一堆",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_9lxcwf7pw",
@@ -17843,7 +18102,11 @@
             ],
             "realScore": 30,
             "code": "",
-            "review": "小暴力"
+            "review": "小暴力",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_vg86py7pw",
@@ -17857,9 +18120,15 @@
             ],
             "realScore": 5,
             "code": "",
-            "review": "小暴力"
+            "review": "小暴力",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
-        ]
+        ],
+        "rank": "",
+        "finishedAt": 1794901339932
       },
       {
         "id": "mc_dtmd55gri",
@@ -17870,7 +18139,7 @@
         "endsAt": 1794802390686,
         "scheduledAt": null,
         "durationMs": 14400000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1794802390686,
         "archivedAt": 1794811371402,
         "problems": [
@@ -17886,7 +18155,11 @@
             ],
             "realScore": 85,
             "code": "",
-            "review": "挂了啊，枚举少了"
+            "review": "挂了啊，枚举少了",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_t2its5grj",
@@ -17900,7 +18173,11 @@
             ],
             "realScore": 84,
             "code": "",
-            "review": "挂了啊，上界开小了"
+            "review": "挂了啊，上界开小了",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_m10nvggrj",
@@ -17914,7 +18191,11 @@
             ],
             "realScore": 10,
             "code": "",
-            "review": "挂了啊，被子任务搞死了"
+            "review": "挂了啊，被子任务搞死了",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_jwpjqvgrj",
@@ -17932,9 +18213,15 @@
             ],
             "realScore": 35,
             "code": "",
-            "review": "小暴力"
+            "review": "小暴力",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
-        ]
+        ],
+        "rank": "",
+        "finishedAt": 1794811371402
       },
       {
         "id": "mc_yjavdfolz",
@@ -17945,7 +18232,7 @@
         "endsAt": 1794628200000,
         "scheduledAt": null,
         "durationMs": 16200000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1794628200000,
         "archivedAt": 1794636649999,
         "problems": [
@@ -17961,7 +18248,11 @@
             ],
             "realScore": 100,
             "code": "",
-            "review": "假算放了一车人"
+            "review": "假算放了一车人",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_vctnadolz",
@@ -17975,7 +18266,11 @@
             ],
             "realScore": 72,
             "code": "",
-            "review": "决策单调性，吃到算法的亏了"
+            "review": "决策单调性，吃到算法的亏了",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_9hjdm6olz",
@@ -17997,7 +18292,11 @@
             ],
             "realScore": 25,
             "code": "",
-            "review": "小暴力，有点分讨"
+            "review": "小暴力，有点分讨",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_nfrmm9olz",
@@ -18015,9 +18314,15 @@
             ],
             "realScore": 15,
             "code": "",
-            "review": "小暴力，但是怎么别人写个随机化直接偏序我"
+            "review": "小暴力，但是怎么别人写个随机化直接偏序我",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
-        ]
+        ],
+        "rank": "",
+        "finishedAt": 1794636649999
       },
       {
         "id": "mc_t9v9raz8l",
@@ -18028,7 +18333,7 @@
         "endsAt": 1794547466659,
         "scheduledAt": null,
         "durationMs": 16200000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1794542934112,
         "archivedAt": 1794561482676,
         "problems": [
@@ -18044,7 +18349,11 @@
             ],
             "realScore": 100,
             "code": "",
-            "review": "简单贪心"
+            "review": "简单贪心",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_1xifrqz8l",
@@ -18058,7 +18367,11 @@
             ],
             "realScore": 26,
             "code": "",
-            "review": "神仙倍增构造"
+            "review": "神仙倍增构造",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_vmjoo4z8l",
@@ -18072,7 +18385,11 @@
             ],
             "realScore": 100,
             "code": "",
-            "review": "香香软软数据结构+gcd"
+            "review": "香香软软数据结构+gcd",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_vz0lk4z8l",
@@ -18081,9 +18398,15 @@
             "records": [],
             "realScore": 0,
             "code": "",
-            "review": "？"
+            "review": "？",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
-        ]
+        ],
+        "rank": "",
+        "finishedAt": 1794561482676
       },
       {
         "id": "mc_10gr2yp7l",
@@ -18094,7 +18417,7 @@
         "endsAt": 1794455400000,
         "scheduledAt": null,
         "durationMs": 16200000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1794455400000,
         "archivedAt": 1794456008892,
         "problems": [
@@ -18110,7 +18433,11 @@
             ],
             "realScore": 100,
             "code": "",
-            "review": "100"
+            "review": "100",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_dq5wuvp7l",
@@ -18119,7 +18446,11 @@
             "records": [],
             "realScore": 0,
             "code": "",
-            "review": "呃呃allin失败"
+            "review": "呃呃allin失败",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_8ezkh9p7l",
@@ -18133,7 +18464,11 @@
             ],
             "realScore": 40,
             "code": "",
-            "review": "呃呃"
+            "review": "呃呃",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_a6rti9p7l",
@@ -18147,9 +18482,15 @@
             ],
             "realScore": 8,
             "code": "",
-            "review": "呃呃"
+            "review": "呃呃",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
-        ]
+        ],
+        "rank": "",
+        "finishedAt": 1794456008892
       },
       {
         "id": "mc_4opjbf7yz",
@@ -18159,7 +18500,7 @@
         "startedAt": 1794266971739,
         "endsAt": 1794283171739,
         "durationMs": 16200000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1794283171739,
         "archivedAt": 1794295283540,
         "problems": [
@@ -18175,7 +18516,11 @@
             ],
             "realScore": 100,
             "code": "",
-            "review": "111"
+            "review": "111",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_pzyos77z0",
@@ -18193,7 +18538,11 @@
             ],
             "realScore": 8,
             "code": "",
-            "review": "000"
+            "review": "000",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_234m5m7z0",
@@ -18207,7 +18556,11 @@
             ],
             "realScore": 0,
             "code": "",
-            "review": "000"
+            "review": "000",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_5xswsv7z0",
@@ -18221,10 +18574,16 @@
             ],
             "realScore": 30,
             "code": "",
-            "review": "111"
+            "review": "111",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
         ],
-        "scheduledAt": null
+        "scheduledAt": null,
+        "rank": "",
+        "finishedAt": 1794295283540
       },
       {
         "id": "mc_nvkrrc8k2",
@@ -18234,7 +18593,7 @@
         "startedAt": 1794183504914,
         "endsAt": 1794199704914,
         "durationMs": 16200000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1794199704914,
         "archivedAt": 1794266966933,
         "problems": [
@@ -18250,7 +18609,11 @@
             ],
             "realScore": 100,
             "code": "",
-            "review": "秒了"
+            "review": "秒了",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_jqfnj48k3",
@@ -18264,7 +18627,11 @@
             ],
             "realScore": 100,
             "code": "",
-            "review": "会了"
+            "review": "会了",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_it59nl8k3",
@@ -18273,7 +18640,11 @@
             "records": [],
             "realScore": 0,
             "code": "",
-            "review": "题读错了"
+            "review": "题读错了",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_szxm958k3",
@@ -18287,10 +18658,16 @@
             ],
             "realScore": 30,
             "code": "",
-            "review": "写暴力走人"
+            "review": "写暴力走人",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
         ],
-        "scheduledAt": null
+        "scheduledAt": null,
+        "rank": "",
+        "finishedAt": 1794266966933
       },
       {
         "id": "mc_jmf9777e0",
@@ -18300,7 +18677,7 @@
         "startedAt": 1794006957096,
         "endsAt": 1794023157096,
         "durationMs": 16200000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1794022904240,
         "archivedAt": 1794022955235,
         "problems": [
@@ -18316,7 +18693,11 @@
             ],
             "realScore": 100,
             "code": "",
-            "review": "？"
+            "review": "？",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_saz9o07e0",
@@ -18330,7 +18711,11 @@
             ],
             "realScore": 45,
             "code": "",
-            "review": "！"
+            "review": "！",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_emdgv37e0",
@@ -18339,7 +18724,11 @@
             "records": [],
             "realScore": 0,
             "code": "",
-            "review": "没看"
+            "review": "没看",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_n4h3jq7e0",
@@ -18357,10 +18746,16 @@
             ],
             "realScore": 0,
             "code": "",
-            "review": "！"
+            "review": "！",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
         ],
-        "scheduledAt": null
+        "scheduledAt": null,
+        "rank": "",
+        "finishedAt": 1794022955235
       },
       {
         "id": "mc_9u89dnitq",
@@ -18370,7 +18765,7 @@
         "startedAt": 1793842229420,
         "endsAt": 1793858429420,
         "durationMs": 16200000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1793858429420,
         "archivedAt": 1793863613034,
         "problems": [
@@ -18381,7 +18776,11 @@
             "records": [],
             "realScore": 100,
             "code": "",
-            "review": "好题。"
+            "review": "好题。",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_4lq6mgitq",
@@ -18390,7 +18789,11 @@
             "records": [],
             "realScore": 10,
             "code": "",
-            "review": "没搜哈出来"
+            "review": "没搜哈出来",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_eiv33qitq",
@@ -18399,7 +18802,11 @@
             "records": [],
             "realScore": 0,
             "code": "",
-            "review": "gunmu"
+            "review": "gunmu",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_5jk1f5itq",
@@ -18408,10 +18815,16 @@
             "records": [],
             "realScore": 10,
             "code": "",
-            "review": "跑路了"
+            "review": "跑路了",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
         ],
-        "scheduledAt": null
+        "scheduledAt": null,
+        "rank": "",
+        "finishedAt": 1793863613034
       },
       {
         "id": "mc_hqrzh2135",
@@ -18421,7 +18834,7 @@
         "startedAt": 1793676671103,
         "endsAt": 1793692871103,
         "durationMs": 16200000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1793691094251,
         "archivedAt": 1793691139510,
         "problems": [
@@ -18437,7 +18850,11 @@
             ],
             "realScore": 100,
             "code": "",
-            "review": "博，秒"
+            "review": "博，秒",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_4v93wb139",
@@ -18455,7 +18872,11 @@
             ],
             "realScore": 68,
             "code": "",
-            "review": "贪，死"
+            "review": "贪，死",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_uneo0o139",
@@ -18469,7 +18890,11 @@
             ],
             "realScore": 96,
             "code": "",
-            "review": "妙，卡"
+            "review": "妙，卡",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_cpax4e139",
@@ -18491,10 +18916,16 @@
             ],
             "realScore": 72,
             "code": "",
-            "review": "拼，可"
+            "review": "拼，可",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
         ],
-        "scheduledAt": null
+        "scheduledAt": null,
+        "rank": "",
+        "finishedAt": 1793691139510
       },
       {
         "id": "mc_fpin0skfg",
@@ -18504,7 +18935,7 @@
         "startedAt": 1793601020139,
         "endsAt": 1793617220139,
         "durationMs": 16200000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1793601022596,
         "archivedAt": 1793601052870,
         "problems": [
@@ -18515,7 +18946,11 @@
             "records": [],
             "realScore": 100,
             "code": "",
-            "review": "秒"
+            "review": "秒",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_2bnwwikfg",
@@ -18524,7 +18959,11 @@
             "records": [],
             "realScore": 100,
             "code": "",
-            "review": "秒"
+            "review": "秒",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_k0t2tykfg",
@@ -18533,7 +18972,11 @@
             "records": [],
             "realScore": 30,
             "code": "",
-            "review": "死"
+            "review": "死",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_k9rwhskfg",
@@ -18542,10 +18985,16 @@
             "records": [],
             "realScore": 4,
             "code": "",
-            "review": "挂"
+            "review": "挂",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
         ],
-        "scheduledAt": null
+        "scheduledAt": null,
+        "rank": "",
+        "finishedAt": 1793601052870
       },
       {
         "id": "mc_ho5glcnhg",
@@ -18555,7 +19004,7 @@
         "startedAt": 1793341803364,
         "endsAt": 1793356203364,
         "durationMs": 14400000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1793356203364,
         "archivedAt": 1793356634681,
         "problems": [
@@ -18579,7 +19028,11 @@
             ],
             "realScore": 100,
             "code": "#include<bits/stdc++.h>\n#define int long long\n#define N 200005\n#define inf 1000000000\n#define mod 998244353\n#define eps 1e-9\nusing namespace std;\nint v[N],tr[N<<2],match[N],n,a;\nint get(int i1,int i2) {\n    if(match[i1]<match[i2]) return i2;\n    return i1;\n}\nvoid build(int u,int l,int r) {\n    if(l==r) {\n        if(v[l]<=a) tr[u]=l;\n        else tr[u]=0;\n        return;\n    }\n    int mid=(l+r)>>1;\n    build(u<<1,l,mid);\n    build(u<<1|1,mid+1,r);\n    tr[u]=get(tr[u<<1],tr[u<<1|1]);\n    return;\n}\nvoid upd(int u,int l,int r,int x) {\n    if(l==r) return;\n    int mid=(l+r)>>1;\n    if(x<=mid) upd(u<<1,l,mid,x);\n    else upd(u<<1|1,mid+1,r,x);\n    tr[u]=get(tr[u<<1],tr[u<<1|1]);\n    return; \n}\nint query(int u,int l,int r,int cl,int cr)\n{\n    if(l>=cl && r<=cr) return tr[u];\n    int mid=(l+r)>>1,ans=0;\n    if(mid>=cl) ans=get(ans,query(u<<1,l,mid,cl,cr));\n    if(mid<cr) ans=get(ans,query(u<<1|1,mid+1,r,cl,cr));\n    return ans;\n}\nstruct node{\n    int b,id;\n    bool operator <(const node &t) const{\n        return b<t.b;\n    }\n}b[N];\npriority_queue<node> qx;\nint ans[N];\nsigned main() {\n    freopen(\"trading.in\",\"r\",stdin);\n    freopen(\"trading.out\",\"w\",stdout);\n    ios::sync_with_stdio(0);\n    int t;\n    cin>>t;\n    while(t--) {\n        cin>>n>>a;\n        for(int i=1;i<=n;i++) cin>>v[i],match[i]=0;\n        while(!qx.empty()) qx.pop();\n        int m;\n        cin>>m;\n        for(int i=1;i<=m;i++) cin>>b[i].b,b[i].id=i;\n        sort(b+1,b+m+1);\n        int curans=0;\n        for(int i=1;i<=n;i++) {\n            if(v[i]>a) qx.push({v[i],i});\n            else match[i]=inf,curans+=v[n]-v[i];\n        }\n        build(1,1,n);\n        for(int i=m;i>=1;i--) {\n            while(!qx.empty() && qx.top().b>=b[i].b) {\n                auto p=qx.top();\n                qx.pop();\n                int qr=query(1,1,n,1,p.id);\n                if(qr==0 || match[qr]<=p.id) continue;\n                if(match[qr]==inf) curans+=v[p.id]-v[n];\n                else {\n                    curans+=v[p.id]-v[match[qr]];\n                    qx.push({v[match[qr]],match[qr]});\n                }\n                match[qr]=p.id;\n                upd(1,1,n,qr);\n            }\n            ans[b[i].id]=curans;\n        }\n        for(int i=1;i<=m;i++) cout<<ans[i]<<' ';\n        cout<<'\\n';\n    }\n    return 0;\n}",
-            "review": "神秘的类匈牙利竟然能过"
+            "review": "神秘的类匈牙利竟然能过",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_miyw3enhg",
@@ -18593,7 +19046,11 @@
             ],
             "realScore": 80,
             "code": "#include<bits/stdc++.h>\n#define ll long long\n#define N 200005\n#define inf 1000000000\n#define mod 998244353\n#define eps 1e-9\nusing namespace std;\nvector<int> e[N];\nint dep[N];\nint ans=0;\nvoid dfs1(int u,int fa)\n{\n    dep[u]=dep[fa]+1;\n    if(dep[u]>dep[ans]) ans=u;\n    for(auto v:e[u]) {\n        if(v==fa) continue;\n        dfs1(v,u);\n    }\n}\nvoid dfs2(int u,int fa) {\n    dep[u]=dep[fa]+1;\n    if(dep[u]>dep[ans]) ans=u;\n    for(auto v:e[u]) {\n        if(v==fa) continue;\n        dfs1(v,u);\n    }\n}\nvector<int> ds;\nvector<int> f[N];\nbool dfs3(int u,int fa) {\n    if(u==ans) {\n        ds.push_back(u);\n        return 1;\n    }\n    for(auto v:e[u]) {\n        if(v==fa) continue;\n        if(dfs3(v,u)) {\n            ds.push_back(u);\n            return 1;\n        }\n    }\n    return 0;\n}\nint son[N],dp[N];\nint leaf_num;\nvoid dfs4(int u,int fa) {\n    dp[u]=dep[u];\n    if(dep[u]==dep[ans]) leaf_num++;\n    for(auto v:e[u]) {\n        if(v==fa) continue;\n        dfs4(v,u);\n        dp[u]=max(dp[u],dp[v]);\n        if(dp[v]==dep[ans]) f[u].push_back(v),son[u]++;\n    }\n}\nint dx[N];\nint maxd;\nvoid dfs5(int u) {\n    if(dx[dep[u]]>son[u]) {\n        if(dx[dep[u]]!=inf) for(int i=dep[u]+1;i<=maxd;i++) dx[i]=inf;\n        dx[dep[u]]=son[u];\n    }\n    else if(dx[dep[u]]<son[u]) return;\n    for(auto v:f[u]) {\n        dfs5(v);\n    }\n}\nsigned main() {\n    // freopen(\"diameter.in\",\"r\",stdin);\n    // freopen(\"diameter.out\",\"w\",stdout);\n    ios::sync_with_stdio(0);\n    //cin.tie(0);\n    //cout.tie(0);\n    int t;\n    cin>>t;\n    while(t--) {\n        int n;\n        cin>>n;\n        for(int i=1;i<=n;i++) dep[i]=0,e[i].clear(),f[i].clear(),son[i]=0;\n        ans=0;\n        ds.clear();\n        for(int i=1;i<n;i++) {\n            int u,v;\n            cin>>u>>v;\n            e[u].push_back(v);\n            e[v].push_back(u);\n        }\n        if(n==2)\n        {\n            cout<<\"2 1\\n\";\n            continue;\n        }\n        dfs1(1,0);\n        int rt=ans;\n        ans=0;\n        dfs2(rt,0);\n        dfs3(rt,0);\n        if(ds.size()%2==1) { //中心只有一个\n            int r=ds[ds.size()/2];\n            dfs1(r,0);\n            leaf_num=0;\n            dfs4(r,0);\n            maxd=dp[r];\n            for(int i=1;i<=maxd;i++) dx[i]=inf;\n            dfs5(r);\n            int st=leaf_num-1;\n            for(int i=1;i<=maxd;i++) cout<<(++st)<<' ';\n            dx[1]--;\n            for(int j=1;j<maxd;j++) {\n                if(j<maxd-1) cout<<(st+=dx[j])<<\" \";\n                else cout<<dx[j]<<' ';\n            }\n            cout<<'\\n';\n        } else {\n            int r1=ds[ds.size()/2-1],r2=ds[ds.size()/2];\n            dep[r2]=0;\n            dfs1(r1,r2);\n            dep[r1]=0;\n            dfs1(r2,r1);\n            dep[r1]=dep[r2]=1;\n            leaf_num=0;\n            dfs4(r1,r2);\n            dfs4(r2,r1);\n            maxd=dp[r1];\n            for(int i=1;i<=maxd;i++) dx[i]=inf;\n            dfs5(r1);\n            dfs5(r2);\n            int st=leaf_num-1;\n            for(int i=1;i<=maxd+1;i++) cout<<(++st)<<\" \";\n            for(int j=1;j<maxd;j++) {\n                if(j<maxd-1) cout<<(st+=dx[j])<<' ';\n                else cout<<dx[j]<<\" \";\n            }\n            cout<<\"\\n\";\n        }\n    }\n    return 0;\n}",
-            "review": "没判n=2"
+            "review": "没判n=2",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_2c126cnhg",
@@ -18602,7 +19059,11 @@
             "records": [],
             "realScore": 0,
             "code": "",
-            "review": "题都读不懂"
+            "review": "题都读不懂",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_su7lqbnhg",
@@ -18616,10 +19077,16 @@
             ],
             "realScore": 24,
             "code": "#include<bits/stdc++.h>\n#define ll long long\n#define N 2005\n#define inf 1000000000\n#define mod 998244353\n#define eps 1e-9\nusing namespace std;\nint a[N],dp[N][N];\nsigned main() {\n    freopen(\"dolls.in\",\"r\",stdin);\n    freopen(\"dolls.out\",\"w\",stdout);\n    ios::sync_with_stdio(0);\n    int t;\n    cin>>t;\n    while(t--) {\n        int n;\n        cin>>n;\n        for(int i=1;i<=n;i++) cin>>a[i];\n        for(int i=0;i<=n;i++)\n            for(int j=0;j<=n;j++) dp[i][j]=inf;\n        dp[0][0]=1;\n        for(int i=1;i<=n;i++) {\n            bool suc=0;\n            int maxn=0,minn=inf;\n            for(int j=i;j>=1;j--) {\n                maxn=max(maxn,a[j]);\n                minn=min(minn,a[j]);\n                if(j<i) {\n                    if(!suc && a[j]<a[j+1]) suc=1;\n                    else if(suc && a[j]>a[j+1]) break;\n                }\n                int maxp=0,minp=inf;\n                for(int k=j-1;k>=1;k--) {\n                    maxp=max(maxp,a[k]),minp=min(minp,a[k]);\n                    if(minp>minn && minp<maxn) dp[j][i]=min(dp[j][i],dp[k][j-1]+(i-j));\n                    if(minn>minp && minn<maxp) dp[j][i]=min(dp[j][i],dp[k][j-1]+(i-j));\n                }\n                if(j==1) dp[j][i]=min(dp[j][i],i-1);\n            }\n        }\n        int ans=inf;\n        for(int i=1;i<=n;i++) ans=min(ans,dp[i][n]);\n        cout<<ans<<'\\n';\n    }\n    return 0;\n}",
-            "review": "正常n^3"
+            "review": "正常n^3",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
         ],
-        "scheduledAt": null
+        "scheduledAt": null,
+        "rank": "",
+        "finishedAt": 1793356634681
       },
       {
         "id": "mc_vdf62kxon",
@@ -18629,7 +19096,7 @@
         "startedAt": 1793143201991,
         "endsAt": 1793159401991,
         "durationMs": 16200000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1793159401991,
         "archivedAt": 1793159523507,
         "problems": [
@@ -18649,7 +19116,11 @@
             ],
             "realScore": 80,
             "code": "",
-            "review": "？"
+            "review": "？",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_tzhjwvxon",
@@ -18658,7 +19129,11 @@
             "records": [],
             "realScore": 0,
             "code": "",
-            "review": "？"
+            "review": "？",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_rziqwexon",
@@ -18667,7 +19142,11 @@
             "records": [],
             "realScore": 0,
             "code": "",
-            "review": "？"
+            "review": "？",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_wiw6v4xon",
@@ -18676,10 +19155,16 @@
             "records": [],
             "realScore": 0,
             "code": "",
-            "review": "？"
+            "review": "？",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
         ],
-        "scheduledAt": null
+        "scheduledAt": null,
+        "rank": "",
+        "finishedAt": 1793159523507
       },
       {
         "id": "mc_5ideue44y",
@@ -18689,7 +19174,7 @@
         "startedAt": 1793060209330,
         "endsAt": 1793074609330,
         "durationMs": 14400000,
-        "status": "archived",
+        "status": "finished",
         "submittedAt": 1793074609330,
         "archivedAt": 1793082042349,
         "problems": [
@@ -18705,7 +19190,11 @@
             ],
             "realScore": 100,
             "code": "#include<bits/stdc++.h>\n#define int long long\n#define N 200005\n#define inf 1000000000\n#define mod 998244353\n#define eps 1e-9\nusing namespace std;\nint a[N];\nstruct node{\n    int pos,val;\n    bool operator <(const node &t) const{\n        return pos<t.pos;\n    }\n};\nvector<node> t;\nsigned main()\n{\n    ios::sync_with_stdio(0);\n    //cin.tie(0);\n    //cout.tie(0);\n    int n,k;\n    cin>>n>>k;\n    for(int i=1;i<=n;i++) cin>>a[i];\n    sort(a+1,a+n+1);\n    for(int i=2;i<=n;i++)\n    {\n        if(a[i]-a[i-1]>=k) continue;\n        int s1=a[i-1]%k,s2=a[i]%k;\n        if(s1<=s2) {\n            t.push_back({0,1});\n            t.push_back({s1,-1});\n            t.push_back({s2,1});\n        }\n        else {\n            t.push_back({s2,1});\n            t.push_back({s1,-1});\n        }\n    }\n    sort(t.begin(),t.end());\n    int curd=0;\n    int ans=0;\n    for(int i=0;i<t.size();i++)\n    {\n        curd+=t[i].val;\n        if(i<t.size()-1 && t[i].pos==t[i+1].pos) continue;\n        ans=max(ans,curd);\n    }\n    cout<<n-ans<<'\\n';\n    return 0;\n}\n/*\n发现其实能用的点还是只有那么多，On个，枚举发车时间点\n然后这个DP模拟看起来是难的\n但是有类似O(n²)做法\n问题是如何转化\n可能，可以对着两个相邻的算贡献然后维护增量，如果能被分成一趟则答案--，然后最后算答案下界\n相邻两个能分成一趟，当且仅当%k意义下在一段内\n所以是可以做的。\n*/",
-            "review": "又是维护增量法"
+            "review": "又是维护增量法",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_d90lc144y",
@@ -18719,7 +19208,11 @@
             ],
             "realScore": 0,
             "code": "#include<bits/stdc++.h>\n#define ll long long\n#define N 200005\n#define inf 2000000000\n#define mod 998244353\n#define eps 1e-9\nusing namespace std;\nnamespace FAST_IO {\n#define IOSIZE 300000\n    char ibuf[IOSIZE], obuf[IOSIZE], *p1 = ibuf, *p2 = ibuf, *p3 = obuf;\n#define getchar() ((p1==p2)and(p2=(p1=ibuf)+fread(ibuf,1,IOSIZE,stdin),p1==p2)?(EOF):(*p1++))\n#define putchar(x) ((p3==obuf+IOSIZE)&&(fwrite(obuf,p3-obuf,1,stdout),p3=obuf),*p3++=x)\n#define isdigit(ch) (ch>47&&ch<58)\n#define isspace(ch) (ch<33)\n    template <typename T> inline void read (T &x) {    x = 0; T f = 1;char ch = getchar ();while (!isdigit (ch)) {if (ch == '-') f = -1; ch = getchar ();}while (isdigit (ch)) {x = (x << 1) + (x << 3) + (ch ^ '0'); ch = getchar ();} x *= f;}\n    template <> inline void read (double &x) { x = 0; int f = 1;char ch = getchar ();while (!isdigit (ch)) { if (ch == '-') f = -1; ch = getchar ();} while (isdigit (ch)) x = x * 10 + (ch - '0'), ch = getchar ();if (ch == '.') {ch = getchar (); for (double t = 0.1; isdigit (ch); t *= 0.1) x += t * (ch - '0'), ch = getchar ();}x *= f;}\n    inline void read(char &x) { char ch;while ((ch = getchar()) != EOF && isspace(ch));if (ch != EOF) x = ch;}\n    inline bool read(char *s) { char ch; while (ch = getchar(), isspace(ch)); if (ch == EOF) return false; while (!isspace(ch)) *s++ = ch, ch = getchar(); *s = '\\000'; return true; }\n    inline bool read(string& s) { s = \"\"; char ch; while (ch = getchar(), isspace(ch)); if (ch == EOF) return false; while (!isspace(ch)) s += ch, ch = getchar(); return true; }\n    template <typename T, typename ...Args> inline void read (T &x, Args &...args) {read(x); read(args...);}\n    template <typename T> inline void write (T x) {    if (x < 0) putchar ('-'), x = -x; if (x > 9) write (x / 10); putchar (x % 10 + 48);}\n    inline void write(string x) { for (int i = 0, n = x.size(); i < n; i++) putchar(x[i]); }\n    inline void write(char *x) { while (*x) putchar(*x++); }\n    inline void write(const char *x) { while (*x) putchar(*x++); }\n    inline void write(char x) { putchar(x); }\n    struct fio { ~fio () {if (p3 != obuf) { fwrite(obuf, 1, p3 - obuf, stdout);p3 = obuf;}}} io;\n    template <typename T> fio& operator >> (fio &io, T &x) {return read (x), io;}\n    template <typename T> fio& operator << (fio &io, const T &x) {return write (x), io;}\n#define cin io\n#define cout io\n#define endl '\\n'\n}\nusing namespace FAST_IO;\nstruct node{\n    int val,id;\n    bool operator <(const node &t) const{\n        if(val!=t.val) return val<t.val;\n        return id<t.id;\n    }\n}a[N];\nint pos[N];\nstruct q1uple{\n    int a,b,c;\n    bool operator <(const q1uple &t) const{\n        return (a==t.a)?((b==t.b)?b<t.b:c<t.c):a<t.a;\n    }\n};\nvoid chk(int p,int &m1,int &m2,int &m3) {\n    if(p<=m1) m3=m2,m2=m1,m1=p;\n    else if(p<=m2) m3=m2,m2=p;\n    else if(p<=m3) m3=p;\n}\nq1uple merge(q1uple x,q1uple y) {\n    int m1=x.a,m2=x.b,m3=x.c;\n    chk(y.a,m1,m2,m3);\n    chk(y.b,m1,m2,m3);\n    chk(y.c,m1,m2,m3);\n    return {m1,m2,m3};\n}\nq1uple tr[N<<2];\nvoid build(int u,int l,int r) {\n    if(l==r) {\n        tr[u]={a[l].id,inf,inf};\n        return;\n    }\n    int mid=(l+r)>>1;\n    build(u<<1,l,mid);\n    build(u<<1|1,mid+1,r);\n    tr[u]=merge(tr[u<<1],tr[u<<1|1]);\n}\nvoid mdf(int u,int l,int r,int x,int k) {\n    if(l==r) {\n        tr[u]={k,inf,inf};\n        return;\n    }\n    int mid=(l+r)>>1;\n    if(x<=mid) mdf(u<<1,l,mid,x,k);\n    else mdf(u<<1|1,mid+1,r,x,k);\n    tr[u]=merge(tr[u<<1],tr[u<<1|1]);\n}\nq1uple query(int u,int l,int r,int cl,int cr) {\n    if(l>=cl && r<=cr) return tr[u];\n    int mid=(l+r)>>1;\n    q1uple ans={inf,inf,inf};\n    if(mid>=cl) ans=merge(ans,query(u<<1,l,mid,cl,cr));\n    if(mid<cr) ans=merge(ans,query(u<<1|1,mid+1,r,cl,cr));\n    return ans;\n}\nint del[N];\nsigned main()\n{\n    ios::sync_with_stdio(0);\n    int n;\n    cin>>n;\n    for(int i=1;i<=n;i++) cin>>a[i].val,a[i].id=i;\n    sort(a+1,a+n+1);\n    for(int i=1;i<=n;i++) pos[a[i].id]=i;\n    build(1,1,n);\n    for(int i=1;i<=(n/3);i++) {\n        int p=inf;\n        int curd=0,l=1;\n        for(int j=1;j<=n;j++) {\n            if(del[j]) continue;\n            curd++;\n            while(curd>3) curd-=(!del[l]),l++;\n            while(del[l]) l++;\n            if(curd==3) p=min(p,a[j].val-a[l].val);\n        }\n        q1uple ans={inf,inf,inf};\n        for(int j=1;j<=n;j++) {\n            if(del[j]) continue;\n            int lp=j,rp=n;\n            while(lp<rp) {\n                int md=(lp+rp+1)>>1;\n                if(a[md].val-a[j].val>p) rp=md-1;\n                else lp=md;\n            }\n            auto tmp=query(1,1,n,j,lp);\n            if(ans.c==inf) ans=tmp;\n            else if(tmp.c!=inf) ans=min(ans,tmp);\n        }\n        cout<<ans.a<<' '<<ans.b<<\" \"<<ans.c<<'\\n';\n        mdf(1,1,n,pos[ans.a],inf);\n        mdf(1,1,n,pos[ans.b],inf);\n        mdf(1,1,n,pos[ans.c],inf);\n        del[pos[ans.a]]=del[pos[ans.b]]=del[pos[ans.c]]=1;\n    }\n    return 0;\n}",
-            "review": "挂成0了，不知道为啥"
+            "review": "挂成0了，不知道为啥",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_5u7ttg44y",
@@ -18733,7 +19226,11 @@
             ],
             "realScore": 0,
             "code": "#include<bits/stdc++.h>\n#define int long long\n#define N 300005\n#define inf 1000000000\n#define mod 998244353\n#define eps 1e-9\nusing namespace std;\nint a[N];\nint d[N];\nint dp[N];\nstruct lis{\n    int val,id;\n    bool operator <(const lis &t) const{\n        return val<t.val;\n    }\n}b[N];\nint c[N],w,ys[N];\nint bcnt;\nvoid lisanhua() {\n    sort(b+1,b+bcnt+1);\n    for(int i=1;i<=bcnt;i++) {\n        if(i==1 || b[i].val!=b[i-1].val) w++,ys[w]=b[i].val;\n        c[b[i].id]=w;\n    }\n    bcnt=0;\n}\nsigned main()\n{\n    ios::sync_with_stdio(0);\n    //cin.tie(0);\n    //cout.tie(0);\n    int n,k;\n    cin>>n>>k;\n    for(int i=0;i<=n;i++) {\n        cin>>a[i];\n        b[++bcnt].val=a[i];\n        b[bcnt].id=i;\n    }\n    for(int i=1;i<=n;i++) cin>>d[i];\n    lisanhua();\n    for(int i=1;i<=w;i++) dp[i]=-1;\n    dp[c[0]]=k;\n    for(int i=1;i<=n;i++) {\n        int cur=a[i];\n        int curmax=-1;\n        for(int j=1;j<=w;j++) {\n            if(dp[j]==-1) continue;\n            int p=ys[j];\n            int nx=dp[j];\n            if(p==-1) nx=nx*2-d[i];\n            else nx=nx+p-d[i];\n            if(nx>=0) curmax=max(curmax,nx);\n        }\n        //使用本张牌\n        for(int j=1;j<=w;j++) {\n            if(dp[j]==-1) continue;\n            int nx=dp[j];\n            if(a[i]>=0) nx=nx+a[i]-d[i];\n            else nx=nx*2-d[i];\n            if(nx>=0) dp[j]=min(nx,1000000000000000000ll);\n            else dp[j]=-1;\n        }\n        if(curmax>=0) dp[c[i]]=max(dp[c[i]],min(curmax,1000000000000000000ll));\n        bool suc=0;\n        for(int j=1;j<=w;j++) if(dp[j]>=0) suc=1;\n        if(!suc)\n        {\n            cout<<i-1<<'\\n';\n            return 0;\n        }\n    }\n    cout<<n<<'\\n';\n    return 0;\n}",
-            "review": "因为min没有LL直接CE宝林，CPH-NG太强了"
+            "review": "因为min没有LL直接CE宝林，CPH-NG太强了",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           },
           {
             "id": "mp_5kxjsw44y",
@@ -18751,10 +19248,16 @@
             ],
             "realScore": 0,
             "code": "",
-            "review": "gunmu，30分都没写出来"
+            "review": "gunmu，30分都没写出来",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
           }
         ],
-        "scheduledAt": null
+        "scheduledAt": null,
+        "rank": "",
+        "finishedAt": 1793082042349
       }
     ],
     "tricks": [
@@ -18860,11 +19363,15 @@
         "feature": "最小k个，且每次DP从多个转移",
         "transform": "多路归并",
         "algo": "归并，堆，set",
-        "note": "例子：CF1942D",
+        "note": "",
         "color": "#4f9d8f",
         "priority": 1,
-        "updatedAt": 1793791904599,
-        "example": null
+        "updatedAt": 1794992616629,
+        "example": {
+          "listName": "教学题单",
+          "pid": "CF1942D",
+          "name": "Learning to Paint"
+        }
       },
       {
         "id": "tk_w8phx7hpl",
@@ -18872,11 +19379,15 @@
         "feature": "两个序列间的配对问题，某些决策会影响具有大小关系的其他决策，且只影响一边",
         "transform": "将两个序列放到一起，以减少需要记的状态数",
         "algo": "动态规划优化，计数",
-        "note": "例题：P7154",
+        "note": "",
         "color": "#c98a4b",
         "priority": 1,
-        "updatedAt": 1793933953833,
-        "example": null
+        "updatedAt": 1794992603233,
+        "example": {
+          "listName": "教学题单",
+          "pid": "P7154",
+          "name": "[USACO20DEC] Sleeping Cows P"
+        }
       },
       {
         "id": "tk_cdaiaqz4m",
@@ -18893,43 +19404,104 @@
           "pid": "CF932E",
           "name": "Team Work"
         }
+      },
+      {
+        "id": "tk_ykps2hq9d",
+        "createdAt": 1794992589553,
+        "feature": "暴力是 $n^2$ 建边，但是边权/连边方式和取模，整除有关",
+        "transform": "对于每个元素，枚举其倍数/约数，然后去每段里选最优的连边。",
+        "algo": "贪心，调和级数",
+        "note": "适用于最优化问题，或例子中的最小生成树。",
+        "color": "#61a35e",
+        "priority": 1,
+        "example": {
+          "listName": "教学题单",
+          "pid": "CF2081D",
+          "name": "MST in Modulo Graph"
+        },
+        "updatedAt": 1794992589553
+      },
+      {
+        "id": "tk_rorsejimj",
+        "createdAt": 1795006576459,
+        "feature": "判定具有单调阈值，可以拆成一个一个的更新事件，但事件较多",
+        "transform": "考虑压缩事件数，只考虑会对整体状态产生影响的事件。",
+        "algo": "图论，最短路，并查集，生成树，分层图等",
+        "note": "仅适用于答案更新具有单调性的题目",
+        "color": "#5b7fd6",
+        "priority": 1,
+        "example": {
+          "listName": "教学题单",
+          "pid": "CF2057E2",
+          "name": "Another Exercise on Graphs (hard version)"
+        },
+        "updatedAt": 1795006687826
+      },
+      {
+        "id": "tk_c50sdygf3",
+        "createdAt": 1795094333535,
+        "feature": "前缀和优化多重背包计数",
+        "transform": "因为每个都可以拆成 $-0,-x,-2x,\\cdots,-kx$ 的形式，故可以把整个序列化成一段一段的 $\\bmod\\ x$ 分组前缀和，就可以做到 $O(nV)$ 转移了。",
+        "algo": "前缀和，背包DP，DP优化",
+        "note": "很广泛啊，感觉挺实用的。",
+        "color": "#61a35e",
+        "priority": 1,
+        "example": {
+          "listName": "专题-DP",
+          "pid": "AT_ARC104_D",
+          "name": "Multiset Mean"
+        },
+        "updatedAt": 1795094349122
       }
     ],
     "daily": {
       "inbox": [],
-      "doing": [
-        {
-          "id": "dt_qg21snnd6",
-          "listName": "训练-计数",
-          "pid": "CF1527E",
-          "name": "Partition Game",
-          "difficulty": 6,
-          "addedAt": 1794906272202,
-          "status": "doing",
-          "movedAt": 1794906399380
-        },
-        {
-          "id": "dt_o2se6bdvj",
-          "listName": "训练-计数",
-          "pid": "CF1930E",
-          "name": "2..3...4.... Wonderful! Wonderful!",
-          "difficulty": 6,
-          "addedAt": 1794906259903,
-          "status": "doing",
-          "movedAt": 1794906399855
-        },
-        {
-          "id": "dt_0pe0mxhkn",
-          "listName": "专题-容斥",
-          "pid": "CF932E",
-          "name": "Team Work",
-          "difficulty": 6,
-          "addedAt": 1794906404663,
-          "status": "doing",
-          "movedAt": 1794906404663
-        }
-      ],
+      "doing": [],
       "suspended": [
+        {
+          "id": "dt_0bd6tpajj",
+          "listName": "训练-转化",
+          "pid": "CF1389F",
+          "name": "Bicolored Segments",
+          "difficulty": 7,
+          "addedAt": 1794488777695,
+          "status": "suspended",
+          "movedAt": 1795243934181,
+          "suspendedAt": 1795243936139
+        },
+        {
+          "id": "dt_601y5uh9q",
+          "listName": "训练-计数",
+          "pid": "CF1187E",
+          "name": "Tree Painting",
+          "difficulty": 5,
+          "addedAt": 1795094567918,
+          "status": "suspended",
+          "movedAt": 1795094589748,
+          "suspendedAt": 1795179548793
+        },
+        {
+          "id": "dt_ztwhprot3",
+          "listName": "教学题单",
+          "pid": "CF293E",
+          "name": "Close Vertices",
+          "difficulty": 7,
+          "addedAt": 1794989461719,
+          "status": "suspended",
+          "movedAt": 1795069494249,
+          "suspendedAt": 1795074100718
+        },
+        {
+          "id": "dt_yonb90zsi",
+          "listName": "训练-计数",
+          "pid": "CF1542D",
+          "name": "Priority Queue",
+          "difficulty": 5,
+          "addedAt": 1794918978738,
+          "status": "suspended",
+          "movedAt": 1794960470618,
+          "suspendedAt": 1794960554987
+        },
         {
           "id": "dt_94q8po90k",
           "listName": "训练-计数",
@@ -18973,55 +19545,24 @@
           "status": "suspended",
           "movedAt": 1794637596344,
           "suspendedAt": 1794638034518
-        },
-        {
-          "id": "dt_0bd6tpajj",
-          "listName": "训练-转化",
-          "pid": "CF1389F",
-          "name": "Bicolored Segments",
-          "difficulty": 7,
-          "addedAt": 1794488777695,
-          "status": "suspended",
-          "movedAt": 1794554933338,
-          "suspendedAt": 1794562277311
-        },
-        {
-          "id": "dt_w12mvv1g4",
-          "listName": "随机跳题",
-          "pid": "P16328",
-          "name": "夜曲",
-          "difficulty": 4,
-          "addedAt": 1794560149588,
-          "status": "suspended",
-          "movedAt": 1794560149588,
-          "suspendedAt": 1794561723571
         }
       ],
-      "done": [
-        {
-          "id": "dt_o67rrvm7i",
-          "listName": "专题-贪心",
-          "pid": "CF1616D",
-          "name": "Keep the Average High",
-          "difficulty": 5,
-          "durationMs": 2269236,
-          "usedSolution": true,
-          "icebreak": "神奇的贪心，没看懂证明",
-          "doneAt": 1794905618372
-        }
-      ],
-      "activeId": "dt_0pe0mxhkn",
-      "activeSince": 1794906404663,
+      "done": [],
+      "activeId": null,
+      "activeSince": null,
       "elapsed": {
         "dt_94q8po90k": 2418472,
-        "dt_w12mvv1g4": 1573983,
         "dt_0093n8dej": 437350,
         "dt_uf8rs5d4u": 5603074,
-        "dt_ny1diyx59": 1980199
+        "dt_ny1diyx59": 1980199,
+        "dt_yonb90zsi": 1937262,
+        "dt_ztwhprot3": 4606469,
+        "dt_601y5uh9q": 182944,
+        "dt_0bd6tpajj": 25254675
       },
       "today": {
-        "date": "2026-11-17",
-        "ms": 2269236
+        "date": "2026-11-21",
+        "ms": 23805294
       }
     }
   }
