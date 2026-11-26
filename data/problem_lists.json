@@ -1577,8 +1577,61 @@
           "note": "",
           "pinned": false,
           "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P5160",
+          "name": "WD与循环",
+          "difficulty": 5,
+          "date": "2026-11-24",
+          "note": "",
+          "pinned": false,
+          "know": false,
           "groupId": null,
-          "firstDone": "2026-11-20"
+          "firstDone": "2026-11-24"
+        },
+        {
+          "pid": "P7552",
+          "name": "[COCI 2020/2021 #6] Anagramistica",
+          "difficulty": 4,
+          "date": "2026-11-24",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null,
+          "firstDone": "2026-11-24"
+        },
+        {
+          "pid": "P16328",
+          "name": "夜曲",
+          "difficulty": 4,
+          "date": "2026-11-20",
+          "note": "完成时间：0小时53分钟\n看了题解\n破冰点：气笑了这个二分",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P17332",
+          "name": "「TPOI-2B」AND and Subsequence",
+          "difficulty": 4,
+          "date": "2026-11-24",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null,
+          "firstDone": "2026-11-24"
+        },
+        {
+          "pid": "P14707",
+          "name": "[ICPC 2023 Tehran R] Largest Triangle",
+          "difficulty": 5,
+          "date": "2026-11-26",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null,
+          "firstDone": "2026-11-26"
         }
       ]
     },
@@ -2158,874 +2211,8 @@
       ]
     },
     "教学题单": {
-      "groups": [
-        {
-          "id": "g_i8e9x9pbe",
-          "name": "10.23",
-          "collapsed": true
-        },
-        {
-          "id": "g_d2b4qt69g",
-          "name": "10.26",
-          "collapsed": true
-        },
-        {
-          "id": "g_t0bqplyi7",
-          "name": "10.27",
-          "collapsed": true
-        },
-        {
-          "id": "g_5bqravces",
-          "name": "10.29",
-          "collapsed": true
-        },
-        {
-          "id": "g_l249mpu0g",
-          "name": "11.2",
-          "collapsed": true
-        },
-        {
-          "id": "g_6rdldf6yw",
-          "name": "11.3",
-          "collapsed": true
-        },
-        {
-          "id": "g_oqpd0pukk",
-          "name": "11.4",
-          "collapsed": true
-        },
-        {
-          "id": "g_wtkp40mwm",
-          "name": "11.5",
-          "collapsed": true
-        },
-        {
-          "id": "g_1222lz0un",
-          "name": "11.6",
-          "collapsed": true
-        },
-        {
-          "id": "g_l0oa76j47",
-          "name": "11.9",
-          "collapsed": true
-        },
-        {
-          "id": "g_d18sm0r8t",
-          "name": "11.11",
-          "collapsed": true
-        },
-        {
-          "id": "g_xj9l6vh1r",
-          "name": "11.15",
-          "collapsed": true
-        },
-        {
-          "id": "g_v6qc90sii",
-          "name": "11.16",
-          "collapsed": true
-        },
-        {
-          "id": "g_ddx2e8ltv",
-          "name": "11.18",
-          "collapsed": true
-        },
-        {
-          "id": "g_vbll5ive5",
-          "name": "11.20",
-          "collapsed": false
-        }
-      ],
+      "groups": [],
       "problems": [
-        {
-          "pid": "AT_ABC160_F",
-          "name": "Distributing Integers",
-          "difficulty": 5,
-          "date": "2026-10-24",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_i8e9x9pbe"
-        },
-        {
-          "pid": "AT_ABC281_G",
-          "name": "Farthest City",
-          "difficulty": 5,
-          "date": "2026-10-24",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_i8e9x9pbe"
-        },
-        {
-          "pid": "P15387",
-          "name": "Soso 的期望并查集 / exsodsu",
-          "difficulty": 5,
-          "date": "2026-10-25",
-          "note": "完成时间：0小时26分钟\n看了题解\n破冰点：对于父亲不固定，直接建虚点并查集",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_i8e9x9pbe"
-        },
-        {
-          "pid": "P8190",
-          "name": "[USACO22FEB] Cow Camp G",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_i8e9x9pbe"
-        },
-        {
-          "pid": "AT_AGC053_C",
-          "name": "Random Card Game",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_i8e9x9pbe"
-        },
-        {
-          "pid": "AT_AGC060_C",
-          "name": "Large Heap",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_i8e9x9pbe"
-        },
-        {
-          "pid": "AT_ARC108_E",
-          "name": "Random IS",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_i8e9x9pbe"
-        },
-        {
-          "pid": "AT_ARC170_E",
-          "name": "BDFS",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_i8e9x9pbe"
-        },
-        {
-          "pid": "AT_ARC174_E",
-          "name": "Existence Counting",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_i8e9x9pbe"
-        },
-        {
-          "pid": "P10879",
-          "name": "「KDOI-07」对树链剖分的爱",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_i8e9x9pbe"
-        },
-        {
-          "pid": "P12061",
-          "name": "[THUPC 2025 决赛] 喜爱之钥",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_i8e9x9pbe"
-        },
-        {
-          "pid": "AT_AGC043_B",
-          "name": "123 Triangle",
-          "difficulty": 5,
-          "date": "2026-10-26",
-          "note": "完成时间：0小时44分钟\n看了题解\n破冰点：转化很巧妙，通过观察012的互斥性质判断答案在哪两个数中，再转化为%2意义下使得减法变成加法。",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_d2b4qt69g"
-        },
-        {
-          "pid": "AT_ABC144_F",
-          "name": "Fork in the Road",
-          "difficulty": 5,
-          "date": "2026-10-26",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_d2b4qt69g"
-        },
-        {
-          "pid": "AT_AGC023_C",
-          "name": "Painting Machines",
-          "difficulty": 6,
-          "date": "2026-10-26",
-          "note": "完成时间：0小时44分钟\n独立完成\n破冰点：转化为插板法",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_d2b4qt69g"
-        },
-        {
-          "pid": "AT_ARC111_F",
-          "name": "Do you like query problems?",
-          "difficulty": 7,
-          "date": "2026-10-26",
-          "note": "完成时间：1小时22分钟\n看了题解\n破冰点：我草我彻底怒了，我指出了核心矛盾，求和转期望之后一定要乘方案数",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_d2b4qt69g"
-        },
-        {
-          "pid": "AT_KEYENCE2019_F",
-          "name": "Paper Cutting",
-          "difficulty": 5,
-          "date": "2026-10-26",
-          "note": "完成时间：1小时15分钟\n看了题解\n破冰点：转贡献，然后用组合数吸收恒等式和范德蒙德卷积恒等式优化",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_d2b4qt69g"
-        },
-        {
-          "pid": "CF1385F",
-          "name": "Removing Leaves",
-          "difficulty": 5,
-          "date": "2026-10-26",
-          "note": "完成时间：0小时44分钟\n看了题解\n破冰点：细节较多，可惜我是ctjer",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_d2b4qt69g"
-        },
-        {
-          "pid": "CF1455G",
-          "name": "Forbidden Value",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": true,
-          "groupId": "g_d2b4qt69g"
-        },
-        {
-          "pid": "CF1709E",
-          "name": "XOR Tree",
-          "difficulty": 6,
-          "date": "2026-10-26",
-          "note": "完成时间：0小时41分钟\n看了题解\n破冰点：贪心转化，启发式合并，直接用集合去检验是否出现元素。",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_d2b4qt69g"
-        },
-        {
-          "pid": "CF778C",
-          "name": "Peterson Polyglot",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_d2b4qt69g"
-        },
-        {
-          "pid": "CF1005F",
-          "name": "Berland and the Shortest Paths",
-          "difficulty": 6,
-          "date": "2026-10-27",
-          "note": "完成时间：0小时36分钟\n看了题解\n破冰点：原来问题可以变成每个点选一个前向边。",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_t0bqplyi7"
-        },
-        {
-          "pid": "CF1107G",
-          "name": "Vasya and Maximum Profit",
-          "difficulty": 5,
-          "date": "2026-10-27",
-          "note": "完成时间：0小时55分钟\n独立完成\n破冰点：还是钦定最大值法",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_t0bqplyi7"
-        },
-        {
-          "pid": "CF1268C",
-          "name": "K Integers",
-          "difficulty": 6,
-          "date": "2026-10-27",
-          "note": "完成时间：0小时49分钟\n独立完成\n破冰点：怎么用这么复杂的",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_t0bqplyi7"
-        },
-        {
-          "pid": "CF1292D",
-          "name": "Chaotic V.",
-          "difficulty": 6,
-          "date": "2026-10-28",
-          "note": "完成时间：2小时14分钟\n独立完成\n破冰点：虚树",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_t0bqplyi7"
-        },
-        {
-          "pid": "CF1416D",
-          "name": "Graph and Queries",
-          "difficulty": 6,
-          "date": "2026-10-28",
-          "note": "完成时间：0小时38分钟\n独立完成\n破冰点：懒删除",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_t0bqplyi7"
-        },
-        {
-          "pid": "CF1749E",
-          "name": "Cactus Wall",
-          "difficulty": 5,
-          "date": "2026-10-28",
-          "note": "完成时间：0小时38分钟\n独立完成\n破冰点：01BFS，但是我写的dij",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_t0bqplyi7"
-        },
-        {
-          "pid": "CF555E",
-          "name": "Case of Computer Network",
-          "difficulty": 6,
-          "date": "",
-          "note": "DCC+差分",
-          "pinned": false,
-          "know": true,
-          "groupId": "g_t0bqplyi7"
-        },
-        {
-          "pid": "CF1375G",
-          "name": "Tree Modification",
-          "difficulty": 5,
-          "date": "2026-10-29",
-          "note": "完成时间：0小时24分钟\n看了题解\n破冰点：黑白染色",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "CF629E",
-          "name": "Famil Door and Roads",
-          "difficulty": 5,
-          "date": "2026-10-29",
-          "note": "完成时间：0小时27分钟\n独立完成\n破冰点：比较简单的贡献法",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "CF741D",
-          "name": "Arpa’s letter-marked tree and Mehrdad’s Dokhtar-kosh paths",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "AT_ARC096_D",
-          "name": "Sweet Alchemy",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "AT_ARC099_C",
-          "name": "Independence",
-          "difficulty": 6,
-          "date": "2026-10-29",
-          "note": "完成时间：0小时43分钟\n独立完成\n破冰点：二分图染色+背包",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "AT_ARC101_C",
-          "name": "Ribbons on Tree",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "AT_ARC073_D",
-          "name": "Many Moves",
-          "difficulty": 5,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "AT_ARC108_F",
-          "name": "Paint Tree",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "AT_ABC266_G",
-          "name": "Yet Another RGB Sequence",
-          "difficulty": 5,
-          "date": "2026-10-29",
-          "note": "呃为啥这里没有笔记，我记得是写的了的\n记得二项式反演的-1要表达成mod-1",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "AT_ARC185_E",
-          "name": "Adjacent GCD",
-          "difficulty": 5,
-          "date": "2026-10-29",
-          "note": "完成时间：0小时0分钟\n看了题解\n破冰点：欧拉反演是啥",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "AT_ABC284_G",
-          "name": "Only Once",
-          "difficulty": 5,
-          "date": "2026-10-29",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "AT_ARC093_C",
-          "name": "Bichrome Spanning Tree",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": true,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "AT_ABC180_F",
-          "name": "Unbranched",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": true,
-          "groupId": "g_5bqravces"
-        },
-        {
-          "pid": "CF1073G",
-          "name": "Yet Another LCP Problem",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_l249mpu0g"
-        },
-        {
-          "pid": "CF1129C",
-          "name": "Morse Code",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_l249mpu0g"
-        },
-        {
-          "pid": "CF1207G",
-          "name": "Indie Album",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_l249mpu0g"
-        },
-        {
-          "pid": "CF1466G",
-          "name": "Song of the Sirens",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_l249mpu0g"
-        },
-        {
-          "pid": "CF1511F",
-          "name": "Chainword",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_l249mpu0g"
-        },
-        {
-          "pid": "CF1739F",
-          "name": "Keyboard Design",
-          "difficulty": 7,
-          "date": "2026-11-03",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_6rdldf6yw"
-        },
-        {
-          "pid": "CF547E",
-          "name": "Mike and Friends",
-          "difficulty": 7,
-          "date": "2026-11-03",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_6rdldf6yw"
-        },
-        {
-          "pid": "CF533F",
-          "name": "Encoding",
-          "difficulty": 4,
-          "date": "2026-11-03",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_6rdldf6yw"
-        },
-        {
-          "pid": "CF1065F",
-          "name": "Up and Down the Tree",
-          "difficulty": 5,
-          "date": "2026-11-04",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF1088F",
-          "name": "Ehab and a weird weight formula",
-          "difficulty": 6,
-          "date": "2026-11-04",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF1098D",
-          "name": "Eels",
-          "difficulty": 7,
-          "date": "2026-11-04",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF1394D",
-          "name": "Boboniu and Jianghu",
-          "difficulty": 7,
-          "date": "2026-11-04",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF1601C",
-          "name": "Optimal Insertion",
-          "difficulty": 5,
-          "date": "2026-11-04",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF17E",
-          "name": "Palisection",
-          "difficulty": 5,
-          "date": "2026-11-04",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF1809F",
-          "name": "Traveling in Berland",
-          "difficulty": 5,
-          "date": "2026-11-04",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF1942D",
-          "name": "Learning to Paint",
-          "difficulty": 5,
-          "date": "2026-11-04",
-          "note": "吓哭了多路归并",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF524F",
-          "name": "And Yet Another Bracket Sequence",
-          "difficulty": 5,
-          "date": "2026-11-04",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF526F",
-          "name": "Pudding Monsters",
-          "difficulty": 7,
-          "date": "2026-11-04",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF653F",
-          "name": "Paper task",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF671D",
-          "name": "Roads in Yusland",
-          "difficulty": 8,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_oqpd0pukk"
-        },
-        {
-          "pid": "CF626F",
-          "name": "Group Projects",
-          "difficulty": 5,
-          "date": "2026-11-05",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_wtkp40mwm"
-        },
-        {
-          "pid": "P1641",
-          "name": "[SCOI2010] 生成字符串",
-          "difficulty": 5,
-          "date": "2026-11-05",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_wtkp40mwm"
-        },
-        {
-          "pid": "P7154",
-          "name": "[USACO20DEC] Sleeping Cows P",
-          "difficulty": 6,
-          "date": "2026-11-06",
-          "note": "完成时间：0小时22分钟\n看了题解\n破冰点：聪明的",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_wtkp40mwm"
-        },
-        {
-          "pid": "P8321",
-          "name": "『JROI-4』沈阳大街 2",
-          "difficulty": 6,
-          "date": "2026-11-06",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_wtkp40mwm"
-        },
-        {
-          "pid": "P14364",
-          "name": "[CSP-S 2025] 员工招聘",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": true,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "P3214",
-          "name": "[HNOI2011]卡农",
-          "difficulty": 7,
-          "date": "2026-11-06",
-          "note": "完成时间：0小时32分钟\n看了题解\n破冰点：可以通过最后一个来转移",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "P2467",
-          "name": "[SDOI2010] 地精部落",
-          "difficulty": 5,
-          "date": "2026-11-06",
-          "note": "完成时间：0小时18分钟\n看了题解\n破冰点：很聪明的题，想到将i和i+1交换以构造交错序列。",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "P2606",
-          "name": "[ZJOI2010] 排列计数",
-          "difficulty": 5,
-          "date": "2026-11-05",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "P8329",
-          "name": "[ZJOI2022] 树",
-          "difficulty": 8,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "P1240",
-          "name": "诸侯安置",
-          "difficulty": 4,
-          "date": "2026-11-06",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "P6453",
-          "name": "[COCI2008-2009#4] PERIODNI",
-          "difficulty": 7,
-          "date": "2026-11-06",
-          "note": "完成时间：3小时46分钟\n看了题解\n破冰点：笛卡尔树，分成左右区间递归处理",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "P14686",
-          "name": "Charity Raffle",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "P16958",
-          "name": "括号序列",
-          "difficulty": 8,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "P7155",
-          "name": "Spaceship P",
-          "difficulty": 8,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "QOJ20297",
-          "name": "Legendary Game",
-          "difficulty": 0,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "P15738",
-          "name": "Just Believe in Binary Search",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_1222lz0un"
-        },
-        {
-          "pid": "AT_ARC197_E",
-          "name": "Four Square Tiles",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_l0oa76j47"
-        },
-        {
-          "pid": "AT_ARC174_E",
-          "name": "Existence Counting",
-          "difficulty": 7,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_l0oa76j47"
-        },
-        {
-          "pid": "AT_AGC070_C",
-          "name": "No Streak",
-          "difficulty": 8,
-          "date": "",
-          "note": "",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_l0oa76j47"
-        },
         {
           "pid": "CF2152G",
           "name": "Query Jungle",
@@ -3034,7 +2221,7 @@
           "note": "@ 码农 宝宝辅食\n完成时间：1小时13分钟\n独立完成\n破冰点：这个是啥我绷不住了，怎么写这么多",
           "pinned": false,
           "know": false,
-          "groupId": "g_d18sm0r8t"
+          "groupId": null
         },
         {
           "pid": "CF2239C",
@@ -3044,7 +2231,7 @@
           "note": "# 正难则反 二分",
           "pinned": false,
           "know": false,
-          "groupId": "g_d18sm0r8t"
+          "groupId": null
         },
         {
           "pid": "CF2257F2",
@@ -3054,7 +2241,7 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_d18sm0r8t"
+          "groupId": null
         },
         {
           "pid": "AT_ARC186_D",
@@ -3064,7 +2251,7 @@
           "note": "",
           "pinned": false,
           "know": true,
-          "groupId": "g_d18sm0r8t"
+          "groupId": null
         },
         {
           "pid": "AT_ARC162_E",
@@ -3074,7 +2261,7 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_d18sm0r8t"
+          "groupId": null
         },
         {
           "pid": "AT_DWACON6TH_PRELIMS_E",
@@ -3084,18 +2271,17 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_d18sm0r8t"
+          "groupId": null
         },
         {
-          "pid": "AT_dwacon6th_prelims_c",
+          "pid": "AT_DWACON6TH_PRELIMS_C",
           "name": "Cookie Distribution",
           "difficulty": 7,
           "date": "2023-02-20",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_d18sm0r8t",
-          "firstDone": "2026-11-20"
+          "groupId": null
         },
         {
           "pid": "AT_TENKA1_2019_F",
@@ -3105,7 +2291,7 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_d18sm0r8t"
+          "groupId": null
         },
         {
           "pid": "AT_ARC176_C",
@@ -3115,7 +2301,7 @@
           "note": "# 图论\n@ 分讨好题\n完成时间：0小时40分钟\n看了题解\n破冰点：从大到小删",
           "pinned": false,
           "know": false,
-          "groupId": "g_d18sm0r8t"
+          "groupId": null
         },
         {
           "pid": "AT_ARC190_B",
@@ -3125,7 +2311,7 @@
           "note": "",
           "pinned": false,
           "know": true,
-          "groupId": "g_d18sm0r8t"
+          "groupId": null
         },
         {
           "pid": "AT_ABC270_G",
@@ -3135,7 +2321,7 @@
           "note": "# BSGS \n@ 特判仙人",
           "pinned": false,
           "know": false,
-          "groupId": "g_d18sm0r8t"
+          "groupId": null
         },
         {
           "pid": "CF1442D",
@@ -3145,7 +2331,7 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_xj9l6vh1r"
+          "groupId": null
         },
         {
           "pid": "CF1558D",
@@ -3155,7 +2341,7 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_xj9l6vh1r"
+          "groupId": null
         },
         {
           "pid": "CF442D",
@@ -3165,7 +2351,7 @@
           "note": "#blue 均摊 Ad-hoc\n#yellow 思维好题 模板题\n完成时间：2小时47分钟\n看了题解\n破冰点：聪明的均摊题目",
           "pinned": false,
           "know": false,
-          "groupId": "g_xj9l6vh1r"
+          "groupId": null
         },
         {
           "pid": "CF702F",
@@ -3175,7 +2361,7 @@
           "note": "",
           "pinned": false,
           "know": true,
-          "groupId": "g_xj9l6vh1r"
+          "groupId": null
         },
         {
           "pid": "CF946G",
@@ -3185,7 +2371,7 @@
           "note": "@ 清新\n# DP优化 树状数组\n完成时间：0小时58分钟\n独立完成\n破冰点：活了一万年才知道哪里都可以作为答案",
           "pinned": false,
           "know": false,
-          "groupId": "g_xj9l6vh1r"
+          "groupId": null
         },
         {
           "pid": "P13842",
@@ -3195,7 +2381,7 @@
           "note": "#数据结构 扫描线 线段树\n@码农 细节题\n完成时间：3小时13分钟\n看了题解\n破冰点：聪明的线段树",
           "pinned": false,
           "know": false,
-          "groupId": "g_xj9l6vh1r"
+          "groupId": null
         },
         {
           "pid": "P17537",
@@ -3205,7 +2391,7 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_v6qc90sii"
+          "groupId": null
         },
         {
           "pid": "P17543",
@@ -3215,7 +2401,7 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_v6qc90sii"
+          "groupId": null
         },
         {
           "pid": "QOJ5507",
@@ -3225,17 +2411,7 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_v6qc90sii"
-        },
-        {
-          "pid": "QOJ12173",
-          "name": "模拟赛T3",
-          "difficulty": 7,
-          "date": "2026-11-16",
-          "note": "完成时间：0小时40分钟\n看了题解\n破冰点：还是很聪明的",
-          "pinned": false,
-          "know": false,
-          "groupId": "g_v6qc90sii"
+          "groupId": null
         },
         {
           "pid": "CF2285E",
@@ -3245,7 +2421,7 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_ddx2e8ltv"
+          "groupId": null
         },
         {
           "pid": "CF2285F",
@@ -3255,7 +2431,7 @@
           "note": "#green 码农 细节题 \n#yellow 毒瘤 实现 \n#red 差评\n#blue 根号分治 模板题",
           "pinned": false,
           "know": false,
-          "groupId": "g_ddx2e8ltv"
+          "groupId": null
         },
         {
           "pid": "CF2057E2",
@@ -3265,7 +2441,7 @@
           "note": "#blue 并查集 暴力优化 最短路\n#yellow 小清新 tricky\n完成时间：1小时19分钟\n看了题解\n破冰点：比较聪明的并查集转化。",
           "pinned": false,
           "know": false,
-          "groupId": "g_ddx2e8ltv"
+          "groupId": null
         },
         {
           "pid": "CF2081D",
@@ -3275,7 +2451,7 @@
           "note": "#blue 贪心 调和级数\n#green 神题 Ad-hoc\n完成时间：0小时28分钟\n看了题解\n破冰点：贪心还是太强了",
           "pinned": false,
           "know": false,
-          "groupId": "g_ddx2e8ltv"
+          "groupId": null
         },
         {
           "pid": "CF293E",
@@ -3285,7 +2461,7 @@
           "note": "",
           "pinned": false,
           "know": true,
-          "groupId": "g_ddx2e8ltv"
+          "groupId": null
         },
         {
           "pid": "AT_ARC191_D",
@@ -3295,7 +2471,7 @@
           "note": "#blue 分讨\n#green 细节 实现\n#red 差评\n完成时间：1小时3分钟\n看了题解\n破冰点：这个分讨有点难。",
           "pinned": false,
           "know": false,
-          "groupId": "g_ddx2e8ltv"
+          "groupId": null
         },
         {
           "pid": "P15534",
@@ -3305,7 +2481,7 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_ddx2e8ltv"
+          "groupId": null
         },
         {
           "pid": "P12104",
@@ -3315,7 +2491,7 @@
           "note": "#blue 构造 贪心\n#green 神仙题 细节题\n#yellow 实现\n完成时间：2小时30分钟\n看了题解\n破冰点：这个构造有点牛，感觉是我想不出来的奇偶构造。",
           "pinned": false,
           "know": false,
-          "groupId": "g_ddx2e8ltv"
+          "groupId": null
         },
         {
           "pid": "P6932",
@@ -3325,7 +2501,7 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vbll5ive5"
+          "groupId": null
         },
         {
           "pid": "P7024",
@@ -3335,27 +2511,309 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vbll5ive5"
+          "groupId": null
         },
         {
-          "pid": "AT_abc458_g",
+          "pid": "AT_ABC458_G",
           "name": "Children Yearn for the Evil Kindergarten",
           "difficulty": 7,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vbll5ive5"
+          "groupId": null
         },
         {
-          "pid": "AT_abc464_g",
+          "pid": "AT_ABC464_G",
           "name": "Celester 2",
           "difficulty": 7,
           "date": "",
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_vbll5ive5"
+          "groupId": null
+        },
+        {
+          "pid": "AT_agc026_d",
+          "name": "Histogram Coloring",
+          "difficulty": 6,
+          "date": "2026-11-22",
+          "note": "#笛卡尔树\n完成时间：1小时39分钟\n看了题解\n破冰点：笛卡尔树，转移有点猎奇",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "AT_nomura2020_d",
+          "name": "Urban Planning",
+          "difficulty": 7,
+          "date": "2026-11-22",
+          "note": "完成时间：0小时38分钟\n看了题解\n破冰点：将所有连通块拆成基环树和内向树，然后让树形成排列并连边，分别计算贡献。",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "AT_agc034_e",
+          "name": "Complete Compress",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P10430",
+          "name": "【JOISC2024-Day1】鱼3",
+          "difficulty": 7,
+          "date": "2026-11-22",
+          "note": "完成时间：0小时55分钟\n看了题解\n破冰点：栈维护这个细节比较难写，感觉如果绕清楚了还是可以。",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P5327",
+          "name": "[ZJOI2019]语言",
+          "difficulty": 8,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P9084",
+          "name": "[PA 2018] Skwarki",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": true,
+          "groupId": null
+        },
+        {
+          "pid": "AT_arc165_d",
+          "name": "Substring Comparison",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "AT_arc071_d",
+          "name": "Infinite Sequence",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": true,
+          "groupId": null
+        },
+        {
+          "pid": "AT_arc080_c",
+          "name": "Young Maids",
+          "difficulty": 5,
+          "date": "2026-11-24",
+          "note": "#blue 分治 数据结构\n#green 细节题\n完成时间：1小时5分钟\n独立完成\n破冰点：这个结论感觉用线段树维护一下即可。",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1120D",
+          "name": "Power Tree",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF1251E1",
+          "name": "Voting (Easy Version)",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": true,
+          "groupId": null
+        },
+        {
+          "pid": "CF2268C",
+          "name": "KiaKio and Energy Intervals",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF2127E",
+          "name": "Ancient Tree",
+          "difficulty": 5,
+          "date": "2026-11-25",
+          "note": "完成时间：0小时50分钟\n独立完成\n破冰点：0个人告诉我子树全空可以直接传\n#blue 启发式合并 贪心\n#green 小清新",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF490F",
+          "name": "Treeland Tour",
+          "difficulty": 5,
+          "date": "2026-11-25",
+          "note": "完成时间：0小时19分钟\n独立完成\n破冰点：可撤销树状数组来了\n#green 奇技淫巧 树状数组\n#blue 数据结构",
+          "pinned": false,
+          "know": false,
+          "groupId": null,
+          "firstDone": "2026-11-25"
+        },
+        {
+          "pid": "CF512D",
+          "name": "Fox And Travelling",
+          "difficulty": 7,
+          "date": "2026-11-25",
+          "note": "完成时间：0小时41分钟\n看了题解\n破冰点：这么猎奇。\n#blue 树上背包 组合数学",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF549F",
+          "name": "Yura and Developers",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": true,
+          "groupId": null
+        },
+        {
+          "pid": "CF802M3",
+          "name": "April Fools' Problem (hard)",
+          "difficulty": 7,
+          "date": "2026-11-25",
+          "note": "完成时间：0小时42分钟\n看了题解\n破冰点：我已学会忘情水二分\n#blue wqs二分 反悔贪心",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF835F",
+          "name": "Roads in the Kingdom",
+          "difficulty": 7,
+          "date": "2026-11-25",
+          "note": "完成时间：3小时24分钟\n独立完成\n破冰点：思路有一定坑，容易误判中间也有值的情况，这里使用线段树解决了。\n#blue 数据结构 基环树\n#green 细节题 小清新",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF938G",
+          "name": "Shortest Path Queries",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF986E",
+          "name": "Prince's Problem",
+          "difficulty": 7,
+          "date": "2026-11-25",
+          "note": "完成时间：3小时42分钟\n看了题解\n破冰点：这个最小值拆分还有点意思。\n#blue 数论\n#green 拆贡献 tricky 神仙题",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF992E",
+          "name": "Nastya and King-Shamans",
+          "difficulty": 6,
+          "date": "2026-11-25",
+          "note": "#blue 线段树 势能分析\n\n",
+          "pinned": false,
+          "know": false,
+          "groupId": null,
+          "firstDone": "2026-11-25"
+        },
+        {
+          "pid": "CF2164F2",
+          "name": "Chain Prefix Rank (Hard Version)",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": true,
+          "groupId": null
+        },
+        {
+          "pid": "CF2165D",
+          "name": "Path Split",
+          "difficulty": 7,
+          "date": "2026-11-25",
+          "note": "完成时间：1小时3分钟\n看了题解\n破冰点：神奇的贪心结论\n#blue 贪心 图论建模 图匹配\n#green 神仙题 结论题 代码简单好抄",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF2165E",
+          "name": "Rainbow Branch",
+          "difficulty": 8,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF2182F2",
+          "name": "Christmas Reindeer (hard version)",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF2201D",
+          "name": "Binary Not Search and Queries",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF2211E",
+          "name": "Minimum Path Cover",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "CF2229E",
+          "name": "Deconstruction Tree",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
         }
       ]
     },
@@ -9760,7 +9218,7 @@
         {
           "id": "g_qlaplq6hf",
           "name": "数论与整除",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_1pkoa96hf",
@@ -9818,11 +9276,12 @@
           "pid": "AT_ARC158_C",
           "name": "All Pair Digit Sums",
           "difficulty": 4,
-          "date": "",
-          "note": "",
+          "date": "2026-11-22",
+          "note": "#yellow 不会绿题的来\n#green 结论题 tricky",
           "pinned": false,
           "know": false,
-          "groupId": "g_qlaplq6hf"
+          "groupId": "g_qlaplq6hf",
+          "firstDone": "2026-11-22"
         },
         {
           "pid": "CF1360H",
@@ -9982,17 +9441,19 @@
           "note": "",
           "pinned": false,
           "know": false,
-          "groupId": "g_qlaplq6hf"
+          "groupId": "g_qlaplq6hf",
+          "firstDone": "2026-11-22"
         },
         {
           "pid": "CF1166E",
           "name": "The LCMs Must be Large",
           "difficulty": 5,
-          "date": "",
-          "note": "",
+          "date": "2026-11-22",
+          "note": "#blue 构造 数论\n#green 结论题 代码简单好抄",
           "pinned": false,
           "know": false,
-          "groupId": "g_qlaplq6hf"
+          "groupId": "g_qlaplq6hf",
+          "firstDone": "2026-11-22"
         },
         {
           "pid": "CF1288D",
@@ -14700,52 +14161,52 @@
         {
           "id": "g_neht401ck",
           "name": "一、排序与交换论证",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_blu8f81ck",
           "name": "二、相邻交换、逆序与冒泡",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_oqdt8g1ck",
           "name": "三、反悔贪心（堆、可撤销）",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_2tyxhr1ck",
           "name": "四、区间贪心：覆盖、扩展与扫描",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_20xlt01ck",
           "name": "五、堆与资源分配",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_5xbq1j1ck",
           "name": "六、贪心 + 二分判定",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_2tfefm1ck",
           "name": "七、构造 + 贪心",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_tjcxlc1ck",
           "name": "八、按位 / 数论 / 奇偶性贪心",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_vf562p1ck",
           "name": "九、树上贪心",
-          "collapsed": true
+          "collapsed": false
         },
         {
           "id": "g_azzawr1ck",
           "name": "十、博弈与策略贪心",
-          "collapsed": true
+          "collapsed": false
         }
       ],
       "problems": [
@@ -17382,7 +16843,7 @@
           "difficulty": 7,
           "date": "",
           "note": "",
-          "pinned": false,
+          "pinned": true,
           "know": false,
           "groupId": "g_u4i2190tj"
         },
@@ -17702,16 +17163,6 @@
           "groupId": null
         },
         {
-          "pid": "P16328",
-          "name": "夜曲",
-          "difficulty": 4,
-          "date": "2026-11-20",
-          "note": "完成时间：0小时53分钟\n看了题解\n破冰点：气笑了这个二分",
-          "pinned": false,
-          "know": false,
-          "groupId": null
-        },
-        {
           "pid": "P5258",
           "name": "[JSOI2013] 旅行时的困惑",
           "difficulty": 5,
@@ -17760,6 +17211,912 @@
           "pinned": false,
           "know": false,
           "groupId": null
+        },
+        {
+          "pid": "P15901",
+          "name": "[TOPC 2025] Reactor",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P11218",
+          "name": "【MX-S4-T2】「yyOI R2」youyou 不喜欢夏天",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P10142",
+          "name": "[USACO24JAN] Mooball Teams III P",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P10880",
+          "name": "[JRKSJ R9] 莫队的 1.5 近似构造",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P3451",
+          "name": "[POI 2007] ATR-Tourist Attractions",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P4645",
+          "name": "[COCI 2006/2007 #3] BICIKLI",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        },
+        {
+          "pid": "P4550",
+          "name": "收集邮票",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": null
+        }
+      ]
+    },
+    "教学题单（归档10.23~11.9）": {
+      "groups": [
+        {
+          "id": "g_v6kx32cws",
+          "name": "10.23",
+          "collapsed": true
+        },
+        {
+          "id": "g_z2p0ilcws",
+          "name": "10.26",
+          "collapsed": true
+        },
+        {
+          "id": "g_8pa373cws",
+          "name": "10.27",
+          "collapsed": true
+        },
+        {
+          "id": "g_9or19ocws",
+          "name": "10.29",
+          "collapsed": true
+        },
+        {
+          "id": "g_5tuy1ocws",
+          "name": "11.2",
+          "collapsed": true
+        },
+        {
+          "id": "g_79739hcws",
+          "name": "11.3",
+          "collapsed": true
+        },
+        {
+          "id": "g_8h6ixzcws",
+          "name": "11.4",
+          "collapsed": true
+        },
+        {
+          "id": "g_6grdp1cws",
+          "name": "11.5",
+          "collapsed": true
+        },
+        {
+          "id": "g_a1hz1rcws",
+          "name": "11.6",
+          "collapsed": true
+        },
+        {
+          "id": "g_acitklcws",
+          "name": "11.9",
+          "collapsed": true
+        }
+      ],
+      "problems": [
+        {
+          "pid": "AT_abc160_f",
+          "name": "Distributing Integers",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_v6kx32cws"
+        },
+        {
+          "pid": "AT_abc281_g",
+          "name": "Farthest City",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_v6kx32cws"
+        },
+        {
+          "pid": "P15387",
+          "name": "Soso 的期望并查集 / exsodsu",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_v6kx32cws"
+        },
+        {
+          "pid": "P8190",
+          "name": "[USACO22FEB] Cow Camp G",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_v6kx32cws"
+        },
+        {
+          "pid": "AT_agc053_c",
+          "name": "Random Card Game",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_v6kx32cws"
+        },
+        {
+          "pid": "AT_agc060_c",
+          "name": "Large Heap",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_v6kx32cws"
+        },
+        {
+          "pid": "AT_arc108_e",
+          "name": "Random IS",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_v6kx32cws"
+        },
+        {
+          "pid": "AT_arc170_e",
+          "name": "BDFS",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_v6kx32cws"
+        },
+        {
+          "pid": "AT_arc174_e",
+          "name": "Existence Counting",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_v6kx32cws"
+        },
+        {
+          "pid": "P10879",
+          "name": "「KDOI-07」对树链剖分的爱",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_v6kx32cws"
+        },
+        {
+          "pid": "P12061",
+          "name": "[THUPC 2025 决赛] 喜爱之钥",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_v6kx32cws"
+        },
+        {
+          "pid": "AT_agc043_b",
+          "name": "123 Triangle",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_z2p0ilcws"
+        },
+        {
+          "pid": "AT_abc144_f",
+          "name": "Fork in the Road",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_z2p0ilcws"
+        },
+        {
+          "pid": "AT_agc023_c",
+          "name": "Painting Machines",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_z2p0ilcws"
+        },
+        {
+          "pid": "AT_arc111_f",
+          "name": "Do you like query problems?",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_z2p0ilcws"
+        },
+        {
+          "pid": "AT_keyence2019_f",
+          "name": "Paper Cutting",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_z2p0ilcws"
+        },
+        {
+          "pid": "CF1385F",
+          "name": "Removing Leaves",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_z2p0ilcws"
+        },
+        {
+          "pid": "CF1455G",
+          "name": "Forbidden Value",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_z2p0ilcws"
+        },
+        {
+          "pid": "CF1709E",
+          "name": "XOR Tree",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_z2p0ilcws"
+        },
+        {
+          "pid": "CF778C",
+          "name": "Peterson Polyglot",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_z2p0ilcws"
+        },
+        {
+          "pid": "CF1005F",
+          "name": "Berland and the Shortest Paths",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8pa373cws"
+        },
+        {
+          "pid": "CF1107G",
+          "name": "Vasya and Maximum Profit",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8pa373cws"
+        },
+        {
+          "pid": "CF1268C",
+          "name": "K Integers",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8pa373cws"
+        },
+        {
+          "pid": "CF1292D",
+          "name": "Chaotic V.",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8pa373cws"
+        },
+        {
+          "pid": "CF1416D",
+          "name": "Graph and Queries",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8pa373cws"
+        },
+        {
+          "pid": "CF1749E",
+          "name": "Cactus Wall",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8pa373cws"
+        },
+        {
+          "pid": "CF555E",
+          "name": "Case of Computer Network",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8pa373cws"
+        },
+        {
+          "pid": "CF1375G",
+          "name": "Tree Modification",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "CF629E",
+          "name": "Famil Door and Roads",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "CF741D",
+          "name": "Arpa’s letter-marked tree and Mehrdad’s Dokhtar-kosh paths",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "AT_arc096_d",
+          "name": "Sweet Alchemy",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "AT_arc099_c",
+          "name": "Independence",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "AT_arc101_c",
+          "name": "Ribbons on Tree",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "AT_arc073_d",
+          "name": "Many Moves",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "AT_arc108_f",
+          "name": "Paint Tree",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "AT_abc266_g",
+          "name": "Yet Another RGB Sequence",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "AT_arc185_e",
+          "name": "Adjacent GCD",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "AT_abc284_g",
+          "name": "Only Once",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "AT_arc093_c",
+          "name": "Bichrome Spanning Tree",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "AT_abc180_f",
+          "name": "Unbranched",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_9or19ocws"
+        },
+        {
+          "pid": "CF1073G",
+          "name": "Yet Another LCP Problem",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_5tuy1ocws"
+        },
+        {
+          "pid": "CF1129C",
+          "name": "Morse Code",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_5tuy1ocws"
+        },
+        {
+          "pid": "CF1207G",
+          "name": "Indie Album",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_5tuy1ocws"
+        },
+        {
+          "pid": "CF1466G",
+          "name": "Song of the Sirens",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_5tuy1ocws"
+        },
+        {
+          "pid": "CF1511F",
+          "name": "Chainword",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_5tuy1ocws"
+        },
+        {
+          "pid": "CF1739F",
+          "name": "Keyboard Design",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_79739hcws"
+        },
+        {
+          "pid": "CF547E",
+          "name": "Mike and Friends",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_79739hcws"
+        },
+        {
+          "pid": "CF533F",
+          "name": "Encoding",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_79739hcws"
+        },
+        {
+          "pid": "CF1065F",
+          "name": "Up and Down the Tree",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF1088F",
+          "name": "Ehab and a weird weight formula",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF1098D",
+          "name": "Eels",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF1394D",
+          "name": "Boboniu and Jianghu",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF1601C",
+          "name": "Optimal Insertion",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF17E",
+          "name": "Palisection",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF1809F",
+          "name": "Traveling in Berland",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF1942D",
+          "name": "Learning to Paint",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF524F",
+          "name": "And Yet Another Bracket Sequence",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF526F",
+          "name": "Pudding Monsters",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF653F",
+          "name": "Paper task",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF671D",
+          "name": "Roads in Yusland",
+          "difficulty": 8,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_8h6ixzcws"
+        },
+        {
+          "pid": "CF626F",
+          "name": "Group Projects",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_6grdp1cws"
+        },
+        {
+          "pid": "P1641",
+          "name": "[SCOI2010] 生成字符串",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_6grdp1cws"
+        },
+        {
+          "pid": "P7154",
+          "name": "[USACO20DEC] Sleeping Cows P",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_6grdp1cws"
+        },
+        {
+          "pid": "P8321",
+          "name": "『JROI-4』沈阳大街 2",
+          "difficulty": 6,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_6grdp1cws"
+        },
+        {
+          "pid": "P14364",
+          "name": "[CSP-S 2025] 员工招聘",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "P3214",
+          "name": "[HNOI2011]卡农",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "P2467",
+          "name": "[SDOI2010] 地精部落",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "P2606",
+          "name": "[ZJOI2010] 排列计数",
+          "difficulty": 5,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "P8329",
+          "name": "[ZJOI2022] 树",
+          "difficulty": 8,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "P1240",
+          "name": "诸侯安置",
+          "difficulty": 4,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "P6453",
+          "name": "[COCI2008-2009#4] PERIODNI",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "P14686",
+          "name": "Charity Raffle",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "P16958",
+          "name": "括号序列",
+          "difficulty": 8,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "P7155",
+          "name": "Spaceship P",
+          "difficulty": 8,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "QOJ20297",
+          "name": "Legendary Game",
+          "difficulty": 0,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "P15738",
+          "name": "Just Believe in Binary Search",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_a1hz1rcws"
+        },
+        {
+          "pid": "AT_arc197_e",
+          "name": "Four Square Tiles",
+          "difficulty": 7,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_acitklcws"
+        },
+        {
+          "pid": "AT_agc070_c",
+          "name": "No Streak",
+          "difficulty": 8,
+          "date": "",
+          "note": "",
+          "pinned": false,
+          "know": false,
+          "groupId": "g_acitklcws"
         }
       ]
     }
@@ -17777,7 +18134,7 @@
     },
     {
       "id": "lg_4kboarfin",
-      "name": "第一轮",
+      "name": "教学题单",
       "collapsed": false
     },
     {
@@ -17812,7 +18169,8 @@
     "专题-图论": "lg_o8va59ved",
     "专题-贪心": "lg_o8va59ved",
     "专题-期望": "lg_o8va59ved",
-    "专题-DP": "lg_o8va59ved"
+    "专题-DP": "lg_o8va59ved",
+    "教学题单（归档10.23~11.9）": "lg_4kboarfin"
   },
   "listLocks": {},
   "listPins": {
@@ -17843,14 +18201,314 @@
     "专题-贪心",
     "专题-期望",
     "专题-DP",
-    "随机跳题"
+    "随机跳题",
+    "教学题单（归档10.23~11.9）"
   ],
   "markedLists": [
     "训练-强化"
   ],
-  "currentList": "教学题单",
+  "currentList": "随机跳题",
   "_codex": {
     "mock": [
+      {
+        "id": "mc_mtjyrylxb",
+        "name": "2026-11-26 最后一舞",
+        "style": "csp-s",
+        "createdAt": 1795658691645,
+        "startedAt": 1795658691645,
+        "endsAt": 1795673091645,
+        "scheduledAt": null,
+        "durationMs": 14400000,
+        "status": "supplement",
+        "submittedAt": 1795669530446,
+        "archivedAt": 1795677970250,
+        "rank": "",
+        "finishedAt": 1795677970250,
+        "problems": [
+          {
+            "id": "mp_31gg57lxb",
+            "name": "T1",
+            "estScore": 100,
+            "records": [
+              {
+                "score": 100,
+                "at": 1795658694136
+              }
+            ],
+            "realScore": 100,
+            "code": "",
+            "review": "1",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
+          },
+          {
+            "id": "mp_vw2h5jlxb",
+            "name": "T2",
+            "estScore": 80,
+            "records": [
+              {
+                "score": 80,
+                "at": 1795658696121
+              }
+            ],
+            "realScore": 80,
+            "code": "",
+            "review": "1",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
+          },
+          {
+            "id": "mp_jtkvpzlxb",
+            "name": "T3",
+            "estScore": 25,
+            "records": [
+              {
+                "score": 15,
+                "at": 1795660873741
+              },
+              {
+                "score": 25,
+                "at": 1795661318454
+              }
+            ],
+            "realScore": 25,
+            "code": "",
+            "review": "1",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
+          },
+          {
+            "id": "mp_4m3dbqlxb",
+            "name": "T4",
+            "estScore": 100,
+            "records": [
+              {
+                "score": 20,
+                "at": 1795663113386
+              },
+              {
+                "score": 50,
+                "at": 1795663677966
+              },
+              {
+                "score": 100,
+                "at": 1795666066816
+              }
+            ],
+            "realScore": 0,
+            "code": "",
+            "review": "0！！！",
+            "solutionCode": "",
+            "suppPid": "T4·ylxb",
+            "suppDoneAt": 1795677988102,
+            "suppNote": "补题完成 · 11/26 15:26\n独立完成 · 0小时0分钟\n破冰点：我气笑了，赛时DP就差一点点。"
+          }
+        ]
+      },
+      {
+        "id": "mc_4p0oeq71f",
+        "name": "2026-11-24 代码源",
+        "style": "csp-s",
+        "createdAt": 1795486231777,
+        "startedAt": 1795486231777,
+        "endsAt": 1795500631777,
+        "scheduledAt": null,
+        "durationMs": 14400000,
+        "status": "finished",
+        "submittedAt": 1795500631777,
+        "archivedAt": 1795503386364,
+        "rank": "",
+        "finishedAt": 1795661808648,
+        "problems": [
+          {
+            "id": "mp_lbstcz71g",
+            "name": "T1",
+            "estScore": 10,
+            "records": [
+              {
+                "score": 10,
+                "at": 1795486234706
+              }
+            ],
+            "realScore": 35,
+            "code": "",
+            "review": "35",
+            "solutionCode": "",
+            "suppPid": "T1·q71f",
+            "suppDoneAt": null,
+            "suppNote": ""
+          },
+          {
+            "id": "mp_pl8gt271g",
+            "name": "T2",
+            "estScore": 25,
+            "records": [
+              {
+                "score": 25,
+                "at": 1795486236641
+              }
+            ],
+            "realScore": 0,
+            "code": "",
+            "review": "0",
+            "solutionCode": "",
+            "suppPid": "T2·q71f",
+            "suppDoneAt": 1795510403379,
+            "suppNote": "补题完成 · 11/24 16:53\n看了题解 · 0小时0分钟\n破冰点：求了"
+          },
+          {
+            "id": "mp_cjnmap71g",
+            "name": "T3",
+            "estScore": 25,
+            "records": [
+              {
+                "score": 25,
+                "at": 1795486237836
+              }
+            ],
+            "realScore": 25,
+            "code": "",
+            "review": "25",
+            "solutionCode": "",
+            "suppPid": "T3·q71f",
+            "suppDoneAt": null,
+            "suppNote": ""
+          },
+          {
+            "id": "mp_p4tt0x71g",
+            "name": "T4",
+            "estScore": 45,
+            "records": [
+              {
+                "score": 45,
+                "at": 1795486239484
+              }
+            ],
+            "realScore": 45,
+            "code": "",
+            "review": "45",
+            "solutionCode": "",
+            "suppPid": "T4·q71f",
+            "suppDoneAt": null,
+            "suppNote": ""
+          }
+        ]
+      },
+      {
+        "id": "mc_1fp0zcx76",
+        "name": "2026-11-23",
+        "style": "noip",
+        "createdAt": 1795390107666,
+        "startedAt": 1795390200000,
+        "endsAt": 1795406400000,
+        "scheduledAt": null,
+        "durationMs": 16200000,
+        "status": "finished",
+        "submittedAt": 1795406400000,
+        "archivedAt": 1795415900308,
+        "rank": "",
+        "finishedAt": 1795430432486,
+        "problems": [
+          {
+            "id": "mp_hn9nm3x76",
+            "name": "T1",
+            "estScore": 100,
+            "records": [
+              {
+                "score": 100,
+                "at": 1795390624076
+              }
+            ],
+            "realScore": 100,
+            "code": "",
+            "review": "!!!",
+            "solutionCode": "",
+            "suppPid": "",
+            "suppDoneAt": null,
+            "suppNote": ""
+          },
+          {
+            "id": "mp_d5jpgxx76",
+            "name": "T2",
+            "estScore": 40,
+            "records": [
+              {
+                "score": 30,
+                "at": 1795399381747
+              },
+              {
+                "score": 40,
+                "at": 1795399398656
+              },
+              {
+                "score": 40,
+                "at": 1795404097668
+              }
+            ],
+            "realScore": 40,
+            "code": "",
+            "review": "!!!",
+            "solutionCode": "",
+            "suppPid": "T2·cx76",
+            "suppDoneAt": null,
+            "suppNote": ""
+          },
+          {
+            "id": "mp_0apgqqx76",
+            "name": "T3",
+            "estScore": 55,
+            "records": [
+              {
+                "score": 40,
+                "at": 1795397472764
+              },
+              {
+                "score": 55,
+                "at": 1795399379051
+              }
+            ],
+            "realScore": 40,
+            "code": "",
+            "review": "!!!",
+            "solutionCode": "",
+            "suppPid": "T3·cx76",
+            "suppDoneAt": 1795430420708,
+            "suppNote": "补题完成 · 11/23 18:40\n看了题解 · 0小时0分钟\n破冰点：111"
+          },
+          {
+            "id": "mp_abb2qbx76",
+            "name": "T4",
+            "estScore": 45,
+            "records": [
+              {
+                "score": 45,
+                "at": 1795393070218
+              },
+              {
+                "score": 30,
+                "at": 1795404111466
+              },
+              {
+                "score": 45,
+                "at": 1795405626444
+              }
+            ],
+            "realScore": 0,
+            "code": "",
+            "review": "!!!",
+            "solutionCode": "",
+            "suppPid": "T4·cx76",
+            "suppDoneAt": 1795430416145,
+            "suppNote": "补题完成 · 11/23 18:40\n看了题解 · 0小时0分钟\n破冰点：111"
+          }
+        ]
+      },
       {
         "id": "mc_bqmeay2kg",
         "name": "2026-11-19",
@@ -19452,117 +20110,118 @@
           "name": "Multiset Mean"
         },
         "updatedAt": 1795094349122
+      },
+      {
+        "id": "tk_ryfk2y995",
+        "createdAt": 1795352285273,
+        "feature": "数位和",
+        "transform": "定义 $g(i,j)$ 表示 $i+j$ 进位了多少次，则 $f(i+j)=f(i)+f(j)-9\\times g(i,j)$。",
+        "algo": "数学",
+        "note": "就是一个结论，考到就是赚到",
+        "color": "#5a8a9a",
+        "priority": 1,
+        "example": {
+          "listName": "训练-思维",
+          "pid": "AT_ARC158_C",
+          "name": "All Pair Digit Sums"
+        },
+        "updatedAt": 1795352285273
       }
     ],
     "daily": {
-      "inbox": [],
-      "doing": [],
-      "suspended": [
+      "inbox": [
         {
-          "id": "dt_0bd6tpajj",
-          "listName": "训练-转化",
-          "pid": "CF1389F",
-          "name": "Bicolored Segments",
-          "difficulty": 7,
-          "addedAt": 1794488777695,
-          "status": "suspended",
-          "movedAt": 1795243934181,
-          "suspendedAt": 1795243936139
-        },
-        {
-          "id": "dt_601y5uh9q",
-          "listName": "训练-计数",
-          "pid": "CF1187E",
-          "name": "Tree Painting",
-          "difficulty": 5,
-          "addedAt": 1795094567918,
-          "status": "suspended",
-          "movedAt": 1795094589748,
-          "suspendedAt": 1795179548793
-        },
-        {
-          "id": "dt_ztwhprot3",
+          "id": "dt_9jxda4303",
           "listName": "教学题单",
-          "pid": "CF293E",
-          "name": "Close Vertices",
-          "difficulty": 7,
-          "addedAt": 1794989461719,
-          "status": "suspended",
-          "movedAt": 1795069494249,
-          "suspendedAt": 1795074100718
-        },
-        {
-          "id": "dt_yonb90zsi",
-          "listName": "训练-计数",
-          "pid": "CF1542D",
-          "name": "Priority Queue",
-          "difficulty": 5,
-          "addedAt": 1794918978738,
-          "status": "suspended",
-          "movedAt": 1794960470618,
-          "suspendedAt": 1794960554987
-        },
-        {
-          "id": "dt_94q8po90k",
-          "listName": "训练-计数",
-          "pid": "CF1516E",
-          "name": "Baby Ehab Plays with Permutations",
-          "difficulty": 7,
-          "addedAt": 1794464887844,
-          "status": "suspended",
-          "movedAt": 1794836284007,
-          "suspendedAt": 1794837055226
-        },
-        {
-          "id": "dt_ny1diyx59",
-          "listName": "教学题单",
-          "pid": "CF702F",
-          "name": "T-Shirts",
-          "difficulty": 7,
-          "addedAt": 1794747234573,
-          "status": "suspended",
-          "movedAt": 1794747238991,
-          "suspendedAt": 1794822522145
-        },
-        {
-          "id": "dt_uf8rs5d4u",
-          "listName": "训练-转化",
-          "pid": "CF1858E2",
-          "name": "Rollbacks (Hard Version)",
-          "difficulty": 7,
-          "addedAt": 1794643165758,
-          "status": "suspended",
-          "movedAt": 1794643165758,
-          "suspendedAt": 1794648768832
-        },
-        {
-          "id": "dt_0093n8dej",
-          "listName": "训练-思维",
-          "pid": "CF1474E",
-          "name": "What Is It?",
-          "difficulty": 7,
-          "addedAt": 1794611626651,
-          "status": "suspended",
-          "movedAt": 1794637596344,
-          "suspendedAt": 1794638034518
+          "pid": "CF2268C",
+          "name": "KiaKio and Energy Intervals",
+          "difficulty": 6,
+          "addedAt": 1795523877939,
+          "status": "inbox"
         }
       ],
-      "done": [],
-      "activeId": null,
-      "activeSince": null,
+      "doing": [
+        {
+          "id": "dt_a69vxpi5d",
+          "listName": "教学题单",
+          "pid": "CF2229E",
+          "name": "Deconstruction Tree",
+          "difficulty": 5,
+          "addedAt": 1795694378594,
+          "status": "doing",
+          "movedAt": 1795694378594
+        }
+      ],
+      "suspended": [
+        {
+          "id": "dt_cvt5rbnbt",
+          "listName": "教学题单",
+          "pid": "CF549F",
+          "name": "Yura and Developers",
+          "difficulty": 7,
+          "addedAt": 1795574619353,
+          "status": "suspended",
+          "movedAt": 1795574619353,
+          "suspendedAt": 1795575409929
+        },
+        {
+          "id": "dt_vy534u1vd",
+          "listName": "教学题单",
+          "pid": "CF1251E1",
+          "name": "Voting (Easy Version)",
+          "difficulty": 5,
+          "addedAt": 1795523876473,
+          "status": "suspended",
+          "movedAt": 1795528131632,
+          "suspendedAt": 1795528188931
+        },
+        {
+          "id": "dt_z66w0ixau",
+          "listName": "教学题单",
+          "pid": "AT_arc071_d",
+          "name": "Infinite Sequence",
+          "difficulty": 5,
+          "addedAt": 1795508707350,
+          "status": "suspended",
+          "movedAt": 1795523574022,
+          "suspendedAt": 1795523873297
+        },
+        {
+          "id": "dt_e8030uzfv",
+          "listName": "教学题单",
+          "pid": "P9084",
+          "name": "[PA 2018] Skwarki",
+          "difficulty": 7,
+          "addedAt": 1795329551083,
+          "status": "suspended",
+          "movedAt": 1795347757728,
+          "suspendedAt": 1795348900893
+        }
+      ],
+      "done": [
+        {
+          "id": "dt_9yl06hus1",
+          "listName": "MOCK:mc_mtjyrylxb",
+          "pid": "T4·ylxb",
+          "name": "2026-11-26 最后一舞 · T4",
+          "difficulty": 0,
+          "durationMs": 833,
+          "usedSolution": false,
+          "icebreak": "我气笑了，赛时DP就差一点点。",
+          "doneAt": 1795677988051
+        }
+      ],
+      "activeId": "dt_a69vxpi5d",
+      "activeSince": 1795694378595,
       "elapsed": {
-        "dt_94q8po90k": 2418472,
-        "dt_0093n8dej": 437350,
-        "dt_uf8rs5d4u": 5603074,
-        "dt_ny1diyx59": 1980199,
-        "dt_yonb90zsi": 1937262,
-        "dt_ztwhprot3": 4606469,
-        "dt_601y5uh9q": 182944,
-        "dt_0bd6tpajj": 25254675
+        "dt_e8030uzfv": 1143165,
+        "dt_z66w0ixau": 298712,
+        "dt_vy534u1vd": 57299,
+        "dt_cvt5rbnbt": 790576
       },
       "today": {
-        "date": "2026-11-21",
-        "ms": 23805294
+        "date": "2026-11-26",
+        "ms": 833
       }
     }
   }
